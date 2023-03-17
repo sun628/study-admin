@@ -34,9 +34,11 @@
     }
     .login-form {
       width: 420px;
-      padding: 50px 40px 45px;
+      height: 420px;
       border-radius: 10px;
       box-shadow: 2px 3px 7px rgb(0 0 0 / 20%);
+      position: relative;
+      overflow: hidden;
       .login-logo {
         display: flex;
         align-items: center;
@@ -69,6 +71,111 @@
           width: 185px;
         }
       }
+      .login-warp {
+        width: 100%;
+        height: 100%;
+        z-index: 11;
+        padding: 50px 40px 45px;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .login-warp-one,
+      .login-warp-two {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        &::before,
+        &::after {
+          content: '';
+          position: absolute;
+          z-index: 1;
+        }
+      }
+      .login-warp-one {
+        &::before {
+          filter: hue-rotate(0deg);
+          top: 0px;
+          left: 0;
+          width: 100%;
+          height: 3px;
+          background: linear-gradient(90deg, transparent, var(--el-color-primary));
+          animation: loginLeft 3s linear infinite;
+        }
+        &::after {
+          filter: hue-rotate(60deg);
+          top: -100%;
+          right: 2px;
+          width: 3px;
+          height: 100%;
+          background: linear-gradient(180deg, transparent, var(--el-color-primary));
+          animation: loginTop 3s linear infinite;
+          animation-delay: 0.7s;
+        }
+      }
+      .login-warp-two {
+        &::before {
+          filter: hue-rotate(120deg);
+          bottom: 2px;
+          right: -100%;
+          width: 100%;
+          height: 3px;
+          background: linear-gradient(270deg, transparent, var(--el-color-primary));
+          animation: loginRight 3s linear infinite;
+          animation-delay: 1.4s;
+        }
+        &::after {
+          filter: hue-rotate(300deg);
+          bottom: -100%;
+          left: 0px;
+          width: 3px;
+          height: 100%;
+          background: linear-gradient(360deg, transparent, var(--el-color-primary));
+          animation: loginBottom 3s linear infinite;
+          animation-delay: 2.1s;
+        }
+      }
     }
+  }
+}
+
+/* 登录页动画
+------------------------------- */
+@keyframes loginLeft {
+  0% {
+    left: -100%;
+  }
+  50%,
+  100% {
+    left: 100%;
+  }
+}
+@keyframes loginTop {
+  0% {
+    top: -100%;
+  }
+  50%,
+  100% {
+    top: 100%;
+  }
+}
+@keyframes loginRight {
+  0% {
+    right: -100%;
+  }
+  50%,
+  100% {
+    right: 100%;
+  }
+}
+@keyframes loginBottom {
+  0% {
+    bottom: -100%;
+  }
+  50%,
+  100% {
+    bottom: 100%;
   }
 }
