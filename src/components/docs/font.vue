@@ -1,12 +1,11 @@
 <template>
-  <div class="doc my-4">
-    <h2>{{ title }}</h2>
+  <span :style="{ color: color }">
     <slot></slot>
-  </div>
+  </span>
 </template>
 <script setup lang="ts">
 defineProps({
-  title: {
+  color: {
     type: String,
     default: '',
   },
@@ -14,7 +13,7 @@ defineProps({
 </script>
 
 <style scoped lang="scss">
-h2 {
-  font-weight: 700;
+span {
+  color: var(--el-color-primary);
 }
 </style>

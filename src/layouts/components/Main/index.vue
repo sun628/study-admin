@@ -9,9 +9,9 @@
       <!-- </transition> -->
     </router-view>
   </el-main>
-  <el-footer v-if="themeConfig.footer">
-    <!-- <Footer /> -->
-  </el-footer>
+  <!-- <el-footer v-if="themeConfig.footer">
+    <Footer />
+  </el-footer> -->
 </template>
 
 <script setup lang="ts">
