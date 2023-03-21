@@ -1,4 +1,3 @@
-import { RouteRecordRaw } from 'vue-router';
 import { Layout } from '@/routers/constant';
 
 const routerArray = [];
@@ -19,7 +18,7 @@ for (const i in routers) {
 	});
 }
 // type-script模块
-const tsRouter: Array<RouteRecordRaw> = [
+const tsRouter = [
 	{
 		path: '/type-script',
 		component: Layout,

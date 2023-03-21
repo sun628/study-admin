@@ -9,7 +9,6 @@ Object.keys(metaRouters).forEach((item) => {
 		routerArray.push(...(metaRouters[item] as any)[key]);
 	});
 });
-console.log('routerArray', routerArray);
 
 /**
  * @description 路由配置简介（💢没有使用动态路由，路由全部配置在本地，需要使用动态路由请自行改造）

@@ -1,18 +1,13 @@
 <template>
 	<Tabs v-if="themeConfig.tabs" />
 	<el-main>
-		<!-- <router-view v-slot="{ Component, route }">
-			<transition name="fade-transform" mode="out-in">
-				<keep-alive v-if="isRouterRefresh" :include="cacheRouter">
-					<component :is="Component" :key="route.path" />
-				</keep-alive>
-			</transition>
-		</router-view> -->
-		<RouterView v-slot="{ Component }">
-			<transition name="fade-transform" mode="out-in">
-				<component :is="Component" />
-			</transition>
-		</RouterView>
+		<router-view v-slot="{ Component, route }">
+			<!-- <transition name="fade-transform" mode="out-in"> -->
+			<keep-alive v-if="isRouterRefresh" :include="cacheRouter">
+				<component :is="Component" :key="route.path" />
+			</keep-alive>
+			<!-- </transition> -->
+		</router-view>
 	</el-main>
 	<el-footer v-if="themeConfig.footer">
 		<Footer />
@@ -31,7 +26,6 @@ const themeConfig = computed(() => globalStore.themeConfig);
 
 // 刷新当前页面
 const isRouterRefresh = ref(true);
-console.log('isRouterRefresh', isRouterRefresh.value);
 const refreshCurrentPage = () => {
 	isRouterRefresh.value = false;
 	nextTick(() => {
