@@ -1,36 +1,28 @@
 <template>
-  <div class="layout-search-dialog">
-    <i @click="handleOpen" :class="'iconfont icon-sousuo'" class="toolBar-icon"></i>
-    <el-dialog
-      @click="closeSearch"
-      v-model="isShowSearch"
-      width="300px"
-      destroy-on-close
-      :modal="false"
-      :show-close="false"
-      fullscreen
-    >
-      <el-autocomplete
-        v-model="searchMenu"
-        ref="menuInputRef"
-        placeholder="菜单搜索 ：支持菜单名称、路径"
-        :fetch-suggestions="searchMenuList"
-        @select="handleClickMenu"
-      >
-        <template #prefix>
-          <el-icon>
-            <Search />
-          </el-icon>
-        </template>
-        <template #default="{ item }">
-          <el-icon>
-            <component :is="item.icon"></component>
-          </el-icon>
-          <span>{{ item.meta.title }}</span>
-        </template>
-      </el-autocomplete>
-    </el-dialog>
-  </div>
+	<div class="layout-search-dialog">
+		<i :class="'iconfont icon-sousuo'" class="toolBar-icon" @click="handleOpen"></i>
+		<el-dialog v-model="isShowSearch" width="300px" destroy-on-close :modal="false" :show-close="false" fullscreen @click="closeSearch">
+			<el-autocomplete
+				ref="menuInputRef"
+				v-model="searchMenu"
+				placeholder="菜单搜索 ：支持菜单名称、路径"
+				:fetch-suggestions="searchMenuList"
+				@select="handleClickMenu"
+			>
+				<template #prefix>
+					<el-icon>
+						<Search />
+					</el-icon>
+				</template>
+				<template #default="{ item }">
+					<el-icon>
+						<component :is="item.icon"></component>
+					</el-icon>
+					<span>{{ item.meta.title }}</span>
+				</template>
+			</el-autocomplete>
+		</el-dialog>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -43,11 +35,9 @@ const router = useRouter();
 const menuStore = MenuStore();
 const menuList = computed((): Menu.MenuOptions[] => getFlatArr(menuStore.menuList));
 
-const searchMenuList = (queryString: string, cb: Function) => {
-  const results = queryString
-    ? menuList.value.filter(filterNodeMethod(queryString))
-    : menuList.value;
-  cb(results);
+const searchMenuList = (queryString: string, cb: (results: Menu.MenuOptions[]) => void) => {
+	const results = queryString ? menuList.value.filter(filterNodeMethod(queryString)) : menuList.value;
+	cb(results);
 };
 
 // 打开搜索菜单
@@ -55,67 +45,66 @@ const isShowSearch = ref(false);
 const menuInputRef = ref();
 const searchMenu = ref('');
 const handleOpen = () => {
-  isShowSearch.value = true;
-  searchMenu.value = '';
-  nextTick(() => {
-    setTimeout(() => {
-      menuInputRef.value.focus();
-    });
-  });
+	isShowSearch.value = true;
+	searchMenu.value = '';
+	nextTick(() => {
+		setTimeout(() => {
+			menuInputRef.value.focus();
+		});
+	});
 };
 
 // 搜索窗关闭
 const closeSearch = () => {
-  isShowSearch.value = false;
+	isShowSearch.value = false;
 };
 
 // 筛选菜单
 const filterNodeMethod = (queryString: string) => {
-  return (restaurant: Menu.MenuOptions) => {
-    return (
-      restaurant.path.toLowerCase().indexOf(queryString.toLowerCase()) > -1 ||
-      restaurant.title.toLowerCase().indexOf(queryString.toLowerCase()) > -1
-    );
-  };
+	return (restaurant: Menu.MenuOptions) => {
+		return (
+			restaurant.path.toLowerCase().indexOf(queryString.toLowerCase()) > -1 || restaurant.title.toLowerCase().indexOf(queryString.toLowerCase()) > -1
+		);
+	};
 };
 
 // 点击菜单跳转
 const handleClickMenu = (menuItem: Record<string, any>) => {
-  searchMenu.value = '';
-  if (menuItem.isLink) window.open(menuItem.isLink, '_blank');
-  router.push(menuItem.path);
-  closeSearch();
+	searchMenu.value = '';
+	if (menuItem.isLink) window.open(menuItem.isLink, '_blank');
+	router.push(menuItem.path);
+	closeSearch();
 };
 </script>
 
 <style scoped lang="scss">
 /* 菜单搜索样式 */
 .layout-search-dialog {
-  :deep(.el-dialog) {
-    background-color: rgb(0 0 0 / 50%);
-    border-radius: 0 !important;
-    box-shadow: unset !important;
-    .el-dialog__header {
-      border-bottom: none !important;
-    }
-  }
-  :deep(.el-autocomplete) {
-    position: absolute;
-    top: 100px;
-    left: 50%;
-    width: 560px;
-    transform: translateX(-50%);
-  }
+	:deep(.el-dialog) {
+		background-color: rgb(0 0 0 / 50%);
+		border-radius: 0 !important;
+		box-shadow: unset !important;
+		.el-dialog__header {
+			border-bottom: none !important;
+		}
+	}
+	:deep(.el-autocomplete) {
+		position: absolute;
+		top: 100px;
+		left: 50%;
+		width: 560px;
+		transform: translateX(-50%);
+	}
 }
 .el-autocomplete__popper {
-  .el-icon {
-    position: relative;
-    top: 2px;
-    font-size: 16px;
-  }
-  span {
-    margin: 0 0 0 10px;
-    font-size: 14px;
-  }
+	.el-icon {
+		position: relative;
+		top: 2px;
+		font-size: 16px;
+	}
+	span {
+		margin: 0 0 0 10px;
+		font-size: 14px;
+	}
 }
 </style>

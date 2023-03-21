@@ -1,6 +1,6 @@
 <template>
-  <svg-icon name="music"></svg-icon>
-  <!-- <iframe
+	<svg-icon name="music"></svg-icon>
+	<!-- <iframe
     frameborder="no"
     border="0"
     marginwidth="0"
@@ -14,7 +14,7 @@
 
 <style scoped lang="scss">
 .icon-music {
-  font-size: 20px;
-  color: var(--el-color-primary);
+	font-size: 20px;
+	color: var(--el-color-primary);
 }
 </style>

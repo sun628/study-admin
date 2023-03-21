@@ -16,7 +16,7 @@ import hljsVuePlugin from '@highlightjs/vue-plugin';
 const app = createApp(App);
 // 注册element Icons组件
 Object.keys(Icons).forEach((key) => {
-  app.component(key, Icons[key as keyof typeof Icons]);
+	app.component(key, Icons[key as keyof typeof Icons]);
 });
 
 app.use(hljsVuePlugin);

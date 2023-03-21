@@ -1,5 +1,5 @@
 <template>
-  <span class="font-bold">
-    <slot></slot>
-  </span>
+	<span class="font-bold">
+		<slot></slot>
+	</span>
 </template>

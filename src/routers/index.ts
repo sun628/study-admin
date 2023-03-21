@@ -10,27 +10,27 @@ const axiosCanceler = new AxiosCanceler();
  * @description 路由拦截 beforeEach
  * */
 router.beforeEach((to, from, next) => {
-  NProgress.start();
-  // * 在跳转路由之前，清除所有的请求
-  axiosCanceler.removeAllPending();
+	NProgress.start();
+	// * 在跳转路由之前，清除所有的请求
+	axiosCanceler.removeAllPending();
 
-  // * 判断当前路由是否需要访问权限
-  if (!to.matched.some((record) => record.meta.requiresAuth)) return next();
+	// * 判断当前路由是否需要访问权限
+	if (!to.matched.some((record) => record.meta.requiresAuth)) return next();
 
-  // * 判断是否有Token
-  const globalStore = GlobalStore();
-  if (!globalStore.token) {
-    next({
-      path: '/login',
-    });
-    NProgress.done();
-    return;
-  }
-  next();
+	// * 判断是否有Token
+	const globalStore = GlobalStore();
+	if (!globalStore.token) {
+		next({
+			path: '/login',
+		});
+		NProgress.done();
+		return;
+	}
+	next();
 });
 
 router.afterEach(() => {
-  NProgress.done();
+	NProgress.done();
 });
 
 export default router;

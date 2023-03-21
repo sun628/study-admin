@@ -12,7 +12,6 @@ declare module '@vue/runtime-core' {
     500: typeof import('./components/ErrorMessage/500.vue')['default']
     Bold: typeof import('./components/docs/bold.vue')['default']
     Doc: typeof import('./components/docs/doc.vue')['default']
-    E: typeof import('./components/docs/e.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAutocomplete: typeof import('element-plus/es')['ElAutocomplete']
     ElBadge: typeof import('element-plus/es')['ElBadge']
