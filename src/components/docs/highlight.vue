@@ -43,6 +43,9 @@ defineProps({
 	box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
 	content: attr(codetype);
 }
+pre {
+	margin-bottom: 5px;
+}
 
 /** 滚动条 */
 :deep(.hljs) {

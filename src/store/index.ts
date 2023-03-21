@@ -32,7 +32,7 @@ export const GlobalStore = defineStore({
 			// 标签页
 			tabs: true,
 			// 页脚
-			footer: true,
+			footer: false,
 		},
 	}),
 	getters: {},
