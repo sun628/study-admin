@@ -1,6 +1,6 @@
 <template>
 	<el-config-provider :size="assemblySize" :locale="zhCn">
-		<router-view></router-view>
+		<router-view :key="path"></router-view>
 	</el-config-provider>
 </template>
 
@@ -18,6 +18,8 @@ useTheme();
 
 const router = useRouter();
 const routes = router.options.routes;
+const path = computed(() => router.currentRoute.value.fullPath);
+
 // 数组过滤成菜单--根据meta.index排序
 const filterArray = (arr: any) => {
 	let tempArr = arr.filter((item: any) => {

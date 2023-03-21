@@ -21,4 +21,4 @@ Object.keys(Icons).forEach((key) => {
 
 app.use(hljsVuePlugin);
 app.use(GlobalCom); //批量注册全局组件
-app.use(pinia).use(router).mount('#app');
+app.use(router).use(pinia).mount('#app');

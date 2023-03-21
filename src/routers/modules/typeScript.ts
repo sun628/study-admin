@@ -22,6 +22,7 @@ const tsRouter = [
 	{
 		path: '/type-script',
 		component: Layout,
+		name: 'typeScript',
 		redirect: '/type-script/01',
 		children: routerArray,
 		meta: {

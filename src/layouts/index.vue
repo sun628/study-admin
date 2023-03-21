@@ -11,7 +11,7 @@
 	<ThemeDrawer />
 </template>
 <script setup lang="ts">
-import Loading from '@/components/Loading/index.vue';
+// import Loading from '@/components/Loading/index.vue';
 
 import { GlobalStore } from '@/store';
 import ThemeDrawer from './components/ThemeDrawer/index.vue';

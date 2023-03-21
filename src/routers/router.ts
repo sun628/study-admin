@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 // * 导入所有router
-const metaRouters = import.meta.glob('./modules/*.ts', { eager: true });
 
+const metaRouters = import.meta.glob('./modules/*.ts', { eager: true });
 // * 处理路由表
 export const routerArray: RouteRecordRaw[] = [];
 Object.keys(metaRouters).forEach((item) => {

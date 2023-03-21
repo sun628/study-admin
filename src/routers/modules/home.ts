@@ -7,10 +7,11 @@ const homeRouter: Array<RouteRecordRaw> = [
 		path: '/home',
 		component: Layout,
 		redirect: '/home/index',
+		name: 'home',
 		children: [
 			{
 				path: '/home/index',
-				name: 'home',
+				name: 'welcome',
 				component: () => import('@/views/home/index.vue'),
 				meta: {
 					keepAlive: true,
