@@ -78,7 +78,8 @@ defineProps({
 }
 
 :deep(.hljs-comment) {
-  color: #4bc24b;
+  color: #2f9427;
+  // color: var(--el-color-primary);
 }
 ::-webkit-scrollbar-button {
   display: none;

@@ -2,11 +2,11 @@
   <Tabs v-if="themeConfig.tabs" />
   <el-main>
     <router-view v-slot="{ Component, route }">
-      <!-- <transition appear name="fade-transform" mode="out-in"> -->
-      <keep-alive :include="cacheRouter" v-if="isRouterRefresh">
-        <component :is="Component" :key="route.path" />
-      </keep-alive>
-      <!-- </transition> -->
+      <transition appear name="fade-transform" mode="out-in">
+        <keep-alive :include="cacheRouter" v-if="isRouterRefresh">
+          <component :is="Component" :key="route.path" />
+        </keep-alive>
+      </transition>
     </router-view>
   </el-main>
   <!-- <el-footer v-if="themeConfig.footer">
@@ -19,7 +19,7 @@ import { ref, computed, nextTick, provide } from 'vue';
 import { GlobalStore } from '@/store';
 import cacheRouter from '@/routers/cacheRouter';
 import Tabs from '@/layouts/components/Tabs/index.vue';
-import Footer from '@/layouts/components/Footer/index.vue';
+// import Footer from '@/layouts/components/Footer/index.vue';
 
 const globalStore = GlobalStore();
 const themeConfig = computed(() => globalStore.themeConfig);

@@ -2,8 +2,9 @@ import { App, defineAsyncComponent, AsyncComponentLoader } from 'vue';
 import SvgIcon from '@/components/SvgIcon/index.vue';
 
 // //引入依赖和语言
-// import hljs from 'highlight.js/lib/core';
+
 // import javascript from 'highlight.js/lib/languages/javascript'; //引入语言
+// import hljs from 'highlight.js/lib/core';
 // hljs.registerLanguage('javascript', javascript);
 // import hljsVuePlugin from '@highlightjs/vue-plugin';
 // import 'highlight.js/styles/stackoverflow-light.css';

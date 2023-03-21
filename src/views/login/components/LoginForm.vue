@@ -70,14 +70,15 @@ const loginForm = reactive({
 
 const loading = ref(false);
 const router = useRouter();
-const routers = router.getRoutes();
+const routes = router.options.routes;
+
 // login
 const login = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   formEl.validate(async (valid) => {
     if (!valid) return;
     globalStore.setToken('123456');
-    const menuList = filterArray(routers);
+    const menuList = filterArray(routes);
     menuStore.setMenuList(menuList);
     loading.value = true;
     router.push({ path: HOME_URL });

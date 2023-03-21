@@ -14,7 +14,14 @@ defineProps({
 </script>
 
 <style scoped lang="scss">
-h2 {
-  font-weight: 700;
+.doc {
+  h2 {
+    font-weight: 700;
+    line-height: 30px;
+    height: 30px;
+  }
+  :deep(p) {
+    margin: 5px 0px;
+  }
 }
 </style>

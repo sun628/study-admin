@@ -3,11 +3,10 @@ import App from './App.vue';
 
 import * as Icons from '@element-plus/icons-vue';
 import '@/styles/index.scss';
-// iconfont css
-import '@/assets/iconfont/iconfont.scss';
+import '@/assets/iconfont/iconfont.scss'; // iconfont css
 import router from '@/routers/router';
 import pinia from '@/store/index';
-import 'virtual:svg-icons-register';
+import 'virtual:svg-icons-register'; //注册svg图标
 import GlobalCom from '@/components/index';
 
 import 'highlight.js/styles/atom-one-dark.css';
@@ -21,5 +20,5 @@ Object.keys(Icons).forEach((key) => {
 });
 
 app.use(hljsVuePlugin);
-app.use(GlobalCom);
+app.use(GlobalCom); //批量注册全局组件
 app.use(pinia).use(router).mount('#app');

@@ -29,7 +29,7 @@ const tsRouter: Array<RouteRecordRaw> = [
       index: 1,
       keepAlive: true,
       requiresAuth: false,
-      title: 'type-script',
+      title: 'typeScript',
       key: 'type-script',
     },
   },
