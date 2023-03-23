@@ -1,6 +1,5 @@
 <template>
-	<!-- <highlightjs language="js" :code="code"></highlightjs> -->
-	<highlightjs :code="code"></highlightjs>
+	<highlightjs language="typescript" :autodetect="false" :code="code"></highlightjs>
 </template>
 <script setup lang="ts">
 defineProps({
