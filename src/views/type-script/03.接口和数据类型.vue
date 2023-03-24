@@ -1,5 +1,5 @@
 <template>
-	<el-col :span="12">
+	<el-row>
 		<doc title="对象的类型">
 			<p>
 				在<font>typescript</font>中，我们定义对象的方式要用关键字interface（接口），
@@ -22,7 +22,7 @@
 			<p>在接口中添加函数</p>
 			<Highlight :code="objType5"></Highlight>
 		</doc>
-	</el-col>
+	</el-row>
 </template>
 <script setup lang="ts">
 const objType = `//这样写是会报错的 因为我们在person定义了a，b但是对象里面缺少b属性

@@ -1,41 +1,39 @@
 <template>
 	<el-row>
-		<el-col :span="12">
-			<doc title="基础类型：">
-				Boolean、Number、String、null、undefined 以及
-				<font color="red">ES6</font>的 <font>Symbol</font> 和 <font color="red">ES10</font>的 <font>BigInt</font>。
-			</doc>
-			<doc title="1.字符串类型：">
-				<p>字符串是使用string定义的;</p>
-				<highlight language="js" :code="stringType"></highlight>
-			</doc>
-			<doc title="2.数字类型：">
-				<p>支持十六进制、十进制、八进制和二进制；</p>
-				<highlight language="js" :code="numberType"></highlight>
-			</doc>
-			<doc title="3.布尔类型：">
-				<font color="red">注意，使用构造函数 Boolean 创造的对象不是布尔值：</font>
-				<highlight language="js" :code="booleanType"></highlight>
-			</doc>
-			<doc title="4.空值类型：">
-				<p>JavaScript 没有空值（Void）的概念，在 TypeScript 中，可以用 void 表示没有任何返回值的函数</p>
-				<highlight language="js" :code="voidType"></highlight>
-				<p>void 类型的用法，主要是用在我们不希望调用者关心函数返回值的情况下，比如通常的异步回调函数</p>
-				<p>void也可以定义undefined 和 null类型</p>
-				<highlight language="js" :code="voidType2"></highlight>
-			</doc>
-			<doc title="5.Null和undefined类型：">
-				<highlight language="js" :code="nullOrUndefinedType"></highlight>
-				<font color="red">void 和 undefined 和 null 最大的区别</font>
-				<p>与 void 的区别是，undefined 和 null 是所有类型的子类型。也就是说 undefined 类型的变量，可以赋值给 string 类型的变量：</p>
-				<highlight language="js" :code="nullOrUndefinedType2"></highlight>
-				<highlight language="js" :code="nullOrUndefinedType3"></highlight>
-			</doc>
-		</el-col>
+		<doc title="基础类型：">
+			<highlight language="js" :code="baseType"></highlight>
+		</doc>
+		<doc title="1.字符串类型：">
+			<p>字符串是使用string定义的;</p>
+			<highlight language="js" :code="stringType"></highlight>
+		</doc>
+		<doc title="2.数字类型：">
+			<p>支持十六进制、十进制、八进制和二进制；</p>
+			<highlight language="js" :code="numberType"></highlight>
+		</doc>
+		<doc title="3.布尔类型：">
+			<font color="red">注意，使用构造函数 Boolean 创造的对象不是布尔值：</font>
+			<highlight language="js" :code="booleanType"></highlight>
+		</doc>
+		<doc title="4.空值类型：">
+			<p>JavaScript 没有空值（Void）的概念，在 TypeScript 中，可以用 void 表示没有任何返回值的函数</p>
+			<highlight language="js" :code="voidType"></highlight>
+			<p>void 类型的用法，主要是用在我们不希望调用者关心函数返回值的情况下，比如通常的异步回调函数</p>
+			<p>void也可以定义undefined 和 null类型</p>
+			<highlight language="js" :code="voidType2"></highlight>
+		</doc>
+		<doc title="5.Null和undefined类型：">
+			<highlight language="js" :code="nullOrUndefinedType"></highlight>
+			<font color="red">void 和 undefined 和 null 最大的区别</font>
+			<p>与 void 的区别是，undefined 和 null 是所有类型的子类型。也就是说 undefined 类型的变量，可以赋值给 string 类型的变量：</p>
+			<highlight language="js" :code="nullOrUndefinedType2"></highlight>
+			<highlight language="js" :code="nullOrUndefinedType3"></highlight>
+		</doc>
 	</el-row>
 </template>
 
 <script setup lang="ts">
+const baseType = `Boolean、Number、String、null、undefined 以及ES6的Symbol 和 ES10的BigInt。`;
 const stringType = "let a: string = '123' //普通声明;\n" + 'let str: string = `dddd${a}`//也可以使用es6的字符串模板';
 
 const numberType = `let notANumber: number = NaN;//Nan
