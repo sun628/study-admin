@@ -14,4 +14,4 @@ dist
 .eslintrc.js
 prettier.config.js
 /src/typings
-
+index.html

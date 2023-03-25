@@ -1,10 +1,10 @@
 import { Layout } from '@/routers/constant';
 
 const routerArray = [];
-const name = '/electron/';
-const routers = import.meta.glob('../../views/electron/*.vue');
+const name = '/map/';
+const routers = import.meta.glob('../../views/map/*.vue');
 for (const i in routers) {
-	const newName = i.replace(/..\/..\/views\/electron\//, '').replace(/.vue/, '');
+	const newName = i.replace(/..\/..\/views\/map\//, '').replace(/.vue/, '');
 	const newPath = newName.substring(0, 2);
 	routerArray.push({
 		path: name + newPath,
@@ -13,25 +13,25 @@ for (const i in routers) {
 			keepAlive: true,
 			requiresAuth: true,
 			title: newName,
-			key: name + +newPath,
+			key: name + newPath,
 		},
 		component: routers[i],
 	});
 }
-// electron模块
-const electronRouter = [
+// map模块
+const mapRouter = [
 	{
-		path: '/electron',
+		path: '/map',
 		component: Layout,
-		name: 'electron',
+		name: 'map',
 		children: routerArray,
 		meta: {
-			index: 1,
+			index: 3,
 			keepAlive: true,
 			requiresAuth: false,
-			title: 'electron',
-			key: 'electron',
+			title: '地图',
+			key: 'map',
 		},
 	},
 ];
-export default electronRouter;
+export default mapRouter;

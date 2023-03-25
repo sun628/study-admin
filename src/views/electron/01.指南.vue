@@ -21,7 +21,12 @@
 			<el-image :src="image"></el-image>
 			<highlight language="js" :code="code4"></highlight>
 		</doc>
-		<doc title="5. npm run dev 运行"> </doc>
+		<doc title="5. npm run dev 运行">
+			<p>Electron Security Warning (Insecure Content-Security-Policy) 告警解决</p>
+			<p>index.html文件里设置安全策略</p>
+			<highlight language="js" :code="code5"></highlight>
+		</doc>
+		<doc title="6. "> </doc>
 	</el-card>
 </template>
 <script setup lang="ts">
@@ -32,20 +37,25 @@ const go_electron = () => {
 const code1 = `yarn create vite  my-electron-app --template vue-ts
 cd my-electron-app
 yarn`;
-const code2 = `yarn add electron -D
+const code2 = `
+//配置electron环境变量
+yarn config set ELECTRON_MIRROR https://npm.taobao.org/mirrors/electron/
+
+yarn add electron -D
 yarn add vite-plugin-electron -D
+------------------------------------------------
 /**
+ * npm配置方式
+ * npm config set ELECTRON_MIRROR https://npm.taobao.org/mirrors/electron/
+ * / 
+
+
+/**
+ * 
  * 当前版本(下载可能会很慢)
  * "electron": "^23.2.0"
  * "vite-plugin-electron": "^0.11.1",
  */
------------------------------------
-//如果electron 安装失败：
-# 切换成cnpm安装
-## 安装cnpm
-npm install -g cnpm --registry=http://registry.npmmirror.com
-## cnpm安装
-cnpm install electron -D
 `;
 
 const code3 = `import { defineConfig } from 'vite'
@@ -59,43 +69,33 @@ export default defineConfig({
   })],
 })`;
 
-const code4 = `import path from "path";
-const { app, BrowserWindow } = require('electron');
-
+const code4 =
+	`import { app, BrowserWindow } from 'electron';
+import path from 'path';
 const createWindow = () => {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1022,
+    height: 670,
     webPreferences: {
-      contextIsolation: false, // 是否开启隔离上下文
-      nodeIntegration: true, // 渲染进程使用Node API
-      // preload: path.join(__dirname, "../electron-preload/index.js"), // 需要引用js文件
-    }
+      devTools: true,
+      contextIsolation: false,
+      nodeIntegration: true, //允许html页面上的javascipt代码访问nodejs 环境api代码的能力（与node集成的意思）
+    },
   });
-  // 如果打包了，渲染index.html
+
+  //打包后走加载文件路径
   if (app.isPackaged) {
-    win.loadFile(path.join(__dirname, "../index.html"));
-  } else {
-    win.loadURL(process.env['VITE_DEV_SERVER_URL'])
+    win.loadFile(path.join(__dirname, '../dist/index.html'));
+  } else {  
+    ` +
+	"win.loadURL(`${process.env['VITE_DEV_SERVER_URL']}`);" +
+	` 
   }
+  // win.webContents.openDevTools(); // 打开控制台
 };
+app.whenReady().then(createWindow);`;
 
-app.whenReady().then(() => {
-  createWindow(); // 创建窗口
-
-  app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow();
-    }
-  });
-});
-
-// 关闭窗口
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
-});`;
+const code5 = `<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline';">`;
 </script>
 
 <style scoped lang="scss"></style>

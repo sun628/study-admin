@@ -16,3 +16,15 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
    1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
    2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
 2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+
+## 介绍
+
+1. electron
+   项目使用了,需要配置一下环境变量，否则下载会很缓慢
+   如果需要关闭,只需注释掉 vite.config.ts 相关配置
+   yarn 方式 yarn config set ELECTRON_MIRROR https://npm.taobao.org/mirrors/electron/
+   npm 方式 npm config set ELECTRON_MIRROR https://npm.taobao.org/mirrors/electron/
+
+## 安装
+
+npm install | yarn (推荐使用 yarn)

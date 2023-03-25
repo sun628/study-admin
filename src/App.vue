@@ -35,6 +35,7 @@ watch(
 	() => routes,
 	(routers) => {
 		const menuList = filterArray(routers);
+		console.log(menuList);
 		menuStore.setMenuList(menuList);
 	},
 	{ immediate: true }

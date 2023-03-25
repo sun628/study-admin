@@ -36,6 +36,7 @@ export const GlobalStore = defineStore({
 		},
 	}),
 	getters: {},
+
 	actions: {
 		// setToken
 		setToken(token: string) {

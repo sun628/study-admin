@@ -26,7 +26,7 @@ const tsRouter = [
 		redirect: '/type-script/01',
 		children: routerArray,
 		meta: {
-			index: 1,
+			index: 2,
 			keepAlive: true,
 			requiresAuth: false,
 			title: 'typeScript',
