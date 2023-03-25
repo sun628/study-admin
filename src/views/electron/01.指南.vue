@@ -21,11 +21,7 @@
 			<el-image :src="image"></el-image>
 			<highlight language="js" :code="code4"></highlight>
 		</doc>
-		<doc title="5. npm run dev 运行">
-			<p>Electron Security Warning (Insecure Content-Security-Policy) 告警解决</p>
-			<p>index.html文件里设置安全策略</p>
-			<highlight language="js" :code="code5"></highlight>
-		</doc>
+		<doc title="5. npm run dev 运行"></doc>
 		<doc title="6. "> </doc>
 	</el-card>
 </template>
@@ -94,8 +90,6 @@ const createWindow = () => {
   // win.webContents.openDevTools(); // 打开控制台
 };
 app.whenReady().then(createWindow);`;
-
-const code5 = `<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline';">`;
 </script>
 
 <style scoped lang="scss"></style>
