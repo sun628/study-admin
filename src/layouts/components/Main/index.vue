@@ -1,17 +1,17 @@
 <template>
-  <Tabs v-if="themeConfig.tabs" />
-  <el-main>
-    <router-view v-slot="{ Component, route }">
-      <!-- <transition appear name="fade-transform" mode="out-in"> -->
-      <keep-alive :include="cacheRouter" v-if="isRouterRefresh">
-        <component :is="Component" :key="route.path" />
-      </keep-alive>
-      <!-- </transition> -->
-    </router-view>
-  </el-main>
-  <el-footer v-if="themeConfig.footer">
-    <!-- <Footer /> -->
-  </el-footer>
+	<Tabs v-if="themeConfig.tabs" />
+	<el-main>
+		<router-view v-slot="{ Component, route }">
+			<transition appear name="fade-transform" mode="out-in">
+				<keep-alive v-if="isRouterRefresh" :include="cacheRouter">
+					<component :is="Component" :key="route.path" />
+				</keep-alive>
+			</transition>
+		</router-view>
+	</el-main>
+	<el-footer v-if="themeConfig.footer">
+		<Footer />
+	</el-footer>
 </template>
 
 <script setup lang="ts">
@@ -27,10 +27,10 @@ const themeConfig = computed(() => globalStore.themeConfig);
 // 刷新当前页面
 const isRouterRefresh = ref(true);
 const refreshCurrentPage = () => {
-  isRouterRefresh.value = false;
-  nextTick(function () {
-    isRouterRefresh.value = true;
-  });
+	isRouterRefresh.value = false;
+	nextTick(() => {
+		isRouterRefresh.value = true;
+	});
 };
 provide('refresh', refreshCurrentPage);
 </script>

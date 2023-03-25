@@ -1,8 +1,8 @@
 <template>
-  <div class="tool-bar-lf">
-    <CollapseIcon id="collapseIcon" />
-    <Breadcrumb id="breadcrumb" v-if="themeConfig.breadcrumb" />
-  </div>
+	<div class="tool-bar-lf">
+		<CollapseIcon id="collapseIcon" />
+		<Breadcrumb v-if="themeConfig.breadcrumb" id="breadcrumb" />
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -17,8 +17,8 @@ const themeConfig = computed(() => globalStore.themeConfig);
 
 <style scoped lang="scss">
 .tool-bar-lf {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 </style>

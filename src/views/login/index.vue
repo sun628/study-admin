@@ -1,23 +1,23 @@
 <template>
-  <div class="login-container">
-    <SwitchDark class="dark" />
-    <div class="login-box">
-      <div class="login-left">
-        <img src="@/assets/images/login_left0.png" alt="login" />
-      </div>
-      <div class="login-form">
-        <div class="login-warp-one"></div>
-        <div class="login-warp-two"></div>
-        <div class="login-warp">
-          <div class="login-logo">
-            <img class="login-icon" src="@/assets/images/logo.jpg" alt="" />
-            <h2 class="logo-text">暖阳</h2>
-          </div>
-          <LoginForm />
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="login-container">
+		<SwitchDark class="dark" />
+		<div class="login-box">
+			<div class="login-left">
+				<img src="@/assets/images/login_left0.png" alt="login" />
+			</div>
+			<div class="login-form">
+				<div class="login-warp-one"></div>
+				<div class="login-warp-two"></div>
+				<div class="login-warp">
+					<div class="login-logo">
+						<img class="login-icon" src="@/assets/images/logo.jpg" alt="" />
+						<h2 class="logo-text">暖阳</h2>
+					</div>
+					<LoginForm />
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script setup lang="ts" name="login">

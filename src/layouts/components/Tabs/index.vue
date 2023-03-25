@@ -1,31 +1,19 @@
 <template>
-  <div class="tabs-box">
-    <div class="tabs-menu">
-      <el-tabs
-        v-model="tabsMenuValue"
-        type="card"
-        @tab-click="tabClick"
-        @tab-remove="removeTab"
-      >
-        <el-tab-pane
-          v-for="item in tabsMenuList"
-          :key="item.path"
-          :path="item.path"
-          :label="item.title"
-          :name="item.path"
-          :closable="item.close"
-        >
-          <template #label>
-            <el-icon class="tabs-icon" v-if="item.icon">
-              <component :is="item.icon"></component>
-            </el-icon>
-            {{ item.title }}
-          </template>
-        </el-tab-pane>
-      </el-tabs>
-      <MoreButton />
-    </div>
-  </div>
+	<div class="tabs-box">
+		<div class="tabs-menu">
+			<el-tabs v-model="tabsMenuValue" type="card" @tab-click="tabClick" @tab-remove="removeTab">
+				<el-tab-pane v-for="item in tabsMenuList" :key="item.path" :path="item.path" :label="item.title" :name="item.path" :closable="item.close">
+					<template #label>
+						<el-icon v-if="item.icon" class="tabs-icon">
+							<component :is="item.icon"></component>
+						</el-icon>
+						{{ item.title }}
+					</template>
+				</el-tab-pane>
+			</el-tabs>
+			<MoreButton />
+		</div>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -38,41 +26,41 @@ import MoreButton from './components/MoreButton.vue';
 const tabStore = TabsStore();
 const tabsMenuList = computed(() => tabStore.tabsMenuList);
 const tabsMenuValue = computed({
-  get: () => {
-    return tabStore.tabsMenuValue;
-  },
-  set: (val) => {
-    tabStore.setTabsMenuValue(val);
-  },
+	get: () => {
+		return tabStore.tabsMenuValue;
+	},
+	set: (val) => {
+		tabStore.setTabsMenuValue(val);
+	},
 });
 
 const route = useRoute();
 const router = useRouter();
 // 监听路由的变化（防止浏览器后退/前进不变化 tabsMenuValue）
 watch(
-  () => route.path,
-  () => {
-    let params = {
-      title: route.meta.title as string,
-      path: route.path,
-      close: true,
-    };
-    tabStore.addTabs(params);
-  },
-  {
-    immediate: true,
-  }
+	() => route.path,
+	() => {
+		let params = {
+			title: route.meta.title as string,
+			path: route.path,
+			close: true,
+		};
+		tabStore.addTabs(params);
+	},
+	{
+		immediate: true,
+	}
 );
 
 // Tab Click
 const tabClick = (tabItem: TabsPaneContext) => {
-  let path = tabItem.props.name as string;
-  router.push(path);
+	let path = tabItem.props.name as string;
+	router.push(path);
 };
 
 // Remove Tab
 const removeTab = (activeTabPath: any) => {
-  tabStore.removeTabs(activeTabPath);
+	tabStore.removeTabs(activeTabPath);
 };
 </script>
 

@@ -8,12 +8,12 @@ import request from '@/utils/request';
  * @method getTestMenu 获取后端动态路由菜单(test)
  */
 export function useMusicApi() {
-  return {
-    getsongListApi: (id?: number) => {
-      return request({
-        url: `/music_api/song/lyric?id=${id}&lv=1&kv=1&tv=-1`,
-        method: 'get',
-      });
-    },
-  };
+	return {
+		getsongListApi: (id?: number) => {
+			return request({
+				url: `/music_api/song/lyric?id=${id}&lv=1&kv=1&tv=-1`,
+				method: 'get',
+			});
+		},
+	};
 }

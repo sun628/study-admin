@@ -1,41 +1,24 @@
 <template>
-  <el-form ref="loginFormRef" :model="loginForm" :rules="loginRules" size="large">
-    <el-form-item prop="username">
-      <el-input v-model="loginForm.username" placeholder="用户名：admin / user">
-        <template #prefix>
-          <el-icon class="el-input__icon"><user /></el-icon>
-        </template>
-      </el-input>
-    </el-form-item>
-    <el-form-item prop="password">
-      <el-input
-        type="password"
-        v-model="loginForm.password"
-        placeholder="密码：123456"
-        show-password
-        autocomplete="new-password"
-      >
-        <template #prefix>
-          <el-icon class="el-input__icon"><lock /></el-icon>
-        </template>
-      </el-input>
-    </el-form-item>
-  </el-form>
-  <div class="login-btn">
-    <el-button :icon="CircleClose" round @click="resetForm(loginFormRef)" size="large">
-      重置
-    </el-button>
-    <el-button
-      :icon="UserFilled"
-      round
-      @click="login(loginFormRef)"
-      size="large"
-      type="primary"
-      :loading="loading"
-    >
-      登录
-    </el-button>
-  </div>
+	<el-form ref="loginFormRef" :model="loginForm" :rules="loginRules" size="large">
+		<el-form-item prop="username">
+			<el-input v-model="loginForm.username" placeholder="用户名：admin / user">
+				<template #prefix>
+					<el-icon class="el-input__icon"><user /></el-icon>
+				</template>
+			</el-input>
+		</el-form-item>
+		<el-form-item prop="password">
+			<el-input v-model="loginForm.password" type="password" placeholder="密码：123456" show-password autocomplete="new-password">
+				<template #prefix>
+					<el-icon class="el-input__icon"><lock /></el-icon>
+				</template>
+			</el-input>
+		</el-form-item>
+	</el-form>
+	<div class="login-btn">
+		<el-button :icon="CircleClose" round size="large" @click="resetForm(loginFormRef)"> 重置 </el-button>
+		<el-button :icon="UserFilled" round size="large" type="primary" :loading="loading" @click="login(loginFormRef)"> 登录 </el-button>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -58,67 +41,68 @@ const tabStore = TabsStore();
 type FormInstance = InstanceType<typeof ElForm>;
 const loginFormRef = ref<FormInstance>();
 const loginRules = reactive({
-  username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-  password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+	username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
+	password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
 });
 
 // 登录表单数据
 const loginForm = reactive({
-  username: 'admin',
-  password: '123456',
+	username: 'admin',
+	password: '123456',
 });
 
 const loading = ref(false);
 const router = useRouter();
-const routers = router.getRoutes();
+const routes = router.options.routes;
+
 // login
 const login = (formEl: FormInstance | undefined) => {
-  if (!formEl) return;
-  formEl.validate(async (valid) => {
-    if (!valid) return;
-    globalStore.setToken('123456');
-    const menuList = filterArray(routers);
-    menuStore.setMenuList(menuList);
-    loading.value = true;
-    router.push({ path: HOME_URL });
-    setTimeout(() => {
-      ElNotification({
-        title: getTimeState(),
-        message: '欢迎登录 暖阳',
-        type: 'success',
-        duration: 3000,
-      });
-      loading.value = false;
-    }, 1000);
-    tabStore.closeMultipleTab();
-  });
+	if (!formEl) return;
+	formEl.validate(async (valid) => {
+		if (!valid) return;
+		globalStore.setToken('123456');
+		const menuList = filterArray(routes);
+		menuStore.setMenuList(menuList);
+		loading.value = true;
+		router.push({ path: HOME_URL });
+		setTimeout(() => {
+			ElNotification({
+				title: getTimeState(),
+				message: '欢迎登录 暖阳',
+				type: 'success',
+				duration: 3000,
+			});
+			loading.value = false;
+		}, 1000);
+		tabStore.closeMultipleTab();
+	});
 };
 
 // 数组过滤成菜单--根据meta.index排序
 const filterArray = (arr: any) => {
-  let tempArr = arr.filter((item: any) => {
-    return item?.meta?.index || item?.meta?.index === 0;
-  });
-  return tempArr.sort((a: any, b: any) => {
-    return a.meta.index - b.meta.index;
-  });
+	let tempArr = arr.filter((item: any) => {
+		return item?.meta?.index || item?.meta?.index === 0;
+	});
+	return tempArr.sort((a: any, b: any) => {
+		return a.meta.index - b.meta.index;
+	});
 };
 
 // resetForm
 const resetForm = (formEl: FormInstance | undefined) => {
-  if (!formEl) return;
-  formEl.resetFields();
+	if (!formEl) return;
+	formEl.resetFields();
 };
 
 onMounted(() => {
-  // 监听enter事件（调用登录）
-  document.onkeydown = (e: any) => {
-    e = window.event || e;
-    if (e.code === 'Enter' || e.code === 'enter' || e.code === 'NumpadEnter') {
-      if (loading.value) return;
-      login(loginFormRef.value);
-    }
-  };
+	// 监听enter事件（调用登录）
+	document.onkeydown = (e: any) => {
+		e = window.event || e;
+		if (e.code === 'Enter' || e.code === 'enter' || e.code === 'NumpadEnter') {
+			if (loading.value) return;
+			login(loginFormRef.value);
+		}
+	};
 });
 </script>
 

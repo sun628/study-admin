@@ -4,21 +4,21 @@ import piniaPersistConfig from '../piniaPersist';
 
 // MenuStore
 export const MenuStore = defineStore({
-  id: 'MenuState',
-  state: (): MenuState => ({
-    // menu collapse
-    isCollapse: false,
-    // menu List
-    menuList: [],
-  }),
-  getters: {},
-  actions: {
-    async setCollapse() {
-      this.isCollapse = !this.isCollapse;
-    },
-    async setMenuList(menuList: Menu.MenuOptions[]) {
-      this.menuList = menuList;
-    },
-  },
-  persist: piniaPersistConfig('MenuState'),
+	id: 'MenuState',
+	state: (): MenuState => ({
+		// menu collapse
+		isCollapse: false,
+		// menu List
+		menuList: [],
+	}),
+	getters: {},
+	actions: {
+		async setCollapse() {
+			this.isCollapse = !this.isCollapse;
+		},
+		async setMenuList(menuList: Menu.MenuOptions[]) {
+			this.menuList = menuList;
+		},
+	},
+	persist: piniaPersistConfig('MenuState'),
 });
