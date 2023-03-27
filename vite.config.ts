@@ -8,9 +8,8 @@ import { visualizer } from 'rollup-plugin-visualizer'; //打包分析
 import { loadEnv } from 'vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import eslintPlugin from 'vite-plugin-eslint';
+import Electron from 'vite-plugin-electron';
 const pathSrc = path.resolve(__dirname, 'src');
-
-// import Electron from 'vite-plugin-electron';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -22,9 +21,9 @@ export default defineConfig(({ command, mode }) => {
 			eslintPlugin({
 				include: ['src/**/*.ts', 'src/**/*.vue', 'src/*.ts', 'src/*.vue'],
 			}),
-			// Electron({
-			// 	entry: 'electron/index.ts', //启动electron的入口文件
-			// }),
+			Electron({
+				entry: 'electron/index.ts', //启动electron的入口文件
+			}),
 			AutoImport({
 				imports: ['vue', 'vue-router'], // 自动导入vue和vue-router相关函数
 				dts: 'src/auto-imports.d.ts', // 生成 `auto-import.d.ts` 全局声明

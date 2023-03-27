@@ -19,11 +19,10 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 
 ## 介绍
 
-1. electron
-   项目使用了,需要配置一下环境变量，否则下载会很缓慢
-   如果需要关闭,只需注释掉 vite.config.ts 相关配置
-   yarn 方式 yarn config set ELECTRON_MIRROR https://npm.taobao.org/mirrors/electron/
-   npm 方式 npm config set ELECTRON_MIRROR https://npm.taobao.org/mirrors/electron/
+1.  项目使用了 electron,需要配置一下环境变量，否则下载会很缓慢
+    如果需要关闭,需注释掉 vite.config.ts 相关配置
+    1.  yarn 方式 yarn config set ELECTRON_MIRROR https://npm.taobao.org/mirrors/electron/
+    2.  npm 方式 npm config set ELECTRON_MIRROR https://npm.taobao.org/mirrors/electron/
 
 ## 安装
 
