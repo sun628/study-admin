@@ -34,7 +34,7 @@ import { HOME_URL } from '@/config';
 import { ElMessage } from 'element-plus';
 
 const tabStore = TabsStore();
-const reload = inject('refresh');
+const reload = inject('refresh') as () => void;
 
 // refresh current page
 const refresh = () => {

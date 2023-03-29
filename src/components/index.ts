@@ -1,6 +1,7 @@
 import { App, defineAsyncComponent, AsyncComponentLoader } from 'vue';
 import SvgIcon from '@/components/SvgIcon/index.vue';
-
+import * as Icons from '@element-plus/icons-vue';
+import MvMap from '@/components/MvMap/index.vue';
 // //引入依赖和语言
 
 // import javascript from 'highlight.js/lib/languages/javascript'; //引入语言
@@ -14,6 +15,7 @@ import SvgIcon from '@/components/SvgIcon/index.vue';
 
 export default function install(app: App) {
 	app.component('SvgIcon', SvgIcon);
+	app.component('MvMap', MvMap);
 	// app.component('highlightjs', hljsVuePlugin);
 	// 遍历docs文件并注册异步组件
 	const components = import.meta.glob('./docs/*.vue');
@@ -21,4 +23,8 @@ export default function install(app: App) {
 		const name = key.slice(key.lastIndexOf('/') + 1, key.lastIndexOf('.'));
 		app.component(name, defineAsyncComponent(value as AsyncComponentLoader));
 	}
+	// 注册element Icons组件
+	Object.keys(Icons).forEach((key) => {
+		app.component(key, Icons[key as keyof typeof Icons]);
+	});
 }

@@ -13,6 +13,8 @@
 		"format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,vue}\""
 	},
 	"dependencies": {
+		"@amap/amap-jsapi-loader": "^1.0.1",
+		"@amap/amap-jsapi-types": "^0.0.13",
 		"@highlightjs/vue-plugin": "^2.1.0",
 		"@types/highlight.js": "^10.1.0",
 		"@vueuse/core": "^9.12.0",

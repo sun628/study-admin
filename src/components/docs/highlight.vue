@@ -1,11 +1,15 @@
 <template>
-	<highlightjs language="typescript" :autodetect="false" :code="code"></highlightjs>
+	<highlightjs :language="language" :autodetect="false" :code="code"></highlightjs>
 </template>
 <script setup lang="ts">
 defineProps({
 	code: {
 		type: String,
 		default: '',
+	},
+	language: {
+		type: String,
+		default: 'typescript',
 	},
 });
 </script>

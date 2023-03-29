@@ -5,21 +5,21 @@
 			<p>Electron主要是用来搭建桌面应用程序的，使用Electron可以让我们前端开发者快速搭建出桌面应用程序例如我们所熟知的VS code。</p>
 		</doc>
 		<doc title="1. 初始化vite项目">
-			<highlight language="js" :code="code1"></highlight>
+			<highlight :code="code1"></highlight>
 		</doc>
 		<doc title="2. 安装electron">
-			<highlight language="js" :code="code2"></highlight>
+			<highlight :code="code2"></highlight>
 		</doc>
 		<doc title="3. 修改配置文件">
 			<p>vite.config.ts</p>
-			<highlight language="js" :code="code3"></highlight>
+			<highlight :code="code3"></highlight>
 			<h2>package.json</h2>
 			<p>将<font color="red">"type": "module"</font> 替换为 <font color="red">"main": "dist-electron/index.js"</font></p>
 		</doc>
 		<doc title="4. 编写electron文件">
 			<p>在根目录新建electron文件</p>
 			<el-image :src="image"></el-image>
-			<highlight language="js" :code="code4"></highlight>
+			<highlight :code="code4"></highlight>
 		</doc>
 		<doc title="5. npm run dev 运行"></doc>
 		<doc title="6. "> </doc>

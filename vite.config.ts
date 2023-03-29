@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue';
 import AutoImport from 'unplugin-auto-import/vite'; //自动导入vue和vue-router相关函数
 import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
-import { visualizer } from 'rollup-plugin-visualizer'; //打包分析
+// import { visualizer } from 'rollup-plugin-visualizer'; //打包分析
 import { loadEnv } from 'vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import eslintPlugin from 'vite-plugin-eslint';
@@ -15,14 +15,23 @@ const pathSrc = path.resolve(__dirname, 'src');
 export default defineConfig(({ command, mode }) => {
 	const root = process.cwd();
 	const env = loadEnv(mode, root);
+	const isBuild = command === 'build';
+	let plugins = [];
+	if (isBuild) {
+		plugins = [];
+	} else {
+		plugins = [
+			// Electron({
+			// 	entry: 'electron/index.ts', //启动electron的入口文件
+			// }),
+		];
+	}
 	return {
 		plugins: [
+			...plugins,
 			vue(),
 			eslintPlugin({
 				include: ['src/**/*.ts', 'src/**/*.vue', 'src/*.ts', 'src/*.vue'],
-			}),
-			Electron({
-				entry: 'electron/index.ts', //启动electron的入口文件
 			}),
 			AutoImport({
 				imports: ['vue', 'vue-router'], // 自动导入vue和vue-router相关函数
@@ -43,13 +52,13 @@ export default defineConfig(({ command, mode }) => {
 				// 指定symbolId格式
 				symbolId: 'icon-[dir]-[name]',
 			}),
-			visualizer({
-				emitFile: true, //是否被触摸
-				filename: 'visualizer.html', //生成分析网页文件名
-				open: true, //在默认用户代理中打开生成的文件
-				gzipSize: false, //从源代码中收集 gzip 大小并将其显示在图表中
-				brotliSize: true, //从源代码中收集 brotli 大小并将其显示在图表中
-			}),
+			// visualizer({
+			// 	emitFile: true, //是否被触摸
+			// 	filename: 'visualizer.html', //生成分析网页文件名
+			// 	open: true, //在默认用户代理中打开生成的文件
+			// 	gzipSize: false, //从源代码中收集 gzip 大小并将其显示在图表中
+			// 	brotliSize: true, //从源代码中收集 brotli 大小并将其显示在图表中
+			// }),
 		],
 		resolve: {
 			alias: {
@@ -66,7 +75,7 @@ export default defineConfig(({ command, mode }) => {
 		base: './',
 		server: {
 			port: 3000, // 服务端口号
-			open: true, // 服务启动时是否自动打开浏览器
+			// open: true, // 服务启动时是否自动打开浏览器
 			cors: true, // 允许跨域
 			proxy: {
 				'/api': {

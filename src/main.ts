@@ -1,7 +1,5 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-
-import * as Icons from '@element-plus/icons-vue';
 import '@/styles/index.scss';
 import '@/assets/iconfont/iconfont.scss'; // iconfont css
 import router from '@/routers/router';
@@ -11,15 +9,11 @@ import GlobalCom from '@/components/index';
 
 import 'highlight.js/styles/atom-one-dark.css';
 import 'highlight.js/lib/common';
-// import hljs from 'highlight.js/lib/core';
-// import typescript from 'highlight.js/lib/languages/typescript';
-// hljs.registerLanguage('typescript', typescript);
+import hljs from 'highlight.js/lib/core';
+import typescript from 'highlight.js/lib/languages/typescript';
+hljs.registerLanguage('typescript', typescript);
 import hljsVuePlugin from '@highlightjs/vue-plugin';
 const app = createApp(App);
-// 注册element Icons组件
-Object.keys(Icons).forEach((key) => {
-	app.component(key, Icons[key as keyof typeof Icons]);
-});
 
 app.use(hljsVuePlugin);
 app.use(GlobalCom); //批量注册全局组件

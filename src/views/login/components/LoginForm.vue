@@ -53,7 +53,6 @@ const loginForm = reactive({
 
 const loading = ref(false);
 const router = useRouter();
-const routes = router.options.routes;
 
 // login
 const login = (formEl: FormInstance | undefined) => {
@@ -61,8 +60,6 @@ const login = (formEl: FormInstance | undefined) => {
 	formEl.validate(async (valid) => {
 		if (!valid) return;
 		globalStore.setToken('123456');
-		const menuList = filterArray(routes);
-		menuStore.setMenuList(menuList);
 		loading.value = true;
 		router.push({ path: HOME_URL });
 		setTimeout(() => {
@@ -75,16 +72,6 @@ const login = (formEl: FormInstance | undefined) => {
 			loading.value = false;
 		}, 1000);
 		tabStore.closeMultipleTab();
-	});
-};
-
-// 数组过滤成菜单--根据meta.index排序
-const filterArray = (arr: any) => {
-	let tempArr = arr.filter((item: any) => {
-		return item?.meta?.index || item?.meta?.index === 0;
-	});
-	return tempArr.sort((a: any, b: any) => {
-		return a.meta.index - b.meta.index;
 	});
 };
 
