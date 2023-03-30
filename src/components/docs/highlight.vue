@@ -1,5 +1,5 @@
 <template>
-	<highlightjs :language="language" :autodetect="false" :code="code"></highlightjs>
+	<highlightjs v-highlight="code" :language="language" :autodetect="false" :code="code"></highlightjs>
 </template>
 <script setup lang="ts">
 defineProps({
@@ -55,6 +55,19 @@ pre {
 	overflow-x: auto;
 	border-radius: 8px;
 	background-color: #292d3e;
+	position: relative;
+	.copy {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		color: #ccc;
+		background-color: #343848;
+		padding: 5px 8px;
+		cursor: pointer;
+		&:hover {
+			color: #1890ff;
+		}
+	}
 }
 
 :deep(.hljs::-webkit-scrollbar) {
