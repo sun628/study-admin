@@ -4,7 +4,6 @@ import waterMarker from './modules/waterMarker';
 import draggable from './modules/draggable';
 import debounce from './modules/debounce';
 import throttle from './modules/throttle';
-import longpress from './modules/longpress';
 import highlight from './modules/highlight';
 
 const directivesList: any = {
@@ -14,7 +13,6 @@ const directivesList: any = {
 	draggable,
 	debounce,
 	throttle,
-	longpress,
 	highlight,
 };
 

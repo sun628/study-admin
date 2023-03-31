@@ -16,7 +16,7 @@ defineProps({
 <style scoped lang="scss">
 .doc {
 	width: 100%;
-	h2 {
+	:deep(h2) {
 		font-weight: 700;
 		line-height: 30px;
 		height: 30px;
