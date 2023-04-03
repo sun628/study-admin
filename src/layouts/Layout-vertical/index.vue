@@ -31,6 +31,7 @@ import ToolBarLeft from '@/layouts/components/Header/ToolBarLeft.vue';
 import ToolBarRight from '@/layouts/components/Header/ToolBarRight.vue';
 import Main from '@/layouts/components/Main/index.vue';
 import SubMenu from '@/layouts/components/Menu/SubMenu.vue';
+
 const route = useRoute();
 const menuStore = MenuStore();
 const activeMenu = computed(() => route.path);

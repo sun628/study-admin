@@ -27,14 +27,12 @@ import { useRouter } from 'vue-router';
 import { CircleClose, UserFilled } from '@element-plus/icons-vue';
 import { ElNotification } from 'element-plus';
 import { GlobalStore } from '@/store';
-import { MenuStore } from '@/store/modules/menu';
 import { TabsStore } from '@/store/modules/tabs';
 import { getTimeState } from '@/utils/util';
 import { HOME_URL } from '@/config';
 import type { ElForm } from 'element-plus';
 
 const globalStore = GlobalStore();
-const menuStore = MenuStore();
 const tabStore = TabsStore();
 
 // 定义 formRef（校验规则）

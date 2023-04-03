@@ -12,6 +12,9 @@ import zhCn from 'element-plus/lib/locale/lang/zh-cn';
 import { useRouter } from 'vue-router';
 import { computed, watch } from 'vue';
 
+import * as echarts from 'echarts';
+// echarts
+provide('echarts', echarts);
 // 配置全局组件大小 (small/default(medium)/large)
 const assemblySize = computed(() => globalStore.assemblySize);
 const globalStore = GlobalStore();

@@ -1,6 +1,6 @@
 import router from '@/routers/router';
 import NProgress from '@/config/nprogress';
-import { HOME_URL, TABS_WHITE_LIST } from '@/config';
+import { TABS_WHITE_LIST } from '@/config';
 import { GlobalStore } from '@/store';
 import { AxiosCanceler } from '@/api/helper/axiosCancel';
 
