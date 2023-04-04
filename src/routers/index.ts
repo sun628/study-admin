@@ -14,6 +14,7 @@ router.beforeEach((to, from, next) => {
 	// * 在跳转路由之前，清除所有的请求
 	// axiosCanceler.removeAllPending();
 	// * 判断当前路由是否需要访问权限
+
 	if (!to.matched.some((record) => record.meta.requiresAuth)) return next();
 
 	if (TABS_WHITE_LIST.includes(to.path)) {

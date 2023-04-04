@@ -26,7 +26,7 @@ const mapRouter = [
 		name: 'map',
 		children: routerArray,
 		meta: {
-			index: 3,
+			menuIndex: 4,
 			keepAlive: true,
 			requiresAuth: false,
 			title: '地图',

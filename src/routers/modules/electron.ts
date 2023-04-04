@@ -26,7 +26,7 @@ const electronRouter = [
 		name: 'electron',
 		children: routerArray,
 		meta: {
-			index: 1,
+			menuIndex: 1,
 			keepAlive: true,
 			requiresAuth: false,
 			title: 'electron',

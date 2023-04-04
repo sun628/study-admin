@@ -26,7 +26,7 @@ const homeRouter: Array<RouteRecordRaw> = [
 			requiresAuth: false,
 			title: '主页',
 			key: 'home',
-			index: 0,
+			menuIndex: 0,
 		},
 	},
 ];

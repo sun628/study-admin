@@ -18,13 +18,13 @@ export default defineConfig(({ command, mode }) => {
 	const isBuild = command === 'build';
 	let plugins = [];
 	if (isBuild) {
-		plugins = [];
-	} else {
 		plugins = [
-			// Electron({
-			// 	entry: 'electron/index.ts', //启动electron的入口文件
-			// }),
+			Electron({
+				entry: 'electron/index.ts', //启动electron的入口文件
+			}),
 		];
+	} else {
+		plugins = [];
 	}
 	return {
 		plugins: [
@@ -33,18 +33,15 @@ export default defineConfig(({ command, mode }) => {
 			eslintPlugin({
 				include: ['src/**/*.ts', 'src/**/*.vue', 'src/*.ts', 'src/*.vue'],
 			}),
-			Components({
-				resolvers: [
-					ElementPlusResolver({
-						importStyle: 'sass',
-					}),
-				],
-				dts: 'src/components.d.ts',
-			}),
+			// Components({
+			// 	resolvers: [ElementPlusResolver()],
+			// 	dts: 'src/components.d.ts',
+			// }),
+
 			AutoImport({
 				imports: ['vue', 'vue-router'], // 自动导入vue和vue-router相关函数
 				dts: 'src/auto-imports.d.ts', // 生成 `auto-import.d.ts` 全局声明
-				resolvers: [ElementPlusResolver()], //element-plus自动引入
+				// resolvers: [ElementPlusResolver()], //element-plus自动引入
 			}),
 			createSvgIconsPlugin({
 				// 指定需要缓存的图标文件夹

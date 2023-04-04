@@ -1,12 +1,12 @@
 import { Layout } from '@/routers/constant';
 
 const routerArray = [];
-const routers = import.meta.glob('../../views/type-script/*.vue');
+const routers = import.meta.glob('../../views/nodejs/*.vue');
 for (const i in routers) {
-	const newName = i.replace(/..\/..\/views\/type-script\//, '').replace(/.vue/, '');
+	const newName = i.replace(/..\/..\/views\/nodejs\//, '').replace(/.vue/, '');
 	const newPath = newName.substring(0, 2);
 	routerArray.push({
-		path: '/type-script/' + newPath,
+		path: '/nodejs/' + newPath,
 		name: newName,
 		meta: {
 			keepAlive: true,
@@ -17,22 +17,22 @@ for (const i in routers) {
 		component: routers[i],
 	});
 }
-// type-script模块
-const tsRouter = [
+// nodejs模块
+const nodejsRouter = [
 	{
-		path: '/type-script',
+		path: '/nodejs',
 		component: Layout,
-		name: 'typeScript',
-		redirect: '/type-script/01',
+		name: 'nodejs',
+		redirect: '/nodejs/01',
 		children: routerArray,
 		meta: {
-			menuIndex: 2,
+			menuIndex: 3,
 			keepAlive: true,
 			requiresAuth: false,
-			title: 'typeScript',
-			key: 'type-script',
+			title: 'nodejs',
+			key: 'nodejs',
 		},
 	},
 ];
 
-export default tsRouter;
+export default nodejsRouter;
