@@ -22,9 +22,6 @@ const copy: Directive = {
 			//给复制按钮添加点击事件
 			copyBtn.addEventListener('click', handleClick);
 		}
-
-		// el.copyData = binding.value;
-		// el.addEventListener('click', handleClick);
 	},
 	updated(el: ElType, binding: DirectiveBinding) {
 		el.copyData = binding.value;

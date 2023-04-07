@@ -63,7 +63,8 @@ const closeSearch = () => {
 const filterNodeMethod = (queryString: string) => {
 	return (restaurant: Menu.MenuOptions) => {
 		return (
-			restaurant.path.toLowerCase().indexOf(queryString.toLowerCase()) > -1 || restaurant.title.toLowerCase().indexOf(queryString.toLowerCase()) > -1
+			restaurant.path.toLowerCase().indexOf(queryString.toLowerCase()) > -1 ||
+			restaurant.meta.title.toLowerCase().indexOf(queryString.toLowerCase()) > -1
 		);
 	};
 };
