@@ -5,22 +5,22 @@
 				在<font>typescript</font>中，我们定义对象的方式要用关键字interface（接口），
 				我的理解是使用interface来定义一种约束，让数据的结构满足约束的格式。定义方式如下：
 			</p>
-			<Highlight :code="objType"></Highlight>
-			<Highlight :code="objType2"></Highlight>
+			<highlight :code="objType"></highlight>
+			<highlight :code="objType2"></highlight>
 		</doc>
 		<doc title="可选属性 使用?操作符">
-			<Highlight :code="objType3"></Highlight>
+			<highlight :code="objType3"></highlight>
 		</doc>
 		<doc title="任意属性 [propName: string]">
 			<p><font color="red">需要注意的是，一旦定义了任意属性，那么确定属性和可选属性的类型都必须是它的类型的子集：</font></p>
 		</doc>
 		<doc title="只读属性 readonly">
 			<p>readonly 只读属性是不允许被赋值的只能读取</p>
-			<Highlight :code="objType4"></Highlight>
+			<highlight :code="objType4"></highlight>
 		</doc>
 		<doc title="添加函数">
 			<p>在接口中添加函数</p>
-			<Highlight :code="objType5"></Highlight>
+			<highlight :code="objType5"></highlight>
 		</doc>
 	</el-row>
 </template>

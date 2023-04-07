@@ -1,13 +1,14 @@
 import { RouteRecordRaw } from 'vue-router';
 import { Layout } from '@/routers/constant';
-
+import { MatchMenu } from '@/enums/configEnum';
 // 首页模块
+const name = 'home';
 const homeRouter: Array<RouteRecordRaw> = [
 	{
 		path: '/home',
 		component: Layout,
 		redirect: '/home/index',
-		name: 'home',
+		name: name,
 		children: [
 			{
 				path: '/home/index',
@@ -25,8 +26,8 @@ const homeRouter: Array<RouteRecordRaw> = [
 			keepAlive: true,
 			requiresAuth: false,
 			title: '主页',
-			key: 'home',
-			menuIndex: 0,
+			key: name,
+			menuIndex: MatchMenu[name],
 		},
 	},
 ];

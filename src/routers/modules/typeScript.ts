@@ -1,13 +1,15 @@
 import { Layout } from '@/routers/constant';
+import { MatchMenu } from '@/enums/configEnum';
 
 const routerArray = [];
+const name = 'typeScript';
 const routers = import.meta.glob('../../views/type-script/*.vue');
 for (const i in routers) {
 	const newName = i.replace(/..\/..\/views\/type-script\//, '').replace(/.vue/, '');
-	const newPath = newName.substring(0, 2);
+	const newPath = '/type-script/' + newName.substring(0, 2);
 	routerArray.push({
-		path: '/type-script/' + newPath,
-		name: newName,
+		path: newPath,
+		name: name + '/' + newName,
 		meta: {
 			keepAlive: true,
 			requiresAuth: true,
@@ -17,20 +19,21 @@ for (const i in routers) {
 		component: routers[i],
 	});
 }
+
 // type-script模块
 const tsRouter = [
 	{
 		path: '/type-script',
 		component: Layout,
-		name: 'typeScript',
+		name: name,
 		redirect: '/type-script/01',
 		children: routerArray,
 		meta: {
-			menuIndex: 2,
+			menuIndex: MatchMenu[name],
 			keepAlive: true,
 			requiresAuth: false,
-			title: 'typeScript',
-			key: 'type-script',
+			title: name,
+			key: name,
 		},
 	},
 ];

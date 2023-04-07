@@ -1,19 +1,19 @@
 import { Layout } from '@/routers/constant';
-
+import { MatchMenu } from '@/enums/configEnum';
 const routerArray = [];
-const name = '/electron/';
+const name = 'electron';
 const routers = import.meta.glob('../../views/electron/*.vue');
 for (const i in routers) {
 	const newName = i.replace(/..\/..\/views\/electron\//, '').replace(/.vue/, '');
-	const newPath = newName.substring(0, 2);
+	const newPath = '/electron/' + newName.substring(0, 2);
 	routerArray.push({
-		path: name + newPath,
-		name: name + newName,
+		path: newPath,
+		name: name + '/' + newName,
 		meta: {
 			keepAlive: true,
 			requiresAuth: true,
 			title: newName,
-			key: name + +newPath,
+			key: newPath,
 		},
 		component: routers[i],
 	});
@@ -23,14 +23,14 @@ const electronRouter = [
 	{
 		path: '/electron',
 		component: Layout,
-		name: 'electron',
+		name: name,
 		children: routerArray,
 		meta: {
-			menuIndex: 1,
+			menuIndex: MatchMenu[name],
 			keepAlive: true,
 			requiresAuth: false,
-			title: 'electron',
-			key: 'electron',
+			title: name,
+			key: name,
 		},
 	},
 ];

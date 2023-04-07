@@ -1,13 +1,15 @@
 import { Layout } from '@/routers/constant';
+import { MatchMenu } from '@/enums/configEnum';
 
 const routerArray = [];
+const name = 'nodejs';
 const routers = import.meta.glob('../../views/nodejs/*.vue');
 for (const i in routers) {
 	const newName = i.replace(/..\/..\/views\/nodejs\//, '').replace(/.vue/, '');
 	const newPath = newName.substring(0, 2);
 	routerArray.push({
 		path: '/nodejs/' + newPath,
-		name: newName,
+		name: name + '/' + newName,
 		meta: {
 			keepAlive: true,
 			requiresAuth: true,
@@ -22,15 +24,15 @@ const nodejsRouter = [
 	{
 		path: '/nodejs',
 		component: Layout,
-		name: 'nodejs',
+		name: name,
 		redirect: '/nodejs/01',
 		children: routerArray,
 		meta: {
-			menuIndex: 3,
+			menuIndex: MatchMenu[name],
 			keepAlive: true,
 			requiresAuth: false,
-			title: 'nodejs',
-			key: 'nodejs',
+			title: name,
+			key: name,
 		},
 	},
 ];

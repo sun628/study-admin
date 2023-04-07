@@ -33,9 +33,9 @@
 			<p>使用 static 修饰符修饰的方法称为静态方法，它们不需要实例化，而是直接通过类来调用，类的实例无法访问：</p>
 			<highlight :code="classType6"></highlight>
 			<p>静态方法调用同一个类中的其他静态方法，可使用 this 关键字：</p>
-			<Highlight :code="classType7"></Highlight>
+			<highlight :code="classType7"></highlight>
 			<p>非静态方法中，不能直接使用 this 关键字来访问静态方法。而要用类本身或者构造函数的属性来调用该方法：</p>
-			<Highlight :code="classType8"></Highlight>
+			<highlight :code="classType8"></highlight>
 			<p>类指向其构造函数本身，在非静态方法中，this.constructor === StaticMethodCall 为 true</p>
 		</doc>
 		<doc title="6.抽象类">
