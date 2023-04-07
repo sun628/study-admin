@@ -9,7 +9,7 @@ for (const i in routers) {
 	const newPath = '/type-script/' + newName.substring(0, 2);
 	routerArray.push({
 		path: newPath,
-		name: name + '/' + newName,
+		name: newName,
 		meta: {
 			keepAlive: true,
 			requiresAuth: true,

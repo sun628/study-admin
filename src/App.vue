@@ -1,6 +1,10 @@
 <template>
 	<el-config-provider :size="assemblySize" :locale="zhCn">
-		<router-view :key="path"></router-view>
+		<router-view v-slot="{ Component }">
+			<keep-alive>
+				<component :is="Component" />
+			</keep-alive>
+		</router-view>
 	</el-config-provider>
 </template>
 
@@ -20,7 +24,6 @@ useTheme();
 
 const router = useRouter();
 const routes = router.options.routes;
-const path = computed(() => router.currentRoute.value.fullPath);
 
 // 数组过滤成菜单--根据meta.menuIndex
 const filterArray = (arr: any) => {

@@ -5,8 +5,8 @@ const pageMoudles = import.meta.glob('../../views/vue3/**/page.ts', { eager: tru
 const compMoudles = import.meta.glob('../../views/vue3/**/index.vue');
 const routers = Object.entries(pageMoudles).map(([pathPage, config]) => {
 	const compPath = pathPage.replace(/page.ts/, 'index.vue');
-	const name = pathPage.replace(/..\/..\/views/, '').replace(/\/page.ts/, '');
-	const path = name.split('.')[0];
+	const name = pathPage.replace(/..\/..\/views\//, '').replace(/\/page.ts/, '');
+	const path = '/' + name.split('.')[0];
 	return {
 		path: path,
 		name: name,
@@ -14,6 +14,7 @@ const routers = Object.entries(pageMoudles).map(([pathPage, config]) => {
 		meta: config,
 	};
 });
+
 // vue3模块
 const vue3Router = [
 	{

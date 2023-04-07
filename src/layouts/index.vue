@@ -6,12 +6,13 @@
 import { GlobalStore } from '@/store';
 import ThemeDrawer from './components/ThemeDrawer/index.vue';
 import LayoutVertical from './Layout-vertical/index.vue';
+import LayoutHorizontal from './Layout-horizontal/index.vue';
 const globalStore = GlobalStore();
 const themeConfig = computed(() => globalStore.themeConfig);
 
 const LayoutComponents: any = {
 	vertical: LayoutVertical,
-	horizontal: defineAsyncComponent(() => import('./Layout-horizontal/index.vue')),
+	horizontal: LayoutHorizontal,
 };
 </script>
 <style scoped lang="scss"></style>

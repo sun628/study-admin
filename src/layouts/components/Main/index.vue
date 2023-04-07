@@ -13,17 +13,15 @@
 		<Footer />
 	</el-footer>
 </template>
-
 <script setup lang="ts">
 import { ref, computed, nextTick, provide } from 'vue';
 import { GlobalStore } from '@/store';
 import cacheRouter from '@/routers/cacheRouter';
 import Tabs from '@/layouts/components/Tabs/index.vue';
 import Footer from '@/layouts/components/Footer/index.vue';
-
+// 刷新当前页面
 const globalStore = GlobalStore();
 const themeConfig = computed(() => globalStore.themeConfig);
-
 // 刷新当前页面
 const isRouterRefresh = ref(true);
 const refreshCurrentPage = () => {

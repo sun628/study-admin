@@ -12,7 +12,7 @@ const axiosCanceler = new AxiosCanceler();
 router.beforeEach((to, from, next) => {
 	NProgress.start();
 	// * 在跳转路由之前，清除所有的请求
-	// axiosCanceler.removeAllPending();
+	axiosCanceler.removeAllPending();
 	// * 判断当前路由是否需要访问权限
 
 	if (!to.matched.some((record) => record.meta.requiresAuth)) return next();

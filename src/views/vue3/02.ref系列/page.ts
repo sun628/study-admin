@@ -1,6 +1,6 @@
 export default {
-	keepAlive: true,
+	keepAlive: false,
 	requiresAuth: true,
-	title: '01.介绍',
-	key: '/vue3/01',
+	title: '02.ref系列',
+	key: '/vue3/02',
 };
