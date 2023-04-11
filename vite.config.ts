@@ -1,62 +1,26 @@
 import path from 'path';
 import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import AutoImport from 'unplugin-auto-import/vite'; //自动导入vue和vue-router相关函数
-import Components from 'unplugin-vue-components/vite';
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
-// import { visualizer } from 'rollup-plugin-visualizer'; //打包分析
 import { loadEnv } from 'vite';
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
-import eslintPlugin from 'vite-plugin-eslint';
-import Electron from 'vite-plugin-electron';
-const pathSrc = path.resolve(__dirname, 'src');
 
-// https://vitejs.dev/config/
+import { getPlugins } from './src/plugins/index';
+const pathSrc = path.resolve(__dirname, 'src');
+console.log('getPlugins', getPlugins);
+
 export default defineConfig(({ command, mode }) => {
 	const root = process.cwd();
 	const env = loadEnv(mode, root);
-	const isBuild = command === 'build';
-	let plugins = [];
-	if (isBuild) {
-		plugins = [
-			Electron({
-				entry: 'electron/index.ts', //启动electron的入口文件
-			}),
-		];
-	} else {
-		plugins = [];
-	}
+	// let plugins = [];
+	// if (isBuild) {
+	// 	plugins = [
+	// 		Electron({
+	// 			entry: 'electron/index.ts', //启动electron的入口文件
+	// 		}),
+	// 	];
+	// } else {
+	// 	plugins = [];
+	// }
 	return {
-		plugins: [
-			...plugins,
-			vue(),
-			eslintPlugin({
-				include: ['src/**/*.ts', 'src/**/*.vue', 'src/*.ts', 'src/*.vue'],
-			}),
-			// Components({
-			// 	resolvers: [ElementPlusResolver()],
-			// 	dts: 'src/components.d.ts',
-			// }),
-
-			AutoImport({
-				imports: ['vue', 'vue-router'], // 自动导入vue和vue-router相关函数
-				dts: 'src/auto-imports.d.ts', // 生成 `auto-import.d.ts` 全局声明
-				// resolvers: [ElementPlusResolver()], //element-plus自动引入
-			}),
-			createSvgIconsPlugin({
-				// 指定需要缓存的图标文件夹
-				iconDirs: [path.resolve(process.cwd(), 'src/assets/svgIcons')],
-				// 指定symbolId格式
-				symbolId: 'icon-[dir]-[name]',
-			}),
-			// visualizer({
-			// 	emitFile: true, //是否被触摸
-			// 	filename: 'visualizer.html', //生成分析网页文件名
-			// 	open: true, //在默认用户代理中打开生成的文件
-			// 	gzipSize: false, //从源代码中收集 gzip 大小并将其显示在图表中
-			// 	brotliSize: true, //从源代码中收集 brotli 大小并将其显示在图表中
-			// }),
-		],
+		plugins: getPlugins(),
 		resolve: {
 			alias: {
 				'@/': `${pathSrc}/`,
@@ -90,6 +54,7 @@ export default defineConfig(({ command, mode }) => {
 			},
 		},
 		build: {
+			publicPath: './',
 			outDir: 'dist',
 			minify: 'esbuild',
 			// esbuild 打包更快，但是不能去除 console.log，terser打包慢，但能去除 console.log

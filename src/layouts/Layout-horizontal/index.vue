@@ -42,7 +42,7 @@
 	</el-container>
 </template>
 
-<script setup lang="ts" name="layoutTransverse">
+<script setup lang="ts">
 import { MenuStore } from '@/store/modules/menu';
 import Main from '@/layouts/components/Main/index.vue';
 import ToolBarRight from '@/layouts/components/Header/ToolBarRight.vue';
@@ -66,7 +66,7 @@ const handleClickMenu = (subItem: Menu.MenuOptions) => {
 </style>
 
 <style lang="scss">
-.transverse {
+.layout {
 	// 横向菜单布局
 	.el-menu--horizontal {
 		.el-menu-item,

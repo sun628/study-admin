@@ -14,7 +14,8 @@
 			<p>vite.config.ts</p>
 			<highlight :code="code3"></highlight>
 			<h2>package.json</h2>
-			<p>将<font color="red">"type": "module"</font> 替换为 <font color="red">"main": "dist-electron/index.js"</font></p>
+			<p>删除<font color="red">"type": "module"</font></p>
+			<p>新增<font color="red">"main": "dist-electron/index.js"</font></p>
 		</doc>
 		<doc title="4. 编写electron文件">
 			<p>在根目录新建electron文件</p>
@@ -22,7 +23,21 @@
 			<highlight :code="code4"></highlight>
 		</doc>
 		<doc title="5. npm run dev 运行"></doc>
-		<doc title="6. "> </doc>
+		<doc title="项目打包">
+			<p>
+				<font><h2>安装</h2></font>
+			</p>
+			<highlight :code="code5"></highlight>
+			<p>
+				<font><h2>修改package.json</h2></font>
+			</p>
+			<highlight :code="code6"></highlight>
+			<p>
+				<font><h2>执行命令</h2></font>
+			</p>
+			<p>package.json新增命令 "build:electron": "rimraf dist && vue-tsc && vite build&& electron-builder"</p>
+			<highlight code="yarn build:electron"></highlight>
+		</doc>
 	</el-card>
 </template>
 <script setup lang="ts">
@@ -43,11 +58,11 @@ yarn add vite-plugin-electron -D
 /**
  * npm配置方式
  * npm config set ELECTRON_MIRROR https://npm.taobao.org/mirrors/electron/
- * / 
+ * /
 
 
 /**
- * 
+ *
  * 当前版本(下载可能会很慢)
  * "electron": "^23.2.0"
  * "vite-plugin-electron": "^0.11.1",
@@ -82,14 +97,67 @@ const createWindow = () => {
   //打包后走加载文件路径
   if (app.isPackaged) {
     win.loadFile(path.join(__dirname, '../dist/index.html'));
-  } else {  
+  } else {
     ` +
 	"win.loadURL(`${process.env['VITE_DEV_SERVER_URL']}`);" +
-	` 
+	`
   }
   // win.webContents.openDevTools(); // 打开控制台
 };
 app.whenReady().then(createWindow);`;
+
+const code5 = `yarn add electron-builder -D
+`;
+const productName = 'productName';
+const version = 'version';
+const ext = 'ext';
+const code6 = `.....
+"build": {
+		"appId": "com.electron.desktop",
+		"productName": "electron",
+		"asar": true,
+		"copyright": "Copyright © 2022 electron",
+		"directories": {
+			"output": "release/"
+		},
+		"files": [
+			"dist/**/*",
+			"dist-electron/**/*"
+		],
+		"mac": {
+			"artifactName": "${productName}_${version}.${ext}",
+			"target": [
+				"dmg"
+			]
+		},
+		"win": {
+			"target": [
+				{
+					"target": "nsis",
+					"arch": [
+						"x64"
+					]
+				}
+			],
+			"artifactName": "${productName}_${version}.${ext}"
+		},
+		"nsis": {
+			"oneClick": false,
+			"perMachine": false,
+			"allowToChangeInstallationDirectory": true,
+			"deleteAppDataOnUninstall": false
+		},
+		"publish": [
+			{
+				"provider": "generic",
+				"url": "http://127.0.0.1:8080"
+			}
+		],
+		"releaseInfo": {
+			"releaseNotes": "版本更新的具体内容"
+		}
+	}
+`;
 </script>
 
 <style scoped lang="scss"></style>

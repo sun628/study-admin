@@ -18,6 +18,7 @@
 		},
 		"types": ["element-plus/global", "vite-plugin-svg-icons/client"]
 	},
-	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+	"include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "types/*.d.ts", "vite.config.ts"],
+	"exclude": ["node_modules", "dist", "**/*.js"],
 	"references": [{ "path": "./tsconfig.node.json" }]
 }
