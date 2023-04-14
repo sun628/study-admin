@@ -4,7 +4,6 @@ import { loadEnv } from 'vite';
 
 import { getPlugins } from './src/plugins/index';
 const pathSrc = path.resolve(__dirname, 'src');
-console.log('getPlugins', getPlugins);
 
 export default defineConfig(({ command, mode }) => {
 	const root = process.cwd();
@@ -68,10 +67,14 @@ export default defineConfig(({ command, mode }) => {
 			chunkSizeWarningLimit: 1500,
 			rollupOptions: {
 				output: {
-					// Static resource classification and packaging
 					chunkFileNames: 'assets/js/[name]-[hash].js',
 					entryFileNames: 'assets/js/[name]-[hash].js',
 					assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
+					manualChunks(id) {
+						if (id.includes('node_modules')) {
+							return id.toString().split('node_modules/')[1].split('/')[0].toString(); //静态资源分拆打包
+						}
+					},
 				},
 			},
 		},

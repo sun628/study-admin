@@ -1,7 +1,5 @@
 <template>
-	<div>
-		<el-button type="primary">子组件</el-button>
-	</div>
+	<div>22222</div>
 </template>
 <script setup lang="ts"></script>
 

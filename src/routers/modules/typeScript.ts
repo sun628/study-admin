@@ -6,7 +6,7 @@ const name = 'typeScript';
 const routers = import.meta.glob('../../views/type-script/*.vue');
 for (const i in routers) {
 	const newName = i.replace(/..\/..\/views\/type-script\//, '').replace(/.vue/, '');
-	const newPath = '/type-script/' + newName.substring(0, 2);
+	const newPath = '/type-script/' + newName.split('.')[0];
 	routerArray.push({
 		path: newPath,
 		name: newName,
