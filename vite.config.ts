@@ -8,16 +8,6 @@ const pathSrc = path.resolve(__dirname, 'src');
 export default defineConfig(({ command, mode }) => {
 	const root = process.cwd();
 	const env = loadEnv(mode, root);
-	// let plugins = [];
-	// if (isBuild) {
-	// 	plugins = [
-	// 		Electron({
-	// 			entry: 'electron/index.ts', //启动electron的入口文件
-	// 		}),
-	// 	];
-	// } else {
-	// 	plugins = [];
-	// }
 	return {
 		plugins: getPlugins(),
 		resolve: {
