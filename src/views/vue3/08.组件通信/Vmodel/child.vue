@@ -8,6 +8,7 @@
 interface prop {
 	modelValue: string;
 }
+
 withDefaults(defineProps<prop>(), {
 	modelValue: '不听不听~',
 });
