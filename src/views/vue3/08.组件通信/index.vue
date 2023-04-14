@@ -119,5 +119,8 @@ onMounted(() => {
 		font-size: 2rem;
 		color: var(--el-text-color-primary);
 	}
+	.el-drawer__header {
+		margin: 0;
+	}
 }
 </style>

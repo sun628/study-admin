@@ -18,6 +18,7 @@ ${scriptTag}
 //子组件child：
 <template>
 	<h2>来自父组件的数据count：{{ count }}</h2>
+  <el-button type="primary" @click="countAdd(count + 1)">通过emit触发点击事件</el-button>
 </template>
 <script setup lang="ts">
 interface prop {
