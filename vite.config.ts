@@ -8,6 +8,7 @@ const pathSrc = path.resolve(__dirname, 'src');
 export default defineConfig(({ command, mode }) => {
 	const root = process.cwd();
 	const env = loadEnv(mode, root);
+
 	return {
 		plugins: getPlugins(),
 		resolve: {
