@@ -33,6 +33,7 @@ const nodejsRouter = [
 			requiresAuth: false,
 			title: name,
 			key: name,
+			localSvgIcon: 'Nodejs',
 		},
 	},
 ];

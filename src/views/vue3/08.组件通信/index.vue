@@ -27,12 +27,13 @@
 import { ref, reactive, onMounted, shallowRef, markRaw, defineAsyncComponent } from 'vue';
 import type { CollapseModelValue } from 'element-plus';
 import { CircleCloseFilled } from '@element-plus/icons-vue';
-import { PropsEmits } from './code';
+import { PropsEmitsCode, VModelCode } from './code';
 
 const drawerVisible = ref(false);
 // import A from './父子组件通信/index.vue';
-const A = defineAsyncComponent(() => import('./PropsEmit/index.vue'));
-const B = defineAsyncComponent(() => import('./Vmodel/index.vue'));
+const A = defineAsyncComponent(() => import('./props-emit/index.vue'));
+const B = defineAsyncComponent(() => import('./v-model/index.vue'));
+const E = defineAsyncComponent(() => import('./refs/index.vue'));
 //定义一个动态组件数组
 const currentComponent = shallowRef(); //动态组件的名称
 const activeName = ref();
@@ -42,19 +43,20 @@ const components = reactive([
 		title: 'props/$emit',
 		tip: '通过props从父组件向子组件传递数据，子组件通过 $emit 事件向父组件传递数据。',
 		componet: markRaw(A),
-		code: PropsEmits,
+		code: PropsEmitsCode,
 	},
 	{
 		title: 'v-model',
 		tip: `在vue2中,我们要想实现一个自定义的非表单组件的双向绑定，需要通过xxxx.sync的这种语法来实现。
-    但是在vue3这个指令已经被废除了，而是统一使用v-model这个指令。`,
+    但是在vue3这个指令已经被废除了，而是统一使用v-model这个指令。（其实是一个语法糖 通过props 和 emit组合而成的）`,
 		componet: markRaw(B),
+		code: VModelCode,
 	},
 	{
 		title: 'refs',
 		tip: `使用API选项时，我们可以通过this.$refs.name获取指定的元素或组件，但在组合API中不行。
     如果我们想通过ref获取，需要定义一个同名的Ref对象，在组件挂载后可以访问。`,
-		componet: markRaw(A),
+		componet: markRaw(E),
 	},
 	{
 		title: 'provide/Inject',

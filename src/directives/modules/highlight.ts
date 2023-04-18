@@ -1,5 +1,5 @@
 /**
- * v-copy
+ * v-highlight
  * 复制某个值至剪贴板
  * 接收参数：string类型/Ref<string>类型/Reactive<string>类型
  */
@@ -32,13 +32,20 @@ const copy: Directive = {
 };
 
 function handleClick(this: any) {
-	const input = document.createElement('input');
-	input.value = this.copyData.toLocaleString();
-	document.body.appendChild(input);
-	input.select();
-	document.execCommand('Copy');
-	document.body.removeChild(input);
-	this.innerHTML = '复制成功';
+	console.log(navigator.clipboard);
+	if (navigator.clipboard) {
+		navigator.clipboard.writeText(this.copyData.toLocaleString()).then(() => {
+			this.innerHTML = '复制成功';
+		});
+	} else {
+		const input = document.createElement('input');
+		input.value = this.copyData.toLocaleString();
+		document.body.appendChild(input);
+		input.select();
+		document.execCommand('Copy');
+		document.body.removeChild(input);
+		this.innerHTML = '复制成功';
+	}
 	setTimeout(() => {
 		this.innerHTML = '复制';
 	}, 1500);

@@ -5,6 +5,7 @@ declare namespace Menu {
 		path: string;
 		title: string;
 		icon?: string;
+		localSvgIcon?: string;
 		isLink?: string;
 		close?: boolean;
 		children?: MenuOptions[];

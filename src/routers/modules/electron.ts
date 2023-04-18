@@ -31,6 +31,7 @@ const electronRouter = [
 			requiresAuth: false,
 			title: name,
 			key: name,
+			localSvgIcon: 'logo-electron',
 		},
 	},
 ];

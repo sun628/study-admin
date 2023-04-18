@@ -26,6 +26,7 @@ const homeRouter: Array<RouteRecordRaw> = [
 			keepAlive: true,
 			requiresAuth: false,
 			title: '主页',
+			localSvgIcon: 'home',
 			key: name,
 			menuIndex: MatchMenu[name],
 		},

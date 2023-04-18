@@ -34,6 +34,7 @@ const tsRouter = [
 			requiresAuth: false,
 			title: name,
 			key: name,
+			localSvgIcon: 'typescript',
 		},
 	},
 ];

@@ -61,6 +61,7 @@ const vue3Router = [
 			requiresAuth: false,
 			title: name,
 			key: name,
+			localSvgIcon: 'vuejs',
 		},
 	},
 ];

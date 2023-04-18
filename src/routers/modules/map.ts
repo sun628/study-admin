@@ -31,6 +31,7 @@ const mapRouter = [
 			requiresAuth: false,
 			title: '地图',
 			key: name,
+			localSvgIcon: 'map-logo',
 		},
 	},
 ];
