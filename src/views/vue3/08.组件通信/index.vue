@@ -4,7 +4,6 @@
 			<el-collapse v-model="activeName" accordion @change="handleChange">
 				<el-collapse-item v-for="(item, index) in components" :key="index" :title="`${index + 1}.${item.title}`" class="tip" :name="item.title">
 					<div class="p-1 tip">{{ item.tip }}</div>
-
 					<highlight v-if="item.code" :code="item.code"></highlight>
 				</el-collapse-item>
 			</el-collapse>
@@ -92,8 +91,25 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
+:deep(.my-drawer) {
+	position: static !important;
+	width: 50%;
+	.el-drawer {
+		width: 100% !important;
+		position: static;
+	}
+	.el-drawer__title {
+		font-size: 2rem;
+		color: var(--el-text-color-primary);
+	}
+	.el-drawer__header {
+		margin: 0;
+	}
+}
 :deep(.el-collapse-item__header) {
 	background-color: transparent;
+	font-weight: 600;
+	font-size: 18px;
 }
 :deep(.el-collapse-item__wrap) {
 	border-radius: 8px;
@@ -108,21 +124,6 @@ onMounted(() => {
 		pre {
 			margin: 0;
 		}
-	}
-}
-:deep(.my-drawer) {
-	position: static !important;
-	width: 50%;
-	.el-drawer {
-		width: 100% !important;
-		position: static;
-	}
-	.el-drawer__title {
-		font-size: 2rem;
-		color: var(--el-text-color-primary);
-	}
-	.el-drawer__header {
-		margin: 0;
 	}
 }
 </style>

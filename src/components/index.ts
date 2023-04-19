@@ -15,7 +15,7 @@ export default function install(app: App) {
 	app.component('SvgIcon', SvgIcon);
 	app.use(hljsVuePlugin);
 	// 遍历docs文件并注册异步组件
-	const components = import.meta.glob('./docs/*.vue');
+	const components = import.meta.glob('./Docs/*.vue');
 	for (const [key, value] of Object.entries(components)) {
 		const name = key.slice(key.lastIndexOf('/') + 1, key.lastIndexOf('.'));
 		app.component(name, defineAsyncComponent(value as AsyncComponentLoader));

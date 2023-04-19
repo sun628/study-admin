@@ -76,6 +76,9 @@
 			"dist/**/*",
 			"dist-electron/**/*"
 		],
+		"electronDownload": {
+			"mirror": "https://npm.taobao.org/mirrors/electron/"
+		},
 		"mac": {
 			"artifactName": "${productName}_${version}.${ext}",
 			"target": [

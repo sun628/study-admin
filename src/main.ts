@@ -1,7 +1,9 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import '@/styles/index.scss';
 import '@/assets/iconfont/iconfont.scss'; // iconfont css
+import 'tailwindcss/tailwind.css'; //  tailwind.css
+
+import '@/styles/index.scss';
 import router from '@/routers/router';
 import pinia from '@/store/index';
 import 'virtual:svg-icons-register'; //注册svg图标

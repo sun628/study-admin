@@ -9,7 +9,8 @@ This template should help get you started developing with Vue 3 and TypeScript i
 ## 介绍
 
 1. 关于 electron
-   项目使用了 electron,需要配置一下环境变量，否则下载会很缓慢。
+   项目使用了 electron,需要配置一下环境变量，否则下载会很慢。
+
    1. yarn 方式 yarn config set ELECTRON_MIRROR https://npm.taobao.org/mirrors/electron/
    2. npm 方式 npm config set ELECTRON_MIRROR https://npm.taobao.org/mirrors/electron/
 

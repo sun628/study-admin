@@ -36,7 +36,7 @@
 				<font><h2>执行命令</h2></font>
 			</p>
 			<p>package.json新增命令 "build:electron": "rimraf dist && vue-tsc && vite build&& electron-builder"</p>
-			<highlight code="yarn build:electron"></highlight>
+			<highlight :code="code7"></highlight>
 		</doc>
 	</el-card>
 </template>
@@ -157,6 +157,13 @@ const code6 = `.....
 			"releaseNotes": "版本更新的具体内容"
 		}
 	}
+`;
+
+const code7 = ` //配置electron-builder环境变量 (我也不太记得了，yarn不行就npm,反正就是这样配置的)
+ yarn方式: yarn config set ELECTRON_BUILDER_BINARIES_MIRROR https://npm.taobao.org/mirrors/electron-builder-binaries/
+ npm方式: npm config set ELECTRON_BUILDER_BINARIES_MIRROR https://npm.taobao.org/mirrors/electron-builder-binaries/
+
+ //然后执行命令 yarn build:electron
 `;
 </script>
 

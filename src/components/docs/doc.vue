@@ -1,5 +1,5 @@
 <template>
-	<div class="doc my-4" v-bind="$attrs">
+	<div class="doc my-2" v-bind="$attrs">
 		<h2 v-if="title">{{ title }}</h2>
 		<slot></slot>
 	</div>
@@ -16,11 +16,6 @@ defineProps({
 <style scoped lang="scss">
 .doc {
 	width: 100%;
-	:deep(h2) {
-		font-weight: 700;
-		line-height: 30px;
-		height: 30px;
-	}
 	:deep(.tip) {
 		padding: 8px 16px;
 		background-color: var(--block-tip-bg-color);

@@ -21,11 +21,6 @@ const _Electron = Electron({
 	onstart: (options) => {
 		options.startup(['.', '--no-sandbox']);
 	},
-	// vite: {
-	//   build: {
-	//     outDir: 'dist/electron',
-	//   },
-	// },
 });
 
 const lifecycle = process.env.npm_lifecycle_event; //获取当前运行的命令
@@ -50,6 +45,7 @@ export function getPlugins() {
 			iconDirs: [path.resolve(root, 'src/assets/svgIcons')], //指定symbolId格式
 			symbolId: 'icon-[dir]-[name]', //指定需要缓存的图标文件夹
 		}),
+
 		// 打包分析
 		lifecycle === 'report' ? _visualizer : null,
 		lifecycle === 'dev:electron' || lifecycle === 'build:electron' ? _Electron : null,
