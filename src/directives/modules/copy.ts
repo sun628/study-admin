@@ -22,8 +22,7 @@ const copy: Directive = {
 	},
 };
 
-function handleClick(this: any) {
-	console.log('this.copyData', this.copyData);
+function handleClick(this: ElType) {
 	const input = document.createElement('input');
 	input.value = this.copyData.toLocaleString();
 	document.body.appendChild(input);

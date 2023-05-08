@@ -54,3 +54,15 @@ export const addMarker = (map: AMap.Map, markerOptions: any[], callback?: (e: an
 export const removeMarker = (map: AMap.Map, markers: Array<AMap.Marker>) => {
 	map.remove(markers);
 };
+/**
+ * 信息窗体
+ * @param {*} map 地图实例
+ * @param {Array} center 经纬度 [116.397389,39.909466]
+ * @param {String} content 信息窗体内容
+ */
+export const showInfoWindow = (map: AMap.Map, center: AMap.Vector2, content: any) => {
+	const infoWindow = new AMap.InfoWindow({
+		content: content,
+	});
+	infoWindow.open(map, center);
+};

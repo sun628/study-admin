@@ -7,7 +7,7 @@ import type { Directive, DirectiveBinding } from 'vue';
 import { ElMessage } from 'element-plus';
 interface ElType extends HTMLElement {
 	copyData: string | number;
-	__handleClick__: any;
+	__handleClick__: (event: MouseEvent) => void;
 }
 const copy: Directive = {
 	mounted(el: ElType, binding: DirectiveBinding) {
@@ -31,8 +31,7 @@ const copy: Directive = {
 	},
 };
 
-function handleClick(this: any) {
-	console.log(navigator.clipboard);
+function handleClick(this: ElType) {
 	if (navigator.clipboard) {
 		navigator.clipboard.writeText(this.copyData.toLocaleString()).then(() => {
 			this.innerHTML = '复制成功';
