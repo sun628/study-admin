@@ -65,4 +65,5 @@ export const showInfoWindow = (map: AMap.Map, center: AMap.Vector2, content: any
 		content: content,
 	});
 	infoWindow.open(map, center);
+	return infoWindow;
 };
