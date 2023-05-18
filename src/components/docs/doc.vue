@@ -1,6 +1,6 @@
 <template>
-	<div class="doc my-2" v-bind="$attrs">
-		<h2 v-if="title">{{ title }}</h2>
+	<div class="doc mb-6" v-bind="$attrs" :title="title">
+		<h2 v-if="title" class="text-3xl">{{ title }}</h2>
 		<slot></slot>
 	</div>
 </template>
@@ -21,7 +21,8 @@ defineProps({
 		background-color: var(--block-tip-bg-color);
 		border-radius: 4px;
 		border-left: 5px solid var(--el-color-primary);
-		margin: 20px 0;
+		margin: 10px 0;
+		font-size: 1rem;
 	}
 
 	:deep(p) {

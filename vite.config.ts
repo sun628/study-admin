@@ -62,8 +62,11 @@ export default defineConfig(({ command, mode }) => {
 					entryFileNames: 'assets/js/[name]-[hash].js',
 					assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
 					manualChunks(id) {
-						if (id.includes('node_modules')) {
-							return id.toString().split('node_modules/')[1].split('/')[0].toString(); //静态资源分拆打包
+						// if (id.includes('node_modules')) {
+						// 	return id.toString().split('node_modules/')[1].split('/')[0].toString(); //静态资源分拆打包
+						// }
+						if (id.includes('element-plus/theme-chalk/')) {
+							return 'element-plus'; //element-plus样式单独打包,确保不会被tailwindcss样式覆盖
 						}
 					},
 				},

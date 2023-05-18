@@ -31,6 +31,7 @@ import { TabsStore } from '@/store/modules/tabs';
 import { getTimeState } from '@/utils/util';
 import { HOME_URL } from '@/config';
 import type { ElForm } from 'element-plus';
+import { onKeyStroke } from '@vueuse/core';
 
 const globalStore = GlobalStore();
 const tabStore = TabsStore();
@@ -72,7 +73,10 @@ const login = (formEl: FormInstance | undefined) => {
 		tabStore.closeMultipleTab();
 	});
 };
-
+onKeyStroke('Enter', (e) => {
+	e.preventDefault();
+	login(loginFormRef.value);
+});
 // resetForm
 const resetForm = (formEl: FormInstance | undefined) => {
 	if (!formEl) return;

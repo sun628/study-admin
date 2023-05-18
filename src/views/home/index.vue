@@ -17,12 +17,14 @@ import homIcon from '@/assets/images/logo.jpg';
 
 <style scoped lang="scss">
 .home {
-	width: calc(100% + 24px);
-	height: calc(100% + 20px);
+	width: 100%;
+	height: 100%;
 	position: relative;
-	margin: -10px -12px;
 	:deep(.el-image) {
 		object-fit: cover;
+		width: calc(100% + 24px);
+		height: calc(100% + 20px);
+		margin: -10px -12px;
 	}
 }
 </style>

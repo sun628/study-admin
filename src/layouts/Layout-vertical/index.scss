@@ -1,7 +1,6 @@
 .Layout-vertical {
-	
 	height: 100%;
-  width: 100%;
+	width: 100%;
 }
 .el-container {
 	width: 100%;
@@ -21,6 +20,7 @@
 				:deep(.el-menu) {
 					overflow-x: hidden;
 					border-right: none;
+
 					.el-menu-item:hover {
 						color: var(--el-color-primary-light-3);
 					}

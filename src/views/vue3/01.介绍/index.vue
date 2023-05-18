@@ -6,7 +6,11 @@
 			<p>
 				在vue中，无论元素是否参与更新，在生成vdom树时都会重新创建该元素，而在vue3里有一种静态提升的概念，这个概念的核心思想是对于PatchFlag标记出的，不参与更新的元素提出来，只需创建一次，后续渲染时直接复用就行。
 			</p>
-			<list :data="compileList" type="warning"></list>
+			<ul class="list">
+				<li v-for="(item, index) in compileList" :key="index">
+					{{ item }}
+				</li>
+			</ul>
 		</div>
 		<div class="tip">
 			<h2>二、Composition API</h2>
@@ -34,8 +38,6 @@
 	</doc>
 </template>
 <script setup lang="ts">
-import List from '@/components/List/index.vue';
-
 const compileList = [
 	'静态节点提升（Static Node Hoisting）：Vue 3 通过分析模板中的节点，将静态节点提升为常量，在组件渲染时，无需再次计算它们，可以直接复用相同的节点，减少了节点的创建和销毁，提高了组件的渲染性能。',
 	'静态属性提升（Static Props Hoisting）：类似于静态节点提升，Vue 3 还通过分析模板中的属性，将静态属性提升为常量，可以复用相同的属性，减少了属性计算的开销。',
@@ -45,8 +47,14 @@ const compileList = [
 </script>
 
 <style scoped lang="scss">
-.list-item {
-	min-height: 50px;
-	background: #ecf5ff;
+.list {
+	width: 100%;
+	height: 100%;
+	list-style: inside;
+	li {
+		margin: 5px 0;
+		padding: 5px 10px;
+		color: var(--el-color-warning);
+	}
 }
 </style>

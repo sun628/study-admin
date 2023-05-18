@@ -19,6 +19,14 @@ const pages: Array<Page> = [
 		component: () => import('@/views/vue3/01.介绍/index.vue'),
 	},
 	{
+		name: '响应式API',
+		children: [
+			{ name: '核心', component: () => import('@/views/vue3/02.响应式API/核心/index.vue') },
+			{ name: '工具', component: () => import('@/views/vue3/02.响应式API/工具/index.vue') },
+			{ name: '进阶', component: () => import('@/views/vue3/02.响应式API/进阶/index.vue') },
+		],
+	},
+	{
 		name: 'ref系列',
 		children: [
 			{ name: '用法', component: () => import('@/views/vue3/02.ref系列/index.vue') },
