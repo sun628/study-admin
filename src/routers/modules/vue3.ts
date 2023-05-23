@@ -27,20 +27,8 @@ const pages: Array<Page> = [
 		],
 	},
 	{
-		name: 'ref系列',
-		children: [
-			{ name: '用法', component: () => import('@/views/vue3/02.ref系列/index.vue') },
-			{ name: '实现原理', component: () => import('@/views/vue3/02.ref系列/Implement.vue') },
-		],
-	},
-	{ name: 'reactive系列', component: () => import('@/views/vue3/03.reactive系列/index.vue') },
-	{ name: 'to系列', component: () => import('@/views/vue3/04.to系列/index.vue') },
-	{ name: 'computed', component: () => import('@/views/vue3/05.computed/index.vue') },
-	{ name: 'watch', component: () => import('@/views/vue3/06.watch/index.vue') },
-	{ name: 'watchEffect', component: () => import('@/views/vue3/07.watchEffect/index.vue') },
-	{
 		name: '组件通信',
-		component: () => import('@/views/vue3/08.组件通信/index.vue'),
+		component: () => import('@/views/vue3/03.组件通信/index.vue'),
 	},
 ];
 

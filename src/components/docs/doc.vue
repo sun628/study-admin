@@ -1,16 +1,25 @@
 <template>
 	<div class="doc mb-6" v-bind="$attrs" :title="title">
-		<h2 v-if="title" class="text-3xl">{{ title }}</h2>
+		<h2 v-if="title" class="text-3xl">
+			<font class="pointer doc-font" @click="scrollToView()"> # </font>
+			<span>{{ title }}</span>
+		</h2>
 		<slot></slot>
 	</div>
 </template>
 <script setup lang="ts">
-defineProps({
+const props = defineProps({
 	title: {
 		type: String,
 		default: '',
 	},
 });
+const { title } = toRefs(props);
+
+const scrollToView = () => {
+	const el = document.querySelector(`[title=${title.value}]`);
+	el && el.scrollIntoView({ behavior: 'smooth', inline: 'nearest' });
+};
 </script>
 
 <style scoped lang="scss">
@@ -36,6 +45,10 @@ defineProps({
 	:deep(p:hover) {
 		background-position-x: left;
 		background-size: 100% 2px;
+	}
+	:deep(.doc-font:hover),
+	:deep(.doc-font:focus) {
+		color: var(--el-color-primary-light-5);
 	}
 }
 </style>

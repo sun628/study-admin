@@ -16,7 +16,7 @@
 							TIP:如果将一个对象赋值给 ref，那么这个对象将通过 reactive() 转为具有深层次响应式的对象。这也意味着如果对象中包含了嵌套的
 							ref，它们将被深层地解包。
 						</p>
-						<p>若要避免这种深层次的转换，请使用 <font>shallowRef()</font> 来替代。</p>
+						<b>若要避免这种深层次的转换，请使用 <el-link type="primary">shallowRef()</el-link> 来替代。</b>
 					</div>
 				</doc>
 				<doc title="reactive">
@@ -33,7 +33,10 @@
 					<highlight :code="reactiveCode2" />
 				</doc>
 				<doc title="readonly">
-					<p class="tip">接受一个对象 (不论是响应式还是普通的) 或是一个 ref，返回一个原值的只读代理。</p>
+					<div class="tip">
+						<p>接受一个对象 (不论是响应式还是普通的) 或是一个 ref，返回一个原值的只读代理。即该对象的值和结构都是只读的，不允许被修改</p>
+						<p>可以使用在像 Vue 组件中的 props 或者其他的共享状态的对象上，以确保一些重要的属性不被不应该更新的代码修改。</p>
+					</div>
 					<highlight :code="readonlyCode" />
 				</doc>
 				<doc title="computed">

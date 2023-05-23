@@ -33,3 +33,38 @@ console.log(state.foo) // 2
 // 更改源属性也会更新该 ref
 state.foo++
 console.log(fooRef.value) // 3`;
+
+export const toRefsCode = `const state = reactive({
+  foo: 1,
+  bar: 2
+})
+
+const stateAsRefs = toRefs(state)
+/*
+stateAsRefs 的类型：{
+  foo: Ref<number>,
+  bar: Ref<number>
+}
+*/
+
+// 这个 ref 和源属性已经“链接上了”
+state.foo++
+console.log(stateAsRefs.foo.value) // 2
+
+stateAsRefs.foo.value++
+console.log(state.foo) // 3`;
+
+export const toRefsCode1 = `function useFeatureX() {
+  const state = reactive({
+    foo: 1,
+    bar: 2
+  })
+
+  // ...基于状态的操作逻辑
+
+  // 在返回时都转为 ref
+  return toRefs(state)
+}
+
+// 可以解构而不会失去响应性
+const { foo, bar } = useFeatureX()`;
