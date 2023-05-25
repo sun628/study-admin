@@ -39,6 +39,7 @@ const scrollToView = (refName: string, link?: string) => {
 .box-card {
 	position: sticky;
 	top: 10px;
+	min-width: 205px;
 	.active {
 		color: var(--el-color-primary);
 	}

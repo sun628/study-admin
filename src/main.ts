@@ -2,7 +2,6 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import '@/assets/iconfont/iconfont.scss'; // iconfont css
 import 'tailwindcss/tailwind.css'; //  tailwind.css
-
 import '@/styles/index.scss';
 import router from '@/routers/router';
 import pinia from '@/store/index';

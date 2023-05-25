@@ -35,7 +35,7 @@
 				<doc title="readonly">
 					<div class="tip">
 						<p>接受一个对象 (不论是响应式还是普通的) 或是一个 ref，返回一个原值的只读代理。即该对象的值和结构都是只读的，不允许被修改</p>
-						<p>可以使用在像 Vue 组件中的 props 或者其他的共享状态的对象上，以确保一些重要的属性不被不应该更新的代码修改。</p>
+						<p>可以使用在像 Vue 组件中的 <font>props、provide </font> 或者其他的共享状态的对象上，以确保一些重要的属性不被不应该更新的代码修改。</p>
 					</div>
 					<highlight :code="readonlyCode" />
 				</doc>

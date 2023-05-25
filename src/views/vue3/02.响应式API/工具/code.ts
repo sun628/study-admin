@@ -47,7 +47,7 @@ stateAsRefs 的类型：{
 }
 */
 
-// 这个 ref 和源属性已经“链接上了”
+// 这个 ref 和源属性已经"链接上了"
 state.foo++
 console.log(stateAsRefs.foo.value) // 2
 
