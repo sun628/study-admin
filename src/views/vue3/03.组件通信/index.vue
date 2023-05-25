@@ -1,9 +1,14 @@
 <template>
 	<el-row class="h-full">
 		<doc title="vue3组件通信的实现方式" class="flex-1">
+			<div class="flex items-center">
+				<h3 class="m-0">是否展示右边弹窗：</h3>
+				<el-switch v-model="switchValue" />
+			</div>
 			<el-collapse v-model="activeName" accordion @change="handleChange">
 				<el-collapse-item v-for="(item, index) in components" :key="index" :title="`${index + 1}.${item.title}`" class="tip" :name="item.title">
-					<div class="p-1 tip">{{ item.tip }}</div>
+					<div v-if="item.tip" class="p-1 tip">{{ item.tip }}</div>
+					<el-link v-if="item.link" :href="item.href" target="_blank" class="ml-3" type="primary">{{ item.link }}</el-link>
 					<highlight v-if="item.code" :code="item.code"></highlight>
 				</el-collapse-item>
 			</el-collapse>
@@ -28,11 +33,14 @@ import type { CollapseModelValue } from 'element-plus';
 import { CircleCloseFilled } from '@element-plus/icons-vue';
 import { PropsEmitsCode, VModelCode } from './code';
 
-const drawerVisible = ref(false);
+const drawerVisible = ref(true);
 // import A from './父子组件通信/index.vue';
 const A = defineAsyncComponent(() => import('./props-emit/index.vue'));
 const B = defineAsyncComponent(() => import('./v-model/index.vue'));
-const E = defineAsyncComponent(() => import('./refs/index.vue'));
+const C = defineAsyncComponent(() => import('./refs/index.vue'));
+const D = defineAsyncComponent(() => import('./provide-inject/index.vue'));
+const E = defineAsyncComponent(() => import('./attrs/index.vue'));
+const F = defineAsyncComponent(() => import('./mitt/index.vue'));
 //定义一个动态组件数组
 const currentComponent = shallowRef(); //动态组件的名称
 const activeName = ref();
@@ -55,34 +63,39 @@ const components = reactive([
 		title: 'refs',
 		tip: `使用API选项时，我们可以通过this.$refs.name获取指定的元素或组件，但在组合API中不行。
     如果我们想通过ref获取，需要定义一个同名的Ref对象，在组件挂载后可以访问。`,
-		componet: markRaw(E),
+		componet: markRaw(C),
 	},
 	{
 		title: 'provide/Inject',
-		tip: '通过provide和inject创建一个父组件和所有子孙组件之间的依赖注入关系。',
-		componet: markRaw(A),
+		tip: `provide/inject是 Vue 中提供的一对 API。无论层级多深，API 都可以实现父组件到子组件的数据传递。
+        （尽量使用 readonly 封装数据，避免子组件修改父组件传递的数据。）`,
+		componet: markRaw(D),
 	},
 	{
-		title: '$attrs/$listeners',
-		tip: `父组件可以通过v-bind="$attrs"将所有未被prop所识别的属性传递给子组件，然后子组件可以使用$vbind ="$attrs"来自动将这些属性绑定到相应的子组件元素上。
-    同时，父组件也可以通过v-on="$listeners"将它的所有事件监听器绑定在子组件的根元素上。`,
-		componet: markRaw(A),
+		title: 'attrs',
+		tip: `透传 Attributes 是指由父组件传入，且没有被子组件声明为 props 或是组件自定义事件的 attributes 和事件处理函数。
+          默认情况下，若是单一根节点组件，$attrs 中的所有属性都是直接自动继承自组件的根元素。而多根节点组件则不会如此，同时你也可以通过配置 inheritAttrs 选项来显式地关闭该行为。`,
+		componet: markRaw(E),
 	},
 	{
-		title: 'eventBus',
-		componet: markRaw(A),
+		title: 'mitt--(eventBus)',
+		componet: markRaw(F),
+		href: 'https://github.com/developit/mitt',
+		link: 'mitt github地址',
 	},
 	{
 		title: 'vuex/pinia',
-		componet: markRaw(A),
+		href: 'https://pinia.web3doc.top/',
+		link: 'pinia中文文档',
 	},
 ]);
 
+let switchValue = ref(true);
 //切换组件
 const handleChange = (val: CollapseModelValue) => {
 	const obj = components.find((item) => item.title === val);
 	currentComponent.value = obj?.componet;
-	drawerVisible.value = true;
+	if (switchValue.value) drawerVisible.value = true;
 };
 
 onMounted(() => {

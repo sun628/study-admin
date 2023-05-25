@@ -16,8 +16,8 @@
 		</div>
 
 		<div class="tip flex">
-			<p style="margin-right: 10px">v-model绑定<bold>其他</bold>值</p>
-			<el-button type="primary" @click="updateMsg()">更新传给子组件的msg</el-button>
+			<p style="margin-right: 10px; white-space: nowrap">v-model绑定<bold>其他</bold>值</p>
+			<el-input v-model="msg"></el-input>
 		</div>
 	</doc>
 	<el-divider>
@@ -43,7 +43,4 @@ const countAdd = () => {
 };
 
 let msg = ref('');
-const updateMsg = () => {
-	msg.value = '我是父组件更新后的msg';
-};
 </script>

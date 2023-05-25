@@ -8,7 +8,7 @@
 		<el-button type="warning" @click="change">更新count</el-button>
 
 		<h3 class="mt-5">绑定多个案例</h3>
-		<p class="tip">v-model绑定其他值（v-model:msg）,通过emit('update:msg',value)事件更新</p>
+		<p class="tip">v-model绑定其他值（v-model:msg,通过emit('update:msg',value)事件更新</p>
 		<div class="border p-1 bg-gray-200 mb-2">
 			<span>来自父组件的msg：</span> <span>{{ msg }}</span>
 		</div>
@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<prop>(), {
 	modelValue: 0,
 	msg: '',
 });
-const { modelValue } = toRefs(props);
+const { modelValue, msg } = toRefs(props);
 
 const emit = defineEmits(['update:modelValue', 'update:msg']);
 const change = () => {
@@ -33,6 +33,6 @@ const change = () => {
 };
 
 const updateMsg = () => {
-	emit('update:msg', '我是子组件更新后的msg');
+	emit('update:msg', '222');
 };
 </script>
