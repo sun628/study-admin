@@ -4,8 +4,8 @@ import * as Icons from '@element-plus/icons-vue';
 
 // //引入依赖和语言
 import 'highlight.js/styles/atom-one-dark.css';
-import 'highlight.js/lib/common';
-import hljs from 'highlight.js/lib/core';
+// import 'highlight.js/lib/common';
+import hljs from 'highlight.js/lib/common';
 import typescript from 'highlight.js/lib/languages/typescript';
 import html from 'highlight.js/lib/languages/xml';
 hljs.registerLanguage('typescript', typescript);
