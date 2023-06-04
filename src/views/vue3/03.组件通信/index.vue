@@ -9,7 +9,7 @@
 				<el-collapse-item v-for="(item, index) in components" :key="index" :title="`${index + 1}.${item.title}`" class="tip" :name="item.title">
 					<div v-if="item.tip" class="p-1 tip">{{ item.tip }}</div>
 					<el-link v-if="item.link" :href="item.href" target="_blank" class="ml-3" type="primary">{{ item.link }}</el-link>
-					<highlight v-if="item.code" :code="item.code"></highlight>
+					<highlight v-if="item.code" :code="item.code" :autodetect="false" language="xml"></highlight>
 				</el-collapse-item>
 			</el-collapse>
 		</doc>
@@ -35,7 +35,8 @@ import { PropsEmitsCode, VModelCode } from './code';
 
 const drawerVisible = ref(true);
 // import A from './父子组件通信/index.vue';
-const A = defineAsyncComponent(() => import('./props-emit/index.vue'));
+// const A = defineAsyncComponent(() => import('./props-emit/index.vue'));
+import A from './props-emit/index.vue';
 const B = defineAsyncComponent(() => import('./v-model/index.vue'));
 const C = defineAsyncComponent(() => import('./refs/index.vue'));
 const D = defineAsyncComponent(() => import('./provide-inject/index.vue'));

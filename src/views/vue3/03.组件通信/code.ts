@@ -1,7 +1,6 @@
-export const PropsEmitsCode = `//父组件：
+export const PropsEmitsCode = `<!-- 父组件 -->
 <template>
-	<!-- 通过v-bind将数据向子组件传递
-  动态绑定 props 是用 :，绑定 emit 是用 @ -->
+  <!-- 通过v-bind将数据向子组件传递, 动态绑定 props 是用 :，绑定 emit 是用 @ -->
 	<child :count="count" @update-count="updateCount"></child>
 </template>
 <script setup lang="ts">
@@ -13,7 +12,7 @@ const updateCount = (val: number) => {
 };
 </script>
 
-//子组件child：
+<!-- 子组件child： -->
 <template>
 	<h2>来自父组件的数据count：{{ count }}</h2>
   <el-button type="primary" @click="countAdd(count + 1)">通过emit触发点击事件</el-button>
@@ -31,7 +30,7 @@ const countAdd = (val: number) => {
 };
 </script>`;
 
-export const VModelCode = `//父组件：
+export const VModelCode = `<!-- 父组件 -->
 <template>
   <-- 通过v-model将数据向子组件传递 -->
   <child v-model="count"></child>
@@ -44,7 +43,7 @@ const countAdd = () => {
 };
 </script>
 
-//子组件child：
+<!-- 子组件child： -->
 <template>
 	<div class="border p-1 bg-gray-200">
 		<span>来自父组件的count：</span> <span>{{ modelValue }}</span>
