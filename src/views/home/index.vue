@@ -1,19 +1,7 @@
 <template>
-	<div class="home">
-		<el-image :src="homIcon" class="w-full h-full block"></el-image>
-	</div>
+	<el-card class="home"></el-card>
 </template>
-<script setup lang="ts">
-import homIcon from '@/assets/images/logo.jpg';
-// import { useMusicApi } from '@/api/music';
-// const { getsongListApi } = useMusicApi();
-//获取音乐歌词
-// const getsongList = async () => {
-// 	const id = 412902950;
-// 	const res = await getsongListApi(id);
-// };
-// getsongList();
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss">
 .home {

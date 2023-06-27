@@ -101,12 +101,12 @@
 					<h2>更多的配置项</h2>
 					<h3>副作用刷新时机 flush 一般使用post。默认：'pre'</h3>
 					<p>默认情况下，侦听器将在组件渲染之前执行。设置 flush: 'post' 将会使侦听器延迟到组件渲染之后再执行</p>
-					<common-table :table-data="tableData">
+					<mv-table :table-data="tableData">
 						<el-table-column prop="time" />
 						<el-table-column prop="pre" label="pre" />
 						<el-table-column prop="sync" label="sync" />
 						<el-table-column prop="post" label="post" />
-					</common-table>
+					</mv-table>
 				</doc>
 				<doc title="watchPostEffect">
 					<p class="tip">watchEffect() 使用 flush: 'post' 选项时的别名。</p>
@@ -135,7 +135,7 @@
 	</el-row>
 </template>
 <script setup lang="ts">
-import commonTable from '@/components/common-table/index.vue';
+import MvTable from '@/components/mv-table/index.vue';
 
 import { refCode, reactiveCode, reactiveCode1, reactiveCode2, readonlyCode, computedCode, computedCode1 } from './code';
 import { watchRefCode, watchReactiveCode, watchStopCode, watchEffectCode, watchEffectCode1 } from './code';

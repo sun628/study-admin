@@ -1,5 +1,5 @@
 import { App, defineAsyncComponent, AsyncComponentLoader } from 'vue';
-import SvgIcon from '@/components/SvgIcon/index.vue';
+import SvgIcon from '@/components/svg-icon/index.vue';
 import * as Icons from '@element-plus/icons-vue';
 
 // //引入依赖和语言

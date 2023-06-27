@@ -82,7 +82,7 @@ import { useTheme } from '@/hooks/useTheme';
 import { MenuStore } from '@/store/modules/menu';
 import { GlobalStore } from '@/store';
 import { DEFAULT_PRIMARY } from '@/config';
-import SwitchDark from '@/components/SwitchDark/index.vue';
+import SwitchDark from '@/components/switch-dark/index.vue';
 import mittBus from '@/utils/mittBus';
 
 const { changePrimary, changeGreyOrWeak } = useTheme();
