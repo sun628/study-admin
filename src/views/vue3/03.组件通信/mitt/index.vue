@@ -20,19 +20,23 @@ type List = {
 class Bus<T extends BusParams> implements BusClass<T> {
     list: List
     constructor() {
-        this.list = {}
+        this.list = {} // 初始化事件列表
     }
+
+    // 发射事件，触发所有对应事件的回调函数
     emit(name: T, ...args: Array<any>) {
-        let eventName: Array<Function> = this.list[name]
-        eventName.forEach(ev => {
-            ev.apply(this, args)
-        })
-    }
+    let eventName: Array<Function> = this.list[name]; // 获取对应事件的回调函数列表
+    eventName.forEach(ev => {
+      ev.apply(this, args); // 依次执行回调函数，并传递参数
+    });
+  }
+
+    // 监听事件，将回调函数添加到对应事件的回调函数列表
     on(name: T, callback: Function) {
-        let fn: Array<Function> = this.list[name] || [];
-        fn.push(callback)
-        this.list[name] = fn
-    }
+    let fn: Array<Function> = this.list[name] || []; // 获取对应事件的回调函数列表，如果该事件还没有回调函数，则初始化为空数组
+    fn.push(callback); // 将回调函数添加到回调函数列表
+    this.list[name] = fn; // 更新事件的回调函数列表
+  }
 }
  
 export default new Bus()`;

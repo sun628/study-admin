@@ -13,7 +13,7 @@ defineProps({
 	},
 	autodetect: {
 		type: Boolean,
-		default: false,
+		default: true,
 	},
 });
 </script>

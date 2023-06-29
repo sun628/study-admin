@@ -9,7 +9,7 @@
 				<el-collapse-item v-for="(item, index) in components" :key="index" :title="`${index + 1}.${item.title}`" class="tip" :name="item.title">
 					<div v-if="item.tip" class="p-1 tip">{{ item.tip }}</div>
 					<el-link v-if="item.link" :href="item.href" target="_blank" class="ml-3" type="primary">{{ item.link }}</el-link>
-					<highlight v-if="item.code" :code="item.code" :autodetect="false" language="xml"></highlight>
+					<highlight v-if="item.code" :code="item.code"></highlight>
 				</el-collapse-item>
 			</el-collapse>
 		</doc>

@@ -3,6 +3,7 @@
 		<doc title="介绍">
 			<el-link type="primary" @click="go_electron()">electron官网地址</el-link>
 			<p>Electron主要是用来搭建桌面应用程序的，使用Electron可以让我们前端开发者快速搭建出桌面应用程序例如我们所熟知的VS code。</p>
+			<el-tag type="danger">已从项目中移除,之前是因为想放到桌面上,但是发现体积挺大的，有点多余……</el-tag>
 		</doc>
 		<doc title="1. 初始化vite项目">
 			<highlight :code="code1"></highlight>
@@ -166,4 +167,8 @@ const code7 = ` //配置electron-builder环境变量 (我也不太记得了，ya
 `;
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.el-tag {
+	font-size: 16px;
+}
+</style>
