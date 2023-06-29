@@ -4,7 +4,6 @@ import waterMarker from './modules/waterMarker';
 import draggable from './modules/draggable';
 import debounce from './modules/debounce';
 import throttle from './modules/throttle';
-import highlight from './modules/highlight';
 
 const directivesList: any = {
 	// Custom directives
@@ -13,7 +12,6 @@ const directivesList: any = {
 	draggable,
 	debounce,
 	throttle,
-	highlight,
 };
 
 const directives = {

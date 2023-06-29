@@ -1,5 +1,5 @@
 <template>
-	<highlightjs v-highlight="code" :autodetect="autodetect" :language="language" :code="code"></highlightjs>
+	<highlightjs v-copy="code" :autodetect="autodetect" :language="language" :code="code"></highlightjs>
 </template>
 <script setup lang="ts">
 defineProps({
@@ -13,7 +13,7 @@ defineProps({
 	},
 	autodetect: {
 		type: Boolean,
-		default: true,
+		default: false,
 	},
 });
 </script>
