@@ -5,7 +5,6 @@ import AutoImport from 'unplugin-auto-import/vite'; //自动导入vue和vue-rout
 import { visualizer } from 'rollup-plugin-visualizer'; //打包分析
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import eslintPlugin from 'vite-plugin-eslint';
-import Electron from 'vite-plugin-electron';
 import path from 'path';
 
 const _visualizer = visualizer({
@@ -14,13 +13,6 @@ const _visualizer = visualizer({
 	open: true, //在默认用户代理中打开生成的文件
 	gzipSize: false, //从源代码中收集 gzip 大小并将其显示在图表中
 	brotliSize: true, //从源代码中收集 brotli 大小并将其显示在图表中
-});
-
-const _Electron = Electron({
-	entry: 'electron/index.ts',
-	onstart: (options) => {
-		options.startup(['.', '--no-sandbox']);
-	},
 });
 
 const lifecycle = process.env.npm_lifecycle_event; //获取当前运行的命令
@@ -48,6 +40,5 @@ export function getPlugins() {
 
 		// 打包分析
 		lifecycle === 'report' ? _visualizer : null,
-		lifecycle === 'dev:electron' || lifecycle === 'build:electron' ? _Electron : null,
 	];
 }

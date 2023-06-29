@@ -60,7 +60,6 @@ yarn add vite-plugin-electron -D
  * npm config set ELECTRON_MIRROR https://npm.taobao.org/mirrors/electron/
  * /
 
-
 /**
  *
  * 当前版本(下载可能会很慢)
