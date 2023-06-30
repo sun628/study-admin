@@ -1,6 +1,9 @@
 @font-face {
 	font-family: iconfont; /* Project id 2667653 */
-	src: url("iconfont.ttf?t=1663324025864") format("truetype");
+	src: url('iconfont.ttf?t=1663324025864') format('truetype');
+	/*为字体规则添加属性font-display*/
+	font-display: auto;
+	/*默认block，为字体提供一个短暂的阻塞周期和无限的交换周期。支持auto | block | swap | fallback | optional五种值 */
 }
 .iconfont {
 	font-family: iconfont !important;
@@ -12,27 +15,27 @@
 }
 .icon-xiaoxi::before {
 	font-size: 21.2px;
-	content: "\e61f";
+	content: '\e61f';
 }
 .icon-zhuti::before {
 	font-size: 22.4px;
-	content: "\e638";
+	content: '\e638';
 }
 .icon-sousuo::before {
-	content: "\e611";
+	content: '\e611';
 }
 .icon-contentright::before {
-	content: "\e8c9";
+	content: '\e8c9';
 }
 .icon-contentleft::before {
-	content: "\e8ca";
+	content: '\e8ca';
 }
 .icon-fangda::before {
-	content: "\e826";
+	content: '\e826';
 }
 .icon-suoxiao::before {
-	content: "\e641";
+	content: '\e641';
 }
 .icon-zhongyingwen::before {
-	content: "\e8cb";
+	content: '\e8cb';
 }

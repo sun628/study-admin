@@ -1,14 +1,14 @@
 <template>
 	<div class="tool-bar-ri">
-		<div class="header-icon">
+		<el-space class="header-icon" :size="20">
 			<Audio />
 			<AssemblySize id="assemblySize" />
 			<SearchMenu id="searchMenu" />
 			<ThemeSetting id="themeSetting" />
 			<Message id="message" />
 			<Fullscreen id="fullscreen" />
-		</div>
-		<span class="username">暖阳</span>
+			<span class="username">暖阳</span>
+		</el-space>
 		<Avatar />
 	</div>
 </template>
@@ -33,8 +33,6 @@ import Audio from './components/Audio.vue';
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		width: 230px;
-		margin-right: 22px;
 	}
 	.username {
 		margin: 0 20px 0 0;
