@@ -36,7 +36,7 @@ const tableData = ref([
 	{
 		label: 'vue3',
 		link: 'https://v3.cn.vuejs.org/',
-		tip: 'vue3到底有哪些优势？你觉得好用吗？',
+		tip: 'vue3到底有哪些优势？',
 	},
 	{
 		label: 'vue-router',
