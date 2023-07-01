@@ -3,6 +3,7 @@ import NProgress from '@/config/nprogress';
 import { TABS_WHITE_LIST } from '@/config';
 import { GlobalStore } from '@/store';
 import { AxiosCanceler } from '@/api/helper/axiosCancel';
+import { set } from 'nprogress';
 
 const axiosCanceler = new AxiosCanceler();
 
@@ -30,10 +31,6 @@ router.beforeEach((to, from, next) => {
 		// NProgress.done();
 		// return;
 	}
-});
-
-router.afterEach((to, from, next) => {
-	NProgress.done();
 });
 
 export default router;

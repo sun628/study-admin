@@ -2,11 +2,11 @@
 	<el-row>
 		<doc title="对象的类型">
 			<p>
-				在<font>typescript</font>中，我们定义对象的方式要用关键字interface（接口），
+				在TypeScript中，我们定义对象的方式要用关键字interface（接口），
 				我的理解是使用interface来定义一种约束，让数据的结构满足约束的格式。定义方式如下：
 			</p>
-			<highlight :code="objType"></highlight>
-			<highlight :code="objType2"></highlight>
+			<highlight :code="objType" :auto="false"></highlight>
+			<highlight :code="objType2" :auto="false"></highlight>
 		</doc>
 		<doc title="可选属性 使用?操作符">
 			<highlight :code="objType3"></highlight>

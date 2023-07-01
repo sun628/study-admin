@@ -7,8 +7,8 @@
 			<highlight :code="anyType2"></highlight>
 			<p>3.弊端如果使用any 就失去了TS类型检测的作用</p>
 			<p>
-				TypeScript 3.0中引入的 unknown 类型也被认为是 top type ，但它更安全。与 any 一样，所有类型都可以分配给unknown unknow
-				unknow类型比any更加严格当你要使用any 的时候可以尝试使用unknow
+				TypeScript 3.0中引入的 unknown 类型也被认为是 top type ，但它更安全。与 any 一样，所有类型都可以分配给unknown
+				unknown类型比any更加严格当你要使用any 的时候可以尝试使用unknow
 			</p>
 			<highlight :code="anyType3"></highlight>
 			<p>区别2</p>

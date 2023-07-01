@@ -7,7 +7,7 @@
 		</doc>
 		<doc title="2.BOM 和 DOM 的内置对象">
 			<p>Document、HTMLElement、Event、NodeList</p>
-			<highlight :code="builtIn2"></highlight>
+			<highlight :code="builtIn2" :auto="false"></highlight>
 		</doc>
 		<doc title="3.定义Promise">
 			<p v-text="'如果我们不指定返回的类型TS是推断不出来返回的是什么类型。promise<unknow>'"></p>

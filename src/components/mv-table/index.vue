@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import type { ElTable } from 'element-plus';
 export interface TableProps {
-	tableData: object[]; // table的数据
+	tableData: () => object[]; // table的数据
 }
 const props = withDefaults(defineProps<TableProps>(), {
 	tableData: () => [],

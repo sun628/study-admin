@@ -1,25 +1,35 @@
 <template>
-	<div class="doc mb-6" v-bind="$attrs" :title="title">
+	<div v-bind="$attrs" class="doc mb-6" :title="title">
 		<h2 v-if="title" class="text-3xl">
 			<font class="pointer doc-font" @click="scrollToView()"> # </font>
 			<span>{{ title }}</span>
 		</h2>
-		<slot></slot>
+		<div ref="DocRef" class="doc-content">
+			<slot></slot>
+		</div>
 	</div>
 </template>
 <script setup lang="ts">
-const props = defineProps({
-	title: {
-		type: String,
-		default: '',
-	},
+import { highlightKeywords } from '@/utils/highlightKeywords';
+export interface DocProps {
+	title: string; // table的数据
+	keywords?: 'words' | 'keywords' | undefined;
+}
+const props = withDefaults(defineProps<DocProps>(), {
+	title: '',
+	keywords: undefined,
 });
-const { title } = toRefs(props);
 
+const { title } = toRefs(props);
+const DocRef: Ref<HTMLElement | null> = ref(null);
 const scrollToView = () => {
 	const el = document.querySelector(`[title=${title.value}]`);
 	el && el.scrollIntoView({ behavior: 'smooth', inline: 'nearest' });
 };
+
+onMounted(() => {
+	highlightKeywords(DocRef.value);
+});
 </script>
 
 <style scoped lang="scss">

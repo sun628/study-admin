@@ -26,7 +26,7 @@
 			<p>定义一个枚举Types 定义一个接口A 他有一个属性red 值为Types.yyds</p>
 			<p>声明对象的时候要遵循这个规则</p>
 			<p>接口枚举的好处是可以在编译阶段就确定枚举的值</p>
-			<highlight :code="enumType5"></highlight>
+			<highlight :code="enumType5" :auto="false"></highlight>
 		</doc>
 		<doc title="5.const枚举">
 			<p>let 和 var 都是不允许的声明只能使用const</p>
@@ -66,15 +66,15 @@ const enumType4 = `enum Types {
 }`;
 
 const enumType5 = `enum Types {
-      yyds,
-      dddd
-   }
-   interface A {
-      red:Types.yyds
-   }
-   let obj:A = {
-      red:Types.yyds
-   }`;
+	yyds,
+	dddd,
+}
+interface A {
+	red: Types.yyds;
+}
+let obj: A = {
+	red: Types.yyds,
+};`;
 
 const enumType6 = `
 //普通声明的枚举编译完后是个对象
