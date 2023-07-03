@@ -33,7 +33,7 @@ import type { CollapseModelValue } from 'element-plus';
 import { CircleCloseFilled } from '@element-plus/icons-vue';
 import { PropsEmitsCode, VModelCode } from './code';
 
-const drawerVisible = ref(true);
+const drawerVisible = ref(false);
 // import A from './父子组件通信/index.vue';
 // const A = defineAsyncComponent(() => import('./props-emit/index.vue'));
 import A from './props-emit/index.vue';
@@ -101,6 +101,7 @@ const handleChange = (val: CollapseModelValue) => {
 
 onMounted(() => {
 	currentComponent.value = components[0].componet;
+	handleChange(components[0].title);
 });
 </script>
 

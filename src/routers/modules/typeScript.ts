@@ -6,7 +6,7 @@ const name = 'typeScript';
 const routers = import.meta.glob('../../views/type-script/*.vue');
 for (const i in routers) {
 	const newName = i.replace(/..\/..\/views\/type-script\//, '').replace(/.vue/, '');
-	const newPath = '/type-script/' + newName.split('.')[0];
+	const newPath = '/typeScript/' + newName.split('.')[0];
 	routerArray.push({
 		path: newPath,
 		name: newName,
@@ -23,10 +23,10 @@ for (const i in routers) {
 // type-script模块
 const tsRouter = [
 	{
-		path: '/type-script',
+		path: '/typeScript',
 		component: Layout,
 		name: name,
-		redirect: '/type-script/01',
+		redirect: '/typeScript/01',
 		children: routerArray,
 		meta: {
 			menuIndex: MatchMenu[name],

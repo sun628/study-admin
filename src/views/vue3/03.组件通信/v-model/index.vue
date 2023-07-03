@@ -11,12 +11,12 @@
 		</div>
 		<h2>父组件</h2>
 		<div class="tip flex">
-			<p style="margin-right: 10px">v-model绑定<bold>默认</bold>值</p>
+			<p style="margin-right: 10px">v-model绑定默认值</p>
 			<el-button type="primary" @click="countAdd()">更新传给子组件的count</el-button>
 		</div>
 
 		<div class="tip flex">
-			<p style="margin-right: 10px; white-space: nowrap">v-model绑定<bold>其他</bold>值</p>
+			<p style="margin-right: 10px; white-space: nowrap">v-model绑定其他值</p>
 			<el-input v-model="msg"></el-input>
 		</div>
 	</doc>

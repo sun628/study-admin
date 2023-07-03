@@ -1,7 +1,7 @@
 <template>
 	<el-card>
 		<doc title="1.什么是类型推论">
-			<p>TypeScriptdadwadadawTypeScriptdadwadadaw</p>
+			<p>TypeScript 的 TypeScript</p>
 			<highlight :code="inferCode"></highlight>
 		</doc>
 	</el-card>
