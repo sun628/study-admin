@@ -31,6 +31,8 @@ import { Search } from '@element-plus/icons-vue';
 import { useRouter } from 'vue-router';
 import { getFlatArr } from '@/utils/util';
 import { MenuStore } from '@/store/modules/menu';
+import mittBus from '@/utils/mittBus';
+import { Handler } from 'mitt';
 const router = useRouter();
 const menuStore = MenuStore();
 const menuList = computed((): Menu.MenuOptions[] => getFlatArr(menuStore.menuList));
@@ -76,6 +78,19 @@ const handleClickMenu = (menuItem: Record<string, any>) => {
 	router.push(menuItem.path);
 	closeSearch();
 };
+
+const keywordSearch = (content: string) => {
+	isShowSearch.value = true;
+	searchMenu.value = content;
+	nextTick(() => {
+		setTimeout(() => {
+			menuInputRef.value.focus();
+		});
+	});
+};
+onMounted(() => {
+	mittBus.on('keywordSearchByMitt', keywordSearch);
+});
 </script>
 
 <style scoped lang="scss">

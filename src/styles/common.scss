@@ -86,3 +86,17 @@
 .pointer {
 	cursor: pointer;
 }
+
+/* highlight关键字高亮 */
+.highlight-words {
+	color: var(--el-color-primary-light-1);
+}
+.highlight-keywords {
+	color: var(--el-color-primary);
+}
+.highlight-keywords {
+	&::after {
+		content: url('@/assets/images/global/iconHighlight.svg');
+		margin-left: 5px;
+	}
+}

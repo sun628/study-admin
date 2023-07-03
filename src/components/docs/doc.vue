@@ -10,10 +10,11 @@
 	</div>
 </template>
 <script setup lang="ts">
-import { highlightKeywords } from '@/utils/highlightKeywords';
+import { useHighlightKeywords } from '@/hooks/useHighlightKeywords';
+import mittBus from '@/utils/mittBus';
 export interface DocProps {
-	title: string; // table的数据
-	keywords?: 'words' | 'keywords' | undefined;
+	title?: string; // table的数据
+	keywords?: 'words' | 'keywords';
 }
 const props = withDefaults(defineProps<DocProps>(), {
 	title: '',
@@ -27,8 +28,8 @@ const scrollToView = () => {
 	el && el.scrollIntoView({ behavior: 'smooth', inline: 'nearest' });
 };
 
-onMounted(() => {
-	highlightKeywords(DocRef.value);
+useHighlightKeywords(DocRef, (value: string) => {
+	mittBus.emit('keywordSearchByMitt', value);
 });
 </script>
 
@@ -43,7 +44,6 @@ onMounted(() => {
 		margin: 10px 0;
 		font-size: 1rem;
 	}
-
 	:deep(p) {
 		width: fit-content;
 		margin: 5px 0px;
@@ -62,3 +62,4 @@ onMounted(() => {
 	}
 }
 </style>
+@/utils/useKeywords @/utils/useKeywords
