@@ -18,7 +18,7 @@
 		<el-table :data="tableData" stripe style="width: 100%" size="large">
 			<el-table-column prop="label" label="技术栈">
 				<template #default="{ row }">
-					<el-link type="primary" :href="row.link" target="_blank"> {{ row.label }}</el-link>
+					<el-link class="highlight-keywords" type="primary" @click="handleClickLink(row.label)"> {{ row.label }}</el-link>
 				</template>
 			</el-table-column>
 			<el-table-column prop="tip" label="介绍"></el-table-column>
@@ -31,6 +31,7 @@
 	</el-card>
 </template>
 <script setup lang="ts">
+import mittBus from '@/utils/mittBus';
 const gitee_url = 'https://gitee.com/nuanyang163/study-admin';
 const tableData = ref([
 	{
@@ -120,6 +121,14 @@ const tableData = ref([
 		tip: '代码格式化',
 	},
 ]);
+
+/**
+ * @description 点击技术栈跳转到搜索页面
+ * @param {Object} label 技术栈名称
+ **/
+function handleClickLink(label: string) {
+	mittBus.emit('keywordSearchByMitt', label);
+}
 </script>
 
 <style scoped lang="scss"></style>

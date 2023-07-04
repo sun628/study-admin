@@ -1,6 +1,6 @@
 import router from '@/routers/router';
 import NProgress from '@/config/nprogress';
-import { TABS_WHITE_LIST } from '@/config';
+import { TABS_WHITE_LIST, PROJECT_NAME } from '@/config';
 import { GlobalStore } from '@/store';
 import { AxiosCanceler } from '@/api/helper/axiosCancel';
 
@@ -33,7 +33,7 @@ router.beforeEach((to, from, next) => {
 router.afterEach((to) => {
 	NProgress.done();
 	// 设置标题
-	document.title = to.meta.title as string;
+	document.title = (to.meta.title as string) + '—' + PROJECT_NAME;
 });
 
 export default router;

@@ -13,3 +13,6 @@ export const TABS_WHITE_LIST: string[] = ['/403', '/404', '/500', '/layout', '/l
 export const MAP_KEY = '';
 
 export const successCode = [200, 201, 204, 10000];
+
+//项目名称
+export const PROJECT_NAME = 'Vite + Vue + TS';

@@ -1,9 +1,7 @@
 <template>
 	<el-config-provider :size="assemblySize" :locale="zhCn">
 		<router-view v-slot="{ Component }">
-			<keep-alive>
-				<component :is="Component" />
-			</keep-alive>
+			<component :is="Component" />
 		</router-view>
 	</el-config-provider>
 </template>

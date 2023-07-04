@@ -79,6 +79,10 @@ const handleClickMenu = (menuItem: Record<string, any>) => {
 	closeSearch();
 };
 
+/**
+ * @description: 通过mittBus触发的搜索
+ * @param content 搜索内容
+ */
 const keywordSearch = (content: string) => {
 	isShowSearch.value = true;
 	searchMenu.value = content;
@@ -90,6 +94,10 @@ const keywordSearch = (content: string) => {
 };
 onMounted(() => {
 	mittBus.on('keywordSearchByMitt', keywordSearch);
+});
+
+onUnmounted(() => {
+	mittBus.off('keywordSearchByMitt');
 });
 </script>
 
