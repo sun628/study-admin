@@ -1,10 +1,8 @@
 <template>
 	<el-row>
 		<doc title="对象的类型">
-			<p>
-				在TypeScript中，我们定义对象的方式要用关键字interface（接口），
-				我的理解是使用interface来定义一种约束，让数据的结构满足约束的格式。定义方式如下：
-			</p>
+			<p>在TypeScript中，我们定义对象的方式要用关键字interface（接口），主要用于定义对象的结构，确保对象具有某些特定的形状和属性。</p>
+			<p>我的理解是使用interface来定义一种约束，让数据的结构满足约束的格式。定义方式如下：</p>
 			<highlight :code="objType" :auto="false"></highlight>
 			<highlight :code="objType2" :auto="false"></highlight>
 		</doc>

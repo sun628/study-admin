@@ -33,7 +33,7 @@ router.beforeEach((to, from, next) => {
 router.afterEach((to) => {
 	NProgress.done();
 	// 设置标题
-	document.title = (to.meta.title as string) + '—' + PROJECT_NAME;
+	document.title = (to.meta.title as string) + '-' + PROJECT_NAME;
 });
 
 export default router;

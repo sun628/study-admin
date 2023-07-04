@@ -1,13 +1,15 @@
 <template>
-	<div class="layout-search-dialog">
+	<div class="menu-search-dialog">
 		<i :class="'iconfont icon-sousuo'" class="toolBar-icon" @click="handleOpen"></i>
-		<el-dialog v-model="isShowSearch" width="300px" destroy-on-close :modal="false" :show-close="false" fullscreen @click="closeSearch">
+		<el-dialog v-model="isShowSearch" destroy-on-close :modal="false" :show-close="false" fullscreen @click="closeSearch">
 			<el-autocomplete
 				ref="menuInputRef"
 				v-model="searchMenu"
+				value-key="path"
 				placeholder="菜单搜索 ：支持菜单名称、路径"
 				:fetch-suggestions="searchMenuList"
 				@select="handleClickMenu"
+				@click.stop
 			>
 				<template #prefix>
 					<el-icon>
@@ -32,7 +34,6 @@ import { useRouter } from 'vue-router';
 import { getFlatArr } from '@/utils/util';
 import { MenuStore } from '@/store/modules/menu';
 import mittBus from '@/utils/mittBus';
-import { Handler } from 'mitt';
 const router = useRouter();
 const menuStore = MenuStore();
 const menuList = computed((): Menu.MenuOptions[] => getFlatArr(menuStore.menuList));
@@ -75,8 +76,8 @@ const filterNodeMethod = (queryString: string) => {
 const handleClickMenu = (menuItem: Record<string, any>) => {
 	searchMenu.value = '';
 	if (menuItem.isLink) window.open(menuItem.isLink, '_blank');
-	router.push(menuItem.path);
 	closeSearch();
+	router.push(menuItem.path);
 };
 
 /**
@@ -96,14 +97,14 @@ onMounted(() => {
 	mittBus.on('keywordSearchByMitt', keywordSearch);
 });
 
-onUnmounted(() => {
+onBeforeUnmount(() => {
 	mittBus.off('keywordSearchByMitt');
 });
 </script>
 
 <style scoped lang="scss">
 /* 菜单搜索样式 */
-.layout-search-dialog {
+.menu-search-dialog {
 	:deep(.el-dialog) {
 		background-color: rgb(0 0 0 / 50%);
 		border-radius: 0 !important;

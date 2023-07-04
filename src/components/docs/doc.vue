@@ -1,10 +1,10 @@
 <template>
-	<div v-bind="$attrs" class="doc mb-6" :title="title">
-		<h2 v-if="title" class="text-3xl">
+	<div v-bind="$attrs" ref="DocRef" class="doc mb-6" :title="title">
+		<h2 v-show="title" class="text-3xl">
 			<font class="pointer doc-font" @click="scrollToView()"> # </font>
 			<span>{{ title }}</span>
 		</h2>
-		<div ref="DocRef" class="doc-content">
+		<div class="doc-content">
 			<slot></slot>
 		</div>
 	</div>
@@ -24,10 +24,9 @@ const props = withDefaults(defineProps<DocProps>(), {
 const { title } = toRefs(props);
 const DocRef: Ref<HTMLElement | null> = ref(null);
 const scrollToView = () => {
-	const el = document.querySelector(`[title=${title.value}]`);
+	const el = document.querySelector(`[title="${title.value}"]`);
 	el && el.scrollIntoView({ behavior: 'smooth', inline: 'nearest' });
 };
-
 useHighlightKeywords(DocRef, (value: string) => {
 	mittBus.emit('keywordSearchByMitt', value);
 });

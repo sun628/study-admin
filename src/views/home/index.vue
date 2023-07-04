@@ -18,7 +18,9 @@
 		<el-table :data="tableData" stripe style="width: 100%" size="large">
 			<el-table-column prop="label" label="技术栈">
 				<template #default="{ row }">
-					<el-link class="highlight-keywords" type="primary" @click="handleClickLink(row.label)"> {{ row.label }}</el-link>
+					<div :class="{ 'highlight-keywords': isKeyword(row.label) }" @click="handleClickLink(row.label)">
+						<el-link type="primary">{{ row.label }}</el-link>
+					</div>
 				</template>
 			</el-table-column>
 			<el-table-column prop="tip" label="介绍"></el-table-column>
@@ -32,6 +34,7 @@
 </template>
 <script setup lang="ts">
 import mittBus from '@/utils/mittBus';
+import { isKeyword } from '@/hooks/useHighlightKeywords';
 const gitee_url = 'https://gitee.com/nuanyang163/study-admin';
 const tableData = ref([
 	{
@@ -127,7 +130,7 @@ const tableData = ref([
  * @param {Object} label 技术栈名称
  **/
 function handleClickLink(label: string) {
-	mittBus.emit('keywordSearchByMitt', label);
+	isKeyword(label) && mittBus.emit('keywordSearchByMitt', label);
 }
 </script>
 

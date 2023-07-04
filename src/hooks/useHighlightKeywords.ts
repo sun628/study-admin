@@ -1,5 +1,7 @@
 import { onMounted, onBeforeUnmount } from 'vue';
-const keywords = ['vue', 'vue3', 'TypeScript']; // 关键字列表
+export const keywords = ['vue', 'vue3', 'TypeScript', 'electron']; // 关键字列表
+
+export const isKeyword = (word: string): boolean => keywords.includes(word); // 是否是关键字
 
 const regex_keywords = new RegExp(`(${keywords.join('|')})`, 'gi'); // 匹配关键字的正则表达式
 const regex_words = new RegExp(/(?<!<[^>]*?)([A-Za-z]+)/g, 'gi'); // 匹配单词的正则表达式
@@ -27,18 +29,16 @@ const highlightKeywordsAndWords = (text: string): string => {
 };
 
 /**
- * @description 通过Mitt实现的关键字搜索
- * @param {Event} event 点击事件
+ * @description 高亮关键字和单词
+ * @param {Ref<HTMLElement | null} DocRef 文档元素的引用
+ * @param {(textContent: string) => void} callback 点击关键字的回调函数
  * @return void
  * @example useHighlightKeywords(DocRef, (textContent) => {
  *   console.log('点击了', textContent);
  * });
  */
-
 export const useHighlightKeywords = (DocRef: Ref<HTMLElement | null>, callback: (textContent: string) => void) => {
-	const instance: HTMLElement | null = null;
 	const listeners = new Map();
-
 	const keywordClick = (event: Event): void => {
 		const target = event.target as HTMLElement;
 		if (target) {
