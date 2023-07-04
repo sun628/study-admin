@@ -8,24 +8,17 @@
 	</div>
 </template>
 <script setup lang="ts">
-import { initMap, addMarker, removeMarker } from '@/hooks/useMap';
+import { initMap } from '@/hooks/useMap';
 const map = shallowRef();
-
-const markers = ref();
-//添加marker
+const marker = shallowRef();
 const addMarkerClick = () => {
-	if (markers.value) {
-		removeMarker(map.value, markers.value);
-	}
-	const markerOptions = [
-		{ position: [116.405467, 39.907761], title: '北京' },
-		{ position: [116.397428, 39.90923], title: '北京' },
-	];
-	markers.value = addMarker(map.value, markerOptions);
+	marker.value = new map.value.Marker({
+		position: [116.39, 39.9],
+		title: '北京',
+	});
 };
-//移除marker
 const removeMarkerClick = () => {
-	removeMarker(map.value, markers.value);
+	map.value.remove(marker.value);
 };
 onMounted(() => {
 	initMap('MvMap', {
