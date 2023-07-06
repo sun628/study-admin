@@ -6,14 +6,6 @@
 	</el-card>
 </template>
 <script setup lang="ts">
-import fs from 'fs';
-async function getFileContent(filePath: string): Promise<string> {
-	const fileContent = await fs.promises.readFile(filePath, 'utf-8');
-	return fileContent;
-}
-getFileContent('src/views/hooks/useDownload.vue');
-console.log('getFileContent', getFileContent('src/views/hooks/useDownload.vue'));
-
 const name = '`${tempName}${fileType}`';
 
 const DownLoadCode = `import { ElNotification } from 'element-plus';
