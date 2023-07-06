@@ -59,7 +59,6 @@ export const useHighlightKeywords = (DocRef: Ref<HTMLElement | null>, callback: 
 			const text = paragraph.textContent;
 			if (text) {
 				const highlightedText = highlightKeywordsAndWords(text);
-				// 使用textContent而不是innerHTML可以避免对HTML解析，从而提高性能
 				paragraph.innerHTML = highlightedText;
 				const emElements: NodeListOf<HTMLElement> = paragraph.querySelectorAll('.highlight-keywords');
 				for (let j = 0; j < emElements.length; j++) {
