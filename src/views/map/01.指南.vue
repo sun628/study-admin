@@ -1,33 +1,48 @@
 <template>
 	<div class="map w-full h-full relative">
 		<el-card class="absolute z-10 top-0 w-full">
-			<el-button type="primary" @click="addMarkerClick">添加marker</el-button>
-			<el-button type="primary" @click="removeMarkerClick">移除marker</el-button>
+			<el-button type="primary" @click="addMarkerHandle">添加marker</el-button>
+			<el-button type="primary" @click="updateMarkerHandle">更新marker图标</el-button>
+			<el-button type="primary" @click="removeMarkerHandle">移除marker</el-button>
 		</el-card>
-		<div id="MvMap" class="w-full h-full"></div>
+		<!-- <div id="MvMap" class="w-full h-full"></div> -->
+		<MvMap class="w-full h-full" @map-load="mapLoad" />
 	</div>
 </template>
 <script setup lang="ts">
-import { initMap } from '@/hooks/useMap';
+import MvMap from '@/components/mv-map/index.vue';
+import { addMarker } from '@/hooks/useMap';
+
 const map = shallowRef();
-const marker = shallowRef();
-const addMarkerClick = () => {
-	marker.value = new map.value.Marker({
-		position: [116.39, 39.9],
-		title: '北京',
-	});
+let marker: AMap.Marker | null = null;
+const markerClick = (e: Event) => {
+	console.log('markerClick', e);
 };
-const removeMarkerClick = () => {
-	map.value.remove(marker.value);
+const addMarkerHandle = () => {
+	console.log('addMarkerClick');
+	marker && marker.setMap(null);
+	marker = addMarker(
+		{
+			icon: '//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png',
+			position: [116.406315, 39.908775],
+			offset: new AMap.Pixel(-13, -30),
+			map: map.value,
+		},
+		markerClick
+	);
 };
-onMounted(() => {
-	initMap('MvMap', {
-		zoom: 11,
-		viewMode: '3D',
-	}).then((AMap) => {
-		map.value = AMap;
-	});
-});
+const updateMarkerHandle = () => {
+	marker && marker.setIcon('//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png');
+};
+const removeMarkerHandle = () => {
+	marker && marker.setMap(null);
+	marker = null;
+};
+
+const mapLoad = (val: AMap.Map) => {
+	console.log('mapLoad', val);
+	map.value = val;
+};
 </script>
 
 <style scoped lang="scss"></style>

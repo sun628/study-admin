@@ -65,7 +65,7 @@ const tableData = ref([
 	{
 		label: 'element-plus',
 		link: 'https://element-plus.gitee.io/#/zh-CN/component/installation',
-		tip: '我反正觉得比ant-design-vue好用,至少写虚拟列表不收费',
+		tip: '反正觉得比ant-design-vue好用,至少虚拟列表不收费',
 	},
 	{
 		label: 'tailwindcss',

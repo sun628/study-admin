@@ -1,7 +1,17 @@
-import '@amap/amap-jsapi-types';
+<template>
+	<el-card>
+		<doc title="地图相关方法">
+			<highlight :code="mapCode" :auto="false" />
+		</doc>
+	</el-card>
+</template>
+<script setup lang="ts">
+const mapCode = `import '@amap/amap-jsapi-types';
 
 /**
- * @description 添加点标记
+ * 点标记
+ *
+ * @public
  * @class Marker
  * @name Marker
  * @param {MarkerOptions} opts 点标记参数
@@ -162,3 +172,7 @@ export const addMassMarkers = (data: AMap.MassData[], opts: AMap.MassMarkersOpti
 	if (callback) massMarks.on('click', callback);
 	return massMarks;
 };
+`;
+</script>
+
+<style scoped lang="scss"></style>

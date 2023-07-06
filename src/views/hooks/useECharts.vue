@@ -1,4 +1,12 @@
-import { onMounted, onUnmounted, onDeactivated } from 'vue';
+<template>
+	<el-card>
+		<doc title="使用ECharts(添加响应式)">
+			<highlight :code="EChartsCode" />
+		</doc>
+	</el-card>
+</template>
+<script setup lang="ts">
+const EChartsCode = `import { onMounted, onUnmounted, onDeactivated } from 'vue';
 import * as echarts from 'echarts';
 import { useDebounceFn } from '@vueuse/core';
 
@@ -50,4 +58,7 @@ export default function useECharts(myChart: Ref<HTMLElement>) {
 	});
 
 	return { chartInstance, setOption };
-}
+}`;
+</script>
+
+<style scoped lang="scss"></style>

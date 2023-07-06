@@ -34,6 +34,9 @@ const handleClickMenu = (subItem: Menu.MenuOptions) => {
 .svg-icon {
 	color: var(--el-color-primary);
 }
+.icon-hooks {
+	margin-top: -5px;
+}
 .icon-typescript {
 	background-color: var(--el-color-primary);
 	color: #191a20;
