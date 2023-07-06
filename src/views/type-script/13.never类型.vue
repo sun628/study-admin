@@ -7,7 +7,7 @@
 			<p class="tip">2.永远不会有值的变量：当变量在某些条件下永远不会被赋予值时，可以将其类型标注为 never。例如：</p>
 			<highlight :code="neverCode2" />
 			<p class="tip">3.类型判断的穷尽性检查：当使用联合类型时，通过使用 never 可以确保你已经对所有的可能情况进行了处理。例如：</p>
-			<highlight :code="neverCode3" />
+			<highlight :code="neverCode3" :auto="false" />
 			<p class="tip">总结：never 类型表示一个不可能发生的值，它通常用于处理不会返回或不可能被赋值的情况，以及类型判断的穷尽性检查</p>
 		</doc>
 		<doc title="never 与 void 的差异">
