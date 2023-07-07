@@ -1,10 +1,11 @@
 import { onMounted, onBeforeUnmount } from 'vue';
 export const keywords = ['vue', 'vue3', 'TypeScript', 'electron']; // 关键字列表
-
 export const isKeyword = (word: string): boolean => keywords.includes(word); // 是否是关键字
 
 const regex_keywords = new RegExp(`(${keywords.join('|')})`, 'gi'); // 匹配关键字的正则表达式
-const regex_words = new RegExp(/(?<!<[^>]*?)([A-Za-z]+)/g, 'gi'); // 匹配单词的正则表达式
+
+// 匹配单词的正则表达式(排除html标签和html实体以及&开头的转义字符)
+const regex_words = new RegExp(/(?<!&[^;]*?)(?<!<[^>]*?)([A-Za-z]+)/g, 'gi');
 
 /**
  * @description 高亮关键字和单词
@@ -15,7 +16,6 @@ const highlightKeywordsAndWords = (text: string): string => {
 	let result = text;
 	// 高亮关键字
 	result = result.replace(regex_keywords, '<em class="highlight-keywords">$&</em>');
-
 	// 高亮单词
 	result = result.replace(regex_words, (match) => {
 		// 检查是否已经被关键字高亮
@@ -56,7 +56,7 @@ export const useHighlightKeywords = (DocRef: Ref<HTMLElement | null>, callback: 
 		const paragraphs: NodeListOf<HTMLElement> = el.querySelectorAll('p');
 		for (let i = 0; i < paragraphs.length; i++) {
 			const paragraph = paragraphs[i];
-			const text = paragraph.textContent;
+			const text = paragraph.innerHTML;
 			if (text) {
 				const highlightedText = highlightKeywordsAndWords(text);
 				paragraph.innerHTML = highlightedText;

@@ -17,10 +17,10 @@
 					</el-icon>
 				</template>
 				<template #default="{ item }">
-					<el-icon>
-						<component :is="item.icon"></component>
-					</el-icon>
-					<span>{{ item.meta.title }}</span>
+					<div class="flex items-center">
+						<svg-icon v-if="item.meta.icon" class="text-xl flex-shrink-0 m-1" :name="item.meta.icon"></svg-icon>
+						<span>{{ item.meta.title }}</span>
+					</div>
 				</template>
 			</el-autocomplete>
 		</el-dialog>
@@ -34,12 +34,38 @@ import { useRouter } from 'vue-router';
 import { getFlatArr } from '@/utils/util';
 import { MenuStore } from '@/store/modules/menu';
 import mittBus from '@/utils/mittBus';
+
 const router = useRouter();
 const menuStore = MenuStore();
 const menuList = computed((): Menu.MenuOptions[] => getFlatArr(menuStore.menuList));
 
+/**
+ * @description 跳转到csdn搜索
+ * @param {string} queryString 搜索关键字
+ **/
+const handleCsdnSearch = (queryString: string): Menu.MenuOptions => {
+	return {
+		path: ``,
+		isLink: `https://so.csdn.net/so/search/s.do?q=${queryString}&t=blog&u=`,
+		meta: {
+			title: 'CSDN搜索：' + queryString,
+			icon: 'csdn',
+		},
+	};
+};
+
+/**
+ * @description 菜单搜索
+ * @param {string} queryString 搜索关键字
+ * @param {Function} cb 回调函数
+ * @param {Array} results 搜索结果
+ * @param {Array} menuList 菜单列表
+ * @param {Function} filterNodeMethod 筛选菜单方法
+ * @param {Function} handleCsdnSearch 跳转到csdn搜索
+ **/
 const searchMenuList = (queryString: string, cb: (results: Menu.MenuOptions[]) => void) => {
 	const results = queryString ? menuList.value.filter(filterNodeMethod(queryString)) : menuList.value;
+	results.length === 0 && results.push(handleCsdnSearch(queryString));
 	cb(results);
 };
 
@@ -130,6 +156,9 @@ onBeforeUnmount(() => {
 	span {
 		margin: 0 0 0 10px;
 		font-size: 14px;
+	}
+	.icon-csdn {
+		color: red;
 	}
 }
 </style>

@@ -1,8 +1,6 @@
 <template>
 	<el-card>
-		<doc title="地图相关方法">
-			<highlight :code="mapCode" :auto="false" />
-		</doc>
+		<highlight :code="mapCode" :auto="false" />
 	</el-card>
 </template>
 <script setup lang="ts">

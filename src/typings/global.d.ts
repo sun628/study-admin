@@ -3,7 +3,7 @@ declare namespace Menu {
 	interface MenuOptions {
 		[x: string]: any;
 		path: string;
-		title: string;
+		title?: string;
 		icon?: string;
 		localSvgIcon?: string;
 		isLink?: string;

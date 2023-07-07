@@ -7,8 +7,8 @@
 				</slot>
 			</div>
 		</template>
-		<div v-for="(item, index) in data" :key="index" @click="scrollToView(item.label, item.link)">
-			<span class="pointer leading-8" :class="{ active: activeName === item.label }">{{ index + 1 }}. {{ item.label }}</span>
+		<div v-for="(item, index) in data" :key="index" :class="{ active: activeName === item.label }" @click="scrollToView(item)">
+			<span class="pointer leading-8">{{ index + 1 }}. {{ item.label }}</span>
 		</div>
 	</el-card>
 </template>
@@ -23,15 +23,21 @@ const { data } = toRefs(props);
 
 const activeName = ref(data.value[0]?.label);
 
-const scrollToView = (refName: string, link?: string) => {
+/**
+ * @description 把某元素滚动到页面顶部
+ * @param {DirectoryProps['data'][number]} row
+ * @param {string} row.link - 跳转链接
+ * @param {string} row.label - 当link不存在时，根据label查找元素提供滚动
+ **/
+const scrollToView = (row: DirectoryProps['data'][number]) => {
 	let element;
-	if (link) {
-		element = document.querySelector(`[link=${link}]`);
+	if (row.link) {
+		element = document.querySelector(`[link="${row.link}"]`);
 	} else {
-		element = document.querySelector(`[title=${refName}]`);
+		element = document.querySelector(`[title="${row.label}"]`);
 	}
 	element?.scrollIntoView({ behavior: 'smooth', inline: 'nearest' });
-	activeName.value = refName;
+	activeName.value = row.label;
 };
 </script>
 
@@ -42,6 +48,7 @@ const scrollToView = (refName: string, link?: string) => {
 	min-width: 205px;
 	.active {
 		color: var(--el-color-primary);
+		background-color: #f0f0f5;
 	}
 }
 </style>
