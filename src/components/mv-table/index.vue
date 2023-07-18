@@ -1,5 +1,5 @@
 <template>
-	<el-table ref="ElTabeRef" :data="tableData" style="width: 100%" v-bind="$attrs">
+	<el-table ref="ElTabeRef" :data="data" style="width: 100%" v-bind="$attrs">
 		<!-- <template #empty>
 			<slot name="empty"></slot>
 		</template> -->
@@ -11,12 +11,12 @@
 <script setup lang="ts">
 import type { ElTable } from 'element-plus';
 export interface TableProps {
-	tableData: object[]; // table的数据
+	data: object[]; // table的数据
 }
 const props = withDefaults(defineProps<TableProps>(), {
-	tableData: () => [],
+	data: () => [],
 });
-const { tableData } = toRefs(props);
+const { data } = toRefs(props);
 const ElTabeRef = ref();
 </script>
 
