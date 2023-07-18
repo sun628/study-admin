@@ -67,12 +67,11 @@
 	</div>
 </template>
 <script setup lang="ts">
-// import type { ElTimelineItem } from 'element-plus';
-import { ElTimelineItem } from 'element-plus';
 import mittBus from '@/utils/mittBus';
 import { isKeyword } from '@/hooks/useHighlightKeywords';
 import MvTable from '@/components/mv-table/index.vue';
 import { MoreFilled } from '@element-plus/icons-vue';
+// import type { ElTimelineItem } from 'element-plus';
 import { DefineComponent } from 'vue';
 
 const gitee_url = 'https://gitee.com/nuanyang163/study-admin';
@@ -148,6 +147,9 @@ const tableData = ref([
 		link: 'https://prettier.io/',
 	},
 ]);
+// type ElTimelineItemProps = InstanceType<typeof ElTimelineItem>['$props'] & {
+// 	content?: string;
+// // };
 
 interface ElTimelineItemProps {
 	icon?: DefineComponent | string;
@@ -158,11 +160,10 @@ interface ElTimelineItemProps {
 	timestamp?: string;
 	content?: string;
 }
-// type ElTimelineItemProps = InstanceType<typeof ElTimelineItem>['$props'];
 
 const activities = ref<Array<ElTimelineItemProps>>([
 	{
-		content: 'Custom icon',
+		content: '更新关键字关联并支持搜索',
 		timestamp: '2018-04-12 20:46',
 		size: 'large',
 		type: 'primary',
