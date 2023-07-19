@@ -4,24 +4,24 @@
 			<h2>元组（Tuple）是固定数量的不同类型的元素的组合。</h2>
 			<p>元组与集合的不同之处在于，元组中的元素类型可以是不同的，而且数量固定。元组的好处在于可以把多个元素作为一个单元传递。</p>
 			<p>如果一个方法需要返回多个值，可以把这多个值作为元组返回，而不需要创建额外的类来表示。</p>
-			<highlight :code="tupleType1"></highlight>
+			<Highlight :code="tupleType1"></Highlight>
 			<p>当赋值或访问一个已知索引的元素时，会得到正确的类型：</p>
-			<highlight :code="tupleType2"></highlight>
+			<Highlight :code="tupleType2"></Highlight>
 			<p>元组类型还可以支持自定义名称和变为可选的</p>
-			<highlight :code="tupleType3"></highlight>
+			<Highlight :code="tupleType3"></Highlight>
 		</doc>
 		<doc title="2.越界元素">
 			<p>当添加越界的元素时，它的类型会被限制为元组中每个类型的联合类型：</p>
-			<highlight :code="tupleType4"></highlight>
+			<Highlight :code="tupleType4"></Highlight>
 		</doc>
 		<doc title="3.应用场景 例如定义excel返回的数据">
 			<p>例如定义excel返回的数据</p>
-			<highlight :code="tupleType5"></highlight>
+			<Highlight :code="tupleType5"></Highlight>
 		</doc>
 		<doc title="4.解构元组">
-			<highlight :code="tupleType6"></highlight>
+			<Highlight :code="tupleType6"></Highlight>
 			<p>如果我们不需要解构元组中的全部元素，就可以像下面这样解构：</p>
-			<highlight :code="tupleType7"></highlight>
+			<Highlight :code="tupleType7"></Highlight>
 		</doc>
 	</el-row>
 </template>

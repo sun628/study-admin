@@ -3,22 +3,22 @@
 		<doc title="对象的类型">
 			<p>在TypeScript中，我们定义对象的方式要用关键字interface（接口），主要用于定义对象的结构，确保对象具有某些特定的形状和属性。</p>
 			<p>我的理解是使用interface来定义一种约束，让数据的结构满足约束的格式。定义方式如下：</p>
-			<highlight :code="objType" :auto="false"></highlight>
-			<highlight :code="objType2" :auto="false"></highlight>
+			<Highlight :code="objType" :auto="false"></Highlight>
+			<Highlight :code="objType2" :auto="false"></Highlight>
 		</doc>
 		<doc title="可选属性 使用?操作符">
-			<highlight :code="objType3"></highlight>
+			<Highlight :code="objType3"></Highlight>
 		</doc>
 		<doc title="任意属性 [propName: string]">
 			<p><font color="red">需要注意的是，一旦定义了任意属性，那么确定属性和可选属性的类型都必须是它的类型的子集：</font></p>
 		</doc>
 		<doc title="只读属性 readonly">
 			<p>readonly 只读属性是不允许被赋值的只能读取</p>
-			<highlight :code="objType4"></highlight>
+			<Highlight :code="objType4"></Highlight>
 		</doc>
 		<doc title="添加函数">
 			<p>在接口中添加函数</p>
-			<highlight :code="objType5"></highlight>
+			<Highlight :code="objType5"></Highlight>
 		</doc>
 	</el-row>
 </template>

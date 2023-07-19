@@ -3,15 +3,15 @@
 		<p>JavaScript 中有很多内置对象，它们可以直接在<font>TypeScript</font>中当做定义好了的类型。</p>
 		<doc title="1.ECMAScript 的内置对象">
 			<p>Boolean、Number、string、RegExp、Date、Error</p>
-			<highlight :code="builtIn1"></highlight>
+			<Highlight :code="builtIn1"></Highlight>
 		</doc>
 		<doc title="2.BOM 和 DOM 的内置对象">
 			<p>Document、HTMLElement、Event、NodeList</p>
-			<highlight :code="builtIn2" :auto="false"></highlight>
+			<Highlight :code="builtIn2" :auto="false"></Highlight>
 		</doc>
 		<doc title="3.定义Promise">
 			<p v-text="'如果我们不指定返回的类型TS是推断不出来返回的是什么类型。promise<unknow>'"></p>
-			<highlight :code="builtIn3"></highlight>
+			<Highlight :code="builtIn3"></Highlight>
 		</doc>
 	</el-row>
 </template>

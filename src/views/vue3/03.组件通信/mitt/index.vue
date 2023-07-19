@@ -2,9 +2,9 @@
 	<div class="mitt">
 		<p class="tip">这个原理其实是运用了JS设计模式之发布订阅模式</p>
 		<p>简易版本：</p>
-		<highlight :code="code" />
+		<Highlight :code="code" />
 		<p>github源码：</p>
-		<highlight :code="code1" />
+		<Highlight :code="code1" />
 	</div>
 </template>
 <script setup lang="ts">

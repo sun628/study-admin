@@ -8,9 +8,9 @@
 						<p><font color="red">注意被ref包装之后需要.value 来进行赋值</font></p>
 					</div>
 					<h3>类型</h3>
-					<highlight :code="refType" />
+					<Highlight :code="refType" />
 					<h3>示例</h3>
-					<highlight :code="refCode" />
+					<Highlight :code="refCode" />
 					<div class="tip">
 						<p>
 							TIP:如果将一个对象赋值给 ref，那么这个对象将通过 reactive() 转为具有深层次响应式的对象。这也意味着如果对象中包含了嵌套的
@@ -22,35 +22,35 @@
 				<doc title="reactive">
 					<p class="tip">返回一个对象的响应式代理。(只能是复杂数据类型extends <font color="red">object</font>)</p>
 					<h3>类型</h3>
-					<highlight :code="reactiveType" />
+					<Highlight :code="reactiveType" />
 					<h3>示例</h3>
-					<highlight :code="reactiveCode" />
+					<Highlight :code="reactiveCode" />
 					<p class="tip">
 						TIP:响应式转换是“深层”的：它会影响到<font>所有嵌套的属性</font>。一个响应式对象也将深层地解包任何 ref 属性，同时保持响应性。
 					</p>
-					<highlight :code="reactiveCode1" />
+					<Highlight :code="reactiveCode1" />
 					<h3><font color="red">数组异步赋值问题</font></h3>
-					<highlight :code="reactiveCode2" />
+					<Highlight :code="reactiveCode2" />
 				</doc>
 				<doc title="readonly">
 					<div class="tip">
 						<p>接受一个对象 (不论是响应式还是普通的) 或是一个 ref，返回一个原值的只读代理。即该对象的值和结构都是只读的，不允许被修改</p>
 						<p>可以使用在像 Vue 组件中的 <font>props、provide </font> 或者其他的共享状态的对象上，以确保一些重要的属性不被不应该更新的代码修改。</p>
 					</div>
-					<highlight :code="readonlyCode" />
+					<Highlight :code="readonlyCode" />
 				</doc>
 				<doc title="computed">
 					<h3>类型</h3>
-					<highlight :code="computedType" />
+					<Highlight :code="computedType" />
 					<p class="tip">
 						接受一个 getter 函数，返回一个只读的响应式<font>ref</font> 对象。该 ref 通过 .value 暴露 getter 函数的返回值。它也可以接受一个带有 get 和
 						set 函数的对象来创建一个可写的 <font>ref</font> 对象。
 					</p>
 					<h3>示例</h3>
 					<p>创建一个只读的计算属性 ref：</p>
-					<highlight :code="computedCode" />
+					<Highlight :code="computedCode" />
 					<p>创建一个可写的计算属性 ref：</p>
-					<highlight :code="computedCode1" />
+					<Highlight :code="computedCode1" />
 				</doc>
 				<doc title="watch">
 					<div class="tip">
@@ -58,25 +58,25 @@
 						<p>默认是懒侦听的，即仅在侦听源发生变化时才执行回调函数。(可以通过immediate: true立即监听)</p>
 					</div>
 					<h2>监听ref</h2>
-					<highlight :code="watchRefCode" />
+					<Highlight :code="watchRefCode" />
 					<h2>监听reactive</h2>
 					<div class="tip">
 						直接给 watch() 传入一个响应式对象时：
 						<p>1.会隐式地创建一个深层侦听器——该回调函数在所有嵌套的变更时都会被触发。<font color="red">(deep无效)</font></p>
 						<p>2.`newValue` 和 `oldValue` 是<font color="red">相等</font>的，因为它们是同一个对象！</p>
 					</div>
-					<highlight :code="watchReactiveCode" />
+					<Highlight :code="watchReactiveCode" />
 					<h3>停止监听</h3>
 					<div class="tip">
 						<p>同步语句创建的侦听器，会自动绑定到宿主组件实例上，并且会在宿主组件卸载时自动停止。</p>
 						<p>如果用<font color="red">异步回调</font>创建一个侦听器，那么它不会绑定到当前组件上，你必须手动停止它，以防内存泄漏。</p>
 					</div>
 					<p>要手动停止一个侦听器，请调用 watch 或 watchEffect 返回的函数：</p>
-					<highlight :code="watchStopCode" />
+					<Highlight :code="watchStopCode" />
 				</doc>
 				<doc title="watchEffect">
 					<h2>类型</h2>
-					<highlight :code="watchEffectType" />
+					<Highlight :code="watchEffectType" />
 					<div class="tip">
 						<p>
 							1.第一个参数就是要运行的副作用函数。这个副作用函数的参数也是一个函数，用来注册清理回调。清理回调会在该副作用下一次执行前被调用，可以用来清理无效的副作用。(例如实现防抖)
@@ -90,9 +90,9 @@
 					</div>
 					<h2>示例</h2>
 
-					<highlight :code="watchEffectCode" />
+					<Highlight :code="watchEffectCode" />
 					<h3>清除副作用</h3>
-					<highlight :code="watchEffectCode1" />
+					<Highlight :code="watchEffectCode1" />
 					<div class="watchEffect-demo mb-4">
 						<h2><font>demo</font></h2>
 						<span>输入的值：{{ keywordText }}</span>

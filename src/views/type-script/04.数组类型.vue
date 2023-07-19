@@ -2,25 +2,25 @@
 	<el-row>
 		<doc title="1.数组的类型">
 			<p>类型[]</p>
-			<highlight :code="arrayType1"></highlight>
+			<Highlight :code="arrayType1"></Highlight>
 		</doc>
 		<doc title="2.数组泛型">
 			<p v-text="'规则 Array<类型>'"></p>
-			<highlight :code="arrayType2"></highlight>
+			<Highlight :code="arrayType2"></Highlight>
 		</doc>
 		<doc title="3.用接口表示数组">
 			<p>一般用来描述类数组</p>
-			<highlight :code="arrayType3"></highlight>
+			<Highlight :code="arrayType3"></Highlight>
 		</doc>
 		<doc title="4.多维数组">
-			<highlight :code="arrayType4"></highlight>
+			<Highlight :code="arrayType4"></Highlight>
 		</doc>
 		<doc title="5.arguments类数组">
-			<highlight :code="arrayType5"></highlight>
+			<Highlight :code="arrayType5"></Highlight>
 		</doc>
 		<doc title="6.any 在数组中的应用">
 			<p>一个常见的例子数组中可以存在任意类型</p>
-			<highlight :code="arrayType6"></highlight>
+			<Highlight :code="arrayType6"></Highlight>
 		</doc>
 	</el-row>
 </template>

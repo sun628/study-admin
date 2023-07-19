@@ -50,7 +50,7 @@
 				<mv-table :data="tableData" stripe style="width: 100%" size="large">
 					<el-table-column prop="label" label="技术栈">
 						<template #default="{ row }">
-							<div :class="{ 'highlight-keywords': isKeyword(row.label) }" @click="handleClickLink(row.label)">
+							<div :class="{ 'Highlight-keywords': isKeyword(row.label) }" @click="handleClickLink(row.label)">
 								<el-link type="primary">{{ row.label }}</el-link>
 							</div>
 						</template>
@@ -134,7 +134,7 @@ const tableData = ref([
 		link: 'https://www.electronjs.org/',
 	},
 	{
-		label: 'highlight.js',
+		label: 'Highlight.js',
 		link: 'https://highlightjs.org/',
 	},
 	{

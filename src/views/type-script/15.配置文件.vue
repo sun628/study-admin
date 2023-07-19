@@ -1,15 +1,18 @@
 <template>
 	<el-card>
 		<doc title="配置文件">
-			<p>
-				tsconfig.json 文件是 TypeScript 项目的配置文件。它告诉 TypeScript 编译器应该如何转换 TypeScript
-				代码到JavaScript，以及编译器应该包含哪些源代码文件，或者在哪里查找这些文件。
-			</p>
+			<p>tsconfig.json 文件是 TypeScript 项目的配置文件。(这个文件是通过tsc --init命令生成的)</p>
+			<p>它告诉 TypeScript 编译器应该如何转换 TypeScript 代码到JavaScript，以及编译器应该包含哪些源代码文件，或者在哪里查找这些文件。</p>
 			<mv-table :data="tableData" row-key="name" border default-expand-all>
-				<el-table-column prop="name" class="highlight-words" label="选项" />
+				<el-table-column label="常用配置项">
+					<template #default="{ row }">
+						<span class="Highlight-words">{{ row.name }}</span>
+					</template>
+				</el-table-column>
 				<el-table-column prop="description" label="说明" />
 			</mv-table>
-			<highlight :code="configCode" />
+			<h2 class="mt-6">常用配置项</h2>
+			<Highlight :code="configCode" />
 		</doc>
 	</el-card>
 </template>
@@ -17,12 +20,8 @@
 import mvTable from '@/components/mv-table/index.vue';
 const tableData = ref([
 	{
-		name: 'files',
-		description: '包含一个文件列表，这些文件将被编译。每个文件路径相对于包含tsconfig.json的文件夹。',
-	},
-	{
 		name: 'include',
-		description: '一个文件的匹配模式列表，与 “exclude” 一起工作。',
+		description: '一个字符串或字符串数组，指定要包含在编译中的文件或目录。',
 	},
 	{
 		name: 'exclude',
@@ -34,28 +33,40 @@ const tableData = ref([
 		description: '这是告诉 TypeScript 编译器如何编译 .ts 文件的选项。',
 		children: [
 			{
-				name: 'include',
-				description: '',
+				name: 'target',
+				description: '指定编译js 的版本例如es5 、es6',
 			},
 			{
-				name: 'include',
-				description: '',
+				name: 'allowJS',
+				description: '是否允许编译js文件',
 			},
 			{
-				name: 'include',
-				description: '',
+				name: 'removeComments',
+				description: '是否在编译过程中删除文件中的注释',
 			},
 			{
-				name: 'include',
-				description: '',
+				name: 'rootDir',
+				description: '编译文件的目录',
 			},
 			{
-				name: 'include',
-				description: '',
+				name: 'outDir',
+				description: '输出的目录',
 			},
 			{
-				name: 'include',
-				description: '',
+				name: 'paths',
+				description: '配置模块的路径映射。可以通过使用键值对的形式来指定模块名和对应的路径。',
+			},
+			{
+				name: 'sourceMap',
+				description: '生成对应的源映射文件，以方便在调试过程中跟踪 TypeScript 源代码',
+			},
+			{
+				name: 'noEmit',
+				description: '将 TypeScript 编译器设置为仅执行类型检查，而不生成编译输出文件',
+			},
+			{
+				name: 'strict',
+				description: '启用严格的类型检查',
 			},
 		],
 	},
@@ -68,7 +79,8 @@ const configCode = `"compilerOptions": {
   "target": "ES5", // 目标语言的版本
   "module": "CommonJS", // 生成代码的模板标准
   "outFile": "./app.js", // 将多个相互依赖的文件生成一个文件，可以用在AMD模块中，即开启时应设置"module": "AMD",
-  "lib": ["DOM", "ES2015", "ScriptHost", "ES2019.Array"], // TS需要引用的库，即声明文件，es5 默认引用dom、es5、scripthost,如需要使用es的高级版本特性，通常都需要配置，如es8的数组新特性需要引入"ES2019.Array",
+  // TS需要引用的库，即声明文件，es5 默认引用dom、es5、scripthost,如需要使用es的高级版本特性，通常都需要配置，如es8的数组新特性需要引入"ES2019.Array",
+  "lib": ["DOM", "ES2015", "ScriptHost", "ES2019.Array"],
   "allowJS": true, // 允许编译器编译JS，JSX文件
   "checkJs": true, // 允许在JS文件中报错，通常与allowJS一起使用
   "outDir": "./dist", // 指定输出目录

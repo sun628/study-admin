@@ -1,9 +1,9 @@
 <template>
 	<el-row>
 		<doc title="父组件" class="flex-1">
-			<highlight :code="refCode" />
+			<Highlight :code="refCode" />
 			<el-button type="primary" class="mb-2" @click="openChildDialog">点击打开子组件的弹窗</el-button>
-			<highlight :code="refCode1" />
+			<Highlight :code="refCode1" />
 		</doc>
 		<el-divider>
 			<el-icon><star-filled /></el-icon>

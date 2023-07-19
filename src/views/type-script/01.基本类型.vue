@@ -1,33 +1,33 @@
 <template>
 	<el-row>
 		<doc title="基础类型：">
-			<highlight :code="baseType"></highlight>
+			<Highlight :code="baseType"></Highlight>
 		</doc>
 		<doc title="1.字符串类型：">
 			<p>字符串是使用string定义的;</p>
-			<highlight :code="stringType"></highlight>
+			<Highlight :code="stringType"></Highlight>
 		</doc>
 		<doc title="2.数字类型：">
 			<p>支持十六进制、十进制、八进制和二进制；</p>
-			<highlight :code="numberType"></highlight>
+			<Highlight :code="numberType"></Highlight>
 		</doc>
 		<doc title="3.布尔类型：">
 			<font color="red">注意，使用构造函数 Boolean 创造的对象不是布尔值：</font>
-			<highlight :code="booleanType"></highlight>
+			<Highlight :code="booleanType"></Highlight>
 		</doc>
 		<doc title="4.空值类型：">
 			<p>JavaScript 没有空值（Void）的概念，在 TypeScript 中，可以用 void 表示没有任何返回值的函数</p>
-			<highlight :code="voidType"></highlight>
+			<Highlight :code="voidType"></Highlight>
 			<p>void 类型的用法，主要是用在我们不希望调用者关心函数返回值的情况下，比如通常的异步回调函数</p>
 			<p>void也可以定义undefined 和 null类型</p>
-			<highlight :code="voidType2"></highlight>
+			<Highlight :code="voidType2"></Highlight>
 		</doc>
 		<doc title="5.Null和undefined类型：">
-			<highlight :code="nullOrUndefinedType"></highlight>
+			<Highlight :code="nullOrUndefinedType"></Highlight>
 			<font color="red">void 和 undefined 和 null 最大的区别</font>
 			<p>与 void 的区别是，undefined 和 null 是所有类型的子类型。也就是说 undefined 类型的变量，可以赋值给 string 类型的变量：</p>
-			<highlight :code="nullOrUndefinedType2"></highlight>
-			<highlight :code="nullOrUndefinedType3"></highlight>
+			<Highlight :code="nullOrUndefinedType2"></Highlight>
+			<Highlight :code="nullOrUndefinedType3"></Highlight>
 		</doc>
 	</el-row>
 </template>

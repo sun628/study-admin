@@ -8,16 +8,16 @@
 						如果你使用shallowRef来包装一个含有对象或数组的值的对象，那么你需要手动地为这些对象或数组创建响应式，并且当这些对象或数组发生变化时，你需要手动地通知依赖于此shallowRef的视图进行更新。
 					</p>
 				</div>
-				<highlight :code="shallowRefCode" />
+				<Highlight :code="shallowRefCode" />
 				<p class="tip">
 					TIP：<font>shallowRef()</font>
 					常常用于对大型数据结构的性能优化或是与外部的状态管理系统集成。但代价是，我们现在必须将所有深层级对象视为不可变的，并且只能通过替换整个根状态来触发更新：
 				</p>
-				<highlight :code="shallowRefCode1" />
+				<Highlight :code="shallowRefCode1" />
 			</doc>
 			<doc title="triggerRef">
 				<p class="tip">TIP：强制触发依赖于一个浅层 <font>ref</font> 的副作用，这通常在对浅引用的内部值进行深度变更后使用。</p>
-				<highlight :code="triggerRefCode" />
+				<Highlight :code="triggerRefCode" />
 				<h2>案例</h2>
 				<div class="text-xl font-bold">
 					<p>修改 <font>shallowRef()</font> 修饰的对象里的count值： {{ shallowObj.count }}</p>
@@ -28,7 +28,7 @@
 			<doc title="customRef">
 				<p class="tip">TIP：创建一个自定义的 <font>ref</font>，显式声明对其依赖追踪和更新触发的控制方式。</p>
 				<h3>类型</h3>
-				<highlight :code="customReftType" />
+				<Highlight :code="customReftType" />
 				<h3>详细信息</h3>
 				<div class="tip">
 					<p>
@@ -39,9 +39,9 @@
 				</div>
 				<h3>示例</h3>
 				<p class="tip">创建一个防抖 ref，即只在最近一次 set 调用后的一段固定间隔后再调用。</p>
-				<highlight :code="customRefCode" />
+				<Highlight :code="customRefCode" />
 				<p>在组件中使用：</p>
-				<highlight :code="customRefDemoCode" />
+				<Highlight :code="customRefDemoCode" />
 				<h3>案例---防抖</h3>
 				<div class="customRef-demo">
 					<p>{{ customRefText }}</p>
@@ -50,18 +50,18 @@
 			</doc>
 			<doc title="shallowReactive">
 				<p class="tip">只能对浅层的数据 如果是深层的数据只会改变值 不会改变视图。</p>
-				<highlight :code="shallowReactiveCode" />
+				<Highlight :code="shallowReactiveCode" />
 			</doc>
 			<doc title="shallowReadonly">
 				<p class="tip">仅对传入对象的第一层属性进行只读处理，其内部嵌套的对象和数组不是只读的。</p>
-				<highlight :code="shallowReadonlyCode" />
+				<Highlight :code="shallowReadonlyCode" />
 			</doc>
 			<doc title="toRaw">
 				<div class="tip">
 					<p>作用：将一个由reactive生成的响应式对象转为普通对象。</p>
 					<p>使用场景：用于读取响应式对象对应的普通对象，对这个普通对象的所有操作，不会引起页面更新。</p>
 				</div>
-				<highlight :code="toRawCode" />
+				<Highlight :code="toRawCode" />
 			</doc>
 			<doc title="markRaw">
 				<div class="tip">
@@ -72,7 +72,7 @@
 						<p>2.当渲染具有不可变数据源的大列表时，跳过响应式转换可以提高性能。</p>
 					</div>
 				</div>
-				<highlight :code="markRawCode" />
+				<Highlight :code="markRawCode" />
 			</doc>
 		</el-col>
 		<el-col :span="4" class="ml-10">

@@ -3,13 +3,13 @@
 		<el-col :span="16">
 			<doc title="isRef">
 				<div class="tip">判断一个值是不是ref响应式对象</div>
-				<highlight :code="isRefCode" />
+				<Highlight :code="isRefCode" />
 			</doc>
 			<doc title="unref">
 				<div class="tip">
 					TIP:如果参数是 ref，则返回内部值，否则返回参数本身。这是 <font>val = isRef(val) ? val.value : val</font> 计算的一个语法糖。
 				</div>
-				<highlight :code="unrefCode" />
+				<Highlight :code="unrefCode" />
 			</doc>
 			<doc title="toRef">
 				<div class="tip">
@@ -17,14 +17,14 @@
 					<p>也可以基于响应式对象上的一个属性，创建一个对应的 ref。这样创建的 ref 与其源属性保持同步：改变源属性的值将更新 ref 的值，反之亦然。</p>
 				</div>
 				<h3>规范化签名 (3.3+)：</h3>
-				<highlight :code="toRefCode" />
+				<Highlight :code="toRefCode" />
 				<h3>对象属性签名：</h3>
-				<highlight :code="toRefCode1" />
+				<Highlight :code="toRefCode1" />
 				<div class="tip">
 					<p>TIP:如果是ref 对象直接返回 否则 调用 ObjectRefImpl 创建一个类ref 对象;</p>
 					<p>而类ref 对象只是做了值的改变 并未处理 收集依赖 和 触发依赖的过程 所以 普通对象无法更新视图。</p>
 				</div>
-				<highlight :code="toRefImpl" />
+				<Highlight :code="toRefImpl" />
 			</doc>
 			<doc title="toRefs">
 				<p class="tip">
@@ -32,15 +32,15 @@
 					<font>toRef()</font> 创建的。
 				</p>
 				<h3>示例</h3>
-				<highlight :code="toRefsCode" />
+				<Highlight :code="toRefsCode" />
 				<p class="tip">
 					TIP:当从组合式函数中返回响应式对象时，toRefs 相当有用。使用它，组件可以 <font>解构/展开</font> 返回的对象而不会失去<font>响应性</font>;
 				</p>
-				<highlight :code="toRefsCode1" />
+				<Highlight :code="toRefsCode1" />
 				<p class="tip">toRefs 在调用时只会为源对象上可以枚举的属性创建 ref。如果要为可能还不存在的属性创建 ref，请改用 toRef</p>
 				<h3>源码解析</h3>
 				<p class="tip">TIP:其实就是把reactive 对象的每一个属性都变成了ref 对象循环 调用了<font>toRef</font></p>
-				<highlight :code="toRefsImpl" />
+				<Highlight :code="toRefsImpl" />
 			</doc>
 			<doc title="isProxy">
 				<p class="tip">

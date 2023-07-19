@@ -6,14 +6,14 @@
 			<el-tag type="danger">已从项目中移除,之前是因为想放到桌面上,但是发现体积挺大的，有点多余……</el-tag>
 		</doc>
 		<doc title="1. 初始化vite项目">
-			<highlight :code="code1"></highlight>
+			<Highlight :code="code1"></Highlight>
 		</doc>
 		<doc title="2. 安装electron">
-			<highlight :code="code2"></highlight>
+			<Highlight :code="code2"></Highlight>
 		</doc>
 		<doc title="3. 修改配置文件">
 			<p>vite.config.ts</p>
-			<highlight :code="code3"></highlight>
+			<Highlight :code="code3"></Highlight>
 			<h2>package.json</h2>
 			<p>删除<font color="red">"type": "module"</font></p>
 			<p>新增<font color="red">"main": "dist-electron/index.js"</font></p>
@@ -21,23 +21,23 @@
 		<doc title="4. 编写electron文件">
 			<p>在根目录新建electron文件</p>
 			<el-image :src="image"></el-image>
-			<highlight :code="code4"></highlight>
+			<Highlight :code="code4"></Highlight>
 		</doc>
 		<doc title="5. npm run dev 运行"></doc>
 		<doc title="项目打包">
 			<p>
 				<font><h2>安装</h2></font>
 			</p>
-			<highlight :code="code5"></highlight>
+			<Highlight :code="code5"></Highlight>
 			<p>
 				<font><h2>修改package.json</h2></font>
 			</p>
-			<highlight :code="code6"></highlight>
+			<Highlight :code="code6"></Highlight>
 			<p>
 				<font><h2>执行命令</h2></font>
 			</p>
 			<p>package.json新增命令 "build:electron": "rimraf dist && vue-tsc && vite build&& electron-builder"</p>
-			<highlight :code="code7"></highlight>
+			<Highlight :code="code7"></Highlight>
 		</doc>
 	</el-card>
 </template>

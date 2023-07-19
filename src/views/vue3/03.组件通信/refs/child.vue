@@ -1,7 +1,7 @@
 <template>
 	<doc title="子组件">
 		<p class="tip">TIP:默认情况下，setup 组件是关闭的，通过模板 ref 获取组件的公共实例。如果需要公开，需要通过defineExpose API 公开。</p>
-		<highlight :code="childRefCode" />
+		<Highlight :code="childRefCode" />
 	</doc>
 	<el-dialog v-model="dialogVisible" title="我是子组件的弹窗" width="30%" center>
 		<span> It should be noted that the content will not be aligned in center by default </span>

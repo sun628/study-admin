@@ -4,19 +4,19 @@
 			<p>
 				<font color="red"><span v-text="'语法：值 as 类型或<类型>值  value as string  <string>value'"></span></font>
 			</p>
-			<highlight :code="assertType1"></highlight>
-			<highlight :code="assertType2"></highlight>
+			<Highlight :code="assertType1"></Highlight>
+			<Highlight :code="assertType2"></Highlight>
 			<p>需要注意的是，类型断言只能够「欺骗」TypeScript 编译器，无法避免运行时的错误，反而滥用类型断言可能会导致运行时错误</p>
 		</doc>
 		<doc title="2.使用any临时断言">
-			<highlight :code="assertType3"></highlight>
+			<Highlight :code="assertType3"></Highlight>
 		</doc>
 		<doc title="2.as const">
-			<highlight :code="assertType4"></highlight>
+			<Highlight :code="assertType4"></Highlight>
 		</doc>
 		<doc title="3.类型断言是不具影响力的">
 			<p>在下面的例子中，将 something 断言为 boolean 虽然可以通过编译，但是并没有什么用 并不会影响结果, 因为编译过程中会删除类型断言</p>
-			<highlight :code="assertType5"></highlight>
+			<Highlight :code="assertType5"></Highlight>
 		</doc>
 	</el-row>
 </template>

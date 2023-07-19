@@ -5,7 +5,7 @@
 	"description": "暖阳的后台管理",
 	"author": "暖阳",
 	"scripts": {
-		"dev": "vite --host",
+		"dev": "vite",
 		"build": "vue-tsc && vite build",
 		"report": "rimraf dist && vite build",
 		"preview": "vite preview",

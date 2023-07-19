@@ -1,7 +1,7 @@
 <template>
 	<el-card>
 		<doc title="文件下载">
-			<highlight :code="DownLoadCode" />
+			<Highlight :code="DownLoadCode" />
 		</doc>
 	</el-card>
 </template>

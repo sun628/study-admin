@@ -9,7 +9,7 @@
 				<slot :name="name" v-bind="slotData || {}"></slot>
 			</template>
 		</doc>
-		<highlight :code="code" />
+		<Highlight :code="code" />
 	</div>
 </template>
 <script setup lang="ts">

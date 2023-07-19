@@ -1,25 +1,25 @@
 <template>
 	<el-row>
 		<doc title="1.函数的类型">
-			<highlight :code="arraryType1"></highlight>
+			<Highlight :code="arraryType1"></Highlight>
 		</doc>
 		<doc title="2.函数的可选参数?">
-			<highlight :code="arraryType2"></highlight>
+			<Highlight :code="arraryType2"></Highlight>
 		</doc>
 		<doc title="3.函数参数的默认值">
-			<highlight :code="arraryType3"></highlight>
+			<Highlight :code="arraryType3"></Highlight>
 		</doc>
 		<doc title="4.接口定义函数">
-			<highlight :code="arraryType4"></highlight>
+			<Highlight :code="arraryType4"></Highlight>
 		</doc>
 		<doc title="5.定义剩余参数">
-			<highlight :code="arraryType5"></highlight>
+			<Highlight :code="arraryType5"></Highlight>
 		</doc>
 		<doc title="5.函数重载">
 			<p>重载是方法名字相同，而参数不同，返回类型可以相同也可以不同。</p>
 			<p>如果参数类型不同，则参数类型应设置为 any。</p>
 			<p>参数数量不同你可以将不同的参数设置为可选。</p>
-			<highlight :code="arraryType6"></highlight>
+			<Highlight :code="arraryType6"></Highlight>
 		</doc>
 	</el-row>
 </template>

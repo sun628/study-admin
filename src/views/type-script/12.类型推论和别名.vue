@@ -2,23 +2,23 @@
 	<el-card>
 		<doc title="1.什么是类型推论">
 			<p>TypeScript 会在没有明确的指定类型的时候推测出一个类型，这就是类型推论</p>
-			<highlight :code="inferCode"></highlight>
+			<Highlight :code="inferCode"></Highlight>
 			<p>如果你声明变量没有定义类型也没有赋值这时候TS会推断成any类型可以进行任何操作</p>
-			<highlight :code="inferCode2"></highlight>
+			<Highlight :code="inferCode2"></Highlight>
 		</doc>
 		<doc title="2.类型别名">
 			<p>type 关键字（可以给一个类型定义一个名字）多用于复合类型</p>
 			<p>定义类型别名</p>
-			<highlight :code="typeCode"></highlight>
+			<Highlight :code="typeCode"></Highlight>
 			<p>定义函数别名</p>
-			<highlight :code="FunctionCode"></highlight>
+			<Highlight :code="FunctionCode"></Highlight>
 			<p>定义联合类型别名</p>
-			<highlight :code="UnionCode"></highlight>
+			<Highlight :code="UnionCode"></Highlight>
 			<p>定义值的别名</p>
-			<highlight :code="ValueCode"></highlight>
+			<Highlight :code="ValueCode"></Highlight>
 			<p class="font-bold">type高级用法</p>
 			<p>左边的值会作为右边值的子类型遵循图中上下的包含关系</p>
-			<highlight :code="typeCode2"></highlight>
+			<Highlight :code="typeCode2"></Highlight>
 		</doc>
 		<doc title="type和interface的区别☆☆☆">
 			<div class="tip">
@@ -31,7 +31,7 @@
 				<p>2.type 可以定义 联合类型 和 可以使用一些操作符 interface不行（不能直接在接口上定义联合类型，只能通过属性定义联合类型）</p>
 				<p>3.interface 遇到重名的会合并 type 不行</p>
 			</div>
-			<highlight :code="interfaceCode" :auto="false"></highlight>
+			<Highlight :code="interfaceCode" :auto="false"></Highlight>
 		</doc>
 	</el-card>
 </template>

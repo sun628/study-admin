@@ -13,33 +13,33 @@
 				</doc>
 				<doc title="二、泛型用法" link="泛型用法">
 					<h2 link="2.1">2.1 在函数中使用泛型</h2>
-					<p>使用方式类似于<em class="highlight-keywords">函数传参</em>，传什么数据类型，T 就表示什么数据类型， 使用表示，T 也可以换成任意字符串。</p>
-					<highlight :code="fnCode" />
+					<p>使用方式类似于<em class="Highlight-keywords">函数传参</em>，传什么数据类型，T 就表示什么数据类型， 使用表示，T 也可以换成任意字符串。</p>
+					<Highlight :code="fnCode" />
 					<h2>2.2 在接口中使用泛型</h2>
-					<highlight :code="interfaceCode" />
+					<Highlight :code="interfaceCode" />
 					<h3>2.3 在类中使用泛型</h3>
-					<highlight :code="classCode" />
+					<Highlight :code="classCode" />
 				</doc>
 				<doc title="三、泛型约束" link="泛型约束">
 					<h2>案例1</h2>
 					<p class="tip">1.我们期望在一个泛型的变量上面，获取其length参数，但是，有的数据类型是没有length属性的</p>
-					<highlight :code="constraintCode" />
+					<Highlight :code="constraintCode" />
 					<p class="tip">所以，我们就得对使用的泛型进行约束，我们约束其为具有length属性的类型，这里我们会用到interface,代码如下</p>
-					<highlight :code="constraintCode1" />
+					<Highlight :code="constraintCode1" />
 					<h2>案例2</h2>
-					<highlight :code="constraintCode2" />
+					<Highlight :code="constraintCode2" />
 					<h2>案例3：使用keyof 约束对象</h2>
 					<p>
 						首先定义了T类型并使用extends关键字继承object类型的子类型，然后使用keyof操作符获取T类型的所有键，它的返回 类型是联合
 						类型，最后利用extends关键字约束 K类型必须为keyof T联合类型的子类型。
 					</p>
-					<highlight :code="constraintCode3" />
+					<Highlight :code="constraintCode3" />
 					<h2>案例4：泛型类</h2>
 					<p class="tip">声明方法跟函数类似名称后面定义&lt;类型&gt;,使用的时候确定类型new Sub &lt;number&gt;()</p>
-					<highlight :code="constraintCode4" />
+					<Highlight :code="constraintCode4" />
 					<h3>案例5：数组泛型</h3>
 					<p class="tip">我们可以使用数组泛型来定义数组的类型</p>
-					<highlight :code="constraintCode5" />
+					<Highlight :code="constraintCode5" />
 				</doc>
 			</el-card>
 		</el-col>

@@ -1,13 +1,13 @@
 <template>
 	<el-row>
 		<doc title="联合类型">
-			<highlight :code="unionType1"></highlight>
+			<Highlight :code="unionType1"></Highlight>
 			<p>函数使用联合类型</p>
-			<highlight :code="unionType2"></highlight>
+			<Highlight :code="unionType2"></Highlight>
 		</doc>
 		<doc title="交叉类型">
 			<p>多种类型的集合，联合对象将具有所联合类型的所有成员</p>
-			<highlight :code="crossType1"></highlight>
+			<Highlight :code="crossType1"></Highlight>
 		</doc>
 	</el-row>
 </template>

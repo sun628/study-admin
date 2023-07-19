@@ -1,7 +1,7 @@
 <template>
 	<el-card>
 		<doc title="使用ECharts(添加响应式)">
-			<highlight :code="EChartsCode" />
+			<Highlight :code="EChartsCode" />
 		</doc>
 	</el-card>
 </template>

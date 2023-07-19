@@ -1,6 +1,6 @@
 <template>
 	<el-card>
-		<highlight :code="mapCode" :auto="false" />
+		<Highlight :code="mapCode" :auto="false" />
 	</el-card>
 </template>
 <script setup lang="ts">
