@@ -5,8 +5,7 @@
 				<el-card class="w-full h-full">
 					<template #header>
 						<div class="card-header">
-							<span>Card name</span>
-							<el-button class="button" text>Operation button🐞 🍏</el-button>
+							<span>🍏 更新日志</span>
 						</div>
 					</template>
 					<el-timeline>
@@ -26,7 +25,7 @@
 				</el-card>
 			</el-col>
 			<el-col :span="12">
-				<el-card class="box-card">
+				<el-card class="box-card h-full">
 					<el-descriptions title="介绍" size="large" border :column="2">
 						<el-descriptions-item label="gitee地址">
 							<el-link type="primary" :href="gitee_url" target="_blank">{{ gitee_url }}</el-link>

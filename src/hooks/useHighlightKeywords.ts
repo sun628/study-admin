@@ -53,7 +53,7 @@ export const useHighlightKeywords = (DocRef: Ref<HTMLElement | null>, callback: 
 	 */
 	const highlightKeywords = (el: HTMLElement | null) => {
 		if (!el) return;
-		const paragraphs: NodeListOf<HTMLElement> = el.querySelectorAll('p');
+		const paragraphs: NodeListOf<HTMLElement> = el.querySelectorAll('p,.highlight');
 		for (let i = 0; i < paragraphs.length; i++) {
 			const paragraph = paragraphs[i];
 			const text = paragraph.innerHTML;
