@@ -21,12 +21,12 @@ import mvTable from '@/components/mv-table/index.vue';
 const tableData = ref([
 	{
 		name: 'include',
-		description: '一个字符串或字符串数组，指定要包含在编译中的文件或目录。',
+		description: ' 在未指定 file 配置下默认为 **，表示 tsc 解析的目录为当前 tsconfig.json 所在的项目文件夹。。',
 	},
 	{
 		name: 'exclude',
 		description:
-			'一个排除的文件/文件夹列表，它用于描述编译器应该忽略的文件或目录。默认情况下，会排除 node_modules、bower_components、jspm_packages 目录和tsconfig.json文件的同级并以下的所有 JavaScript 文件（通过.outDir或rootDir指定）。',
+			'排除的文件/文件夹列表，它用于描述编译器应该忽略的文件或目录。默认情况下，会排除 node_modules、bower_components、jspm_packages 目录和tsconfig.json文件的同级并以下的所有 JavaScript 文件（通过.outDir或rootDir指定）。',
 	},
 	{
 		name: 'compilerOptions',

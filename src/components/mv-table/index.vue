@@ -9,12 +9,11 @@
 	</el-table>
 </template>
 <script setup lang="ts">
-import type { ElTable } from 'element-plus';
 export interface TableProps {
-	data: object[]; // table的数据
+	data: Array<object>; // table的数据
 }
 const props = withDefaults(defineProps<TableProps>(), {
-	data: () => [],
+	data: (): Array<object> => [],
 });
 const { data } = toRefs(props);
 const ElTabeRef = ref();
