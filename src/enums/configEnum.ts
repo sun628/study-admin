@@ -3,11 +3,11 @@
  */
 export enum MatchMenu {
 	home = 0,
-	electron,
-	typeScript,
 	vue3,
+	typeScript,
 	vue2,
 	hooks,
 	map,
+	electron,
 	nodejs,
 }

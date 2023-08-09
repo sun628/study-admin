@@ -37,12 +37,10 @@ const pages: Array<Page> = [
 //递归路由
 const recursionRouter = (routers: Array<Page>, path = '/vue3') => {
 	const arr: Array<Page> = routers.map((item, index) => {
-		const newIndex = (index + 1).toString().padStart(2, '0');
-		const newPath = `${path}/${newIndex}`;
-		const newName = '/vue3/' + item.name;
+		const newPath = `${path}/${item.name}`;
 		return {
 			path: newPath,
-			name: newName,
+			name: newPath,
 			redirect: item.redirect,
 			component: item.component,
 			children: item.children ? recursionRouter(item.children, newPath) : [],

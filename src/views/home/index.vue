@@ -199,4 +199,70 @@ function handleClickLink(label: string) {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.upload-table {
+	width: 100%;
+	border: 1px solid #000;
+	.left {
+		width: 120px;
+		text-align: center;
+		height: 60px;
+		border-bottom: 1px solid #000;
+		border-right: 1px solid #000;
+	}
+	.introduction {
+		width: 100%;
+		height: 120px;
+		display: flex;
+		.left {
+			height: 120px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.right {
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+			.cell {
+				border-bottom: 1px solid #000;
+				padding-left: 10px;
+				width: 100%;
+				height: 40px;
+				line-height: 40px;
+			}
+		}
+	}
+	.browse {
+		display: flex;
+		height: 60px;
+		line-height: 60px;
+		.left {
+			height: 60px;
+		}
+		.right {
+			flex: 1;
+			.cell {
+				padding-left: 10px;
+				display: flex;
+				align-items: center;
+				height: 100%;
+				border-bottom: 1px solid #000;
+				.el-input {
+					width: 240px;
+					margin-right: 20px;
+				}
+			}
+		}
+	}
+	.upload {
+		display: flex;
+		.right {
+			padding-left: 20px;
+			display: flex;
+			align-items: center;
+		}
+	}
+}
+</style>
