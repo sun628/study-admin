@@ -10,10 +10,9 @@
 import { GlobalStore } from '@/store';
 import { MenuStore } from '@/store/modules/menu';
 import { useTheme } from '@/hooks/useTheme';
-import zhCn from 'element-plus/lib/locale/lang/zh-cn';
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
 import { useRouter } from 'vue-router';
 import { computed, watch } from 'vue';
-import { RouteRecordRaw } from 'vue-router';
 // 配置全局组件大小 (small/default(medium)/large)
 const assemblySize = computed(() => globalStore.assemblySize);
 const globalStore = GlobalStore();
@@ -39,6 +38,7 @@ watch(
 	() => routes,
 	(routers) => {
 		const menuList = filterArray(routers);
+		console.log('menuList', menuList);
 		menuStore.setMenuList(menuList);
 	},
 	{ immediate: true }
