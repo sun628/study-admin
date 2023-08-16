@@ -4,7 +4,6 @@ import { MatchMenu } from '@/enums/configEnum';
 interface Page {
 	name: string;
 	component?: Component;
-	redirect?: string;
 	children?: Array<Page>;
 	meta?: {
 		keepAlive: boolean;
@@ -21,7 +20,6 @@ const pages: Array<Page> = [
 	},
 	{
 		name: '响应式API',
-		redirect: '/vue3/02/01',
 		children: [
 			{ name: '核心', component: () => import('@/views/vue3/02.响应式API/核心/index.vue') },
 			{ name: '工具', component: () => import('@/views/vue3/02.响应式API/工具/index.vue') },
@@ -37,11 +35,12 @@ const pages: Array<Page> = [
 //递归路由
 const recursionRouter = (routers: Array<Page>, path = '/vue3') => {
 	const arr: Array<Page> = routers.map((item, index) => {
-		const newPath = `${path}/${item.name}`;
+		const newIndex = (index + 1).toString().padStart(2, '0');
+		const newPath = `${path}/${newIndex}`;
+		const newName = '/vue3/' + item.name;
 		return {
 			path: newPath,
-			name: newPath,
-			redirect: item.redirect,
+			name: newName,
 			component: item.component,
 			children: item.children ? recursionRouter(item.children, newPath) : [],
 			meta: item.meta || {
