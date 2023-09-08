@@ -9,9 +9,11 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"esModuleInterop": true,
+		"experimentalDecorators": true, // 启用实验性的ES装饰器
+		"emitDecoratorMetadata": true, // 为装饰器声明生成元数据
 		"lib": ["ESNext", "DOM"],
 		"skipLibCheck": true,
-		"noEmit": true,
+		"noEmit": true, //将 TypeScript 编译器设置为仅执行类型检查，而不生成编译输出文件
 		"allowJs": true,
 		"baseUrl": ".",
 		"paths": {
