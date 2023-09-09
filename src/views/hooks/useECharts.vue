@@ -6,7 +6,7 @@
 	</el-card>
 </template>
 <script setup lang="ts">
-const EChartsCode = `import { onMounted, onUnmounted, onDeactivated } from 'vue';
+const EChartsCode = `import { shallowRef, onMounted, onUnmounted, onDeactivated } from 'vue';
 import * as echarts from 'echarts';
 import { useDebounceFn } from '@vueuse/core';
 
@@ -17,35 +17,63 @@ import { useDebounceFn } from '@vueuse/core';
  * @returns {function} setOption 设置图表配置项
  * @example const {  setOption } = useECharts(myChart);
  * */
-export default function useECharts(myChart: Ref<HTMLElement>) {
-	let chartInstance: echarts.ECharts | null = null;
+ export default function useECharts(chartRef: Ref<HTMLElement>) {
+	const chartInstance = shallowRef<echarts.ECharts | null>(null);
 	const initChart = () => {
-		const chart = echarts.getInstanceByDom(myChart.value); // 获取已有实例
+		const chart = echarts.getInstanceByDom(chartRef.value); // 获取已有实例
 		if (chart) {
-			chartInstance = chart;
+			chartInstance.value = chart;
 		} else {
-			chartInstance = echarts.init(myChart.value); // 创建实例
+			chartInstance.value = echarts.init(chartRef.value); // 创建实例
 		}
 	};
 
-	const setOption = (options: echarts.EChartsOption): void => {
-		chartInstance?.setOption(options, true);
+	const setOption = (options: echarts.EChartsOption) => {
+		if (chartInstance.value) {
+			try {
+				chartInstance.value.setOption(options, true);
+			} catch (error) {
+				console.error('Error setting chart options:', error);
+			}
+		} else {
+			console.error('Error setting chart options: chartInstance.value is null');
+		}
 	};
 
-	// 防抖
+	// Debounced resize function
 	const resizeChart = useDebounceFn(() => {
-		chartInstance?.resize();
+		if (chartInstance.value) {
+			try {
+				chartInstance.value.resize();
+			} catch (error) {
+				console.error('Error resizing chart:', error);
+			}
+		} else {
+			console.error('Error resizing chart: chartInstance.value is null');
+		}
 	}, 500);
 
-	const onDestroy = () => {
-		window.removeEventListener('resize', resizeChart);
-		chartInstance?.dispose();
-		chartInstance = null; // 销毁实例
+	const addEventListeners = () => {
+		window.addEventListener('resize', resizeChart);
 	};
 
+	const removeEventListeners = () => {
+		window.removeEventListener('resize', resizeChart);
+	};
+
+	const onDestroy = () => {
+		removeEventListeners();
+
+		if (chartInstance.value) {
+			chartInstance.value.dispose();
+			chartInstance.value = null;
+		}
+	};
 	onMounted(() => {
-		initChart();
-		window.addEventListener('resize', resizeChart);
+		if (!chartInstance.value) {
+			initChart();
+		}
+		addEventListeners();
 	});
 
 	// 防止 echarts 页面 keepAlive 时，还在继续监听页面
@@ -58,7 +86,8 @@ export default function useECharts(myChart: Ref<HTMLElement>) {
 	});
 
 	return { chartInstance, setOption };
-}`;
+}
+`;
 </script>
 
 <style scoped lang="scss"></style>

@@ -38,37 +38,39 @@ let people3: Sex = { sex: 1 };
 const people = Object.assign(people1, people2, people3);`;
 
 const code2 = `class Jumpable {
-	jump() {
-		console.log('jump');
-	}
-}
+    jump() {
+      console.log('jump');
+    }
+  }
 
-class Duckable {
-	duck() {
-		console.log('duck');
-	}
-}
+  class Duckable {
+    duck() {
+      console.log('duck');
+    }
+  }
 
-class Sprite {
-	x = 0;
-	y = 0;
-}
+  class Sprite {
+    x = 0;
+    y = 0;
+  }
 
-// eslint-disable-next-line no-redeclare
-interface Sprite extends Jumpable, Duckable {}
-applyMixins(Sprite, [Jumpable, Duckable]);
+  // eslint-disable-next-line no-redeclare
+  interface Sprite extends Jumpable, Duckable {}
+  applyMixins(Sprite, [Jumpable, Duckable]);
 
-let player = new Sprite();
-player.jump();
-console.log(player.x, player.y);
+  let player = new Sprite();
+  player.jump();
+  console.log(player.x, player.y);
 
-function applyMixins(derivedCtor: any, constructors: any[]) {
-	constructors.forEach((baseCtor) => {
-		Object.getOwnPropertyNames(baseCtor.prototype).forEach((name) => {
-			Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name) || Object.create(null));
-		});
-	});
+  function applyMixins(derivedCtor: any, constructors: any[]) {
+    constructors.forEach((baseCtor) => {
+      Object.getOwnPropertyNames(baseCtor.prototype).forEach((name) => {
+        Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name) || Object.create(null));
+      });
+    });
 }`;
+const value = 11;
+log('message---------', value);
 </script>
 
 <style scoped lang="scss"></style>
