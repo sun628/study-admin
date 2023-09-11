@@ -10,12 +10,21 @@ import { ElMessage } from 'element-plus';
 export const useTheme = () => {
 	const globalStore = GlobalStore();
 	const themeConfig = computed(() => globalStore.themeConfig);
+	// 使用暗黑模式
+	const useDark = (isDark = false) => {
+		globalStore.setThemeConfig({ ...themeConfig.value, isDark });
+		if (isDark) {
+			document.documentElement.setAttribute('class', 'dark');
+		} else {
+			document.documentElement.setAttribute('class', '');
+		}
+	};
 
 	// 切换暗黑模式
 	const switchDark = () => {
-		const body = document.documentElement as HTMLElement;
-		if (themeConfig.value.isDark) body.setAttribute('class', 'dark');
-		else body.setAttribute('class', '');
+		const html = document.documentElement as HTMLElement;
+		if (themeConfig.value.isDark) html.setAttribute('class', 'dark');
+		else html.setAttribute('class', '');
 	};
 
 	// 修改主题颜色
@@ -52,6 +61,7 @@ export const useTheme = () => {
 	});
 
 	return {
+		useDark,
 		switchDark,
 		changePrimary,
 		changeGreyOrWeak,

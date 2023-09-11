@@ -35,6 +35,7 @@ const tsRouter = [
 			title: name,
 			key: name,
 			localSvgIcon: 'typescript',
+			transitionName: 'fade-transform',
 		},
 	},
 ];

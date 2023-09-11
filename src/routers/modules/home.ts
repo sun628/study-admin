@@ -21,6 +21,18 @@ const homeRouter: Array<RouteRecordRaw> = [
 					key: 'welcome',
 				},
 			},
+			{
+				path: '/home/introduction',
+				name: '介绍',
+				component: () => import('@/views/home/introduction.vue'),
+				meta: {
+					keepAlive: true,
+					requiresAuth: true,
+					title: 'introduction',
+					key: 'introduction',
+					transitionName: 'fade-transform',
+				},
+			},
 		],
 		meta: {
 			keepAlive: true,

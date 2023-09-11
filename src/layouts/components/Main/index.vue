@@ -2,8 +2,8 @@
 	<Tabs v-if="themeConfig.tabs" />
 	<el-main>
 		<router-view v-slot="{ Component, route }">
-			<transition appear name="fade-transform" mode="out-in">
-				<keep-alive v-if="isRouterRefresh" :include="cacheRouter">
+			<transition appear :name="(route.meta.transitionName as string)" mode="out-in">
+				<keep-alive v-if="isRouterRefresh" :include="cacheRouter" :max="10">
 					<component :is="Component" :key="route.path" />
 				</keep-alive>
 			</transition>
@@ -19,6 +19,7 @@ import { GlobalStore } from '@/store';
 import cacheRouter from '@/routers/cacheRouter';
 import Tabs from '@/layouts/components/Tabs/index.vue';
 import Footer from '@/layouts/components/Footer/index.vue';
+
 // 刷新当前页面
 const globalStore = GlobalStore();
 const themeConfig = computed(() => globalStore.themeConfig);

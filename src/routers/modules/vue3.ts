@@ -69,6 +69,7 @@ const vue3Router = [
 			title: name,
 			key: name,
 			localSvgIcon: 'vuejs',
+			transitionName: 'fade-transform',
 		},
 	},
 ];

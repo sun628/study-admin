@@ -1,182 +1,182 @@
 .login-container {
-  position: relative;
-  min-width: 550px;
-  height: 100%;
-  min-height: 500px;
-  background-color: #eeeeee;
-  background-image: url('@/assets/images/login_bg.svg');
-  background-position: 50%;
-  background-size: 100% 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .dark {
-    position: absolute;
-    top: 4.5%;
-    right: 3.2%;
-  }
-  .login-box {
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 96%;
-    height: 94%;
-    padding: 0 50px;
-    background-color: hsl(0deg 0% 100% / 80%);
-    border-radius: 10px;
-    flex-wrap: wrap;
-    .login-left {
-      width: 800px;
-      img {
-        width: 100%;
-        height: 100%;
-      }
-    }
-    .login-form {
-      width: 420px;
-      height: 420px;
-      border-radius: 10px;
-      box-shadow: 2px 3px 7px rgb(0 0 0 / 20%);
-      position: relative;
-      overflow: hidden;
-      .login-logo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 45px;
-        .login-icon {
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-        }
-        .logo-text {
-          padding: 0 0 0 25px;
-          margin: 0;
-          font-size: 42px;
-          font-weight: bold;
-          color: #34495e;
-          white-space: nowrap;
-        }
-      }
-      .el-form-item {
-        margin-bottom: 40px;
-      }
-      .login-btn {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        margin-top: 40px;
-        white-space: nowrap;
-        .el-button {
-          width: 185px;
-        }
-      }
-      .login-warp {
-        width: 100%;
-        height: 100%;
-        z-index: 11;
-        padding: 50px 40px 45px;
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
-      .login-warp-one,
-      .login-warp-two {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        &::before,
-        &::after {
-          content: '';
-          position: absolute;
-          z-index: 1;
-        }
-      }
-      .login-warp-one {
-        &::before {
-          filter: hue-rotate(0deg);
-          top: 0px;
-          left: 0;
-          width: 100%;
-          height: 3px;
-          background: linear-gradient(90deg, transparent, var(--el-color-primary));
-          animation: loginLeft 3s linear infinite;
-        }
-        &::after {
-          filter: hue-rotate(60deg);
-          top: -100%;
-          right: 2px;
-          width: 3px;
-          height: 100%;
-          background: linear-gradient(180deg, transparent, var(--el-color-primary));
-          animation: loginTop 3s linear infinite;
-          animation-delay: 0.7s;
-        }
-      }
-      .login-warp-two {
-        &::before {
-          filter: hue-rotate(120deg);
-          bottom: 2px;
-          right: -100%;
-          width: 100%;
-          height: 3px;
-          background: linear-gradient(270deg, transparent, var(--el-color-primary));
-          animation: loginRight 3s linear infinite;
-          animation-delay: 1.4s;
-        }
-        &::after {
-          filter: hue-rotate(300deg);
-          bottom: -100%;
-          left: 0px;
-          width: 3px;
-          height: 100%;
-          background: linear-gradient(360deg, transparent, var(--el-color-primary));
-          animation: loginBottom 3s linear infinite;
-          animation-delay: 2.1s;
-        }
-      }
-    }
-  }
+	position: relative;
+	min-width: 550px;
+	height: 100%;
+	min-height: 500px;
+	background-color: #eeeeee;
+	background-image: url('@/assets/images/login_bg.svg');
+	background-position: 50%;
+	background-size: 100% 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	.dark {
+		position: absolute;
+		top: 4.5%;
+		right: 3.2%;
+	}
+	.login-box {
+		box-sizing: border-box;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		width: 96%;
+		height: 94%;
+		padding: 0 50px;
+		background-color: hsl(0deg 0% 100% / 80%);
+		border-radius: 10px;
+		flex-wrap: wrap;
+		.login-left {
+			width: 800px;
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.login-form {
+			width: 420px;
+			height: 420px;
+			border-radius: 10px;
+			box-shadow: 2px 3px 7px rgb(0 0 0 / 20%);
+			position: relative;
+			overflow: hidden;
+			.login-logo {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-bottom: 45px;
+				.login-icon {
+					width: 60px;
+					height: 60px;
+					border-radius: 50%;
+				}
+				.logo-text {
+					padding: 0 0 0 25px;
+					margin: 0;
+					font-size: 42px;
+					font-weight: bold;
+					color: #34495e;
+					white-space: nowrap;
+				}
+			}
+			.el-form-item {
+				margin-bottom: 40px;
+			}
+			.login-btn {
+				display: flex;
+				justify-content: space-between;
+				width: 100%;
+				margin-top: 40px;
+				white-space: nowrap;
+				.el-button {
+					width: 185px;
+				}
+			}
+			.login-warp {
+				width: 100%;
+				height: 100%;
+				z-index: 11;
+				padding: 50px 40px 45px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.login-warp-one,
+			.login-warp-two {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				&::before,
+				&::after {
+					content: '';
+					position: absolute;
+					z-index: 1;
+				}
+			}
+			.login-warp-one {
+				&::before {
+					filter: hue-rotate(0deg);
+					top: 0px;
+					left: 0;
+					width: 100%;
+					height: 3px;
+					background: linear-gradient(90deg, transparent, var(--el-color-primary));
+					animation: loginLeft 3s linear infinite;
+				}
+				&::after {
+					filter: hue-rotate(60deg);
+					top: -100%;
+					right: 2px;
+					width: 3px;
+					height: 100%;
+					background: linear-gradient(180deg, transparent, var(--el-color-primary));
+					animation: loginTop 3s linear infinite;
+					animation-delay: 0.7s;
+				}
+			}
+			.login-warp-two {
+				&::before {
+					filter: hue-rotate(120deg);
+					bottom: 2px;
+					right: -100%;
+					width: 100%;
+					height: 3px;
+					background: linear-gradient(270deg, transparent, var(--el-color-primary));
+					animation: loginRight 3s linear infinite;
+					animation-delay: 1.4s;
+				}
+				&::after {
+					filter: hue-rotate(300deg);
+					bottom: -100%;
+					left: 0px;
+					width: 3px;
+					height: 100%;
+					background: linear-gradient(360deg, transparent, var(--el-color-primary));
+					animation: loginBottom 3s linear infinite;
+					animation-delay: 2.1s;
+				}
+			}
+		}
+	}
 }
 
 /* 登录页动画
 ------------------------------- */
 @keyframes loginLeft {
-  0% {
-    left: -100%;
-  }
-  50%,
-  100% {
-    left: 100%;
-  }
+	0% {
+		left: -100%;
+	}
+	50%,
+	100% {
+		left: 100%;
+	}
 }
 @keyframes loginTop {
-  0% {
-    top: -100%;
-  }
-  50%,
-  100% {
-    top: 100%;
-  }
+	0% {
+		top: -100%;
+	}
+	50%,
+	100% {
+		top: 100%;
+	}
 }
 @keyframes loginRight {
-  0% {
-    right: -100%;
-  }
-  50%,
-  100% {
-    right: 100%;
-  }
+	0% {
+		right: -100%;
+	}
+	50%,
+	100% {
+		right: 100%;
+	}
 }
 @keyframes loginBottom {
-  0% {
-    bottom: -100%;
-  }
-  50%,
-  100% {
-    bottom: 100%;
-  }
+	0% {
+		bottom: -100%;
+	}
+	50%,
+	100% {
+		bottom: 100%;
+	}
 }
