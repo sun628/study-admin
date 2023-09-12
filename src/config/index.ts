@@ -5,6 +5,8 @@ export const HOME_URL = '/home/index';
 
 // * 默认主题颜色
 export const DEFAULT_PRIMARY = '#FF5C93';
+// 登录页地址（默认）
+export const LOGIN_URL = '/login';
 
 // * Tabs（白名单地址，不需要添加到 tabs 的路由地址）
 export const ROUTER_WHITE_LIST: string[] = ['/403', '/404', '/500', '/layout', '/login'];

@@ -36,7 +36,7 @@ export default defineConfig(({ command, mode }) => {
 					rewrite: (path) => path.replace(/^\/api/, ''),
 				},
 				'/music_api': {
-					target: 'https://music.163.com',
+					target: 'http://music.163.com/',
 					changeOrigin: true,
 					secure: false, // 如果是https接口，需要配置这个参数
 					rewrite: (path) => path.replace(/^\/music_api/, '/api'),

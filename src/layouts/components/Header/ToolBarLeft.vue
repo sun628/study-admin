@@ -7,11 +7,11 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { GlobalStore } from '@/store';
+import { useGlobalStore } from '@/store/modules/global';
 import CollapseIcon from './components/CollapseIcon.vue';
 import Breadcrumb from './components/Breadcrumb.vue';
 
-const globalStore = GlobalStore();
+const globalStore = useGlobalStore();
 const themeConfig = computed(() => globalStore.themeConfig);
 </script>
 

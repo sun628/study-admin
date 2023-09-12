@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { TabPaneProps } from 'element-plus';
 import { TabsState } from '../interface';
 import { HOME_URL, ROUTER_WHITE_LIST } from '@/config';
-import piniaPersistConfig from '../piniaPersist';
+import piniaPersistConfig from '@/config/piniaPersist';
 import router from '@/routers/index';
 
 // TabsStore

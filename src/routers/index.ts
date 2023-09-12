@@ -1,15 +1,15 @@
 import router from '@/routers/router';
 import NProgress from '@/config/nprogress';
 import { ROUTER_WHITE_LIST } from '@/config';
-import { GlobalStore } from '@/store';
+import { useUserStore } from '@/store/modules/user';
 import { AxiosCanceler } from '@/api/helper/axiosCancel';
-const globalStore = GlobalStore();
 const axiosCanceler = new AxiosCanceler();
 
 /**
  * @description 路由拦截 beforeEach
  * */
 router.beforeEach((to, from, next) => {
+	const userStore = useUserStore();
 	NProgress.start();
 	// 在跳转路由之前，清除所有的请求
 	axiosCanceler.removeAllPending();
@@ -25,7 +25,7 @@ router.beforeEach((to, from, next) => {
 	if (ROUTER_WHITE_LIST.includes(to.path)) return next();
 
 	// 判断是否有 Token，没有重定向到 login 页面
-	if (!globalStore.token) return next({ path: '/login', replace: true });
+	if (!userStore.token) return next({ path: '/login', replace: true });
 	next();
 });
 

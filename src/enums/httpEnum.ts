@@ -1,12 +1,11 @@
-// * 请求枚举配置
 /**
  * @description：请求配置
  */
 export enum ResultEnum {
 	SUCCESS = 200,
 	ERROR = 500,
-	OVERDUE = 599,
-	TIMEOUT = 10000,
+	OVERDUE = 401,
+	TIMEOUT = 30000,
 	TYPE = 'success',
 }
 
@@ -22,7 +21,7 @@ export enum RequestEnum {
 }
 
 /**
- * @description：常用的contentTyp类型
+ * @description：常用的 contentTyp 类型
  */
 export enum ContentTypeEnum {
 	// json

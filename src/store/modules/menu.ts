@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { MenuState } from '../interface';
-import piniaPersistConfig from '../piniaPersist';
+import piniaPersistConfig from '@/config/piniaPersist';
 
 // MenuStore
 export const MenuStore = defineStore({

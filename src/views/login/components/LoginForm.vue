@@ -26,14 +26,15 @@ import { ref, reactive, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { CircleClose, UserFilled } from '@element-plus/icons-vue';
 import { ElNotification } from 'element-plus';
-import { GlobalStore } from '@/store';
+import { useUserStore } from '@/store/modules/user';
+
 import { TabsStore } from '@/store/modules/tabs';
 import { getTimeState } from '@/utils/util';
 import { HOME_URL } from '@/config';
 import type { ElForm } from 'element-plus';
 import { onKeyStroke } from '@vueuse/core';
 
-const globalStore = GlobalStore();
+const userStore = useUserStore();
 const tabStore = TabsStore();
 
 // 定义 formRef（校验规则）
@@ -58,7 +59,7 @@ const login = (formEl: FormInstance | undefined) => {
 	if (!formEl) return;
 	formEl.validate(async (valid) => {
 		if (!valid) return;
-		globalStore.setToken('123456');
+		userStore.setToken('123456');
 		loading.value = true;
 		router.push({ path: HOME_URL });
 		setTimeout(() => {

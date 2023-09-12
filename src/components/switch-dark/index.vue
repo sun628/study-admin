@@ -12,10 +12,10 @@
 
 <script setup lang="ts" name="switchDark">
 import { computed } from 'vue';
-import { GlobalStore } from '@/store';
+import { useGlobalStore } from '@/store/modules/global';
 import { Sunny, Moon } from '@element-plus/icons-vue';
 import { useTheme } from '@/hooks/useTheme';
-const globalStore = GlobalStore();
+const globalStore = useGlobalStore();
 
 const { switchDark } = useTheme();
 

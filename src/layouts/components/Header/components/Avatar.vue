@@ -32,10 +32,10 @@ import InfoDialog from './InfoDialog.vue';
 import PasswordDialog from './PasswordDialog.vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import { useRouter } from 'vue-router';
-import { GlobalStore } from '@/store';
+import { useUserStore } from '@/store/modules/user';
 
 const router = useRouter();
-const globalStore = GlobalStore();
+const userStore = useUserStore();
 
 // 退出登录
 const logout = () => {
@@ -45,7 +45,7 @@ const logout = () => {
 		type: 'warning',
 	}).then(() => {
 		router.push({ name: 'login' });
-		globalStore.setToken('');
+		userStore.setToken('');
 		ElMessage({
 			type: 'success',
 			message: '退出登录成功！',

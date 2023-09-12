@@ -13,10 +13,10 @@
 
 <script setup lang="ts">
 import { reactive, computed } from 'vue';
-import { GlobalStore } from '@/store';
+import { useGlobalStore } from '@/store/modules/global';
 import { AssemblySizeProp } from '@/store/interface';
 
-const globalStore = GlobalStore();
+const globalStore = useGlobalStore();
 const assemblySize = computed(() => globalStore.assemblySize);
 
 const assemblySizeListCh = reactive<{ [key: string]: any }>({

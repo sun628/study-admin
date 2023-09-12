@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import { GlobalStore } from '@/store';
+import { useGlobalStore } from '@/store/modules/global';
 import { MenuStore } from '@/store/modules/menu';
 import { useTheme } from '@/hooks/useTheme';
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
@@ -15,7 +15,7 @@ import { useRouter } from 'vue-router';
 import { computed, watch } from 'vue';
 // 配置全局组件大小 (small/default(medium)/large)
 const assemblySize = computed(() => globalStore.assemblySize);
-const globalStore = GlobalStore();
+const globalStore = useGlobalStore();
 const menuStore = MenuStore();
 // 使用主题
 useTheme();
