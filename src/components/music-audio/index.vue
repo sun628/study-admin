@@ -2,8 +2,11 @@
 	<div class="lyrics-container">
 		<audio ref="AudioRef" class="hidden" :src="audioInfo.src" controls @timeupdate="handleTimeUpdate"></audio>
 		<div class="lyrics">
-			<div v-for="(line, index) in lyrics" :key="line.time" class="lyric-line" :class="{ highlight: currentIndex === index }">
-				{{ line.lyric }}
+			<div v-for="(item, index) in lyrics" :key="item.uid" class="lyric-line">
+				<p v-if="currentIndex === index" class="highlight" :style="gradBg" style="background-clip: text; -webkit-background-clip: text">
+					{{ item.lyric }}
+				</p>
+				<p v-else>{{ item.lyric }}</p>
 			</div>
 		</div>
 	</div>
@@ -22,7 +25,7 @@ const audioInfo = ref({
 const play = () => {
 	AudioRef.value?.play();
 };
-
+const gradBg = ref('background: linear-gradient(to right, #e60000,#fff 0%)');
 // 停止音乐
 const pause = () => {
 	AudioRef.value?.pause();
@@ -46,6 +49,11 @@ const handleTimeUpdate = (e: any) => {
 	for (let i = 0; i < lyrics.value.length; i++) {
 		if (currentTime >= lyrics.value[i].time && (!lyrics.value[i + 1] || currentTime < lyrics.value[i + 1].time)) {
 			currentIndex.value = i; // 更新当前播放歌词行的索引
+			const time = lyrics.value[i + 1].time - lyrics.value[i].time;
+			const cur_time = currentTime - lyrics.value[i].time;
+			const percent = (cur_time / time) * 100 + 10;
+			// gradBg.value = `background: linear-gradient(to right, red ${percent}%, #fff ${percent}%)`;
+			gradBg.value = `background: linear-gradient(to right, red, #fff ${percent}%)`;
 			break;
 		}
 	}
@@ -76,7 +84,6 @@ const formatMusicLyrics = (lyric?: string): IReturnLyric => {
 	for (let i = 0; i < lineLyric?.length; i++) {
 		if (lineLyric[i] === '') continue;
 		const time: number = formatLyricTime(lineLyric[i].match(regTime)[0]);
-
 		if (lineLyric[i].split(']')[1] !== '') {
 			lyricObjArr.push({
 				time: time,
@@ -116,21 +123,25 @@ defineExpose({
 
 <style scoped lang="scss">
 .lyrics-container {
-	width: auto;
 	height: 100%;
-	height: -webkit-fill-available;
 	overflow-y: auto;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
-	opacity: 0.8;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	&::-webkit-scrollbar-thumb {
+		visibility: hidden;
+	}
+	&:hover::-webkit-scrollbar-thumb {
+		visibility: visible;
+	}
 }
 
 .lyrics {
-	font-size: 20px;
 	text-align: center;
 	height: 100%;
+	min-width: 400px;
+	font-size: 16px;
 }
 
 .lyric-line {
@@ -138,9 +149,10 @@ defineExpose({
 }
 
 .highlight {
-	animation-play-state: paused; /* 暂停高亮行的滚动动画 */
 	font-weight: bold;
-	color: var(--el-color-primary);
+	font-size: 18px;
+	color: transparent;
+	// color: var(--el-color-primary);
 }
 
 // @keyframes scroll {

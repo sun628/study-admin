@@ -64,6 +64,9 @@ onBeforeUnmount(() => {
 	height: 100%;
 	user-select: none;
 	overflow: hidden;
+	.lyrics-container {
+		padding-right: 10px;
+	}
 	.title {
 		position: fixed;
 		top: 50%;

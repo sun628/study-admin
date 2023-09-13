@@ -1,12 +1,12 @@
 <template>
 	<div class="muisc-aduio">
-		<svg-icon name="music" :class="{ 'muisc-rotate': playMusic }" @click="rotate()"></svg-icon>
+		<svg-icon name="music" :class="{ 'muisc-rotate': playMusic }" @click="play()"></svg-icon>
 	</div>
 </template>
 <script setup lang="ts">
 import mittBus from '@/hooks/useMitt';
 const playMusic = ref(false);
-const rotate = () => {
+const play = () => {
 	playMusic.value = !playMusic.value;
 	mittBus.emit('mitt-playMusic', playMusic.value);
 };
