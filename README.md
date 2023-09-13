@@ -8,4 +8,4 @@ This template should help get you started developing with Vue 3 and TypeScript i
 
 ## 安装
 
-npm install | yarn (推荐使用 yarn)
+pnpm install
