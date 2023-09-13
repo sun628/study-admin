@@ -16,13 +16,14 @@
 			<span>一</span>
 			<span>样</span>
 		</div>
-		<ul></ul>
+		<music-audio ref="MusicAudioRef" />
 	</div>
 </template>
 <script setup lang="ts">
 import { useGlobalStore } from '@/store/modules/global';
 import { useTheme } from '@/hooks/useTheme';
-import { getLyricApi } from '@/api/music';
+import MusicAudio from '@/components/music-audio/index.vue';
+import mittBus from '@/hooks/useMitt';
 const themeConfig = computed(() => globalStore.themeConfig);
 const globalStore = useGlobalStore();
 const { useDark } = useTheme();
@@ -31,40 +32,29 @@ useDark(true);
 function handleBeforeUnload(event: Event) {
 	if (!isDark) useDark(false);
 }
-window.addEventListener('beforeunload', handleBeforeUnload);
+
+//音乐组件实例
+const MusicAudioRef = ref<HTMLAudioElement | null>(null);
+
+//播放音乐
+const playMusic = (val: boolean) => {
+	console.log('val', val);
+	if (val) {
+		MusicAudioRef.value?.play();
+	} else {
+		MusicAudioRef.value?.pause();
+	}
+};
+
+onMounted(() => {
+	window.addEventListener('beforeunload', handleBeforeUnload);
+	mittBus.on('mitt-playMusic', playMusic);
+});
 onBeforeUnmount(() => {
 	if (!isDark) useDark(false);
 	window.removeEventListener('beforeunload', handleBeforeUnload);
+	mittBus.off('mitt-playMusic');
 });
-
-// 歌词
-let lyrics: any[] = [];
-const getLyric = async () => {
-	const res = await getLyricApi({ id: 436346833 });
-	console.log('getLyric', res.lyric);
-	// lyrics = res.lyric.split('\n');
-};
-getLyric();
-
-/**
- * @description 滚动歌词
- **/
-function rollingLyric() {
-	console.log(222222222);
-	let expressions = [];
-	let times = [];
-	const reg = /\[(\d{2}:\d{2}\.\d{2})\].*/;
-	lyrics.forEach((line) => {
-		if (reg.exec(line) !== null) {
-			console.log(reg.exec(line));
-			const arr = reg.exec(line);
-			// times.push(arr[1]);
-		}
-	});
-
-	// 处理歌词行
-}
-rollingLyric();
 </script>
 
 <style lang="scss">
@@ -73,6 +63,7 @@ rollingLyric();
 	width: 100%;
 	height: 100%;
 	user-select: none;
+	overflow: hidden;
 	.title {
 		position: fixed;
 		top: 50%;

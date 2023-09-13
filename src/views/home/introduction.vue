@@ -66,7 +66,7 @@
 	</div>
 </template>
 <script setup lang="ts">
-import mittBus from '@/utils/mittBus';
+import mittBus from '@/hooks/useMitt';
 import { isKeyword } from '@/hooks/useHighlightKeywords';
 import MvTable from '@/components/mv-table/index.vue';
 import { MoreFilled } from '@element-plus/icons-vue';

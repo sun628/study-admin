@@ -33,7 +33,7 @@ import { Search } from '@element-plus/icons-vue';
 import { useRouter } from 'vue-router';
 import { getFlatArr } from '@/utils/util';
 import { MenuStore } from '@/store/modules/menu';
-import mittBus from '@/utils/mittBus';
+import mittBus from '@/hooks/useMitt';
 
 const router = useRouter();
 const menuStore = MenuStore();
