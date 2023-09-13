@@ -23,12 +23,12 @@ const homeRouter: Array<RouteRecordRaw> = [
 			},
 			{
 				path: '/home/introduction',
-				name: '介绍',
+				name: 'introduction',
 				component: () => import('@/views/home/introduction.vue'),
 				meta: {
 					keepAlive: true,
 					requiresAuth: true,
-					title: 'introduction',
+					title: '介绍',
 					key: 'introduction',
 					transitionName: 'fade-transform',
 				},
