@@ -2,7 +2,7 @@
 	<div>
 		<svg-icon name="music" :class="{ 'muisc-rotate': themeConfig.audio }" @click="playMusic()"></svg-icon>
 	</div>
-	<music-audio ref="MusicAudioRef" class="music-aduio" loop :visible="false" />
+	<music-audio ref="MusicAudioRef" class="music-aduio" loop :visible="visible" />
 </template>
 <script setup lang="ts">
 import { useGlobalStore } from '@/store/modules/global';
@@ -32,13 +32,13 @@ const playMusic = () => {
 			MusicAudioRef.value?.pause();
 		}
 	} catch (error) {
-		console.log(22, error);
-		// const autoPlayAfterClick = () => {
-		// 	if (!MusicAudioRef.value) return console.error('未获取到音乐组件实例');
-		// 	MusicAudioRef.value.play();
-		// 	document.removeEventListener('click', autoPlayAfterClick);
-		// };
-		// document.addEventListener('click', autoPlayAfterClick);
+		console.error(error);
+		const autoPlayAfterClick = () => {
+			document.removeEventListener('click', autoPlayAfterClick);
+			if (!MusicAudioRef.value) return console.error('未获取到音乐组件实例');
+			MusicAudioRef.value.play();
+		};
+		document.addEventListener('click', autoPlayAfterClick);
 	}
 };
 </script>

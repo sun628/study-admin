@@ -2,7 +2,7 @@
 	<div v-if="visible" class="lyrics-container">
 		<!-- <audio ref="AudioRef" class="hidden" :src="src" controls @timeupdate="handleTimeUpdate"></audio> -->
 		<audio ref="AudioRef" class="hidden" :src="src" v-bind="$attrs" @timeupdate="handleTimeUpdate"></audio>
-		<div class="lyrics">
+		<div ref="lyricDiv" class="lyrics">
 			<div v-for="(item, index) in lyrics" :key="item.uid" class="lyric-line">
 				<p :class="currentIndex === index ? 'highlight' : ''" :style="currentIndex === index ? gradBg : ''">
 					{{ item.lyric }}
@@ -32,6 +32,8 @@ const props = defineProps({
 		default: true,
 	},
 });
+let lyricHeight = 0;
+let lyricDiv = ref<HTMLDivElement | null>(null);
 
 let requestId = 0; // requestAnimationFrame的id
 const currentIndex = ref(-1); // 当前播放歌词行的索引
@@ -80,8 +82,11 @@ const pause = () => {
 	cancelAnimationFrame(requestId);
 	console.log('cancelAnimationFrame', requestId);
 };
-onMounted(() => {
+onMounted(async () => {
 	if (globalStore.themeConfig.audio) play();
+	// 获取固定歌词区域高度的一半 用来让高亮歌词始终居中
+	lyricHeight = (lyricDiv.value?.offsetHeight || 0) / 2;
+	console.log('🚀 ~ file: index.vue:89 ~ onMounted ~ lyricHeight:', lyricHeight);
 });
 
 interface ILyric {

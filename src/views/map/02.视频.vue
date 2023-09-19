@@ -56,15 +56,13 @@ const getHighWayVideos = async () => {
 	const res = await getHighWayVideosApi();
 	highWayVideoMarkerList = res.data;
 	drawHighWayVideoMarkerList();
-	map.value?.on('zoomend', (e) => {
-		drawHighWayVideoMarkerList();
-	});
 };
 let styleOff = {};
 let styleOnline = {};
 let highWayCameraMass = null;
 let highWayVideoList = ref<Array<highWayVideoItem>>([]);
 const HighWayVideoRefs = ref<InstanceType<typeof HighWayVideo>[]>([]);
+
 // 绘制高速视频点位
 const drawHighWayVideoMarkerList = () => {
 	const videoStyleList = [styleOff, styleOnline];
@@ -96,6 +94,7 @@ const drawHighWayVideoMarkerList = () => {
 			HighWayVideoRefs.value[HighWayVideoRefs.value.length - 1]?.getVideoPlayUrl(obj);
 		});
 	});
+
 	highWayCameraMass.on('mouseover', function (e) {
 		marker.setPosition(e.data.lnglat);
 		marker.setLabel({
