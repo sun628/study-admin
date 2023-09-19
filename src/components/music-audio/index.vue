@@ -1,35 +1,89 @@
 <template>
-	<div class="lyrics-container">
-		<audio ref="AudioRef" class="hidden" :src="audioInfo.src" controls @timeupdate="handleTimeUpdate"></audio>
+	<div v-if="visible" class="lyrics-container">
+		<!-- <audio ref="AudioRef" class="hidden" :src="src" controls @timeupdate="handleTimeUpdate"></audio> -->
+		<audio ref="AudioRef" class="hidden" :src="src" v-bind="$attrs" @timeupdate="handleTimeUpdate"></audio>
 		<div class="lyrics">
 			<div v-for="(item, index) in lyrics" :key="item.uid" class="lyric-line">
-				<p v-if="currentIndex === index" class="highlight" :style="gradBg" style="background-clip: text; -webkit-background-clip: text">
+				<p :class="currentIndex === index ? 'highlight' : ''" :style="currentIndex === index ? gradBg : ''">
 					{{ item.lyric }}
 				</p>
-				<p v-else>{{ item.lyric }}</p>
 			</div>
 		</div>
 	</div>
 </template>
 <script setup lang="ts">
 import { getLyricApi } from '@/api/music/index';
+import { useGlobalStore } from '@/store/modules/global';
+const globalStore = useGlobalStore();
+const themeConfig = computed(() => globalStore.themeConfig);
 const AudioRef = ref<HTMLAudioElement | null>(null);
-const audioInfo = ref({
-	poster: 'http://y.gtimg.cn/music/photo_new/T002R300x300M000003rsKF44GyaSk.jpg?max_age=2592000',
-	name: '此时此刻',
-	author: '许巍',
-	src: 'https://music.163.com/song/media/outer/url?id=436346833.mp3',
+const src = 'https://music.163.com/song/media/outer/url?id=436346833.mp3';
+const gradBg = ref('');
+const props = defineProps({
+	// 是否显示音乐组件
+	visible: {
+		type: Boolean,
+		default: false,
+		required: true,
+	},
+	// 是否显示动画
+	animation: {
+		type: Boolean,
+		default: true,
+	},
 });
+
+let requestId = 0; // requestAnimationFrame的id
+const currentIndex = ref(-1); // 当前播放歌词行的索引
+
+// 更新歌词
+const updateLyrics = (timestamp: number) => {
+	let currentTime = (AudioRef.value?.currentTime || 0) + 0.6; // 加0.6s是为了让歌词提前显示
+	if (currentTime == null || currentTime == undefined) return;
+	for (let i = 0; i < lyrics.value.length; i++) {
+		const nextLyric = lyrics.value[i + 1]; //获取下一个节点
+		if (currentTime >= lyrics.value[i].time && (!nextLyric || currentTime < nextLyric.time)) {
+			currentIndex.value = i;
+			const time = nextLyric.time - lyrics.value[i].time;
+			const cur_time = currentTime - lyrics.value[i].time;
+			const percent = (cur_time / time) * 100;
+			gradBg.value = `background-image: linear-gradient(to right, ${themeConfig.value.primary} ${percent}%, #fff ${percent}%);`;
+			break;
+		}
+	}
+	requestId = requestAnimationFrame(updateLyrics);
+};
 
 //播放音乐
 const play = () => {
-	AudioRef.value?.play();
+	return new Promise<void>((resolve, reject) => {
+		if (!AudioRef.value) return reject(new Error('AudioRef is not defined or has no value.'));
+		AudioRef.value
+			.play()
+			.then(() => {
+				console.log('play');
+				currentIndex.value = -1;
+				if (props.animation) {
+					requestId = requestAnimationFrame(updateLyrics);
+				}
+				resolve();
+			})
+			.catch((e) => {
+				reject(e);
+			});
+	});
 };
-const gradBg = ref('background: linear-gradient(to right, #e60000,#fff 0%)');
+
 // 停止音乐
 const pause = () => {
 	AudioRef.value?.pause();
+	cancelAnimationFrame(requestId);
+	console.log('cancelAnimationFrame', requestId);
 };
+onMounted(() => {
+	if (globalStore.themeConfig.audio) play();
+});
+
 interface ILyric {
 	time: number;
 	lyric: string;
@@ -40,23 +94,17 @@ interface IReturnLyric {
 	lyric: ILyric[];
 	tlyric?: ILyric[];
 }
-const currentIndex = ref(0);
 const lyrics = ref<Array<ILyric>>([]);
 
 // 监听歌曲播放时间变化
 const handleTimeUpdate = (e: any) => {
 	const currentTime = e.target.currentTime; //当前播放器时间
-	for (let i = 0; i < lyrics.value.length; i++) {
-		if (currentTime >= lyrics.value[i].time && (!lyrics.value[i + 1] || currentTime < lyrics.value[i + 1].time)) {
-			currentIndex.value = i; // 更新当前播放歌词行的索引
-			const time = lyrics.value[i + 1].time - lyrics.value[i].time;
-			const cur_time = currentTime - lyrics.value[i].time;
-			const percent = (cur_time / time) * 100 + 10;
-			// gradBg.value = `background: linear-gradient(to right, red ${percent}%, #fff ${percent}%)`;
-			gradBg.value = `background: linear-gradient(to right, red, #fff ${percent}%)`;
-			break;
-		}
-	}
+	// for (let i = 0; i < lyrics.value.length; i++) {
+	// 	if (currentTime >= lyrics.value[i].time && (!lyrics.value[i + 1] || currentTime < lyrics.value[i + 1].time)) {
+	// 		currentIndex.value = i; // 更新当前播放歌词行的索引
+	// 		break;
+	// 	}
+	// }
 };
 
 // 获取歌词歌词
@@ -115,6 +163,7 @@ const formatLyricTime = (time: string) => {
 	return Number(sec + '.' + ms);
 };
 getLyric();
+
 defineExpose({
 	play,
 	pause,
@@ -124,11 +173,20 @@ defineExpose({
 <style scoped lang="scss">
 .lyrics-container {
 	height: 100%;
-	overflow-y: auto;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	position: fixed;
+	z-index: 999;
+}
+
+.lyrics {
+	text-align: center;
+	height: 100%;
+	min-width: 400px;
+	font-size: 16px;
+	overflow-y: auto;
 	&::-webkit-scrollbar-thumb {
 		visibility: hidden;
 	}
@@ -137,22 +195,17 @@ defineExpose({
 	}
 }
 
-.lyrics {
-	text-align: center;
-	height: 100%;
-	min-width: 400px;
-	font-size: 16px;
-}
-
 .lyric-line {
 	animation: scroll 5s linear infinite;
+	color: rgba(255, 255, 255, 0.8);
 }
 
 .highlight {
 	font-weight: bold;
 	font-size: 18px;
 	color: transparent;
-	// color: var(--el-color-primary);
+	background-clip: text;
+	-webkit-background-clip: text;
 }
 
 // @keyframes scroll {

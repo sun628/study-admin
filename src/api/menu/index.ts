@@ -13,7 +13,7 @@ import request from '@/utils/request';
 export function useMenuApi() {
 	return {
 		getAdminMenu: (params?: object) => {
-			return request({
+			return request.service({
 				url: '/gitee/lyt-top/vue-next-admin-images/raw/master/menu/adminMenu.json',
 				method: 'get',
 				params,

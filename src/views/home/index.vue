@@ -16,44 +16,33 @@
 			<span>一</span>
 			<span>样</span>
 		</div>
-		<music-audio ref="MusicAudioRef" />
 	</div>
 </template>
 <script setup lang="ts">
 import { useGlobalStore } from '@/store/modules/global';
 import { useTheme } from '@/hooks/useTheme';
-import MusicAudio from '@/components/music-audio/index.vue';
-import mittBus from '@/hooks/useMitt';
 const themeConfig = computed(() => globalStore.themeConfig);
 const globalStore = useGlobalStore();
 const { useDark } = useTheme();
 const isDark = themeConfig.value.isDark;
+
+/**
+ * @description 使用暗黑主题
+ * @param {boolean} isDark - 是否使用暗黑主题
+ **/
 useDark(true);
+
 function handleBeforeUnload(event: Event) {
 	if (!isDark) useDark(false);
 }
 
-//音乐组件实例
-const MusicAudioRef = ref<HTMLAudioElement | null>(null);
-
-//播放音乐
-const playMusic = (val: boolean) => {
-	console.log('val', val);
-	if (val) {
-		MusicAudioRef.value?.play();
-	} else {
-		MusicAudioRef.value?.pause();
-	}
-};
-
-onMounted(() => {
+onBeforeMount(() => {
 	window.addEventListener('beforeunload', handleBeforeUnload);
-	mittBus.on('mitt-playMusic', playMusic);
 });
+
 onBeforeUnmount(() => {
 	if (!isDark) useDark(false);
 	window.removeEventListener('beforeunload', handleBeforeUnload);
-	mittBus.off('mitt-playMusic');
 });
 </script>
 
@@ -64,9 +53,6 @@ onBeforeUnmount(() => {
 	height: 100%;
 	user-select: none;
 	overflow: hidden;
-	.lyrics-container {
-		padding-right: 10px;
-	}
 	.title {
 		position: fixed;
 		top: 50%;
@@ -77,10 +63,12 @@ onBeforeUnmount(() => {
 		font-weight: 500;
 		font-size: 50px;
 		letter-spacing: 10px;
+		width: fit-content;
+		margin: auto;
 		margin-top: -60px;
 		span {
 			color: transparent;
-			animation: spread 1s ease-in-out infinite alternate;
+			animation: spread 2s ease-in-out infinite alternate;
 			background: linear-gradient(#fff, #38495a);
 			background-clip: text;
 			-webkit-background-clip: text;
@@ -137,7 +125,7 @@ onBeforeUnmount(() => {
 @for $i from 1 through 9 {
 	#home .title {
 		span:nth-child(#{$i}) {
-			animation-delay: ($i - 1) * 0.1s;
+			animation-delay: ($i - 1) * 0.2s;
 		}
 	}
 }

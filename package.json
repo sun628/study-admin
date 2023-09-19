@@ -5,7 +5,7 @@
 	"description": "暖阳的后台管理",
 	"author": "暖阳",
 	"scripts": {
-		"dev": "vite",
+		"dev": "vite --host",
 		"build": "vue-tsc && vite build",
 		"report": "rimraf dist && vite build",
 		"preview": "vite preview",
@@ -21,6 +21,7 @@
 		"axios": "^1.4.0",
 		"echarts": "^5.4.3",
 		"element-plus": "^2.3.9",
+		"flv.js": "^1.6.2",
 		"highlight.js": "^11.8.0",
 		"mitt": "^3.0.1",
 		"nprogress": "^0.2.0",

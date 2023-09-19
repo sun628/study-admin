@@ -8,6 +8,7 @@ export interface ThemeConfigProp {
 	breadcrumb: boolean;
 	tabs: boolean;
 	footer: boolean;
+	audio: boolean;
 }
 
 export type AssemblySizeProp = '' | 'large' | 'default' | 'small';

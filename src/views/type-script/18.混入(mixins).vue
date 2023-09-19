@@ -70,7 +70,6 @@ const code2 = `class Jumpable {
     });
 }`;
 const value = 11;
-log('message---------', value);
 </script>
 
 <style scoped lang="scss"></style>

@@ -1,7 +1,6 @@
 import path from 'path';
 import { defineConfig } from 'vite';
 import { loadEnv } from 'vite';
-
 import { getPlugins } from './src/plugins/index';
 const pathSrc = path.resolve(__dirname, 'src');
 
@@ -16,6 +15,7 @@ export default defineConfig(({ command, mode }) => {
 				'@/': `${pathSrc}/`,
 			},
 		},
+		publicDir: 'public', //将public目录下的文件复制到dist目录
 		css: {
 			preprocessorOptions: {
 				scss: {
@@ -29,17 +29,23 @@ export default defineConfig(({ command, mode }) => {
 			// open: true, // 服务启动时是否自动打开浏览器
 			cors: true, // 允许跨域
 			proxy: {
-				'/api': {
-					target: env.VITE_BASE_API,
-					changeOrigin: true,
-					secure: false, // 如果是https接口，需要配置这个参数
-					rewrite: (path) => path.replace(/^\/api/, ''),
-				},
+				// '/api': {
+				// 	target: env.VITE_BASE_API,
+				// 	changeOrigin: true,
+				// 	secure: false, // 如果是https接口，需要配置这个参数
+				// 	rewrite: (path) => path.replace(/^\/api/, ''),
+				// },
 				'/music_api': {
 					target: 'http://music.163.com/',
 					changeOrigin: true,
 					secure: false, // 如果是https接口，需要配置这个参数
 					rewrite: (path) => path.replace(/^\/music_api/, '/api'),
+				},
+				'/FLOW_AC': {
+					target: 'http://139.198.167.138:8081',
+					changeOrigin: true,
+					secure: false, // 如果是https接口，需要配置这个参数
+					rewrite: (path) => path.replace(/^\/FLOW_AC/, '/FLOW_AC'),
 				},
 			},
 		},

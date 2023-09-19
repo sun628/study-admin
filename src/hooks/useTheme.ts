@@ -10,7 +10,8 @@ import { ElMessage } from 'element-plus';
 export const useTheme = () => {
 	const globalStore = useGlobalStore();
 	const themeConfig = computed(() => globalStore.themeConfig);
-	// 使用暗黑模式
+
+	// 使用暗黑主题
 	const useDark = (isDark = false) => {
 		globalStore.setThemeConfig({ ...themeConfig.value, isDark });
 		if (isDark) {

@@ -13,13 +13,12 @@
 import MvMap from '@/components/mv-map/index.vue';
 import { addMarker } from '@/hooks/useMap';
 
-const map = shallowRef();
+const map = shallowRef<AMap.Map>();
 let marker: AMap.Marker | null = null;
 const markerClick = (e: Event) => {
 	console.log('markerClick', e);
 };
 const addMarkerHandle = () => {
-	console.log('addMarkerClick');
 	marker && marker.setMap(null);
 	marker = addMarker(
 		{
@@ -40,7 +39,6 @@ const removeMarkerHandle = () => {
 };
 
 const mapLoad = (val: AMap.Map) => {
-	console.log('mapLoad', val);
 	map.value = val;
 };
 </script>

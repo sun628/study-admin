@@ -12,6 +12,14 @@ export const LOGIN_URL = '/login';
 export const ROUTER_WHITE_LIST: string[] = ['/403', '/404', '/500', '/layout', '/login'];
 
 // * 高德地图key
-export const MAP_KEY = '';
+export const MAP_KEY = 'd64a526f93c64d766b15ffbdd5aeac7d';
 
 export const successCode = [200, 201, 204, 10000];
+
+// * 项目配置项
+
+// api地址
+export const API = import.meta.env.VUE_APP_API;
+
+// music api地址
+export const MUSIC_API = import.meta.env.VUE_APP_MUSIC_API;

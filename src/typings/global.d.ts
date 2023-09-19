@@ -28,4 +28,4 @@ declare interface ViteEnv {
 	VITE_REPORT: boolean;
 }
 
-declare var log: any;
+declare var AMapUI: any;

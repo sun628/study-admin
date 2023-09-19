@@ -28,6 +28,8 @@ export const useGlobalStore = defineStore({
 			tabs: true,
 			// 页脚
 			footer: false,
+			// 音乐
+			audio: true,
 		},
 	}),
 	getters: {},

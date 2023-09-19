@@ -15,5 +15,5 @@ export namespace MusicApi {
  * @method getTestMenu 获取后端动态路由菜单(test)
  */
 export const getLyricApi = (params: MusicApi.ReqLyric) => {
-	return http.get<MusicApi.ResLyric>(`/music_api/song/media`, params);
+	return http.get<MusicApi.ResLyric>(`/music_api/song/media`, params, { noLoading: true });
 };

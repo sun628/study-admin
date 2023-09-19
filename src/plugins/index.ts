@@ -37,7 +37,6 @@ export function getPlugins() {
 			iconDirs: [path.resolve(root, 'src/assets/svgIcons')], //指定symbolId格式
 			symbolId: 'icon-[dir]-[name]', //指定需要缓存的图标文件夹
 		}),
-
 		// 打包分析
 		lifecycle === 'report' ? _visualizer : null,
 	];

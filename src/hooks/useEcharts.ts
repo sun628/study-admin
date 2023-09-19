@@ -4,7 +4,7 @@ import { useDebounceFn } from '@vueuse/core';
 
 /**
  * @description 使用 Echarts (添加图表响应式)
- * @param {Element} myChart Echarts实例 (必传)
+ * @param {Element} chartRef Echarts实例 (必传)
  * @returns {Object} chartInstance 实例
  * @returns {function} setOption 设置图表配置项
  * @example const {  setOption } = useECharts(myChart);
@@ -20,6 +20,10 @@ export default function useECharts(chartRef: Ref<HTMLElement>) {
 		}
 	};
 
+	/**
+	 * @description 设置配置项
+	 * @param {Object} 图表配置项参数
+	 */
 	const setOption = (options: echarts.EChartsOption) => {
 		if (chartInstance.value) {
 			try {
@@ -55,7 +59,6 @@ export default function useECharts(chartRef: Ref<HTMLElement>) {
 
 	const onDestroy = () => {
 		removeEventListeners();
-
 		if (chartInstance.value) {
 			chartInstance.value.dispose();
 			chartInstance.value = null;

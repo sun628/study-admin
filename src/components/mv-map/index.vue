@@ -4,37 +4,24 @@
 	</div>
 </template>
 <script setup lang="ts">
-import AMapLoader from '@amap/amap-jsapi-loader';
+// import AMapLoader from '@amap/amap-jsapi-loader';
 import { onMounted, shallowRef, provide } from 'vue';
 import '@amap/amap-jsapi-types'; // 高德地图类型声明
+import { initMap, loadMapUI } from '@/hooks/useMap';
 const map = shallowRef<AMap.Map | null>(null);
 provide('MAP', map);
 const emit = defineEmits(['map-load']);
 
+const cityCodes = [320903, 320685, 321283, 321281, 321012, 321202, 320902, 321204, 320682]; // 市级行政区划代码
+
 const MapOptions: AMap.MapOptions = {
-	zoom: 11, //级别
-	center: [116.397428, 39.90923], //中心点坐标
-};
-/**
- * @description 初始化地图
- **/
-const initMap = () => {
-	AMapLoader.load({
-		key: 'd64a526f93c64d766b15ffbdd5aeac7d', // 申请好的Web端开发者Key，首次调用 load 时必填
-		version: '2.0', // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
-		plugins: [], //插件列表
-	})
-		.then((AMap) => {
-			map.value = new AMap.Map('mv-map', {
-				zoom: 11, //级别
-				center: [116.397428, 39.90923], //中心点坐标
-			});
-			console.log('map', map);
-			emit('map-load', map.value as AMap.Map);
-		})
-		.catch((e) => {
-			console.error(e); //加载错误提示
-		});
+	center: [120.075917, 32.61237],
+	animateEnable: true,
+	zoomEnable: true,
+	rotateEnable: true,
+	// mapStyle: 'amap://styles/85131399e7fcecf474bc27c6f056263d',
+	zoom: 10,
+	viewMode: '3D',
 };
 
 /**
@@ -45,8 +32,10 @@ const getMap = () => {
 	return map.value;
 };
 
-onMounted(() => {
-	initMap();
+onMounted(async () => {
+	map.value = await initMap('mv-map', MapOptions);
+	loadMapUI(map.value, cityCodes);
+	emit('map-load', map.value as AMap.Map);
 });
 defineExpose({
 	getMap,

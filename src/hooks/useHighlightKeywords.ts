@@ -30,7 +30,7 @@ const highlightKeywordsAndWords = (text: string): string => {
 
 /**
  * @description 高亮关键字和单词
- * @param {Ref<HTMLElement | null} DocRef 文档元素的引用
+ * @param {Ref<HTMLElement | null>} DocRef 文档元素的引用
  * @param {(textContent: string) => void} callback 点击关键字的回调函数
  * @return void
  * @example useHighlightKeywords(DocRef, (textContent) => {
