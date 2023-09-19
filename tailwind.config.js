@@ -5,7 +5,7 @@ module.exports = {
 		function ({ addBase }) {
 			addBase({
 				'.el-button': {
-					'background-color': 'var(--el-button-bg-color,val(--el-color-white))',
+					'background-color': 'var(--el-button-bg-color,val(--el-color-white))', // 设置 el-button 背景色
 				},
 			});
 		},
