@@ -71,6 +71,13 @@ const play = () => {
 				resolve();
 			})
 			.catch((e) => {
+				if (globalStore.themeConfig.audio) {
+					const autoPlayAfterClick = () => {
+						document.removeEventListener('click', autoPlayAfterClick);
+						play();
+					};
+					document.addEventListener('click', autoPlayAfterClick);
+				}
 				reject(e);
 			});
 	});
@@ -83,10 +90,12 @@ const pause = () => {
 	console.log('cancelAnimationFrame', requestId);
 };
 onMounted(async () => {
-	if (globalStore.themeConfig.audio) play();
+	if (globalStore.themeConfig.audio) {
+		await nextTick();
+		play();
+	}
 	// 获取固定歌词区域高度的一半 用来让高亮歌词始终居中
 	lyricHeight = (lyricDiv.value?.offsetHeight || 0) / 2;
-	console.log('🚀 ~ file: index.vue:89 ~ onMounted ~ lyricHeight:', lyricHeight);
 });
 
 interface ILyric {

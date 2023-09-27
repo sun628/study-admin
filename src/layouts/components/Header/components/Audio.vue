@@ -19,26 +19,18 @@ const visible = computed(() => {
 	return route.path === HOME_URL; // 只有在首页才显示音乐组件
 });
 
+type MusicAudioType = InstanceType<typeof MusicAudio> | null;
+
 //音乐组件实例
-const MusicAudioRef = ref<HTMLAudioElement | null>(null);
+const MusicAudioRef = ref<MusicAudioType>(null);
 
 // 播放音乐
 const playMusic = () => {
 	themeConfig.value.audio = !themeConfig.value.audio;
-	try {
-		if (themeConfig.value.audio) {
-			MusicAudioRef.value?.play();
-		} else {
-			MusicAudioRef.value?.pause();
-		}
-	} catch (error) {
-		console.error(error);
-		const autoPlayAfterClick = () => {
-			document.removeEventListener('click', autoPlayAfterClick);
-			if (!MusicAudioRef.value) return console.error('未获取到音乐组件实例');
-			MusicAudioRef.value.play();
-		};
-		document.addEventListener('click', autoPlayAfterClick);
+	if (themeConfig.value.audio) {
+		MusicAudioRef.value?.play();
+	} else {
+		MusicAudioRef.value?.pause();
 	}
 };
 </script>
