@@ -60,6 +60,7 @@ const login = (formEl: FormInstance | undefined) => {
 	formEl.validate(async (valid) => {
 		if (!valid) return;
 		userStore.setToken('123456');
+		userStore.setUserInfo(loginForm);
 		loading.value = true;
 		router.push({ path: HOME_URL });
 		setTimeout(() => {
