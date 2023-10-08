@@ -41,12 +41,6 @@ export default defineConfig(({ command, mode }) => {
 					secure: false, // 如果是https接口，需要配置这个参数
 					rewrite: (path) => path.replace(/^\/music_api/, '/api'),
 				},
-				'/FLOW_AC': {
-					target: 'http://139.198.167.138:8081',
-					changeOrigin: true,
-					secure: false, // 如果是https接口，需要配置这个参数
-					rewrite: (path) => path.replace(/^\/FLOW_AC/, '/FLOW_AC'),
-				},
 			},
 		},
 		build: {

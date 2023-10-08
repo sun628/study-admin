@@ -5,7 +5,6 @@
 			<el-button type="primary" @click="updateMarkerHandle">更新marker图标</el-button>
 			<el-button type="primary" @click="removeMarkerHandle">移除marker</el-button>
 		</el-card>
-		<!-- <div id="MvMap" class="w-full h-full"></div> -->
 		<MvMap class="w-full h-full" @map-load="mapLoad" />
 	</div>
 </template>

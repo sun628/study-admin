@@ -3,10 +3,6 @@
     {
       "source": "/music_api(.*)",
       "destination": "http://music.163.com/api$1"
-    },
-    {
-      "source": "/FLOW_AC(.*)",
-      "destination": "http://139.198.167.138:8081/FLOW_AC$1"
     }
   ]
 }
