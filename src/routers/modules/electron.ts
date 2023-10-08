@@ -1,4 +1,4 @@
-import { Layout } from '@/routers/constant';
+import { Layout } from '@/routers/utils';
 import { MatchMenu } from '@/enums/configEnum';
 const routerArray = [];
 const name = 'electron';

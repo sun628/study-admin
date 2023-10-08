@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
-import { Layout } from '@/routers/constant';
+import { Layout } from '@/routers/utils';
 import { MatchMenu } from '@/enums/configEnum';
 // 首页模块
 const name = 'home';

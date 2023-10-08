@@ -1,24 +1,10 @@
-import { Layout } from '@/routers/constant';
+import { Layout, filterModuleRoutes } from '@/routers/utils';
 import { MatchMenu } from '@/enums/configEnum';
-
-const routerArray = [];
+// 使用示例
 const name = 'hooks';
-const routers = import.meta.glob('../../views/hooks/*.vue');
-for (const i in routers) {
-	const newName = i.replace(/..\/..\/views\/hooks\//, '').replace(/.vue/, '');
-	const newPath = '/hooks/' + newName;
-	routerArray.push({
-		path: newPath,
-		name: newName,
-		meta: {
-			keepAlive: true,
-			requiresAuth: true,
-			title: newName,
-			key: newPath,
-		},
-		component: routers[i],
-	});
-}
+const routerArray = filterModuleRoutes(name);
+
+console.log('routerArray', routerArray);
 
 // type-script模块
 const hooksRouter = [
@@ -33,7 +19,7 @@ const hooksRouter = [
 			requiresAuth: false,
 			title: name,
 			key: name,
-			localSvgIcon: 'hooks',
+			localSvgIcon: name,
 		},
 	},
 ];
