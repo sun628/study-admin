@@ -4,7 +4,7 @@ import { ROUTER_WHITE_LIST } from '@/config';
 import { useUserStore } from '@/store/modules/user';
 import { AxiosCanceler } from '@/api/helper/axiosCancel';
 import tracker from '@/utils/tracker';
-console.log('🚀 ~ file: index.ts:7 ~ tracker:', tracker.data);
+
 const axiosCanceler = new AxiosCanceler();
 
 /**

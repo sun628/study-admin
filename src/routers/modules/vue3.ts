@@ -1,5 +1,9 @@
-import { Layout } from '@/routers/utils';
+import { Layout, filterModuleRoutes } from '@/routers/constant';
 import { MatchMenu } from '@/enums/configEnum';
+
+const name = 'vue3';
+const routerArray = filterModuleRoutes(name);
+// console.log('🚀 ~ file: vue3.ts:6 ~ routerArray:', routerArray);
 
 interface Page {
 	name: string;
@@ -12,7 +16,7 @@ interface Page {
 		key: string;
 	};
 }
-const name = 'vue3';
+
 const pages: Array<Page> = [
 	{
 		name: '介绍',

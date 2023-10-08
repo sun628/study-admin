@@ -1,10 +1,8 @@
-import { Layout, filterModuleRoutes } from '@/routers/utils';
+import { Layout, filterModuleRoutes } from '@/routers/constant';
 import { MatchMenu } from '@/enums/configEnum';
-// 使用示例
+
 const name = 'hooks';
 const routerArray = filterModuleRoutes(name);
-
-console.log('routerArray', routerArray);
 
 // type-script模块
 const hooksRouter = [
