@@ -3,6 +3,10 @@
     {
       "source": "/music_api(.*)",
       "destination": "http://music.163.com/api$1"
+    },
+    {
+      "source": "/aaa(.*)",
+      "destination": "xxx$1"
     }
   ]
 }
