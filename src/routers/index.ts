@@ -3,7 +3,6 @@ import NProgress from '@/config/nprogress';
 import { ROUTER_WHITE_LIST } from '@/config';
 import { useUserStore } from '@/store/modules/user';
 import { AxiosCanceler } from '@/api/helper/axiosCancel';
-const userStore = useUserStore();
 import tracker from '@/utils/tracker';
 
 const axiosCanceler = new AxiosCanceler();
