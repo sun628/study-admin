@@ -1,23 +1,9 @@
-import { Layout, filterModuleRoutes } from '@/routers/constant';
+import { Layout, recursionRouter } from '@/routers/constant';
 import { MatchMenu } from '@/enums/configEnum';
 
 const name = 'vue3';
-const routerArray = filterModuleRoutes(name);
-// console.log('🚀 ~ file: vue3.ts:6 ~ routerArray:', routerArray);
 
-interface Page {
-	name: string;
-	component?: Component;
-	children?: Array<Page>;
-	meta?: {
-		keepAlive: boolean;
-		requiresAuth: boolean;
-		title: string;
-		key: string;
-	};
-}
-
-const pages: Array<Page> = [
+const pages = [
 	{
 		name: '介绍',
 		component: () => import('@/views/vue3/01.介绍/index.vue'),
@@ -36,28 +22,6 @@ const pages: Array<Page> = [
 	},
 ];
 
-//递归路由
-const recursionRouter = (routers: Array<Page>, path = '/vue3') => {
-	const arr: Array<Page> = routers.map((item, index) => {
-		const newIndex = (index + 1).toString().padStart(2, '0');
-		const newPath = `${path}/${newIndex}`;
-		const newName = '/vue3/' + item.name;
-		return {
-			path: newPath,
-			name: newName,
-			component: item.component,
-			children: item.children ? recursionRouter(item.children, newPath) : [],
-			meta: item.meta || {
-				keepAlive: true,
-				requiresAuth: true,
-				title: item.name,
-				key: newPath,
-			},
-		};
-	});
-	return arr;
-};
-
 // vue3模块
 const vue3Router = [
 	{
@@ -65,7 +29,7 @@ const vue3Router = [
 		component: Layout,
 		name: name,
 		redirect: '/vue3/01',
-		children: recursionRouter(pages),
+		children: recursionRouter(pages, name),
 		meta: {
 			menuIndex: MatchMenu[name],
 			keepAlive: true,

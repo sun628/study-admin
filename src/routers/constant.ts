@@ -1,4 +1,6 @@
 import { MatchMenu } from '@/enums/configEnum';
+import { RouteRecordRaw } from 'vue-router';
+const viewRouters = import.meta.glob('../views/**/*.vue');
 
 /**
  * @description: default layout
@@ -13,16 +15,27 @@ interface RouterMeta {
 	key: string;
 }
 
-// 获取所有的路由
-const viewRouters = import.meta.glob('../views/**/*.vue');
+interface Page {
+	name: string;
+	component?: Component;
+	children?: Array<Page>;
+	meta?: {
+		keepAlive: boolean;
+		requiresAuth: boolean;
+		title: string;
+		key: string;
+	};
+}
 
 /**
  * @description 过滤模块路由  TODO: 处理一级路由
  * @param {string} moduleName 模块名
- * @returns {Array} 路由数组
+ * @returns {Array<RouteRecordRaw>} 路由数组
  **/
-export function filterModuleRoutes(moduleName: keyof typeof MatchMenu, metaConfig?: RouterMeta) {
-	const routerArray = [];
+export function filterModuleRoutes(moduleName: keyof typeof MatchMenu, metaConfig?: RouterMeta): Array<RouteRecordRaw> {
+	// 获取所有的路由
+
+	const routerArray: Array<RouteRecordRaw> = [];
 
 	const routers = Object.fromEntries(Object.entries(viewRouters).filter(([key]) => key.startsWith(`../views/${moduleName}/`)));
 
@@ -45,3 +58,29 @@ export function filterModuleRoutes(moduleName: keyof typeof MatchMenu, metaConfi
 	}
 	return routerArray;
 }
+
+/**
+ * @description 递归路由
+ **/
+export const recursionRouter = (routers: Array<Page>, path: string) => {
+	const arr: Array<Page> = routers.map((item, index) => {
+		const newIndex = (index + 1).toString().padStart(2, '0');
+		const newPath = `/${path}/${newIndex}`;
+		const newName = `/${path}/${String(item.name)}`;
+		return {
+			path: newPath,
+			name: newName,
+			component: item.component,
+			children: item.children ? recursionRouter(item.children, `${path}/${newIndex}`) : [],
+			meta: item.meta || {
+				keepAlive: true,
+				requiresAuth: true,
+				title: item.name,
+				key: newPath,
+			},
+		};
+	});
+	console.log(arr);
+
+	return arr;
+};

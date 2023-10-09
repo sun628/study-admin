@@ -1,24 +1,18 @@
-import { Layout } from '@/routers/constant';
+import { Layout, recursionRouter } from '@/routers/constant';
 import { MatchMenu } from '@/enums/configEnum';
 
-const routerArray = [];
 const name = 'nodejs';
-const routers = import.meta.glob('../../views/nodejs/*.vue');
-for (const i in routers) {
-	const newName = i.replace(/..\/..\/views\/nodejs\//, '').replace(/.vue/, '');
-	const newPath = newName.substring(0, 2);
-	routerArray.push({
-		path: '/nodejs/' + newPath,
-		name: name + '/' + newName,
-		meta: {
-			keepAlive: true,
-			requiresAuth: true,
-			title: newName,
-			key: newPath,
-		},
-		component: routers[i],
-	});
-}
+
+const pages = [
+	{
+		name: '介绍',
+		component: () => import('@/views/nodejs/01.介绍/index.vue'),
+	},
+	{
+		name: '内置模块',
+		children: [{ name: 'http模块', component: () => import('@/views/nodejs/02.内置模块/01.http.vue') }],
+	},
+];
 // nodejs模块
 const nodejsRouter = [
 	{
@@ -26,7 +20,7 @@ const nodejsRouter = [
 		component: Layout,
 		name: name,
 		redirect: '/nodejs/01',
-		children: routerArray,
+		children: recursionRouter(pages, name),
 		meta: {
 			menuIndex: MatchMenu[name],
 			keepAlive: true,

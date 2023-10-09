@@ -5,6 +5,8 @@
 		</doc>
 	</el-row>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+22;
+</script>
 
 <style scoped lang="scss"></style>
