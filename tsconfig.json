@@ -21,7 +21,7 @@
 		},
 		"types": ["element-plus/global", "vite-plugin-svg-icons/client"]
 	},
-	"include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "types/*.d.ts", "vite.config.ts"],
+	"include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "types/*.d.ts", "vite.config.ts", "src/views/nodejs/02.内置模块/http.js"],
 	"exclude": ["node_modules", "dist", "**/*.js"],
 	"references": [{ "path": "./tsconfig.node.json" }]
 }

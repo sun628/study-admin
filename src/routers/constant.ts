@@ -11,10 +11,8 @@ export const Layout = () => import('@/layouts/index.vue');
 // export const Layout = () => import("@/layouts/indexAsync.vue");
 
 interface RouterMeta {
-	keepAlive: boolean;
-	requiresAuth: boolean;
-	title: string;
-	key: string;
+	keepAlive?: boolean;
+	requiresAuth?: boolean;
 }
 
 interface Page {
@@ -36,18 +34,16 @@ interface Page {
  **/
 export function filterModuleRoutes(moduleName: keyof typeof MatchMenu, metaConfig?: RouterMeta): Array<RouteRecordRaw> {
 	const routerArray: Array<RouteRecordRaw> = [];
-
+	const defaultMeta: RouterMeta = {
+		keepAlive: true,
+		requiresAuth: true,
+	};
 	const routers = Object.fromEntries(Object.entries(viewRouters).filter(([key]) => key.startsWith(`../views/${moduleName}/`)));
 
 	for (const i in routers) {
 		const newName = i.replace(new RegExp(`../views/${moduleName}/`), '').replace(/.vue/, '');
 		const newPath = `/${moduleName}/${newName.split('.')[0]}`;
-		const defaultMeta: RouterMeta = {
-			keepAlive: true,
-			requiresAuth: true,
-			title: newName,
-			key: newPath,
-		};
+
 		const meta = { ...defaultMeta, ...metaConfig }; // 合并默认 meta 和传入的 metaConfig
 		routerArray.push({
 			path: newPath,
