@@ -61,4 +61,3 @@ useHighlightKeywords(DocRef, (value: string) => {
 	}
 }
 </style>
-@/utils/useKeywords @/utils/useKeywords

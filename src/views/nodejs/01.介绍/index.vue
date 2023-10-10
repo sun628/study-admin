@@ -6,6 +6,13 @@
 			<p>
 				npm（全称 Node Package Manager）是 Node.js 的包管理工具，它是一个基于命令行的工具，用于帮助开发者在自己的项目中安装、升级、移除和管理依赖项。
 			</p>
+			<el-card>
+				<h2>nodemon</h2>
+				<p>用来监控你 node.js 源代码的任何变化和自动重启你的服务器。</p>
+				<Highlight :code="'npm install -g nodemon'"></Highlight>
+				<P>安装完 nodemon 后，就可以用 nodemon 来代替 node 来启动应用：</P>
+				<p>nodemon [your node app]（相当于 node [your node app]） 例如：nodemon ./server.js</p>
+			</el-card>
 			<h2 class="mt-3">npm 命令</h2>
 			<el-card>
 				<ul>

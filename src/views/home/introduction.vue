@@ -38,9 +38,7 @@
 							<el-tag class="mr-3">vite</el-tag>
 							<el-tag class="mr-3">element-plus</el-tag>
 						</el-descriptions-item>
-						<el-descriptions-item label="项目"
-							>写一个用来<font class="font-bold">学习</font>以及可以<font>CV</font>的系统。（练习两年半）</el-descriptions-item
-						>
+						<el-descriptions-item label="项目">集成了一些关于前端知识的文章和功能。</el-descriptions-item>
 					</el-descriptions>
 				</el-card>
 			</el-col>

@@ -1,6 +1,7 @@
 <template>
 	<el-row>
 		<doc title="http模块">
+			<el-link href="https://www.nodeapp.cn/http.html" target="_blank" type="primary">文档地址</el-link>
 			<h2>Node.js提供了许多内置模块来支持不同的功能，其中http模块是用于创建HTTP服务器和客户端的核心模块。</h2>
 			<h3>创建HTTP服务器</h3>
 			<p>使用http.createServer()方法可以创建一个HTTP服务器。这个方法接受一个回调函数，该回调函数在每次有HTTP请求时被调用。</p>

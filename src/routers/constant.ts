@@ -26,6 +26,15 @@ interface Page {
 		key: string;
 	};
 }
+/**
+ * @description 默认 meta 配置
+ * @param {boolean} keepAlive 是否缓存页面
+ * @returns {boolean} requiresAuth 是否需要登录权限
+ **/
+const defaultMeta: RouterMeta = {
+	keepAlive: true,
+	requiresAuth: true,
+};
 
 /**
  * @description 过滤模块路由  TODO: 处理一级路由
@@ -34,17 +43,14 @@ interface Page {
  **/
 export function filterModuleRoutes(moduleName: keyof typeof MatchMenu, metaConfig?: RouterMeta): Array<RouteRecordRaw> {
 	const routerArray: Array<RouteRecordRaw> = [];
-	const defaultMeta: RouterMeta = {
-		keepAlive: true,
-		requiresAuth: true,
-	};
+
 	const routers = Object.fromEntries(Object.entries(viewRouters).filter(([key]) => key.startsWith(`../views/${moduleName}/`)));
 
 	for (const i in routers) {
 		const newName = i.replace(new RegExp(`../views/${moduleName}/`), '').replace(/.vue/, '');
 		const newPath = `/${moduleName}/${newName.split('.')[0]}`;
 
-		const meta = { ...defaultMeta, ...metaConfig }; // 合并默认 meta 和传入的 metaConfig
+		const meta = { ...defaultMeta, ...metaConfig, title: newName, key: newPath }; // 合并默认 meta 和传入的 metaConfig
 		routerArray.push({
 			path: newPath,
 			name: `/${moduleName}/${newName}`,
@@ -61,8 +67,8 @@ export function filterModuleRoutes(moduleName: keyof typeof MatchMenu, metaConfi
  * @param {string} path 路径
  * @returns {Array<Page>} 路由数组
  **/
-export const recursionRouter = (routers: Array<Page>, path: string): Array<Page> => {
-	const arr: Array<Page> = routers.map((item, index) => {
+export const recursionRouter = (routers: Array<Page>, path: string): Array<RouteRecordRaw> => {
+	const arr: Array<RouteRecordRaw> = routers.map((item, index) => {
 		const newIndex = (index + 1).toString().padStart(2, '0');
 		const newPath = `/${path}/${newIndex}`;
 		const newName = `/${path}/${String(item.name)}`;
@@ -71,11 +77,11 @@ export const recursionRouter = (routers: Array<Page>, path: string): Array<Page>
 			name: newName,
 			component: item.component,
 			children: item.children ? recursionRouter(item.children, `${path}/${newIndex}`) : [],
-			meta: item.meta || {
-				keepAlive: true,
-				requiresAuth: true,
+			meta: {
+				...defaultMeta,
 				title: item.name,
 				key: newPath,
+				...item.meta,
 			},
 		};
 	});

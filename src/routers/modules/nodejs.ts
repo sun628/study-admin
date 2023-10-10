@@ -10,7 +10,10 @@ const pages = [
 	},
 	{
 		name: '内置模块',
-		children: [{ name: 'http模块', component: () => import('@/views/nodejs/02.内置模块/01.http.vue') }],
+		children: [
+			{ name: 'http模块', component: () => import('@/views/nodejs/02.内置模块/01.http.vue') },
+			{ name: 'url模块', component: () => import('@/views/nodejs/02.内置模块/02.url.vue') },
+		],
 	},
 ];
 // nodejs模块
