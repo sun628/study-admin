@@ -1,5 +1,7 @@
 import { onMounted, onBeforeUnmount } from 'vue';
+
 export const keywords = ['vue', 'vue3', 'TypeScript', 'electron']; // 关键字列表
+
 export const isKeyword = (word: string): boolean => keywords.includes(word); // 是否是关键字
 
 const regex_keywords = new RegExp(`(${keywords.join('|')})`, 'gi'); // 匹配关键字的正则表达式
