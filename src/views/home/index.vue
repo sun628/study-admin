@@ -5,10 +5,10 @@
 		<div class="layer3"></div>
 		<div class="layer4"></div>
 		<div class="layer5"></div>
-		<div class="title">
+		<div class="lyrics-title">
 			<span>你</span>
 			<span>就</span>
-			<span>像&nbsp;</span>
+			<span>像</span>
 			<span>天</span>
 			<span>外</span>
 			<span>来</span>
@@ -53,19 +53,20 @@ onBeforeUnmount(() => {
 	height: 100%;
 	user-select: none;
 	overflow: hidden;
-	.title {
+	.lyrics-title {
 		position: fixed;
-		top: 50%;
 		left: 0;
 		right: 0;
+		top: 0;
+		bottom: 0;
+		margin: auto;
 		text-align: center;
 		font-family: 'lato', sans-serif;
 		font-weight: 500;
 		font-size: 50px;
 		letter-spacing: 10px;
 		width: fit-content;
-		margin: auto;
-		margin-top: -60px;
+		height: fit-content;
 		span {
 			color: transparent;
 			animation: spread 2s ease-in-out infinite alternate;
@@ -110,6 +111,16 @@ onBeforeUnmount(() => {
 		}
 	}
 }
+/* 对于小于768px宽度的设备应用这些样式，一般用于移动端 */
+@media only screen and (max-width: 768px) {
+	/* 在这里放置移动端特定的 CSS 样式 */
+	.lyrics-title {
+		display: flex;
+		flex-direction: column;
+		right: 10px !important;
+		left: auto !important;
+	}
+}
 
 @keyframes moveUp {
 	100% {
@@ -123,7 +134,7 @@ onBeforeUnmount(() => {
 	}
 }
 @for $i from 1 through 9 {
-	#home .title {
+	#home .lyrics-title {
 		span:nth-child(#{$i}) {
 			animation-delay: ($i - 1) * 0.2s;
 		}

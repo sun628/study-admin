@@ -1,6 +1,6 @@
 import { App, defineAsyncComponent, AsyncComponentLoader } from 'vue';
 import SvgIcon from '@/components/svg-icon/index.vue';
-import * as Icons from '@element-plus/icons-vue';
+import * as ElementPlusIcons from '@element-plus/icons-vue';
 
 // //引入依赖和语言
 import 'highlight.js/styles/atom-one-dark.css';
@@ -24,7 +24,7 @@ export default function install(app: App) {
 		app.component(name, defineAsyncComponent(value as AsyncComponentLoader));
 	}
 	// 注册element Icons组件
-	Object.keys(Icons).forEach((key) => {
-		app.component(key, Icons[key as keyof typeof Icons]);
+	Object.keys(ElementPlusIcons).forEach((key) => {
+		app.component(key, ElementPlusIcons[key as keyof typeof ElementPlusIcons]);
 	});
 }

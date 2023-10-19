@@ -1,5 +1,5 @@
 <template>
-	<div v-if="visible" class="lyrics-container">
+	<div v-show="visible" class="lyrics-container">
 		<!-- <audio ref="AudioRef" class="hidden" :src="src" controls @timeupdate="handleTimeUpdate"></audio> -->
 		<audio ref="AudioRef" class="hidden" :src="src" v-bind="$attrs" @timeupdate="handleTimeUpdate"></audio>
 		<div ref="lyricDiv" class="lyrics">
@@ -39,7 +39,7 @@ let requestId = 0; // requestAnimationFrame的id
 const currentIndex = ref(-1); // 当前播放歌词行的索引
 
 // 更新歌词
-const updateLyrics = (timestamp: number) => {
+const updateLyrics = () => {
 	let currentTime = (AudioRef.value?.currentTime || 0) + 0.6; // 加0.6s是为了让歌词提前显示
 	if (currentTime == null || currentTime == undefined) return;
 	for (let i = 0; i < lyrics.value.length; i++) {
@@ -111,8 +111,8 @@ interface IReturnLyric {
 const lyrics = ref<Array<ILyric>>([]);
 
 // 监听歌曲播放时间变化
-const handleTimeUpdate = (e: any) => {
-	const currentTime = e.target.currentTime; //当前播放器时间
+const handleTimeUpdate = (e: Event) => {
+	const currentTime = (e.target as HTMLAudioElement).currentTime; //当前播放器时间
 	// for (let i = 0; i < lyrics.value.length; i++) {
 	// 	if (currentTime >= lyrics.value[i].time && (!lyrics.value[i + 1] || currentTime < lyrics.value[i + 1].time)) {
 	// 		currentIndex.value = i; // 更新当前播放歌词行的索引

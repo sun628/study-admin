@@ -17,7 +17,7 @@ const _visualizer = visualizer({
 
 const lifecycle = process.env.npm_lifecycle_event; //获取当前运行的命令
 
-export function getPlugins() {
+export function createVitePlugins() {
 	const root = process.cwd();
 	return [
 		vue(),

@@ -1,7 +1,7 @@
 import path from 'path';
 import { defineConfig } from 'vite';
 import { loadEnv } from 'vite';
-import { getPlugins } from './src/plugins/index';
+import { createVitePlugins } from './src/plugins/index';
 const pathSrc = path.resolve(__dirname, 'src');
 
 export default defineConfig(({ command, mode }) => {
@@ -9,7 +9,7 @@ export default defineConfig(({ command, mode }) => {
 	const env = loadEnv(mode, root);
 
 	return {
-		plugins: getPlugins(),
+		plugins: createVitePlugins(),
 		resolve: {
 			alias: {
 				'@/': `${pathSrc}/`,
@@ -63,7 +63,7 @@ export default defineConfig(({ command, mode }) => {
 					assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
 					manualChunks(id) {
 						if (id.includes('node_modules')) {
-							return id.toString().split('node_modules/')[1].split('/')[0].toString(); //静态资源分拆打包
+							return 'vendor'; //静态资源分拆打包
 						}
 					},
 				},

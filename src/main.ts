@@ -14,6 +14,7 @@ import 'element-plus/dist/index.css';
 import directives from '@/directives/index';
 
 const app = createApp(App);
+
 app.use(GlobalCom); //批量注册全局组件
 app.use(ElementPlus);
 app.use(router).use(pinia).use(directives).mount('#app');

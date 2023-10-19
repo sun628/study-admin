@@ -3,7 +3,7 @@ import NProgress from '@/config/nprogress';
 import { ROUTER_WHITE_LIST } from '@/config';
 import { useUserStore } from '@/store/modules/user';
 import { AxiosCanceler } from '@/api/helper/axiosCancel';
-import tracker from '@/utils/tracker';
+// import tracker from '@/utils/tracker';
 
 const axiosCanceler = new AxiosCanceler();
 
@@ -12,8 +12,8 @@ const axiosCanceler = new AxiosCanceler();
  * */
 router.beforeEach((to, from, next) => {
 	const userStore = useUserStore();
-	tracker.setUserId(userStore.userInfo.username);
-	tracker.sendTracker({ path: to.path });
+	// tracker.setUserId(userStore.userInfo.username);
+	// tracker.sendTracker({ path: to.path });
 	NProgress.start();
 	// 在跳转路由之前，清除所有的请求
 	axiosCanceler.removeAllPending();
