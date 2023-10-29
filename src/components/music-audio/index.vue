@@ -31,9 +31,7 @@ interface IReturnLyric {
 const globalStore = useGlobalStore();
 const themeConfig = computed(() => globalStore.themeConfig);
 const AudioRef = ref<HTMLAudioElement | null>(null);
-// const src = 'https://music.163.com/song/media/outer/url?id=1374056689.mp3';
-const src =
-	'https://m704.music.126.net/20231027171309/07201d838b7cc1acfbe667164744a8b5/jdyyaac/obj/w5rDlsOJwrLDjj7CmsOj/14096610524/57c5/ae79/6892/86a04de6bf707dc419da901cda76b4ca.m4a?authSecret=0000018b7051c8b915ec0aaba04ac872';
+const src = 'http://music.163.com/song/media/outer/url?id=2064033095.mp3';
 const gradBg = ref('');
 const props = defineProps({
 	// 是否显示音乐组件
@@ -143,7 +141,7 @@ const scrollToCurrentLine = () => {
 };
 // 获取歌词歌词
 const getLyric = async () => {
-	const res = await getLyricApi({ id: 1374056689 });
+	const res = await getLyricApi({ id: 2064033095 });
 	formatMusicLyrics(res.lyric);
 };
 

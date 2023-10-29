@@ -6,14 +6,7 @@
 		<div class="layer4"></div>
 		<div class="layer5"></div>
 		<div class="lyrics-title">
-			<span>我</span>
-			<span>可</span>
-			<span>以</span>
-			<span>陪</span>
-			<span>你</span>
-			<span>去</span>
-			<span>流</span>
-			<span>浪</span>
+			<span v-for="(item, index) in lyricTitle.split('')" :key="index">{{ item }}</span>
 		</div>
 	</div>
 </template>
@@ -24,6 +17,8 @@ const themeConfig = computed(() => globalStore.themeConfig);
 const globalStore = useGlobalStore();
 const { useDark } = useTheme();
 const isDark = themeConfig.value.isDark;
+
+const lyricTitle = '你就像天外来物一样';
 
 /**
  * @description 使用暗黑主题
