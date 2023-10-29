@@ -5,6 +5,7 @@ import AutoImport from 'unplugin-auto-import/vite'; //自动导入vue和vue-rout
 import { visualizer } from 'rollup-plugin-visualizer'; //打包分析
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import eslintPlugin from 'vite-plugin-eslint';
+import { VitePWA } from 'vite-plugin-pwa';
 import path from 'path';
 
 const _visualizer = visualizer({
@@ -21,6 +22,36 @@ export function createVitePlugins() {
 	const root = process.cwd();
 	return [
 		vue(),
+		VitePWA({
+			registerType: 'autoUpdate',
+			manifest: {
+				name: 'study-admin',
+				short_name: 'PWA',
+				description: 'PWA应用',
+				theme_color: '#ffffff',
+				icons: [
+					{
+						src: '/logo.png',
+						sizes: '317x317',
+						type: 'image/png',
+					},
+					{
+						src: '/logo.png',
+						sizes: '317x317',
+						type: 'image/png',
+						purpose: 'any maskable',
+					},
+				],
+			},
+			workbox: {
+				cacheId: 'vite-pwa',
+				// 对所有匹配的静态资源进行缓存
+				globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+			},
+			// devOptions: {
+			// 	enabled: true,
+			// },
+		}),
 		eslintPlugin({
 			include: ['src/**/*.ts', 'src/**/*.vue', 'src/*.ts', 'src/*.vue'],
 		}),
