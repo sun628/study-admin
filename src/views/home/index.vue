@@ -6,15 +6,14 @@
 		<div class="layer4"></div>
 		<div class="layer5"></div>
 		<div class="lyrics-title">
+			<span>我</span>
+			<span>可</span>
+			<span>以</span>
+			<span>陪</span>
 			<span>你</span>
-			<span>就</span>
-			<span>像</span>
-			<span>天</span>
-			<span>外</span>
-			<span>来</span>
-			<span>物</span>
-			<span>一</span>
-			<span>样</span>
+			<span>去</span>
+			<span>流</span>
+			<span>浪</span>
 		</div>
 	</div>
 </template>
@@ -74,6 +73,13 @@ onBeforeUnmount(() => {
 			background-clip: text;
 			-webkit-background-clip: text;
 		}
+		@include respondTo('mobile') {
+			display: flex;
+			flex-direction: column;
+			right: 10px !important;
+			left: auto !important;
+			font-size: 28px !important;
+		}
 	}
 	@function getShadow($n) {
 		$shadows: '#{random(100)}vw #{random(100)}vh #fff';
@@ -109,16 +115,6 @@ onBeforeUnmount(() => {
 				box-shadow: inherit;
 			}
 		}
-	}
-}
-/* 对于小于768px宽度的设备应用这些样式，一般用于移动端 */
-@media only screen and (max-width: 768px) {
-	/* 在这里放置移动端特定的 CSS 样式 */
-	.lyrics-title {
-		display: flex;
-		flex-direction: column;
-		right: 10px !important;
-		left: auto !important;
 	}
 }
 

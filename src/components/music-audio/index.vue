@@ -2,22 +2,38 @@
 	<div v-show="visible" class="lyrics-container">
 		<!-- <audio ref="AudioRef" class="hidden" :src="src" controls @timeupdate="handleTimeUpdate"></audio> -->
 		<audio ref="AudioRef" class="hidden" :src="src" v-bind="$attrs" @timeupdate="handleTimeUpdate"></audio>
-		<div ref="lyricDiv" class="lyrics">
-			<div v-for="(item, index) in lyrics" :key="item.uid" class="lyric-line">
-				<p :class="currentIndex === index ? 'highlight' : ''" :style="currentIndex === index ? gradBg : ''">
-					{{ item.lyric }}
-				</p>
-			</div>
+		<div ref="lyricDiv" class="lyricDiv">
+			<ul ref="lyric" class="lyrics">
+				<li v-for="(item, index) in lyrics" :key="item.uid" class="lyric-line">
+					<p :class="currentIndex === index ? 'active' : ''" :data-index="index" :style="currentIndex === index ? gradBg : ''">
+						{{ item.lyric }}
+					</p>
+				</li>
+			</ul>
 		</div>
 	</div>
 </template>
 <script setup lang="ts">
 import { getLyricApi } from '@/api/music/index';
 import { useGlobalStore } from '@/store/modules/global';
+
+interface ILyric {
+	time: number;
+	lyric: string;
+	uid: number;
+}
+
+interface IReturnLyric {
+	lyric: ILyric[];
+	tlyric?: ILyric[];
+}
+
 const globalStore = useGlobalStore();
 const themeConfig = computed(() => globalStore.themeConfig);
 const AudioRef = ref<HTMLAudioElement | null>(null);
-const src = 'https://music.163.com/song/media/outer/url?id=436346833.mp3';
+// const src = 'https://music.163.com/song/media/outer/url?id=1374056689.mp3';
+const src =
+	'https://m704.music.126.net/20231027171309/07201d838b7cc1acfbe667164744a8b5/jdyyaac/obj/w5rDlsOJwrLDjj7CmsOj/14096610524/57c5/ae79/6892/86a04de6bf707dc419da901cda76b4ca.m4a?authSecret=0000018b7051c8b915ec0aaba04ac872';
 const gradBg = ref('');
 const props = defineProps({
 	// 是否显示音乐组件
@@ -32,9 +48,9 @@ const props = defineProps({
 		default: true,
 	},
 });
-let lyricHeight = 0;
-let lyricDiv = ref<HTMLDivElement | null>(null);
 
+const lyric = ref<HTMLDivElement | null>(null); // dom -  包含歌词标签的ul，高度很高，主要用于控制transform
+const lyricDiv = ref<HTMLDivElement | null>(null); // dom - 高度固定的外层div，主要用于html结构
 let requestId = 0; // requestAnimationFrame的id
 const currentIndex = ref(-1); // 当前播放歌词行的索引
 
@@ -58,29 +74,27 @@ const updateLyrics = () => {
 
 //播放音乐
 const play = () => {
-	return new Promise<void>((resolve, reject) => {
-		if (!AudioRef.value) return reject(new Error('AudioRef is not defined or has no value.'));
-		AudioRef.value
-			.play()
-			.then(() => {
-				console.log('play');
-				currentIndex.value = -1;
-				if (props.animation) {
-					requestId = requestAnimationFrame(updateLyrics);
-				}
-				resolve();
-			})
-			.catch((e) => {
-				if (globalStore.themeConfig.audio) {
-					const autoPlayAfterClick = () => {
-						document.removeEventListener('click', autoPlayAfterClick);
-						play();
-					};
-					document.addEventListener('click', autoPlayAfterClick);
-				}
-				reject(e);
-			});
-	});
+	if (!AudioRef.value) return new Error('AudioRef is not defined or has no value.');
+	AudioRef.value
+		.play()
+		.then(() => {
+			console.log('play');
+			currentIndex.value = -1;
+			if (props.animation) {
+				requestId = requestAnimationFrame(updateLyrics);
+			}
+		})
+		.catch((e) => {
+			if (globalStore.themeConfig.audio) {
+				globalStore.themeConfig.audio = false;
+				const autoPlayAfterClick = () => {
+					document.removeEventListener('click', autoPlayAfterClick);
+					play();
+				};
+				document.addEventListener('click', autoPlayAfterClick);
+			}
+			console.log(e);
+		});
 };
 
 // 停止音乐
@@ -89,30 +103,20 @@ const pause = () => {
 	cancelAnimationFrame(requestId);
 	console.log('cancelAnimationFrame', requestId);
 };
+
 onMounted(async () => {
 	if (globalStore.themeConfig.audio) {
 		await nextTick();
 		play();
 	}
-	// 获取固定歌词区域高度的一半 用来让高亮歌词始终居中
-	lyricHeight = (lyricDiv.value?.offsetHeight || 0) / 2;
 });
 
-interface ILyric {
-	time: number;
-	lyric: string;
-	uid: number;
-}
-
-interface IReturnLyric {
-	lyric: ILyric[];
-	tlyric?: ILyric[];
-}
 const lyrics = ref<Array<ILyric>>([]);
 
 // 监听歌曲播放时间变化
 const handleTimeUpdate = (e: Event) => {
 	const currentTime = (e.target as HTMLAudioElement).currentTime; //当前播放器时间
+	scrollToCurrentLine();
 	// for (let i = 0; i < lyrics.value.length; i++) {
 	// 	if (currentTime >= lyrics.value[i].time && (!lyrics.value[i + 1] || currentTime < lyrics.value[i + 1].time)) {
 	// 		currentIndex.value = i; // 更新当前播放歌词行的索引
@@ -121,9 +125,25 @@ const handleTimeUpdate = (e: Event) => {
 	// }
 };
 
+const scrollToCurrentLine = () => {
+	if (!lyricDiv.value) return;
+	const activeLine = lyricDiv.value.querySelector('.active') as HTMLLIElement;
+
+	if (activeLine) {
+		const containerHeight = lyricDiv.value.clientHeight;
+		const activeLineOffsetTop = activeLine.offsetTop;
+		const activeLineHeight = activeLine.clientHeight;
+		if (activeLineOffsetTop < containerHeight / 2) return;
+		const scrollY = -(activeLineOffsetTop - containerHeight / 2 + activeLineHeight / 2);
+		console.log('scrollY:', scrollY);
+		if (lyric.value) {
+			lyric.value.style.transform = `translateY(${scrollY}px)`;
+		}
+	}
+};
 // 获取歌词歌词
 const getLyric = async () => {
-	const res = await getLyricApi({ id: 436346833 });
+	const res = await getLyricApi({ id: 1374056689 });
 	formatMusicLyrics(res.lyric);
 };
 
@@ -193,42 +213,37 @@ defineExpose({
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	position: fixed;
 	z-index: 999;
-}
-
-.lyrics {
-	text-align: center;
-	height: 100%;
-	min-width: 400px;
-	font-size: 16px;
-	overflow-y: auto;
-	&::-webkit-scrollbar-thumb {
-		visibility: hidden;
+	padding: 20px 0px;
+	.lyricDiv {
+		height: 100%;
+		overflow-y: auto;
+		text-align: center;
+		text-align: center;
+		height: 100%;
+		min-width: 400px;
+		font-size: 16px;
+		overflow-y: auto;
+		&::-webkit-scrollbar-thumb {
+			visibility: hidden;
+		}
+		&:hover::-webkit-scrollbar-thumb {
+			visibility: visible;
+		}
 	}
-	&:hover::-webkit-scrollbar-thumb {
-		visibility: visible;
+	.lyrics {
+		transition: all 0.3s;
+		.lyric-line {
+			animation: scroll 5s linear infinite;
+			color: rgba(255, 255, 255, 0.8);
+		}
+
+		.active {
+			font-weight: bold;
+			font-size: 18px;
+			color: transparent;
+			background-clip: text;
+			-webkit-background-clip: text;
+		}
 	}
 }
-
-.lyric-line {
-	animation: scroll 5s linear infinite;
-	color: rgba(255, 255, 255, 0.8);
-}
-
-.highlight {
-	font-weight: bold;
-	font-size: 18px;
-	color: transparent;
-	background-clip: text;
-	-webkit-background-clip: text;
-}
-
-// @keyframes scroll {
-// 	0% {
-// 		transform: translateY(0);
-// 	}
-
-// 	100% {
-// 		transform: translateY(-100%);
-// 	}
-// }
 </style>
