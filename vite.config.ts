@@ -19,7 +19,7 @@ export default defineConfig(({ command, mode }) => {
 		css: {
 			preprocessorOptions: {
 				scss: {
-					additionalData: '@use "@/styles/element/index.scss" as *;',
+					additionalData: '@use "@/styles/element/index.scss" as *; @use "@/styles/media.scss" as *;',
 				},
 			},
 		},
@@ -63,7 +63,7 @@ export default defineConfig(({ command, mode }) => {
 					assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
 					manualChunks(id) {
 						if (id.includes('node_modules')) {
-							return 'vendor'; //静态资源分拆打包
+							return id.toString().split('node_modules/')[1].split('/')[0].toString(); //静态资源分拆打包
 						}
 					},
 				},

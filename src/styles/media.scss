@@ -1,10 +1,53 @@
-@media (max-width: 1400px) {
-	.login-left {
-		display: none;
+$breakpoints: (
+	'phone': (
+		320px,
+		480px,
+	),
+	'pad': (
+		481px,
+		768px,
+	),
+	'notebook': (
+		769px,
+		1024px,
+	),
+	'desktop': (
+		1025px,
+		1200px,
+	),
+	'tv': 1200px,
+	'mobile': 768px,
+);
+
+@mixin respondTo($breakname) {
+	// 确保从映射中获取的是一个具体的断点值
+	$breakpoint: map-get($breakpoints, $breakname);
+
+	// 检查$breakpoint是否是一个列表。
+	@if type-of($breakpoint) == list {
+		// 获取范围的最小宽度和最大宽度
+		$min-width: nth($breakpoint, 1);
+		$max-width: nth($breakpoint, 2);
+
+		// 创建媒体查询
+		@media (min-width: $min-width) and (max-width: $max-width) {
+			@content; // 这将包含调用此 mixin 时在其内部编写的 CSS
+		}
+	} @else if $breakname == 'mobile' {
+		// 处理"mobile"断点
+		@media (max-width: $breakpoint) {
+			@content;
+		}
+	} @else if $breakname == 'tv' {
+		// 处理"tv"断点
+		@media (min-width: $breakpoint) {
+			@content;
+		}
 	}
 }
-@media (max-width: 680px) {
-	.el-breadcrumb {
+
+@media (max-width: 1400px) {
+	.login-left {
 		display: none;
 	}
 }
