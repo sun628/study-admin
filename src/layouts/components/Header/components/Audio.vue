@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<svg-icon name="music" :class="{ 'muisc-rotate': themeConfig.audio }" @click="playMusic()"></svg-icon>
+		<SvgIcon name="music" :class="{ 'muisc-rotate': themeConfig.audio }" @click="playMusic()"></SvgIcon>
 	</div>
 	<music-audio ref="MusicAudioRef" class="music-aduio" loop :visible="visible" />
 </template>
@@ -8,7 +8,6 @@
 import { useGlobalStore } from '@/store/modules/global';
 import MusicAudio from '@/components/music-audio/index.vue';
 import { HOME_URL } from '@/config';
-
 const globalStore = useGlobalStore();
 const themeConfig = computed(() => globalStore.themeConfig);
 

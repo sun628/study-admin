@@ -8,10 +8,10 @@
 			</p>
 			<el-card>
 				<h2>nodemon</h2>
-				<p>用来监控你 node.js 源代码的任何变化和自动重启你的服务器。</p>
+				<div>用来监控你 node.js 源代码的任何变化和自动重启你的服务器。</div>
 				<Highlight :code="'npm install -g nodemon'"></Highlight>
-				<P>安装完 nodemon 后，就可以用 nodemon 来代替 node 来启动应用：</P>
-				<p>nodemon [your node app]（相当于 node [your node app]） 例如：nodemon ./server.js</p>
+				<div>安装完 nodemon 后，就可以用 nodemon 来代替 node 来启动应用：</div>
+				<div>nodemon [your node app]（相当于 node [your node app]） 例如：nodemon ./server.js</div>
 			</el-card>
 			<h2 class="mt-3">npm 命令</h2>
 			<el-card>

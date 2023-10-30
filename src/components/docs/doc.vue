@@ -14,11 +14,9 @@ import { useHighlightKeywords } from '@/hooks/useHighlightKeywords';
 import mittBus from '@/hooks/useMitt';
 export interface DocProps {
 	title?: string; // table的数据
-	keywords?: 'words' | 'keywords';
 }
 const props = withDefaults(defineProps<DocProps>(), {
 	title: '',
-	keywords: undefined,
 });
 
 const { title } = toRefs(props);

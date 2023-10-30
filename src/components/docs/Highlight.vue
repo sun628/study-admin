@@ -47,7 +47,9 @@ defineProps({
 	text-indent: 75px;
 	background-color: #fc625d;
 	border-radius: 16px;
-	box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+	box-shadow:
+		20px 0 #fdbc40,
+		40px 0 #35cd4b;
 	content: attr(codetype);
 }
 pre {

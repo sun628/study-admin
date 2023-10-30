@@ -14,6 +14,7 @@ import hljsVuePlugin from '@highlightjs/vue-plugin';
 
 export default function install(app: App) {
 	app.component('SvgIcon', SvgIcon);
+
 	app.use(hljsVuePlugin, {
 		languages: ['xml', 'typescript'],
 	});
