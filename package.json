@@ -4,6 +4,7 @@
 	"version": "0.0.0",
 	"description": "暖阳的后台管理",
 	"author": "暖阳",
+  
 	"scripts": {
 		"dev": "vite",
 		"dev --host": "vite --host",
