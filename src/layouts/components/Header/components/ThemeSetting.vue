@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import mittBus from '@/hooks/useMitt';
+import mittBus from '@/utils/mitt';
 const openDrawer = () => {
 	mittBus.emit('openThemeDrawer');
 };

@@ -39,7 +39,7 @@ const tipsList = [
 let count = ref(0);
 
 const countAdd = () => {
-	count.value = count.value + 1;
+	count.value++;
 };
 
 let msg = ref('');

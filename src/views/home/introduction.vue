@@ -43,7 +43,6 @@
 				</el-card>
 			</el-col>
 		</el-row>
-
 		<el-row>
 			<el-card class="w-full">
 				<mv-table :data="tableData" stripe style="width: 100%" size="large">
@@ -65,7 +64,7 @@
 	</div>
 </template>
 <script setup lang="ts">
-import mittBus from '@/hooks/useMitt';
+import mittBus from '@/utils/mitt';
 import { isKeyword } from '@/hooks/useHighlightKeywords';
 import MvTable from '@/components/mv-table/index.vue';
 import { MoreFilled } from '@element-plus/icons-vue';

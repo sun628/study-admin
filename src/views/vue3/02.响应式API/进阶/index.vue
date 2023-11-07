@@ -10,30 +10,30 @@
 				</div>
 				<Highlight :code="shallowRefCode" />
 				<p class="tip">
-					TIP：<font>shallowRef()</font>
+					TIP：<HighFont>shallowRef()</HighFont>
 					常常用于对大型数据结构的性能优化或是与外部的状态管理系统集成。但代价是，我们现在必须将所有深层级对象视为不可变的，并且只能通过替换整个根状态来触发更新：
 				</p>
 				<Highlight :code="shallowRefCode1" />
 			</doc>
 			<doc title="triggerRef">
-				<p class="tip">TIP：强制触发依赖于一个浅层 <font>ref</font> 的副作用，这通常在对浅引用的内部值进行深度变更后使用。</p>
+				<p class="tip">TIP：强制触发依赖于一个浅层 <HighFont>ref</HighFont> 的副作用，这通常在对浅引用的内部值进行深度变更后使用。</p>
 				<Highlight :code="triggerRefCode" />
 				<h2>案例</h2>
 				<div class="text-xl font-bold">
-					<p>修改 <font>shallowRef()</font> 修饰的对象里的count值： {{ shallowObj.count }}</p>
+					<p>修改 <HighFont>shallowRef()</HighFont> 修饰的对象里的count值： {{ shallowObj.count }}</p>
 					<el-button type="primary" @click="count()">修改count值</el-button>
 					<el-button type="primary" @click="countByTriggerRef()">通过TriggerRef修改count值</el-button>
 				</div>
 			</doc>
 			<doc title="customRef">
-				<p class="tip">TIP：创建一个自定义的 <font>ref</font>，显式声明对其依赖追踪和更新触发的控制方式。</p>
+				<p class="tip">TIP：创建一个自定义的 <HighFont>ref</HighFont>，显式声明对其依赖追踪和更新触发的控制方式。</p>
 				<h3>类型</h3>
 				<Highlight :code="customReftType" />
 				<h3>详细信息</h3>
 				<div class="tip">
 					<p>
-						1.<font>customRef() </font>预期接收一个工厂函数作为参数，这个工厂函数接受 track 和 trigger 两个函数作为参数，并返回一个带有 get 和 set
-						方法的对象。
+						1.<HighFont>customRef() </HighFont>预期接收一个工厂函数作为参数，这个工厂函数接受 track 和 trigger 两个函数作为参数，并返回一个带有 get 和
+						set 方法的对象。
 					</p>
 					<p>2.一般来说，track() 应该在get()方法中调用，而 trigger() 应该在set()中调用。然而事实上，你对何时调用、是否应该调用他们有完全的控制权。</p>
 				</div>

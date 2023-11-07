@@ -20,6 +20,10 @@ const pages = [
 		name: '组件通信',
 		component: () => import('@/views/vue3/03.组件通信/index.vue'),
 	},
+	{
+		name: '组件v-model',
+		component: () => import('@/views/vue3/04.组件v-model/index.vue'),
+	},
 ];
 
 // vue3模块

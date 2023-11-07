@@ -6,7 +6,7 @@
 			<h2>url 模块的功能包括解析 URL、构建 URL、处理查询字符串等。</h2>
 			<h3 class="flex items-center">
 				<p>1. 解析URL（url.parse()）</p>
-				<font>（旧版用法）</font>
+				<HighFont>（旧版用法）</HighFont>
 			</h3>
 			<p>
 				url.parse() 方法用于解析一个 URL 字符串，并返回一个 URL 对象，其中包含了 URL 的各个组成部分。
@@ -17,7 +17,7 @@
 			<!-- 新版new URL使用 -->
 			<h3 class="flex items-center">
 				<p>1. 解析URL（new URL()）</p>
-				<font>（新版用法）</font>
+				<HighFont>（新版用法）</HighFont>
 			</h3>
 			<Highlight :code="url1"></Highlight>
 			<h3><p>2. 构建 URL（url.format()）</p></h3>

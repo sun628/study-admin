@@ -33,6 +33,6 @@ const change = () => {
 };
 
 const updateMsg = () => {
-	emit('update:msg', '222');
+	emit('update:msg', 'msg更新了');
 };
 </script>

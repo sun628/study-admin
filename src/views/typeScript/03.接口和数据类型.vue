@@ -10,7 +10,7 @@
 			<Highlight :code="objType3"></Highlight>
 		</doc>
 		<doc title="任意属性 [propName: string]">
-			<p><font color="red">需要注意的是，一旦定义了任意属性，那么确定属性和可选属性的类型都必须是它的类型的子集：</font></p>
+			<p><HighFont color="red">需要注意的是，一旦定义了任意属性，那么确定属性和可选属性的类型都必须是它的类型的子集：</HighFont></p>
 		</doc>
 		<doc title="只读属性 readonly">
 			<p>readonly 只读属性是不允许被赋值的只能读取</p>

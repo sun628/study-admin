@@ -31,9 +31,9 @@
 import { ref, computed, nextTick } from 'vue';
 import { Search } from '@element-plus/icons-vue';
 import { useRouter } from 'vue-router';
-import { getFlatArr } from '@/utils/util';
+import { getFlatArr } from '@/utils/utils';
 import { MenuStore } from '@/store/modules/menu';
-import mittBus from '@/hooks/useMitt';
+import mittBus from '@/utils/mitt';
 
 const router = useRouter();
 const menuStore = MenuStore();

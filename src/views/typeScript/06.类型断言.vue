@@ -2,7 +2,7 @@
 	<el-row>
 		<doc title="1.类型断言">
 			<p>
-				<font color="red"><span v-text="'语法：值 as 类型或<类型>值  value as string  <string>value'"></span></font>
+				<HighFont color="red"><span v-text="'语法：值 as 类型或<类型>值  value as string  <string>value'"></span></HighFont>
 			</p>
 			<Highlight :code="assertType1"></Highlight>
 			<Highlight :code="assertType2"></Highlight>

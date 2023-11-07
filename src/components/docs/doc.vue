@@ -1,7 +1,7 @@
 <template>
 	<div v-bind="$attrs" ref="DocRef" class="doc mb-6" :title="title">
 		<h2 v-show="title" class="text-3xl">
-			<font class="pointer doc-font" @click="scrollToView()"> # </font>
+			<HighFont class="pointer doc-font" @click="scrollToView()"> # </HighFont>
 			<span>{{ title }}</span>
 		</h2>
 		<div class="doc-content">
@@ -11,7 +11,7 @@
 </template>
 <script setup lang="ts">
 import { useHighlightKeywords } from '@/hooks/useHighlightKeywords';
-import mittBus from '@/hooks/useMitt';
+import mittBus from '@/utils/mitt';
 export interface DocProps {
 	title?: string; // table的数据
 }

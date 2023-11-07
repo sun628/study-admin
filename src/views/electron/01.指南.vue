@@ -15,8 +15,8 @@
 			<p>vite.config.ts</p>
 			<Highlight :code="code3"></Highlight>
 			<h2>package.json</h2>
-			<div><span>删除</span><font color="red">"type": "module"</font></div>
-			<div><span>新增</span><font color="red">"main": "dist-electron/index.js"</font></div>
+			<div><span>删除</span><HighFont color="red">"type": "module"</HighFont></div>
+			<div><span>新增</span><HighFont color="red">"main": "dist-electron/index.js"</HighFont></div>
 		</doc>
 		<doc title="4. 编写electron文件">
 			<p>在根目录新建electron文件</p>

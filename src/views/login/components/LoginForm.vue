@@ -29,7 +29,7 @@ import { ElNotification } from 'element-plus';
 import { useUserStore } from '@/store/modules/user';
 
 import { TabsStore } from '@/store/modules/tabs';
-import { getTimeState } from '@/utils/util';
+import { getTimeState } from '@/utils/utils';
 import { HOME_URL } from '@/config';
 import type { ElForm } from 'element-plus';
 import { onKeyStroke } from '@vueuse/core';

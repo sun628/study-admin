@@ -39,7 +39,7 @@ export const VModelCode = `<!-- 父组件 -->
 <script setup lang="ts">
 let count = ref(0); 
 const countAdd = () => {
-	count.value = count.value + 1;
+  count.value++;
 };
 </script>
 
@@ -66,3 +66,25 @@ const change = () => {
 	emit('update:modelValue', modelValue.value - 1);
 };
 </script>`;
+
+export const ProvideInjectCode = `// 父组件
+let parentDataValue = ref(11111);
+provide('parentData', parentDataValue);
+
+// 子组件
+let childData = inject('parentData');`;
+
+export const MittCode = `import mitt from 'mitt'
+
+// 创建一个事件总线
+const emitter = mitt()
+
+// 监听一个事件
+emitter.on('foo', e => console.log('foo', e) )
+// 移除一个事件监听
+onUnmounted(() => {
+	emitter.off('foo', onFoo); // onFoo 必须是一个函数引用,不加参数会移除所有foo事件监听
+});
+
+// 触发一个事件
+emitter.emit('foo', { a: 'b' })`;

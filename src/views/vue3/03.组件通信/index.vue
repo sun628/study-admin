@@ -31,12 +31,13 @@
 import { ref, reactive, onMounted, shallowRef, markRaw, defineAsyncComponent } from 'vue';
 import type { CollapseModelValue } from 'element-plus';
 import { CircleCloseFilled } from '@element-plus/icons-vue';
-import { PropsEmitsCode, VModelCode } from './code';
+import mitt from 'mitt';
 
-const drawerVisible = ref(false);
-// import A from './父子组件通信/index.vue';
-// const A = defineAsyncComponent(() => import('./props-emit/index.vue'));
+import { PropsEmitsCode, VModelCode, ProvideInjectCode, MittCode } from './code';
 import A from './props-emit/index.vue';
+// const A = defineAsyncComponent(() => import('./props-emit/index.vue'));
+const drawerVisible = ref(false);
+
 const B = defineAsyncComponent(() => import('./v-model/index.vue'));
 const C = defineAsyncComponent(() => import('./refs/index.vue'));
 const D = defineAsyncComponent(() => import('./provide-inject/index.vue'));
@@ -71,6 +72,7 @@ const components = reactive([
 		tip: `provide/inject是 Vue 中提供的一对 API。无论层级多深，API 都可以实现父组件到子组件的数据传递。
         （尽量使用 readonly 封装数据，避免子组件修改父组件传递的数据。）`,
 		componet: markRaw(D),
+		code: ProvideInjectCode,
 	},
 	{
 		title: 'attrs',
@@ -83,6 +85,7 @@ const components = reactive([
 		componet: markRaw(F),
 		href: 'https://github.com/developit/mitt',
 		link: 'mitt github地址',
+		code: MittCode,
 	},
 	{
 		title: 'vuex/pinia',

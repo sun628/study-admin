@@ -5,6 +5,7 @@
 /src/assets
 **/*.svg
 **/*.sh
+**/*.md
 
 /public/*
 components.d.ts

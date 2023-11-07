@@ -1,6 +1,6 @@
 <template>
 	<el-row>
-		<p>JavaScript 中有很多内置对象，它们可以直接在<font>TypeScript</font>中当做定义好了的类型。</p>
+		<p>JavaScript 中有很多内置对象，它们可以直接在<HighFont>TypeScript</HighFont>中当做定义好了的类型。</p>
 		<doc title="1.ECMAScript 的内置对象">
 			<p>Boolean、Number、string、RegExp、Date、Error</p>
 			<Highlight :code="builtIn1"></Highlight>

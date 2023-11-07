@@ -1,5 +1,5 @@
 <template>
-	<span :style="{ color: color }">
+	<span :style="{ color: color }" v-bind="$attrs">
 		<slot></slot>
 	</span>
 </template>
