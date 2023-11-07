@@ -5,7 +5,7 @@
 				<doc title="ref">
 					<div class="tip">
 						<p>TIP:接受一个内部值并返回一个响应式且可变的 ref 对象。ref 对象仅有一个 .value property，指向该内部值。</p>
-						<p><HighFont color="red">注意被ref包装之后需要.value 来进行赋值</HighFont></p>
+						<p class="text-primary">注意被ref包装之后需要.value 来进行赋值</p>
 					</div>
 					<h3>类型</h3>
 					<Highlight :code="refType" />
@@ -20,7 +20,7 @@
 					</div>
 				</doc>
 				<doc title="reactive">
-					<p class="tip">返回一个对象的响应式代理。(只能是复杂数据类型extends <HighFont color="red">object</HighFont>)</p>
+					<p class="tip">返回一个对象的响应式代理。(只能是复杂数据类型extends object)</p>
 					<h3>类型</h3>
 					<Highlight :code="reactiveType" />
 					<h3>示例</h3>

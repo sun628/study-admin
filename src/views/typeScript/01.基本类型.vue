@@ -12,7 +12,7 @@
 			<Highlight :code="numberType"></Highlight>
 		</doc>
 		<doc title="3.布尔类型：">
-			<HighFont color="red">注意，使用构造函数 Boolean 创造的对象不是布尔值：</HighFont>
+			<span class="text-primary">注意，使用构造函数 Boolean 创造的对象不是布尔值：</span>
 			<Highlight :code="booleanType"></Highlight>
 		</doc>
 		<doc title="4.空值类型：">
@@ -24,7 +24,7 @@
 		</doc>
 		<doc title="5.Null和undefined类型：">
 			<Highlight :code="nullOrUndefinedType"></Highlight>
-			<HighFont color="red">void 和 undefined 和 null 最大的区别</HighFont>
+			<span class="text-primary">void 和 undefined 和 null 最大的区别</span>
 			<p>与 void 的区别是，undefined 和 null 是所有类型的子类型。也就是说 undefined 类型的变量，可以赋值给 string 类型的变量：</p>
 			<Highlight :code="nullOrUndefinedType2"></Highlight>
 			<Highlight :code="nullOrUndefinedType3"></Highlight>

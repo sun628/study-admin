@@ -1,7 +1,7 @@
 <template>
 	<div v-bind="$attrs" ref="DocRef" class="doc mb-6" :title="title">
 		<h2 v-show="title" class="text-3xl">
-			<HighFont class="pointer doc-font" @click="scrollToView()"> # </HighFont>
+			<span class="pointer doc-font text-primary" @click="scrollToView()"> # </span>
 			<span>{{ title }}</span>
 		</h2>
 		<div class="doc-content">

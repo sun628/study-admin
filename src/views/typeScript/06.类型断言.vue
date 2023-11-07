@@ -1,9 +1,7 @@
 <template>
 	<el-row>
 		<doc title="1.类型断言">
-			<p>
-				<HighFont color="red"><span v-text="'语法：值 as 类型或<类型>值  value as string  <string>value'"></span></HighFont>
-			</p>
+			<p class="text-primary" v-text="'语法：值 as 类型或<类型>值  value as string  <string>value'"></p>
 			<Highlight :code="assertType1"></Highlight>
 			<Highlight :code="assertType2"></Highlight>
 			<p>需要注意的是，类型断言只能够「欺骗」TypeScript 编译器，无法避免运行时的错误，反而滥用类型断言可能会导致运行时错误</p>

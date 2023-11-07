@@ -7,7 +7,7 @@
 			</div>
 
 			<ul class="tip">
-				<li><HighFont color="red">主要用于解决命名冲突，他会在全局生成一个对象，在namepace内部的类都要通过这个对象访问。</HighFont></li>
+				<li class="text-primary">主要用于解决命名冲突，他会在全局生成一个对象，在namepace内部的类都要通过这个对象访问。</li>
 				<li>通过 namespace 关键字定义</li>
 				<li>命名空间内的类默认私有</li>
 				<li>通过 export 暴露</li>

@@ -6,28 +6,25 @@
 			<Highlight :code="classType1"></Highlight>
 		</doc>
 		<doc title="2.类的存取器">
-			<p>TypeScript支持通过<HighFont>getters/setters</HighFont>来截取对对象成员的访问。 它能帮助你有效的控制对对象成员的访问。</p>
+			<p>TypeScript支持通过 getters/setters 来截取对对象成员的访问。 它能帮助你有效的控制对对象成员的访问。</p>
 			<Highlight :code="classType2"></Highlight>
 		</doc>
 		<doc title="3.类的继承与重写">
-			<p>
-				使用 <HighFont>extends</HighFont> 关键字实现继承，子类中使用
-				<HighFont>super</HighFont> 关键字来调用父类的构造函数和方法。这样可以抽出公共部分让子类复用。
-			</p>
+			<p>使用 extends 关键字实现继承，子类中使用 super 关键字来调用父类的构造函数和方法。这样可以抽出公共部分让子类复用。</p>
 			<p>重写就是子类可以重新编写父类里边的代码。</p>
 			<Highlight :code="classType3"></Highlight>
 		</doc>
 		<doc title="4.访问修饰符">
-			<h2><HighFont>>public</HighFont></h2>
+			<h2 class="text-primary">>public</h2>
 			<p>public 修饰的属性或方法是公有的，在程序类的内部和外部都可以访问。类的成员全部默认为 public。</p>
 			<Highlight :code="classType4"></Highlight>
-			<h2><HighFont>>private</HighFont></h2>
+			<h2 class="text-primary">>private</h2>
 			<p>private 修饰的属性或方法是私有的，不能在声明它的类的外部访问，只能被类的内部访问，在子类中也不允许访问。</p>
 			<p>当构造函数修饰为 private 时，该类不允许被继承或者实例化：</p>
-			<h2><HighFont>>protected</HighFont></h2>
+			<h2 class="text-primary">>protected</h2>
 			<p>protected 修饰的属性或方法是受保护的，只能被类的内部以及类的子类访问。</p>
 			<Highlight :code="classType5"></Highlight>
-			<h2><HighFont>>readonly</HighFont></h2>
+			<h2 class="text-primary">>readonly</h2>
 			<p>通过 readonly 关键字将属性设置为只读的。只读属性必须在声明时或构造函数里被初始化。</p>
 		</doc>
 		<doc title="5.静态方法">
@@ -40,11 +37,11 @@
 			<p>类指向其构造函数本身，在非静态方法中，this.constructor === StaticMethodCall 为 true</p>
 		</doc>
 		<doc title="6.抽象类">
-			<p><HighFont>abstract</HighFont> 用于定义抽象类、抽象类内部定义抽象方法。</p>
+			<p class="text-primary">abstract 用于定义抽象类、抽象类内部定义抽象方法。</p>
 			<p>抽象类不允许被实例化，抽象类中的抽象方法必须被子类实现</p>
 			<Highlight :code="classType9"></Highlight>
 			<p>我们在A类定义了 getName 抽象方法但为实现</p>
-			<p>我们B类实现了A定义的抽象方法 如不实现就不报错<HighFont color="red">我们定义的抽象方法必须在派生类实现</HighFont></p>
+			<p>我们B类实现了A定义的抽象方法 如不实现就不报错<span class="text-primary">我们定义的抽象方法必须在派生类实现</span></p>
 			<Highlight :code="classType10"></Highlight>
 		</doc>
 		<doc title="7.把类当做接口使用"> <Highlight :code="classType11"></Highlight> </doc>
