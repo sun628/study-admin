@@ -8,9 +8,9 @@
 			<Highlight :code="code2" />
 			<p>而当使用在一个组件上时，v-model 会被展开为如下的形式：</p>
 			<Highlight :code="code3" />
-			<p>要让这个例子实际工作起来，<Tag text="<CustomInput>" />组件内部需要做两件事：</p>
+			<p>要让这个例子实际工作起来，<MvTag text="<CustomInput>" />组件内部需要做两件事：</p>
 			<div class="tip">
-				<p>1.将内部原生 <Tag text="<input />" />元素的 value attribute 绑定到 modelValue prop</p>
+				<p>1.将内部原生 <MvTag text="<input />" />元素的 value attribute 绑定到 modelValue prop</p>
 				<p>2.当原生的 input 事件触发时，触发一个携带了新值的 update:modelValue 自定义事件</p>
 			</div>
 			<Highlight :code="code4" />
@@ -45,6 +45,7 @@
 
 <script setup lang="ts">
 import customInput from './customInput.vue';
+import MvTag from '@/components/mv-tag/index.vue';
 import { code1, code2, code3, code4, code5, computedCode } from './code';
 const msg = ref('hello');
 </script>

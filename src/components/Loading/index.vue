@@ -10,7 +10,11 @@
 		</div>
 	</div>
 </template>
-
+<script setup lang="ts">
+defineOptions({
+	name: 'Loading',
+});
+</script>
 <style scoped lang="scss">
 .loading-box {
 	display: flex;

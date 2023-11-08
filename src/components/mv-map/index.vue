@@ -8,6 +8,10 @@
 import { onMounted, shallowRef, provide } from 'vue';
 import '@amap/amap-jsapi-types'; // 高德地图类型声明
 import { initMap, loadMapUI } from '@/hooks/useMap';
+
+defineOptions({
+	name: 'MvMap',
+});
 const map = shallowRef<AMap.Map | null>(null);
 provide('MAP', map);
 const emit = defineEmits(['map-load']);

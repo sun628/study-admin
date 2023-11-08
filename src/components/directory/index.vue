@@ -13,6 +13,9 @@
 	</el-card>
 </template>
 <script setup lang="ts">
+defineOptions({
+	name: 'Directory',
+});
 export type DirectoryProps = {
 	data: { link?: string; label: string }[];
 	link?: boolean; // 是否通过link跳转

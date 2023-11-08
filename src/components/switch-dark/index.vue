@@ -15,6 +15,10 @@ import { computed } from 'vue';
 import { useGlobalStore } from '@/store/modules/global';
 import { Sunny, Moon } from '@element-plus/icons-vue';
 import { useTheme } from '@/hooks/useTheme';
+
+defineOptions({
+	name: 'SwitchDark',
+});
 const globalStore = useGlobalStore();
 
 const { switchDark } = useTheme();

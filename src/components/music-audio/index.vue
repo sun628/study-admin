@@ -17,6 +17,10 @@
 import { getLyricApi } from '@/api/music/index';
 import { useGlobalStore } from '@/store/modules/global';
 
+defineOptions({
+	name: 'MusicAudio',
+});
+
 interface ILyric {
 	time: number;
 	lyric: string;

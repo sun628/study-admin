@@ -84,6 +84,9 @@ import { useGlobalStore } from '@/store/modules/global';
 import { DEFAULT_PRIMARY } from '@/config';
 import SwitchDark from '@/components/switch-dark/index.vue';
 import mittBus from '@/utils/mitt';
+defineOptions({
+	name: 'ThemeDrawer',
+});
 
 const { changePrimary, changeGreyOrWeak } = useTheme();
 
