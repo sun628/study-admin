@@ -1,6 +1,6 @@
 <template>
-	<span :style="{ color: color }" v-bind="$attrs">
-		<span v-if="tag" class="tag">{{ tag }}</span>
+	<span :style="{ color: color }" v-bind="$attrs" class="tag">
+		<span v-if="text" class="tag">{{ text }}</span>
 		<slot></slot>
 	</span>
 </template>
@@ -10,7 +10,7 @@ defineProps({
 		type: String,
 		default: '',
 	},
-	tag: {
+	text: {
 		type: String,
 		default: '',
 	},
@@ -18,9 +18,6 @@ defineProps({
 </script>
 
 <style scoped lang="scss">
-span {
-	color: var(--el-color-primary);
-}
 .tag {
 	background-color: var(--el-color-primary-light-9);
 	border-color: var(--el-color-primary-light-8);

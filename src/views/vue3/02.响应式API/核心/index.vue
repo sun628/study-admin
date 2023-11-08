@@ -26,10 +26,11 @@
 					<h3>示例</h3>
 					<Highlight :code="reactiveCode" />
 					<p class="tip">
-						TIP:响应式转换是“深层”的：它会影响到<HighFont>所有嵌套的属性</HighFont>。一个响应式对象也将深层地解包任何 ref 属性，同时保持响应性。
+						TIP:响应式转换是“深层”的：它会影响到<span class="text-primary">所有嵌套的属性</span>。一个响应式对象也将深层地解包任何 ref
+						属性，同时保持响应性。
 					</p>
 					<Highlight :code="reactiveCode1" />
-					<h3><HighFont color="red">数组异步赋值问题</HighFont></h3>
+					<h3 class="text-primary">数组异步赋值问题</h3>
 					<Highlight :code="reactiveCode2" />
 				</doc>
 				<doc title="readonly">
@@ -62,14 +63,14 @@
 					<h2>监听reactive</h2>
 					<div class="tip">
 						直接给 watch() 传入一个响应式对象时：
-						<p>1.会隐式地创建一个深层侦听器——该回调函数在所有嵌套的变更时都会被触发。<HighFont color="red">(deep无效)</HighFont></p>
-						<p>2.`newValue` 和 `oldValue` 是<HighFont color="red">相等</HighFont>的，因为它们是同一个对象！</p>
+						<p>1.会隐式地创建一个深层侦听器——该回调函数在所有嵌套的变更时都会被触发。<span class="text-primary">(deep无效)</span></p>
+						<p>2.`newValue` 和 `oldValue` 是<span class="text-primary">相等</span>的，因为它们是同一个对象！</p>
 					</div>
 					<Highlight :code="watchReactiveCode" />
 					<h3>停止监听</h3>
 					<div class="tip">
 						<p>同步语句创建的侦听器，会自动绑定到宿主组件实例上，并且会在宿主组件卸载时自动停止。</p>
-						<p>如果用<HighFont color="red">异步回调</HighFont>创建一个侦听器，那么它不会绑定到当前组件上，你必须手动停止它，以防内存泄漏。</p>
+						<p>如果用<span class="text-primary">异步回调</span>创建一个侦听器，那么它不会绑定到当前组件上，你必须手动停止它，以防内存泄漏。</p>
 					</div>
 					<p>要手动停止一个侦听器，请调用 watch 或 watchEffect 返回的函数：</p>
 					<Highlight :code="watchStopCode" />
@@ -92,7 +93,7 @@
 					<h3>清除副作用</h3>
 					<Highlight :code="watchEffectCode1" />
 					<div class="watchEffect-demo mb-4">
-						<h2><HighFont>demo</HighFont></h2>
+						<h2>demo</h2>
 						<span>输入的值：{{ keywordText }}</span>
 						<el-input ref="ElInputRef" v-model="keyword" />
 					</div>
@@ -114,7 +115,9 @@
 				</doc>
 				<doc link="watchVsWatchEffect" title="watch vs watchEffect">
 					<div class="tip">
-						<p>TIP:watch 和 watchEffect 都能响应式地执行有副作用的回调。它们之间的主要区别是<HighFont>追踪响应式依赖的方式</HighFont>：</p>
+						<p>
+							TIP:watch 和 watchEffect 都能响应式地执行有副作用的回调。它们之间的主要区别是<span class="text-primary">追踪响应式依赖的方式</span>：
+						</p>
 						<p>
 							1.watch 只追踪明确侦听的数据源。它不会追踪任何在回调中访问到的东西。另外，仅在数据源确实改变时才会触发回调。watch
 							会避免在发生副作用时追踪依赖，因此，我们能更加精确地控制回调函数的触发时机。

@@ -8,9 +8,9 @@
 			<Highlight :code="code2" />
 			<p>而当使用在一个组件上时，v-model 会被展开为如下的形式：</p>
 			<Highlight :code="code3" />
-			<p>要让这个例子实际工作起来，<HighFont tag="<CustomInput>" />组件内部需要做两件事：</p>
+			<p>要让这个例子实际工作起来，<Tag text="<CustomInput>" />组件内部需要做两件事：</p>
 			<div class="tip">
-				<p>1.将内部原生 <HighFont tag="<input />" />元素的 value attribute 绑定到 modelValue prop</p>
+				<p>1.将内部原生 <Tag text="<input />" />元素的 value attribute 绑定到 modelValue prop</p>
 				<p>2.当原生的 input 事件触发时，触发一个携带了新值的 update:modelValue 自定义事件</p>
 			</div>
 			<Highlight :code="code4" />
@@ -26,7 +26,7 @@
 			<div class="tip">
 				<h1>单向数据流</h1>
 				<p>
-					所有的 props 都遵循着<HighFont class="font-bold">单向绑定</HighFont>原则，props
+					所有的 props 都遵循着<span class="text-primary font-bold">单向绑定</span>原则，props
 					因父组件的更新而变化，而不会逆向传递,即子组件不能直接修改父组件传过来的 props。
 				</p>
 				<p>这避免了子组件意外修改父组件的状态的情况，不然应用的数据流将很容易变得混乱而难以理解。</p>

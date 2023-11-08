@@ -43,7 +43,7 @@ declare module 'vue' {
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
-    HighFont: typeof import('./components/docs/HighFont.vue')['default']
+    Tag: typeof import('./components/docs/Tag.vue')['default']
     Highlight: typeof import('./components/docs/Highlight.vue')['default']
     Loading: typeof import('./components/Loading/index.vue')['default']
     Map: typeof import('./components/map/index.vue')['default']

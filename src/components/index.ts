@@ -3,7 +3,7 @@ import { defineAsyncComponent } from 'vue';
 import SvgIcon from '@/components/svg-icon/SvgIcon.vue';
 import * as ElementPlusIcons from '@element-plus/icons-vue';
 import Doc from '@/components/docs/Doc.vue';
-import HighFont from '@/components/docs/HighFont.vue';
+import Tag from '@/components/docs/Tag.vue';
 import Highlight from '@/components/docs/Highlight.vue';
 // //引入依赖和语言
 import 'highlight.js/styles/atom-one-dark.css';
@@ -19,7 +19,7 @@ const GlobalCom: Plugin = {
 	install(app: App) {
 		app.component('SvgIcon', SvgIcon);
 		app.component('Doc', Doc);
-		app.component('HighFont', HighFont);
+		app.component('Tag', Tag);
 		app.component('Highlight', Highlight);
 
 		app.use(hljsVuePlugin, {
