@@ -44,6 +44,21 @@
 				<p class="tip">TIP:其实就是把reactive 对象的每一个属性都变成了ref 对象循环 调用了toRef</p>
 				<Highlight :code="toRefsImpl" />
 			</doc>
+			<doc title="toValue">
+				<div class="tip">
+					<p>
+						1.将值、refs 或 getters 规范化为值。这与 unref() 类似，不同的是此函数也会规范化 getter 函数。如果参数是一个
+						getter，它将会被调用并且返回它的返回值。
+					</p>
+					<p>2.这可以在组合式函数中使用，用来规范化一个可以是值、ref 或 getter 的参数。</p>
+				</div>
+				<h2>类型</h2>
+				<Highlight :code="toValueImpl" :auto="false" />
+				<h2>示例</h2>
+				<Highlight :code="toValueCode" />
+				<p>在组合式函数中规范化参数：</p>
+				<Highlight :code="toValueCode1" />
+			</doc>
 			<doc title="isProxy">
 				<p class="tip">
 					TIP:检查一个对象是否是由 <span class="text-primary">reactive()、readonly()、shallowReactive()、hallowReadonly()</span> 创建的代理。
@@ -66,8 +81,8 @@
 	</el-row>
 </template>
 <script setup lang="ts">
-import { isRefCode, unrefCode, toRefCode, toRefCode1, toRefsCode, toRefsCode1 } from './code';
-import { toRefImpl, toRefsImpl } from './Impl';
+import { isRefCode, unrefCode, toRefCode, toRefCode1, toRefsCode, toRefsCode1, toValueCode, toValueCode1 } from './code';
+import { toRefImpl, toRefsImpl, toValueImpl } from './Impl';
 import directory from '@/components/directory/index.vue';
 
 const directoryData = [
@@ -75,6 +90,7 @@ const directoryData = [
 	{ label: 'unref' },
 	{ label: 'toRef' },
 	{ label: 'toRefs' },
+	{ label: 'toValue' },
 	{ label: 'isProxy' },
 	{ label: 'isReactive' },
 	{ label: 'isReadonly' },

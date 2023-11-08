@@ -43,3 +43,5 @@ export function toRefs<T extends object>(object: T): ToRefs<T> {
   }
   return ret
 }`;
+
+export const toValueImpl = `function toValue<T>(source: T | Ref<T> | (() => T)): T`;

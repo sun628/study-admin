@@ -68,3 +68,19 @@ export const toRefsCode1 = `function useFeatureX() {
 
 // 可以解构而不会失去响应性
 const { foo, bar } = useFeatureX()`;
+export const toValueCode = `toValue(1) //       --> 1
+toValue(ref(1)) //  --> 1
+toValue(() => 1) // --> 1`;
+
+export const toValueCode1 = `import type { MaybeRefOrGetter } from 'vue'
+
+function useFeature(id: MaybeRefOrGetter<number>) {
+  watch(() => toValue(id), id => {
+    // 处理 id 变更
+  })
+}
+
+// 这个组合式函数支持以下的任意形式：
+useFeature(1)
+useFeature(ref(1))
+useFeature(() => 1)`;

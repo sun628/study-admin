@@ -1,4 +1,4 @@
-import { shallowRef, onMounted, onUnmounted, onDeactivated } from 'vue';
+import { shallowRef, onMounted, onUnmounted, onDeactivated, toRefs } from 'vue';
 import * as echarts from 'echarts';
 import { useDebounceFn } from '@vueuse/core';
 
@@ -11,12 +11,12 @@ import { useDebounceFn } from '@vueuse/core';
  * */
 export default function useECharts(chartRef: Ref<HTMLElement>) {
 	const chartInstance = shallowRef<echarts.ECharts | null>(null);
+
 	const initChart = () => {
-		const chart = echarts.getInstanceByDom(chartRef.value); // 获取已有实例
-		if (chart) {
-			chartInstance.value = chart;
-		} else {
-			chartInstance.value = echarts.init(chartRef.value); // 创建实例
+		try {
+			chartInstance.value = echarts.getInstanceByDom(chartRef.value) || echarts.init(chartRef.value);
+		} catch (error) {
+			console.error('Error initializing chart:', error);
 		}
 	};
 
@@ -25,28 +25,11 @@ export default function useECharts(chartRef: Ref<HTMLElement>) {
 	 * @param {Object} 图表配置项参数
 	 */
 	const setOption = (options: echarts.EChartsOption) => {
-		if (chartInstance.value) {
-			try {
-				chartInstance.value.setOption(options, true);
-			} catch (error) {
-				console.error('Error setting chart options:', error);
-			}
-		} else {
-			console.error('Error setting chart options: chartInstance.value is null');
-		}
+		chartInstance.value?.setOption(options, true);
 	};
 
-	// Debounced resize function
 	const resizeChart = useDebounceFn(() => {
-		if (chartInstance.value) {
-			try {
-				chartInstance.value.resize();
-			} catch (error) {
-				console.error('Error resizing chart:', error);
-			}
-		} else {
-			console.error('Error resizing chart: chartInstance.value is null');
-		}
+		chartInstance.value?.resize();
 	}, 500);
 
 	const addEventListeners = () => {
@@ -59,26 +42,14 @@ export default function useECharts(chartRef: Ref<HTMLElement>) {
 
 	const onDestroy = () => {
 		removeEventListeners();
-		if (chartInstance.value) {
-			chartInstance.value.dispose();
-			chartInstance.value = null;
-		}
+		chartInstance.value?.dispose();
+		chartInstance.value = null;
 	};
-	onMounted(() => {
-		if (!chartInstance.value) {
-			initChart();
-		}
-		addEventListeners();
-	});
 
-	// 防止 echarts 页面 keepAlive 时，还在继续监听页面
-	onDeactivated(() => {
-		onDestroy();
-	});
+	onMounted(initChart);
+	onMounted(addEventListeners);
+	onUnmounted(onDestroy);
+	onDeactivated(onDestroy);
 
-	onUnmounted(() => {
-		onDestroy();
-	});
-
-	return { chartInstance, setOption };
+	return { ...toRefs({ chartInstance, setOption }) };
 }
