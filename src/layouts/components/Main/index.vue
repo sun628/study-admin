@@ -19,6 +19,9 @@ import { useGlobalStore } from '@/store/modules/global';
 import cacheRouter from '@/routers/cacheRouter';
 import Tabs from '@/layouts/components/Tabs/index.vue';
 import Footer from '@/layouts/components/Footer/index.vue';
+defineOptions({
+	name: 'LayoutsMain',
+});
 
 // 刷新当前页面
 const globalStore = useGlobalStore();

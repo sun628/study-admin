@@ -23,6 +23,10 @@ import { TabsStore } from '@/store/modules/tabs';
 import { TabsPaneContext } from 'element-plus';
 import MoreButton from './components/MoreButton.vue';
 
+defineOptions({
+	name: 'Tabs',
+});
+
 const tabStore = TabsStore();
 const tabsMenuList = computed(() => tabStore.tabsMenuList);
 const tabsMenuValue = computed({
