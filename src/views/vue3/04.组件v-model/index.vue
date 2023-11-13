@@ -33,6 +33,7 @@
 					<p>这避免了子组件意外修改父组件的状态的情况，不然应用的数据流将很容易变得混乱而难以理解。</p>
 				</div>
 			</doc>
+
 			<doc title="computed 拦截prop">
 				<p class="tip">通过computed实现，通过 get 获取父组件传过来的值，利用 set 更新触发emit事件</p>
 				<Highlight :code="computedCode" />
