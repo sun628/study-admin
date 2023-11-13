@@ -18,8 +18,7 @@ import { useEventListener } from '@/hooks/event';
 defineOptions({
 	name: 'Directory',
 });
-
-export type DirectoryData = { link?: string | number; label: string }[];
+export type DirectoryData = Array<{ link?: string | number; label: string }>;
 
 export type DirectoryProps = {
 	data: DirectoryData;
@@ -34,11 +33,11 @@ const activeName = ref(data.value[0]?.label);
 
 /**
  * @description 把某元素滚动到页面顶部
- * @param {DirectoryProps['data'][number]} row
+ * @param {DirectoryData} row
  * @param {string} row.link - 跳转链接
  * @param {string} row.label - 当link不存在时，根据label查找元素提供滚动
  **/
-const scrollToView = (row: DirectoryProps['data'][number]) => {
+const scrollToView = (row: DirectoryData[number]) => {
 	// 判断是否开启了link,如果有则根据link查找元素,否则根据title查找元素
 	let el: HTMLElement | null;
 	if (row.link) {
@@ -52,9 +51,10 @@ const scrollToView = (row: DirectoryProps['data'][number]) => {
 
 const topRange = 300; // 距离顶部多少距离时，激活目录
 let elementArr: Element[] = [];
+
+// 滚动事件处理函数
 const scrollHander = useDebounceFn((e) => {
 	const rects = elementArr.map((item) => item.getBoundingClientRect()); // 获取元素的位置信息
-	console.log('🚀 ~ file: index.vue:57 ~ scrollHander ~ rects:', rects);
 	for (let i = 0; i < rects.length; i++) {
 		const rect = rects[i];
 		const element = elementArr[i];
