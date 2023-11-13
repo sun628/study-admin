@@ -17,14 +17,13 @@ defineOptions({
 	name: 'Directory',
 });
 export type DirectoryProps = {
-	data: { link?: string; label: string }[];
-	link?: boolean; // 是否通过link跳转
+	data: { link?: string | number; label: string }[];
 };
+
 const props = withDefaults(defineProps<DirectoryProps>(), {
 	data: () => [],
-	link: false,
 });
-const { data, link } = toRefs(props);
+const { data } = toRefs(props);
 
 const activeName = ref(data.value[0]?.label);
 
@@ -35,15 +34,15 @@ const activeName = ref(data.value[0]?.label);
  * @param {string} row.label - 当link不存在时，根据label查找元素提供滚动
  **/
 const scrollToView = (row: DirectoryProps['data'][number]) => {
-	let element;
-	// 判断当前行有没有自定link，如果有则根据link查找元素
+	// 判断是否开启了link,如果有则根据link查找元素,否则根据title查找元素
+	let el: HTMLElement | null;
 	if (row.link) {
-		element = document.querySelector(`[link="${row.link}"]`);
+		el = document.querySelector(`[link="${row.link}"]`);
 	} else {
-		// 如果没有link，则判断是否开启了link,如果有则根据link查找元素,否则根据title查找元素
-		element = document.querySelector(`[${link.value ? 'link' : 'title'}="${row.label}"]`);
+		el = document.querySelector(`[title="${row.label}"]`);
 	}
-	element?.scrollIntoView({ behavior: 'smooth', inline: 'nearest' });
+	console.log('🚀 ~ file: index.vue:44 ~ scrollToView ~ el:', el);
+	el?.scrollIntoView({ behavior: 'smooth', inline: 'nearest' });
 	activeName.value = row.label;
 };
 </script>

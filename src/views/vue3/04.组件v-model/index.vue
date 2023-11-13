@@ -36,18 +36,23 @@
 			<p class="tip">通过computed实现，通过 get 获取父组件传过来的值，利用 set 更新触发emit事件</p>
 			<Highlight :code="computedCode" />
 		</doc>
-
-		<!-- 示例 -->
-		<h1>示例</h1>
-		<customInput v-model="msg" />
+		<doc title="v-model 的参数">
+			<p>
+				默认情况下，v-model 在组件上都是使用 modelValue 作为 prop，并以 update:modelValue 作为对应的事件。我们可以通过给 v-model
+				指定一个参数来更改这些名字：
+			</p>
+			<Highlight :code="code6" />
+		</doc>
+		<doc title="案例">
+			<Demo />
+		</doc>
 	</el-row>
 </template>
 
 <script setup lang="ts">
-import customInput from './customInput.vue';
 import MvTag from '@/components/mv-tag/index.vue';
-import { code1, code2, code3, code4, code5, computedCode } from './code';
-const msg = ref('hello');
+import Demo from './component/demo.vue';
+import { code1, code2, code3, code4, code5, computedCode, code6 } from './code';
 </script>
 
 <style scoped lang="scss"></style>

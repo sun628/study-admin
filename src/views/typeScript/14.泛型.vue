@@ -2,7 +2,7 @@
 	<el-row>
 		<el-col :span="16">
 			<el-card>
-				<doc title="一、泛型是什么？有什么作用？" link="泛型的定义">
+				<doc title="一、泛型是什么？有什么作用？" link="1">
 					<div class="tip">
 						<p>当我们定义一个变量不确定类型的时候有两种解决方式：</p>
 						<ul>
@@ -11,7 +11,7 @@
 						</ul>
 					</div>
 				</doc>
-				<doc title="二、泛型用法" link="泛型用法">
+				<doc title="二、泛型用法" link="2">
 					<h2 link="2.1">2.1 在函数中使用泛型</h2>
 					<p>使用方式类似于<em class="Highlight-keywords">函数传参</em>，传什么数据类型，T 就表示什么数据类型， 使用表示，T 也可以换成任意字符串。</p>
 					<Highlight :code="fnCode" />
@@ -20,7 +20,7 @@
 					<h3>2.3 在类中使用泛型</h3>
 					<Highlight :code="classCode" />
 				</doc>
-				<doc title="三、泛型约束" link="泛型约束">
+				<doc title="三、泛型约束" link="3">
 					<h2>案例1</h2>
 					<p class="tip">1.我们期望在一个泛型的变量上面，获取其length参数，但是，有的数据类型是没有length属性的</p>
 					<Highlight :code="constraintCode" />
@@ -45,14 +45,17 @@
 		</el-col>
 
 		<el-col :span="4" class="ml-10">
-			<directory :data="directoryData" link />
+			<directory :data="directoryData" />
 		</el-col>
 	</el-row>
 </template>
 <script setup lang="ts">
 import directory from '@/components/directory/index.vue';
-const directoryData = [{ label: '泛型的定义' }, { label: '泛型用法' }, { label: '泛型约束' }];
-const classText = '';
+const directoryData = [
+	{ label: '泛型的定义', link: 1 },
+	{ label: '泛型用法', link: 2 },
+	{ label: '泛型约束', link: 3 },
+];
 
 const fnCode = `function test<T>(arg: T): T {
 	console.log(arg);

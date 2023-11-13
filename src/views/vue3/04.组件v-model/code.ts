@@ -50,3 +50,20 @@ const msg = computed({
 });
 </script>
 `;
+
+export const code6 = ` // 父组件
+<MyComponent v-model:title="bookTitle" />
+
+<!-- MyComponent.vue -->
+<script setup>
+defineProps(['title'])
+defineEmits(['update:title'])
+</script>
+
+<template>
+  <input
+    type="text"
+    :value="title"
+    @input="$emit('update:title', $event.target.value)"
+  />
+</template>`;
