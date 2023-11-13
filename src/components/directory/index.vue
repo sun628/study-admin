@@ -13,15 +13,20 @@
 	</el-card>
 </template>
 <script setup lang="ts">
+import { useDebounceFn } from '@vueuse/core';
+import { useEventListener } from '@/hooks/event';
 defineOptions({
 	name: 'Directory',
 });
+
+export type DirectoryData = { link?: string | number; label: string }[];
+
 export type DirectoryProps = {
-	data: { link?: string | number; label: string }[];
+	data: DirectoryData;
 };
 
 const props = withDefaults(defineProps<DirectoryProps>(), {
-	data: () => [],
+	data: () => [] as DirectoryData,
 });
 const { data } = toRefs(props);
 
@@ -41,10 +46,32 @@ const scrollToView = (row: DirectoryProps['data'][number]) => {
 	} else {
 		el = document.querySelector(`[title="${row.label}"]`);
 	}
-	console.log('🚀 ~ file: index.vue:44 ~ scrollToView ~ el:', el);
 	el?.scrollIntoView({ behavior: 'smooth', inline: 'nearest' });
 	activeName.value = row.label;
 };
+
+const topRange = 300; // 距离顶部多少距离时，激活目录
+let elementArr: Element[] = [];
+const scrollHander = useDebounceFn((e) => {
+	const rects = elementArr.map((item) => item.getBoundingClientRect()); // 获取元素的位置信息
+	console.log('🚀 ~ file: index.vue:57 ~ scrollHander ~ rects:', rects);
+	for (let i = 0; i < rects.length; i++) {
+		const rect = rects[i];
+		const element = elementArr[i];
+		if (rect.top > 0 && rect.top < topRange) {
+			activeName.value = element.getAttribute('title') || '';
+			break;
+		} else if (rect.top < 0 && rects[i + 1]?.top > document.documentElement.clientHeight) {
+			activeName.value = element.getAttribute('title') || '';
+			break;
+		}
+	}
+}, 100);
+
+onMounted(() => {
+	elementArr = Array.from(document.querySelectorAll('.doc'));
+});
+useEventListener(window, 'scroll', scrollHander, { capture: true });
 </script>
 
 <style scoped lang="scss">
