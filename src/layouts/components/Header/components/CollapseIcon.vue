@@ -16,5 +16,6 @@ const isCollapse = computed((): boolean => menuStore.isCollapse);
 	margin-right: 20px;
 	font-size: 22px;
 	cursor: pointer;
+	color: var(--el-text-color-primary);
 }
 </style>

@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/music_api(.*)",
-      "destination": "http://music.163.com/api$1"
+      "destination": "https://music.163.com/api$1"
     },
     {
       "source": "/aaa(.*)",

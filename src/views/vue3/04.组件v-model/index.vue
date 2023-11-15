@@ -48,6 +48,12 @@
 			<doc title="案例">
 				<Demo />
 			</doc>
+			<el-button @click="toggleClick">Toggle Even/Odd</el-button>
+			<div v-bind="containerProps" style="height: 300px">
+				<div v-bind="wrapperProps">
+					<div v-for="item in list" :key="item.index" style="height: 22px">Row: {{ item.data }}</div>
+				</div>
+			</div>
 		</el-col>
 		<el-col :span="4">
 			<directory :data="directoryData" />
@@ -60,6 +66,16 @@ import directory, { DirectoryData } from '@/components/directory/index.vue';
 import MvTag from '@/components/mv-tag/index.vue';
 import Demo from './component/demo.vue';
 import { code1, code2, code3, code4, code5, computedCode, code6 } from './code';
+import { useVirtualList, useToggle } from '@vueuse/core';
+
+const [isEven, toggle] = useToggle();
+const allItems = Array.from(Array(99999).keys());
+const filteredList = computed(() => allItems.filter((i) => (isEven.value ? i % 2 === 0 : i % 2 === 1)));
+const toggleClick = () => toggle();
+const { list, containerProps, wrapperProps } = useVirtualList(filteredList, {
+	itemHeight: 22,
+});
+console.log('🚀 ~ file: index.vue:78 ~ containerProps:', containerProps);
 // type DirectoryData = InstanceType<typeof directory>['data'];
 const directoryData = ref<DirectoryData>([
 	{ label: '组件 v-model' },

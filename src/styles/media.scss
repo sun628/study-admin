@@ -33,14 +33,10 @@ $breakpoints: (
 		@media (min-width: $min-width) and (max-width: $max-width) {
 			@content; // 这将包含调用此 mixin 时在其内部编写的 CSS
 		}
-	} @else if $breakname == 'mobile' {
-		// 处理"mobile"断点
-		@media (max-width: $breakpoint) {
-			@content;
-		}
-	} @else if $breakname == 'tv' {
+	} @else  {
+		
 		// 处理"tv"断点
-		@media (min-width: $breakpoint) {
+		@media (max-width: $breakpoint) {
 			@content;
 		}
 	}

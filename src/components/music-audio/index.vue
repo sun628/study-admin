@@ -35,7 +35,7 @@ interface IReturnLyric {
 const globalStore = useGlobalStore();
 const themeConfig = computed(() => globalStore.themeConfig);
 const AudioRef = ref<HTMLAudioElement | null>(null);
-const src = 'http://music.163.com/song/media/outer/url?id=2064033095.mp3';
+const src = 'https://music.163.com/song/media/outer/url?id=2064033095.mp3';
 const gradBg = ref('');
 const props = defineProps({
 	// 是否显示音乐组件

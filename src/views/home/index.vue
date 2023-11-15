@@ -68,7 +68,7 @@ onBeforeUnmount(() => {
 			background-clip: text;
 			-webkit-background-clip: text;
 		}
-		@include respondTo('mobile') {
+		@include respondTo('tv') {
 			display: flex;
 			flex-direction: column;
 			right: 10px !important;

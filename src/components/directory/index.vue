@@ -1,9 +1,9 @@
 <template>
-	<el-card class="box-card">
+	<el-card class="box-card" v-bind="$attrs">
 		<template #header>
 			<div class="card-header font-bold text-xl">
 				<slot name="header">
-					<span>目录</span>
+					<span>{{ title }}</span>
 				</slot>
 			</div>
 		</template>
@@ -22,12 +22,14 @@ export type DirectoryData = Array<{ link?: string | number; label: string }>;
 
 export type DirectoryProps = {
 	data: DirectoryData;
+	title?: string;
 };
 
 const props = withDefaults(defineProps<DirectoryProps>(), {
 	data: () => [] as DirectoryData,
+	title: '目录',
 });
-const { data } = toRefs(props);
+const { data, title } = toRefs(props);
 
 const activeName = ref(data.value[0]?.label);
 
@@ -71,7 +73,7 @@ const scrollHander = useDebounceFn((e) => {
 onMounted(() => {
 	elementArr = Array.from(document.querySelectorAll('.doc'));
 });
-useEventListener(window, 'scroll', scrollHander, { capture: true });
+useEventListener(window, 'scroll', scrollHander, true);
 </script>
 
 <style scoped lang="scss">
