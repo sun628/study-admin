@@ -15,43 +15,44 @@ const _visualizer = visualizer({
 	gzipSize: false, //从源代码中收集 gzip 大小并将其显示在图表中
 	brotliSize: true, //从源代码中收集 brotli 大小并将其显示在图表中
 });
+const _PWA = VitePWA({
+	registerType: 'autoUpdate',
+	manifest: {
+		name: 'study-admin',
+		short_name: 'PWA',
+		description: 'PWA应用',
+		theme_color: '#ffffff',
+		icons: [
+			{
+				src: '/logo.png',
+				sizes: '317x317',
+				type: 'image/png',
+			},
+			{
+				src: '/logo.png',
+				sizes: '317x317',
+				type: 'image/png',
+				purpose: 'any maskable',
+			},
+		],
+	},
+	workbox: {
+		cacheId: 'vite-pwa',
+		// 对所有匹配的静态资源进行缓存
+		globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+	},
+	// devOptions: {
+	// 	enabled: true,
+	// },
+});
 
 const lifecycle = process.env.npm_lifecycle_event; //获取当前运行的命令
+console.debug('lifecycle', lifecycle);
 
 export function createVitePlugins() {
 	const root = process.cwd();
 	return [
 		vue(),
-		VitePWA({
-			registerType: 'autoUpdate',
-			manifest: {
-				name: 'study-admin',
-				short_name: 'PWA',
-				description: 'PWA应用',
-				theme_color: '#ffffff',
-				icons: [
-					{
-						src: '/logo.png',
-						sizes: '317x317',
-						type: 'image/png',
-					},
-					{
-						src: '/logo.png',
-						sizes: '317x317',
-						type: 'image/png',
-						purpose: 'any maskable',
-					},
-				],
-			},
-			workbox: {
-				cacheId: 'vite-pwa',
-				// 对所有匹配的静态资源进行缓存
-				globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
-			},
-			// devOptions: {
-			// 	enabled: true,
-			// },
-		}),
 		eslintPlugin({
 			include: ['src/**/*.ts', 'src/**/*.vue', 'src/*.ts', 'src/*.vue'],
 		}),
@@ -68,6 +69,7 @@ export function createVitePlugins() {
 			iconDirs: [path.resolve(root, 'src/assets/svgIcons')], //指定symbolId格式
 			symbolId: 'icon-[dir]-[name]', //指定需要缓存的图标文件夹
 		}),
+		lifecycle === 'build:pwa' ? _PWA : null, //是否开启PWA
 		// 打包分析
 		lifecycle === 'report' ? _visualizer : null,
 	];

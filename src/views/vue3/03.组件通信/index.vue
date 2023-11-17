@@ -31,10 +31,10 @@
 import { ref, reactive, onMounted, shallowRef, markRaw, defineAsyncComponent } from 'vue';
 import type { CollapseModelValue } from 'element-plus';
 import { CircleCloseFilled } from '@element-plus/icons-vue';
-import mitt from 'mitt';
 
 import { PropsEmitsCode, VModelCode, ProvideInjectCode, MittCode } from './code';
 import A from './props-emit/index.vue';
+
 // const A = defineAsyncComponent(() => import('./props-emit/index.vue'));
 const drawerVisible = ref(false);
 
