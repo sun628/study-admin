@@ -1,4 +1,4 @@
-import { MatchMenu } from '@/enums/configEnum';
+import { MatchMenu } from '@/routers/configEnum';
 import { RouteRecordRaw } from 'vue-router';
 
 // 获取所有的路由

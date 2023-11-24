@@ -7,6 +7,7 @@ export enum MatchMenu {
 	typeScript,
 	vue2,
 	hooks,
+	example,
 	map,
 	electron,
 	nodejs,

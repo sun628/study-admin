@@ -36,3 +36,4 @@ const updateMsg = () => {
 	emit('update:msg', 'msg更新了');
 };
 </script>
+<style scoped lang="scss"></style>
