@@ -1,5 +1,5 @@
 import { Layout, recursionRouter } from '@/routers/constant';
-import { MatchMenu } from '@/enums/configEnum';
+import { MatchMenu } from '@/routers/configEnum';
 
 const name = 'vue3';
 

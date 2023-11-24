@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
 import { Layout } from '@/routers/constant';
-import { MatchMenu } from '@/enums/configEnum';
+import { MatchMenu } from '@/routers/configEnum';
 // 首页模块
 const name = 'home';
 const homeRouter: Array<RouteRecordRaw> = [

@@ -1,4 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
+import { Layout, filterModuleRoutes } from '@/routers/constant';
+import { MatchMenu } from '@/routers/configEnum';
 // * 导入所有router
 
 const metaRouters = import.meta.glob('./modules/*.ts', { eager: true });
@@ -35,6 +37,78 @@ export const routes: RouteRecordRaw[] = [
 			requiresAuth: false,
 			title: '登录页',
 			key: 'login',
+		},
+	},
+	{
+		path: '/typeScript',
+		component: Layout,
+		name: 'typeScript',
+		redirect: '/typeScript/01',
+		children: filterModuleRoutes('typeScript'),
+		meta: {
+			menuIndex: MatchMenu['typeScript'],
+			keepAlive: true,
+			requiresAuth: false,
+			title: 'typeScript',
+			key: 'typeScript',
+			localSvgIcon: 'typescript',
+			transitionName: 'fade-transform',
+		},
+	},
+	{
+		path: '/hooks',
+		component: Layout,
+		name: 'hooks',
+		children: filterModuleRoutes('hooks'),
+		meta: {
+			menuIndex: MatchMenu['hooks'],
+			keepAlive: true,
+			requiresAuth: false,
+			title: 'hooks',
+			key: 'hooks',
+			localSvgIcon: 'hooks',
+		},
+	},
+	{
+		path: '/example',
+		component: Layout,
+		name: 'example',
+		children: filterModuleRoutes('example'),
+		meta: {
+			menuIndex: MatchMenu['example'],
+			keepAlive: true,
+			requiresAuth: false,
+			title: 'example',
+			key: 'example',
+			localSvgIcon: 'example',
+		},
+	},
+	{
+		path: '/electron',
+		component: Layout,
+		name: 'electron',
+		children: filterModuleRoutes('electron'),
+		meta: {
+			menuIndex: MatchMenu['electron'],
+			keepAlive: true,
+			requiresAuth: false,
+			title: 'electron',
+			key: 'electron',
+			localSvgIcon: 'logo-electron',
+		},
+	},
+	{
+		path: '/map',
+		component: Layout,
+		name: 'map',
+		children: filterModuleRoutes('map'),
+		meta: {
+			menuIndex: MatchMenu['map'],
+			keepAlive: true,
+			requiresAuth: false,
+			title: '地图',
+			key: 'map',
+			localSvgIcon: 'map-logo',
 		},
 	},
 	...routerArray,
