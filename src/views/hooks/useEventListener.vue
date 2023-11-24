@@ -13,7 +13,7 @@
 	</el-card>
 </template>
 <script setup lang="ts">
-import eventCode from '@/hooks/event?raw';
+import eventCode from '@/hooks/useEvent?raw';
 const code1 = `onMounted(() => {
 	window.addEventListener('scroll', scrollHander, true);
 });
@@ -21,7 +21,7 @@ onUnmounted(() => {
 	window.removeEventListener('scroll', scrollHander, true);
 });`;
 
-const code2 = `// event.ts
+const code2 = `// useEvent.ts
 import { onMounted, onUnmounted } from 'vue'
 
 export function useEventListener(target, event, callback) {
@@ -31,7 +31,7 @@ export function useEventListener(target, event, callback) {
   onUnmounted(() => target.removeEventListener(event, callback))
 }`;
 
-const code3 = `import { useEventListener } from '@/hooks/event';
+const code3 = `import { useEventListener } from '@/hooks/useEvent';
 const scrollHander = () => {
 	console.log('scroll');
 };
