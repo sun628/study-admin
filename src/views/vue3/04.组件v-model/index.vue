@@ -61,9 +61,6 @@ import MvTag from '@/components/mv-tag/index.vue';
 import Demo from './component/demo.vue';
 import { code1, code2, code3, code4, code5, computedCode, code6 } from './code';
 
-
-
-
 // type DirectoryData = InstanceType<typeof directory>['data'];
 const directoryData = ref<DirectoryData>([
 	{ label: '组件 v-model' },
