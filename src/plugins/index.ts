@@ -1,6 +1,6 @@
 import vue from '@vitejs/plugin-vue';
 import AutoImport from 'unplugin-auto-import/vite'; //自动导入vue和vue-router相关函数
-// import Components from 'unplugin-vue-components/vite';
+import Components from 'unplugin-vue-components/vite';
 // import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import { visualizer } from 'rollup-plugin-visualizer'; //打包分析
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
@@ -56,10 +56,10 @@ export function createVitePlugins() {
 		eslintPlugin({
 			include: ['src/**/*.ts', 'src/**/*.vue', 'src/*.ts', 'src/*.vue'],
 		}),
-		// Components({
-		// 	resolvers: [ElementPlusResolver()],
-		// 	dts: 'src/components.d.ts',
-		// }),
+		Components({
+			// resolvers: [ElementPlusResolver()],
+			dts: 'src/components.d.ts',
+		}),
 		AutoImport({
 			imports: ['vue', 'vue-router'], // 自动导入vue和vue-router相关函数
 			dts: 'src/auto-imports.d.ts', // 生成 `auto-import.d.ts` 全局声明

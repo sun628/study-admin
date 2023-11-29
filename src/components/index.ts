@@ -5,6 +5,7 @@ import * as ElementPlusIcons from '@element-plus/icons-vue';
 import Doc from '@/components/docs/Doc.vue';
 import Tag from '@/components/docs/Tag.vue';
 import Highlight from '@/components/docs/Highlight.vue';
+import Tip from '@/components/tip/index.vue';
 // //引入依赖和语言
 import 'highlight.js/styles/atom-one-dark.css';
 import hljs from 'highlight.js/lib/common';
@@ -21,6 +22,7 @@ const GlobalCom: Plugin = {
 		app.component('Doc', Doc);
 		app.component('Tag', Tag);
 		app.component('Highlight', Highlight);
+		app.component('Tip', Tip);
 
 		app.use(hljsVuePlugin, {
 			languages: ['xml', 'typescript'],

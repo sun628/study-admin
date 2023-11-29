@@ -78,7 +78,7 @@ export const routes: RouteRecordRaw[] = [
 			menuIndex: MatchMenu['example'],
 			keepAlive: true,
 			requiresAuth: false,
-			title: 'example',
+			title: '功能',
 			key: 'example',
 			localSvgIcon: 'example',
 		},
