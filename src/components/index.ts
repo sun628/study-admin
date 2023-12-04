@@ -3,7 +3,7 @@ import { defineAsyncComponent } from 'vue';
 import SvgIcon from '@/components/svg-icon/SvgIcon.vue';
 import * as ElementPlusIcons from '@element-plus/icons-vue';
 import Doc from '@/components/docs/Doc.vue';
-import Tag from '@/components/docs/Tag.vue';
+import Tag from '@/components/mv-tag/index.vue';
 import Highlight from '@/components/docs/Highlight.vue';
 import Tip from '@/components/tip/index.vue';
 // //引入依赖和语言

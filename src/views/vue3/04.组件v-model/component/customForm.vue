@@ -23,7 +23,7 @@ const form = computed({
 			get(target, key) {
 				return Reflect.get(target, key);
 			},
-			set(target, key, value, receiver) {
+			set(target, key, value) {
 				emit('update:modelValue', {
 					...target,
 					[key]: value,
