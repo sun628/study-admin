@@ -47,7 +47,6 @@ const _PWA = VitePWA({
 });
 
 const lifecycle = process.env.npm_lifecycle_event; //获取当前运行的命令
-console.debug('lifecycle', lifecycle);
 
 export function createVitePlugins() {
 	const root = process.cwd();
@@ -57,7 +56,9 @@ export function createVitePlugins() {
 			include: ['src/**/*.ts', 'src/**/*.vue', 'src/*.ts', 'src/*.vue'],
 		}),
 		Components({
-			resolvers: [ElementPlusResolver()],
+			// Auto import functions from Element Plus, e.g. ElMessage, ElMessageBox... (with style)
+			// 自动导入 Element Plus 相关函数，如：ElMessage, ElMessageBox... (带样式)
+			// resolvers: [ElementPlusResolver()],
 			dts: 'src/components.d.ts',
 		}),
 		AutoImport({

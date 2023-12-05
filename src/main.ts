@@ -10,8 +10,8 @@ import GlobalCom from '@/components/index';
 
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
-// custom directives
-import directives from '@/directives/index';
+
+import directives from '@/directives/index'; // custom directives
 
 const app = createApp(App);
 
