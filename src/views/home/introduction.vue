@@ -69,7 +69,6 @@ import { isKeyword } from '@/hooks/useHighlightKeywords';
 import MvTable from '@/components/mv-table/index.vue';
 import { MoreFilled } from '@element-plus/icons-vue';
 // import type { ElTimelineItem } from 'element-plus';
-import { DefineComponent } from 'vue';
 
 const gitee_url = 'https://gitee.com/nuanyang163/study-admin';
 
@@ -146,10 +145,10 @@ const tableData = ref([
 ]);
 // type ElTimelineItemProps = InstanceType<typeof ElTimelineItem>['$props'] & {
 // 	content?: string;
-// // };
+// };
 
 interface ElTimelineItemProps {
-	icon?: DefineComponent | string;
+	icon?: Component | string;
 	type?: 'primary' | 'success' | 'warning' | 'info' | 'danger';
 	color?: string;
 	size?: 'normal' | 'large';

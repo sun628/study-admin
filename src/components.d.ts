@@ -70,6 +70,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./components/svg-icon/SvgIcon.vue')['default']
     SwitchDark: typeof import('./components/switch-dark/index.vue')['default']
+    Tag: typeof import('./components/tag/index.vue')['default']
     Tip: typeof import('./components/tip/index.vue')['default']
   }
 }

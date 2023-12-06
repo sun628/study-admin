@@ -1,10 +1,12 @@
 import { onMounted, onBeforeUnmount } from 'vue';
 
-export const keywords = ['vue', 'vue3', 'TypeScript', 'electron']; // 关键字列表
+export const keywords = ['vue', 'vue3', 'TypeScript']; // 关键字列表
 
 export const isKeyword = (word: string): boolean => keywords.includes(word); // 是否是关键字
+const escapedKeywords = keywords.map((keyword) => keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')); // 转义特殊字符
+const regex_keywords = new RegExp(`\\b(?:${escapedKeywords.join('|')})\\b`, 'gi'); // 匹配关键字的正则表达式
 
-const regex_keywords = new RegExp(`(${keywords.join('|')})`, 'gi'); // 匹配关键字的正则表达式
+// const regex_keywords = new RegExp(`(${keywords.join('|')})`, 'gi');// 匹配关键字的正则表达式
 
 // 匹配单词的正则表达式(排除html标签和html实体以及&开头的转义字符)
 const regex_words = new RegExp(/(?<!&[^;]*?)(?<!<[^>]*?)([A-Za-z]+)/g, 'gi');

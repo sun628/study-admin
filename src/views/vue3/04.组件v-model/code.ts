@@ -67,3 +67,27 @@ defineEmits(['update:title'])
     @input="$emit('update:title', $event.target.value)"
   />
 </template>`;
+
+export const defineModelCode = `<!-- 子组件 -->
+<template>
+  <el-input v-model="msg"></el-input>
+</template>
+<script setup>
+import { defineModel } from 'vue';
+const msg = defineModel();
+</script>
+
+`;
+
+export const defineModelCode2 = `// vite.config.ts
+export function createVitePlugins() {
+	return [
+		vue({
+			script: {
+				// 开启 defineModel
+				defineModel: true,
+			},
+		}),
+    // ...其他配置
+  ]
+}`;

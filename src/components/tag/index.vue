@@ -1,12 +1,12 @@
 <template>
-	<span :style="{ color: color }" v-bind="$attrs" class="mv-tag">
+	<span :style="{ color: color }" v-bind="$attrs" class="tag">
 		<span v-if="data">{{ data }}</span>
 		<slot></slot>
 	</span>
 </template>
 <script setup lang="ts">
 defineOptions({
-	name: 'MvTag',
+	name: 'Tag',
 });
 
 defineProps({
@@ -22,7 +22,7 @@ defineProps({
 </script>
 
 <style scoped lang="scss">
-.mv-tag {
+.tag {
 	background-color: var(--el-color-primary-light-9);
 	border-color: var(--el-color-primary-light-8);
 	color: var(--el-color-primary);
