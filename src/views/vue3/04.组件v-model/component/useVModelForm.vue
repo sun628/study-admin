@@ -24,33 +24,17 @@ const props = defineProps({
 			return {
 				name: '', // 默认值为字符串
 				age: 0, // 默认值为数字
-				sex: '', // 默认值为字符串
+				sex: 'ss', // 默认值为字符串
 			};
 		},
 	},
 });
 
 const emit = defineEmits(['update:modelValue']);
-
-const form = computed({
-	get() {
-		return new Proxy(props.modelValue, {
-			get(target, key) {
-				return Reflect.get(target, key);
-			},
-			set(target, key, value) {
-				emit('update:modelValue', {
-					...target,
-					[key]: value,
-				});
-				return true;
-			},
-		});
-	},
-	set(newValue) {
-		emit('update:modelValue', newValue);
-	},
-});
+// 使用 useVModel 创建响应式引用
+const form = useVModel(props, 'modelValue', emit);
+form.value.name = '张四';
+form.value.age = 222;
 </script>
 <style lang="scss" scoped>
 .custom-form {

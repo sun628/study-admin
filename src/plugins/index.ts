@@ -51,7 +51,12 @@ const lifecycle = process.env.npm_lifecycle_event; //获取当前运行的命令
 export function createVitePlugins() {
 	const root = process.cwd();
 	return [
-		vue(),
+		vue({
+			script: {
+				// 开启 defineModel
+				defineModel: true,
+			},
+		}),
 		eslintPlugin({
 			include: ['src/**/*.ts', 'src/**/*.vue', 'src/*.ts', 'src/*.vue'],
 		}),
