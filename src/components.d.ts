@@ -65,7 +65,6 @@ declare module 'vue' {
     MusicAudio: typeof import('./components/music-audio/index.vue')['default']
     MvMap: typeof import('./components/mv-map/index.vue')['default']
     MvTable: typeof import('./components/mv-table/index.vue')['default']
-    MvTag: typeof import('./components/mv-tag/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./components/svg-icon/SvgIcon.vue')['default']
