@@ -111,7 +111,9 @@
 			<Highlight :code="defineModelCode2" />
 		</el-col>
 		<el-col :span="4">
-			<directory :data="directoryData" />
+			<div style="width: 230px">
+				<directory :data="directoryData" />
+			</div>
 		</el-col>
 	</el-row>
 </template>

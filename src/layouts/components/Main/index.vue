@@ -1,6 +1,6 @@
 <template>
 	<Tabs v-if="themeConfig.tabs" />
-	<el-main>
+	<el-main class="layout-main">
 		<router-view v-slot="{ Component, route }">
 			<transition appear :name="route.meta.transitionName as string" mode="out-in">
 				<keep-alive v-if="isRouterRefresh" :include="cacheRouter" :max="10">
@@ -9,6 +9,7 @@
 			</transition>
 		</router-view>
 	</el-main>
+	<el-backtop target=".layout-main" />
 	<el-footer v-if="themeConfig.footer">
 		<Footer />
 	</el-footer>
