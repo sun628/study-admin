@@ -1,8 +1,4 @@
 {
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"volar.autoCompleteRefs": true,
-	"files.exclude": {
-		"**/node_modules": true, // 忽略所有的 node_modules 文件夹
-		"**/pnpm-lock.yaml": true // 
-}
 }

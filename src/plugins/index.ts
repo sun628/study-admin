@@ -37,9 +37,8 @@ const _PWA = VitePWA({
 		],
 	},
 	workbox: {
-		cacheId: 'vite-pwa',
-		// 对所有匹配的静态资源进行缓存
-		globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+		clientsClaim: true, // 确保新的 Service Worker 在安装后立即激活
+		skipWaiting: true, // 强制当前等待中的旧 Service Worker 被忽略，新的 Service Worker 可以立即接管页面
 	},
 	// devOptions: {
 	// 	enabled: true,
