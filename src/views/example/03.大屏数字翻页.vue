@@ -1,23 +1,32 @@
 <template>
 	<div class="digital-scroll">
-		<el-row class="digital-container flex-center">
+		<h4 class="flex flex-nowrap">
+			<span class="whitespace-nowrap">参考github地址传送门：</span>
+			<el-link type="primary" :href="_HREF" target="_blank">{{ _HREF }}</el-link>
+		</h4>
+		<el-row class="digital-container flex-center mb-3">
 			<div v-for="column in digitals" :key="column" class="digital-column flex-center">
 				<div class="scrollList flex-center">
 					<div v-for="(num, index) in digitalScrollList" :key="index">{{ num }}</div>
 				</div>
 			</div>
 		</el-row>
-		<el-row class="mt-2">
-			<el-input v-model.number="numberVal" />
+		<el-row>
+			<el-col class="flex-center flex-nowrap">
+				<span class="whitespace-nowrap">输入数字：</span>
+				<el-input v-model.number="numberVal" />
+			</el-col>
 		</el-row>
 	</div>
 </template>
 
 <script setup lang="ts">
+const _HREF = 'https://github.com/1034668900/NumberScrollEffect';
 const numberVal = ref(0);
 const scrollListEle = ref<NodeListOf<HTMLElement> | null>(null);
 
 //  通过传入一个数字，实现返回一个从0开始的数组
+
 const getDigitals = (length: number) => {
 	return Array.from({ length }).map((_, index) => index);
 };
