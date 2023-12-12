@@ -1,27 +1,31 @@
 <template>
 	<div class="digital-scroll">
-		<h4 class="flex flex-nowrap">
-			<span class="whitespace-nowrap">参考github地址传送门：</span>
-			<el-link type="primary" :href="_HREF" target="_blank">{{ _HREF }}</el-link>
-		</h4>
-		<el-row class="digital-container flex-center mb-3">
-			<div v-for="column in digitals" :key="column" class="digital-column flex-center">
-				<div class="scrollList flex-center">
-					<div v-for="(num, index) in digitalScrollList" :key="index">{{ num }}</div>
+		<el-row class="flex-center mb-3">
+			<el-col :span="12" class="digital-container flex-center mb-3">
+				<div v-for="column in digitals" :key="column" class="digital-column flex-center">
+					<div class="scrollList flex-center">
+						<div v-for="(num, index) in digitalScrollList" :key="index">{{ num }}</div>
+					</div>
 				</div>
-			</div>
+			</el-col>
 		</el-row>
-		<el-row>
-			<el-col class="flex-center flex-nowrap">
+		<el-row class="flex-center mb-3">
+			<el-col class="flex-center flex-nowrap" :span="12">
 				<span class="whitespace-nowrap">输入数字：</span>
 				<el-input v-model.number="numberVal" />
 				<el-button type="primary" @click="start">开始</el-button>
 			</el-col>
 		</el-row>
+		<h4 class="flex flex-nowrap">
+			<span class="whitespace-nowrap">参考github地址传送门：</span>
+			<el-link type="primary" :href="_HREF" target="_blank">{{ _HREF }}</el-link>
+		</h4>
+		<Highlight :code="code"></Highlight>
 	</div>
 </template>
 
 <script setup lang="ts">
+import code from './03.大屏数字翻页.vue?raw';
 const _HREF = 'https://github.com/1034668900/NumberScrollEffect';
 const numberVal = ref(0);
 const scrollListEle = ref<NodeListOf<HTMLElement> | null>();
@@ -87,8 +91,6 @@ watch(
 
 <style scope lang="scss">
 .digital-scroll {
-	width: 500px;
-
 	.digital-container {
 		background-color: #020b44;
 	}
