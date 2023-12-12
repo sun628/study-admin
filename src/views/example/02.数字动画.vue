@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-let num = ref(1000);
+let num = ref(33847);
 
 // 推荐使用的方式，明确定义参数和返回类型
 type ProgressType = (value: number) => void;
@@ -46,7 +46,8 @@ function start() {
 	const next_num = num.value + 568;
 
 	// 示例用法
-	stopAnimation = animateProgress(1000, num.value, next_num, (value) => {
+	stopAnimation = animateProgress(1000, 0, next_num, (value) => {
+		console.log('stopAnimation=animateProgress ~ value:', value);
 		num.value = Math.floor(value);
 	});
 }
