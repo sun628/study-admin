@@ -1,17 +1,15 @@
 <template>
 	<div>
-		<SvgIcon name="music" :class="{ 'muisc-rotate': themeConfig.audio }" @click="playMusic()"></SvgIcon>
+		<SvgIcon name="music" :class="{ 'muisc-rotate': isPlay }" @click="playMusic()"></SvgIcon>
 	</div>
-	<music-audio ref="MusicAudioRef" class="music-aduio" loop :visible="visible" />
+	<music-audio :id="2064033095" ref="MusicAudioRef" class="music-aduio" loop :visible="visible" />
 </template>
 <script setup lang="ts">
-import { useGlobalStore } from '@/store/modules/global';
 import MusicAudio from '@/components/music-audio/index.vue';
 import { HOME_URL } from '@/config';
-const globalStore = useGlobalStore();
-const themeConfig = computed(() => globalStore.themeConfig);
 
 const route = useRoute();
+const isPlay = ref(false);
 
 // 是否显示音乐组件
 const visible = computed(() => {
@@ -25,8 +23,8 @@ const MusicAudioRef = ref<MusicAudioType>(null);
 
 // 播放音乐
 const playMusic = () => {
-	themeConfig.value.audio = !themeConfig.value.audio;
-	if (themeConfig.value.audio) {
+	isPlay.value = !isPlay.value;
+	if (isPlay.value) {
 		MusicAudioRef.value?.play();
 	} else {
 		MusicAudioRef.value?.pause();

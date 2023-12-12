@@ -29,7 +29,7 @@ export const useGlobalStore = defineStore({
 			// 页脚
 			footer: false,
 			// 音乐
-			audio: true,
+			audio: false,
 		},
 	}),
 	getters: {},

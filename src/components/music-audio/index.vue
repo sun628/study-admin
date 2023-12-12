@@ -32,11 +32,6 @@ interface IReturnLyric {
 	tlyric?: ILyric[];
 }
 
-const globalStore = useGlobalStore();
-const themeConfig = computed(() => globalStore.themeConfig);
-const AudioRef = ref<HTMLAudioElement | null>(null);
-const src = 'https://music.163.com/song/media/outer/url?id=2064033095.mp3';
-const gradBg = ref('');
 const props = defineProps({
 	// 是否显示音乐组件
 	visible: {
@@ -49,7 +44,17 @@ const props = defineProps({
 		type: Boolean,
 		default: true,
 	},
+	id: {
+		type: Number,
+		default: 2064033095,
+	},
 });
+
+const globalStore = useGlobalStore();
+const themeConfig = computed(() => globalStore.themeConfig);
+const AudioRef = ref<HTMLAudioElement | null>(null);
+const src = 'https://music.163.com/song/media/outer/url?id=2064033095.mp3';
+const gradBg = ref('');
 
 const lyric = ref<HTMLDivElement | null>(null); // dom -  包含歌词标签的ul，高度很高，主要用于控制transform
 const lyricDiv = ref<HTMLDivElement | null>(null); // dom - 高度固定的外层div，主要用于html结构
@@ -88,7 +93,6 @@ const play = () => {
 		})
 		.catch((e) => {
 			if (globalStore.themeConfig.audio) {
-				globalStore.themeConfig.audio = false;
 				const autoPlayAfterClick = () => {
 					document.removeEventListener('click', autoPlayAfterClick);
 					play();
@@ -103,21 +107,13 @@ const play = () => {
 const pause = () => {
 	AudioRef.value?.pause();
 	cancelAnimationFrame(requestId);
-	console.log('cancelAnimationFrame', requestId);
 };
-
-onMounted(async () => {
-	if (globalStore.themeConfig.audio) {
-		await nextTick();
-		play();
-	}
-});
 
 const lyrics = ref<Array<ILyric>>([]);
 
 // 监听歌曲播放时间变化
 const handleTimeUpdate = (e: Event) => {
-	const currentTime = (e.target as HTMLAudioElement).currentTime; //当前播放器时间
+	// const currentTime = (e.target as HTMLAudioElement).currentTime; //当前播放器时间
 	scrollToCurrentLine();
 	// for (let i = 0; i < lyrics.value.length; i++) {
 	// 	if (currentTime >= lyrics.value[i].time && (!lyrics.value[i + 1] || currentTime < lyrics.value[i + 1].time)) {
@@ -137,7 +133,6 @@ const scrollToCurrentLine = () => {
 		const activeLineHeight = activeLine.clientHeight;
 		if (activeLineOffsetTop < containerHeight / 2) return;
 		const scrollY = -(activeLineOffsetTop - containerHeight / 2 + activeLineHeight / 2);
-		console.log('scrollY:', scrollY);
 		if (lyric.value) {
 			lyric.value.style.transform = `translateY(${scrollY}px)`;
 		}
@@ -145,7 +140,7 @@ const scrollToCurrentLine = () => {
 };
 // 获取歌词歌词
 const getLyric = async () => {
-	const res = await getLyricApi({ id: 2064033095 });
+	const res = await getLyricApi({ id: props.id });
 	formatMusicLyrics(res.lyric);
 };
 

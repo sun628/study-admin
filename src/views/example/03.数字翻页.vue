@@ -2,6 +2,7 @@
 	<div class="digital-scroll">
 		<el-row class="flex-center mb-3">
 			<el-col :span="12" class="digital-container flex-center mb-3">
+				<!-- 数字翻页 -->
 				<div v-for="column in digitals" :key="column" class="digital-column flex-center">
 					<div class="scrollList flex-center">
 						<div v-for="(num, index) in digitalScrollList" :key="index">{{ num }}</div>
@@ -16,17 +17,12 @@
 				<el-button type="primary" @click="start">开始</el-button>
 			</el-col>
 		</el-row>
-		<h4 class="flex flex-nowrap">
-			<span class="whitespace-nowrap">参考github地址传送门：</span>
-			<el-link type="primary" :href="_HREF" target="_blank">{{ _HREF }}</el-link>
-		</h4>
 		<Highlight :code="code"></Highlight>
 	</div>
 </template>
 
 <script setup lang="ts">
-import code from './03.大屏数字翻页.vue?raw';
-const _HREF = 'https://github.com/1034668900/NumberScrollEffect';
+import code from './03.数字翻页.vue?raw';
 const numberVal = ref(0);
 const scrollListEle = ref<NodeListOf<HTMLElement> | null>();
 
