@@ -29,7 +29,7 @@ const scrollListEle = ref<NodeListOf<HTMLElement> | null>();
 /**
  * @description 通过传入一个数字，实现返回一个从0到length-1的数组
  * @param {number} length  数组长度
- * @requires {Array<number>} 返回一个从0到length-1的数组
+ * @returns {Array<number>} 返回一个从0到length-1的数组
  **/
 const getDigitals = (length: number) => {
 	return Array.from({ length }).map((_, index) => index);

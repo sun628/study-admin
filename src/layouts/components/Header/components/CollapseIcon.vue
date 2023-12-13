@@ -12,16 +12,12 @@ const menuStore = MenuStore();
 const isCollapse = computed((): boolean => menuStore.isCollapse);
 
 // 监听浏览器窗口大小变化
-window.addEventListener('resize', () => {
+useEventListener(window, 'resize', () => {
 	if (window.innerWidth <= 768) {
 		menuStore.setCollapse(true);
 	} else {
 		menuStore.setCollapse(false);
 	}
-});
-
-useEventListener(window, 'resize', () => {
-	console.log(11111);
 });
 </script>
 
