@@ -205,12 +205,15 @@ defineExpose({
 .lyrics-container {
 	height: 100%;
 	display: flex;
-	justify-content: flex-end;
+	justify-content: center;
 	align-items: center;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	position: fixed;
 	z-index: 999;
 	padding: 20px 0px;
+	@include respondTo('pc') {
+		justify-content: flex-end;
+	}
 	.lyricDiv {
 		height: 100%;
 		overflow-y: auto;

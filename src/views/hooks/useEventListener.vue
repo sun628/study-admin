@@ -13,7 +13,7 @@
 	</el-card>
 </template>
 <script setup lang="ts">
-import eventCode from '@/hooks/useEvent?raw';
+import eventCode from '@/hooks/useEventListener?raw';
 const code1 = `onMounted(() => {
 	window.addEventListener('scroll', scrollHander, true);
 });

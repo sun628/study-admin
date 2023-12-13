@@ -1,6 +1,6 @@
 <template>
 	<div class="tool-bar-lf">
-		<CollapseIcon id="collapseIcon" />
+		<CollapseIcon />
 		<Breadcrumb v-if="themeConfig.breadcrumb" id="breadcrumb" />
 	</div>
 </template>

@@ -13,8 +13,13 @@ export const MenuStore = defineStore({
 	}),
 	getters: {},
 	actions: {
-		async setCollapse() {
-			this.isCollapse = !this.isCollapse;
+		async setCollapse(collapse?: boolean) {
+			// 判断collapse是否为布尔值
+			if (typeof collapse == 'boolean') {
+				this.isCollapse = collapse;
+			} else {
+				this.isCollapse = !this.isCollapse;
+			}
 		},
 		async setMenuList(menuList: Menu.MenuOptions[]) {
 			this.menuList = menuList;

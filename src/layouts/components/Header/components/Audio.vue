@@ -43,8 +43,14 @@ const playMusic = () => {
 }
 .music-aduio {
 	top: 100px;
-	right: 10px;
+	left: 0px;
+	right: 0px;
 	height: calc(100% - 120px);
+	margin: auto;
+	@include respondTo('pc') {
+		right: 10px;
+		left: auto;
+	}
 }
 
 @keyframes rotation {

@@ -49,18 +49,20 @@ onBeforeUnmount(() => {
 	overflow: hidden;
 	.lyrics-title {
 		position: fixed;
-		left: 0;
-		right: 0;
 		top: 0;
 		bottom: 0;
+		right: 10px;
+		left: auto;
 		margin: auto;
 		text-align: center;
 		font-family: 'lato', sans-serif;
 		font-weight: 500;
-		font-size: 50px;
 		letter-spacing: 10px;
 		width: fit-content;
 		height: fit-content;
+		display: flex;
+		flex-direction: column;
+		font-size: 28px;
 		span {
 			color: transparent;
 			animation: spread 2s ease-in-out infinite alternate;
@@ -68,12 +70,11 @@ onBeforeUnmount(() => {
 			background-clip: text;
 			-webkit-background-clip: text;
 		}
-		@include respondTo('tv') {
-			display: flex;
-			flex-direction: column;
-			right: 10px !important;
-			left: auto !important;
-			font-size: 28px !important;
+		@include respondTo('pc') {
+			right: 0;
+			left: 0;
+			font-size: 50px;
+			flex-direction: row;
 		}
 	}
 	@function getShadow($n) {
