@@ -21,7 +21,7 @@ onUnmounted(() => {
 	window.removeEventListener('scroll', scrollHander, true);
 });`;
 
-const code2 = `// useEvent.ts
+const code2 = `// useEventListener.ts
 import { onMounted, onUnmounted } from 'vue'
 
 export function useEventListener(target, event, callback) {
@@ -31,7 +31,7 @@ export function useEventListener(target, event, callback) {
   onUnmounted(() => target.removeEventListener(event, callback))
 }`;
 
-const code3 = `import { useEventListener } from '@/hooks/useEvent';
+const code3 = `import { useEventListener } from '@/hooks/useEventListener';
 const scrollHander = () => {
 	console.log('scroll');
 };

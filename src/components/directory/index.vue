@@ -14,7 +14,7 @@
 </template>
 <script setup lang="ts">
 import { useDebounceFn } from '@vueuse/core';
-import { useEventListener } from '@/hooks/useEvent';
+import { useEventListener } from '@/hooks/useEventListener';
 defineOptions({
 	name: 'Directory',
 });
