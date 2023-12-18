@@ -22,7 +22,6 @@
 				<el-table-column prop="defaultValue" label="默认值" />
 			</el-table>
 		</el-row>
-
 		<el-row class="mb-3">
 			<h2>源代码</h2>
 			<Highlight :code="code"></Highlight>
