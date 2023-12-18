@@ -7,7 +7,7 @@ import { ref } from 'vue';
  * import { ElForm } from 'element-plus';
  * const compRef = useCompRef(ElForm);
  * compRef.value.xxx();
- * @returns {Ref<InstanceType<T>>} 组件实例
+ * @returns {Ref<InstanceType<typeof T>>} 组件实例
  **/
 export function useCompRef<T extends abstract new (...args: any) => any>(_comp: T) {
 	return ref<InstanceType<T>>();

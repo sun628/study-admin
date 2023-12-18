@@ -76,10 +76,9 @@ export function isBoolean(val: unknown): val is boolean {
 /**
  * @description:  是否为数组
  */
-export function isArray(val: any): val is Array<any> {
-	return val && Array.isArray(val);
+export function isArray<T>(val: any): val is Array<T> {
+	return Array.isArray(val);
 }
-
 /**
  * @description: 是否客户端
  */

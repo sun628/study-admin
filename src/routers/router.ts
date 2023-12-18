@@ -70,20 +70,6 @@ export const routes: RouteRecordRaw[] = [
 		},
 	},
 	{
-		path: '/example',
-		component: Layout,
-		name: 'example',
-		children: filterModuleRoutes('example'),
-		meta: {
-			menuIndex: MatchMenu['example'],
-			keepAlive: true,
-			requiresAuth: false,
-			title: '功能',
-			key: 'example',
-			localSvgIcon: 'example',
-		},
-	},
-	{
 		path: '/electron',
 		component: Layout,
 		name: 'electron',

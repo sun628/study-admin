@@ -37,6 +37,9 @@
 </template>
 <script setup lang="ts">
 import { useVirtualList, useToggle } from '@vueuse/core';
+defineOptions({
+	name: 'VirtualList',
+});
 
 const [isEven, toggle] = useToggle();
 const allItems = Array.from(Array(99999).keys());

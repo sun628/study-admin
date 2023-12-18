@@ -2,19 +2,19 @@
 	<highlightjs v-copy="code" :autodetect="auto" :language="lang" :code="code"></highlightjs>
 </template>
 <script setup lang="ts">
-defineProps({
+const props = defineProps({
 	code: {
 		type: String,
 		default: '',
 	},
 	lang: {
 		type: String,
-		default: 'TypeScript',
+		default: '',
 	},
-	auto: {
-		type: Boolean,
-		default: true,
-	},
+});
+const auto = computed(() => {
+	// 如果 lang 不是默认值，则 auto 为 false，否则为 true
+	return props.lang === '';
 });
 </script>
 

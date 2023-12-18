@@ -100,7 +100,7 @@
 
 			<doc title="其他">
 				<Tip title>
-					<p class="flex">
+					<p class="flex-center">
 						1.等价于 vueuse 中工具函数<Tag data="useVModel" />，使用方式一样
 						<el-link type="primary" href="https://vueuse.org/core/useVModel/" target="_blank">链接地址</el-link>
 					</p>

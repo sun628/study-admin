@@ -45,7 +45,7 @@
 		</el-row>
 		<el-row>
 			<el-card class="w-full">
-				<mv-table :data="tableData" stripe style="width: 100%" size="large">
+				<el-table :data="tableData" stripe style="width: 100%" size="large">
 					<el-table-column prop="label" label="技术栈">
 						<template #default="{ row }">
 							<div :class="{ 'highlight-keywords': isKeyword(row.label) }" @click="handleClickLink(row.label)">
@@ -58,7 +58,7 @@
 							<el-link :href="row.link" target="_blank">{{ row.link }}</el-link>
 						</template>
 					</el-table-column>
-				</mv-table>
+				</el-table>
 			</el-card>
 		</el-row>
 	</div>
@@ -66,7 +66,6 @@
 <script setup lang="ts">
 import mittBus from '@/utils/mitt';
 import { isKeyword } from '@/hooks/useHighlightKeywords';
-import MvTable from '@/components/mv-table/index.vue';
 import { MoreFilled } from '@element-plus/icons-vue';
 // import type { ElTimelineItem } from 'element-plus';
 

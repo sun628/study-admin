@@ -38,5 +38,6 @@ defineProps({
 	border-radius: 4px;
 	box-sizing: border-box;
 	white-space: nowrap;
+	margin: 0px 5px;
 }
 </style>

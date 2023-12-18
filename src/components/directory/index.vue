@@ -13,7 +13,6 @@
 	</el-card>
 </template>
 <script setup lang="ts">
-import { useDebounceFn } from '@vueuse/core';
 import { useEventListener } from '@/hooks/useEventListener';
 defineOptions({
 	name: 'Directory',
@@ -55,7 +54,7 @@ const topRange = 300; // 距离顶部多少距离时，激活目录
 let elementArr: Element[] = [];
 
 // 滚动事件处理函数
-const scrollHander = useDebounceFn((e) => {
+const scrollHander = () => {
 	const rects = elementArr.map((item) => item.getBoundingClientRect()); // 获取元素的位置信息
 	for (let i = 0; i < rects.length; i++) {
 		const rect = rects[i];
@@ -68,7 +67,7 @@ const scrollHander = useDebounceFn((e) => {
 			break;
 		}
 	}
-}, 100);
+};
 
 onMounted(() => {
 	elementArr = Array.from(document.querySelectorAll('.doc'));

@@ -3,21 +3,20 @@
 		<doc title="配置文件">
 			<p>tsconfig.json 文件是 TypeScript 项目的配置文件。(这个文件是通过tsc --init命令生成的)</p>
 			<p>它告诉 TypeScript 编译器应该如何转换 TypeScript 代码到JavaScript，以及编译器应该包含哪些源代码文件，或者在哪里查找这些文件。</p>
-			<mv-table :data="tableData" row-key="name" border default-expand-all>
+			<el-table :data="tableData" row-key="name" border default-expand-all>
 				<el-table-column label="常用配置项">
 					<template #default="{ row }">
 						<span class="Highlight-words">{{ row.name }}</span>
 					</template>
 				</el-table-column>
 				<el-table-column prop="description" label="说明" />
-			</mv-table>
+			</el-table>
 			<h2 class="mt-6">常用配置项</h2>
 			<Highlight :code="configCode" />
 		</doc>
 	</el-card>
 </template>
 <script setup lang="ts">
-import mvTable from '@/components/mv-table/index.vue';
 const tableData = ref([
 	{
 		name: 'include',

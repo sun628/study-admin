@@ -100,12 +100,12 @@
 					<h2>更多的配置项</h2>
 					<h3>副作用刷新时机 flush 一般使用post。默认：'pre'</h3>
 					<p>默认情况下，侦听器将在组件渲染之前执行。设置 flush: 'post' 将会使侦听器延迟到组件渲染之后再执行</p>
-					<mv-table :data="tableData">
+					<el-table :data="tableData">
 						<el-table-column prop="time" />
 						<el-table-column prop="pre" label="pre" />
 						<el-table-column prop="sync" label="sync" />
 						<el-table-column prop="post" label="post" />
-					</mv-table>
+					</el-table>
 				</doc>
 				<doc title="watchPostEffect">
 					<p class="tip">watchEffect() 使用 flush: 'post' 选项时的别名。</p>
