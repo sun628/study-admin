@@ -7,18 +7,8 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { MenuStore } from '@/store/modules/menu';
-import { useEventListener } from '@/hooks/useEventListener';
 const menuStore = MenuStore();
 const isCollapse = computed((): boolean => menuStore.isCollapse);
-
-// 监听浏览器窗口大小变化
-useEventListener(window, 'resize', () => {
-	if (window.innerWidth <= 768) {
-		menuStore.setCollapse(true);
-	} else {
-		menuStore.setCollapse(false);
-	}
-});
 </script>
 
 <style scoped lang="scss">

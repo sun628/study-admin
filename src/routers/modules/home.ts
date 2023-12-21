@@ -26,7 +26,7 @@ const homeRouter: Array<RouteRecordRaw> = [
 				name: 'introduction',
 				component: () => import('@/views/home/introduction.vue'),
 				meta: {
-					keepAlive: true,
+					keepAlive: false,
 					requiresAuth: true,
 					title: '介绍',
 					key: 'introduction',

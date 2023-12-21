@@ -33,6 +33,7 @@
 import DigitalScroll from '@/components/digital-scroll/index.vue';
 import code from '@/components/digital-scroll/index.vue?raw';
 import { useCompRef } from '@/hooks/useCompRef';
+
 const tableData = ref([
 	{
 		name: 'value',

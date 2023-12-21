@@ -3,13 +3,15 @@
 		<!-- <audio ref="AudioRef" class="hidden" :src="src" controls @timeupdate="handleTimeUpdate"></audio> -->
 		<audio ref="AudioRef" class="hidden" :src="src" v-bind="$attrs" @timeupdate="handleTimeUpdate"></audio>
 		<div ref="lyricDiv" class="lyricDiv">
-			<ul ref="lyric" class="lyrics">
-				<li v-for="(item, index) in lyrics" :key="item.uid" class="lyric-line">
-					<p :class="currentIndex === index ? 'active' : ''" :data-index="index" :style="currentIndex === index ? gradBg : ''">
-						{{ item.lyric }}
-					</p>
-				</li>
-			</ul>
+			<transition name="slide-fade">
+				<ul v-if="lyrics.length" ref="lyric" class="lyrics">
+					<li v-for="(item, index) in lyrics" :key="item.uid" class="lyric-line">
+						<p :class="{ active: currentIndex === index }" :style="currentIndex === index ? gradBg : ''">
+							{{ item.lyric }}
+						</p>
+					</li>
+				</ul>
+			</transition>
 		</div>
 	</div>
 </template>
@@ -80,27 +82,25 @@ const updateLyrics = () => {
 };
 
 //播放音乐
-const play = () => {
+const play = async () => {
 	if (!AudioRef.value) return new Error('AudioRef is not defined or has no value.');
-	AudioRef.value
-		.play()
-		.then(() => {
-			console.log('play');
-			currentIndex.value = -1;
-			if (props.animation) {
-				requestId = requestAnimationFrame(updateLyrics);
-			}
-		})
-		.catch((e) => {
-			if (globalStore.themeConfig.audio) {
-				const autoPlayAfterClick = () => {
-					document.removeEventListener('click', autoPlayAfterClick);
-					play();
-				};
-				document.addEventListener('click', autoPlayAfterClick);
-			}
-			console.log(e);
-		});
+	if (lyrics.value.length === 0) getLyric();
+	try {
+		await AudioRef.value.play();
+		currentIndex.value = -1;
+		if (props.animation) {
+			requestId = requestAnimationFrame(updateLyrics);
+		}
+	} catch (error) {
+		if (globalStore.themeConfig.audio) {
+			const autoPlayAfterClick = () => {
+				document.removeEventListener('click', autoPlayAfterClick);
+				play();
+			};
+			document.addEventListener('click', autoPlayAfterClick);
+		}
+		console.log(error);
+	}
 };
 
 // 停止音乐
@@ -193,7 +193,6 @@ const formatLyricTime = (time: string) => {
 	}
 	return Number(sec + '.' + ms);
 };
-getLyric();
 
 defineExpose({
 	play,
@@ -245,5 +244,19 @@ defineExpose({
 			-webkit-background-clip: text;
 		}
 	}
+}
+
+.slide-fade-enter-active {
+	transition: all 3s ease-out;
+}
+
+.slide-fade-leave-active {
+	transition: all 3s;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+	transform: translateX(40px);
+	opacity: 0;
 }
 </style>

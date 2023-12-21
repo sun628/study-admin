@@ -33,12 +33,11 @@
 						<el-descriptions-item label="居住地">中国</el-descriptions-item>
 						<el-descriptions-item label="微信">nuanyang16333</el-descriptions-item>
 						<el-descriptions-item label="标签">
-							<el-tag class="mr-3">vue3</el-tag>
-							<el-tag class="mr-3">TypeScript</el-tag>
-							<el-tag class="mr-3">vite</el-tag>
-							<el-tag class="mr-3">element-plus</el-tag>
+							<el-tag class="mr-3 mb-3">vue3</el-tag>
+							<el-tag class="mr-3 mb-3">TypeScript</el-tag>
+							<el-tag class="mr-3 mb-3">vite</el-tag>
+							<el-tag class="mr-3 mb-3">element-plus</el-tag>
 						</el-descriptions-item>
-						<el-descriptions-item label="项目">集成了一些关于前端知识的文章和功能。</el-descriptions-item>
 					</el-descriptions>
 				</el-card>
 			</el-col>

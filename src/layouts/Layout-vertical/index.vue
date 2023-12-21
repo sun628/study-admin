@@ -1,8 +1,8 @@
 <template>
 	<div class="Layout-vertical">
-		<el-container>
-			<el-aside width="200px">
-				<div class="menu" :style="{ width: isCollapse ? '65px' : '220px' }">
+		<el-container :class="{ mobile: deviceType === 'mobile' && !isCollapse }">
+			<el-aside width="200px" @click="toggleClick">
+				<div class="menu" :style="{ width: menuWidth }">
 					<div class="logo flex-center">
 						<img src="@/assets/vite.svg" alt="logo" />
 						<span v-show="!isCollapse">天外来物</span>
@@ -30,6 +30,8 @@ import ToolBarLeft from '@/layouts/components/Header/ToolBarLeft.vue';
 import ToolBarRight from '@/layouts/components/Header/ToolBarRight.vue';
 import Main from '@/layouts/components/Main/index.vue';
 import SubMenu from '@/layouts/components/Menu/SubMenu.vue';
+import { useDeviceType } from '@/hooks/useDeviceType';
+import { useResizeObserver } from '@vueuse/core';
 defineOptions({
 	name: 'LayoutVertical',
 });
@@ -38,6 +40,27 @@ const menuStore = MenuStore();
 const activeMenu = computed(() => route.path);
 const menuList = computed(() => menuStore.menuList);
 const isCollapse = computed(() => menuStore.isCollapse);
+const { deviceType } = useDeviceType();
+if (deviceType.value === 'mobile') {
+	menuStore.isCollapse = true; // 移动端默认不展示
+}
+
+const menuWidth = computed(() => {
+	if (deviceType.value === 'mobile') {
+		return menuStore.isCollapse ? '0' : '220px';
+	} else if (deviceType.value === 'ipad') {
+		return menuStore.isCollapse ? '65px' : '220px';
+	} else {
+		return menuStore.isCollapse ? '65px' : '220px';
+	}
+});
+
+const toggleClick = (e: Event) => {
+	// 防止点击菜单时也触发
+	if (e.currentTarget === e.target) {
+		menuStore.isCollapse = !menuStore.isCollapse;
+	}
+};
 </script>
 
 <style scoped lang="scss">

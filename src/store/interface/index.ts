@@ -1,3 +1,4 @@
+import { DeviceType } from '@/enums';
 /* themeConfigProp */
 export interface ThemeConfigProp {
 	layout: string;
@@ -17,6 +18,7 @@ export interface GlobalState {
 	assemblySize: AssemblySizeProp;
 	// language: string;
 	themeConfig: ThemeConfigProp;
+	device: `${DeviceType}`;
 }
 
 /* UserState */

@@ -1,8 +1,8 @@
 $breakpoints: (
-  'ipad': (696px, 959px),
-  'desktop': (960px, 1366px),
+  'ipad': (768px, 990px),
+  'desktop': (991px, 1366px),
   'pc': 1367px,
-  'mobile': 959px,
+  'mobile': 768px,
 );
 
 @mixin respondTo($breakname) {

@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import piniaPersistConfig from '@/config/piniaPersist';
 import { DEFAULT_PRIMARY } from '@/config';
 import { GlobalState, ThemeConfigProp, AssemblySizeProp } from '@/store/interface';
-
+import { useDeviceType } from '@/hooks/useDeviceType';
 // defineStore 调用后返回一个函数，调用该函数获得 Store 实体
 export const useGlobalStore = defineStore({
 	// id: 必须的，在所有 Store 中唯一
@@ -11,6 +11,7 @@ export const useGlobalStore = defineStore({
 	state: (): GlobalState => ({
 		// element组件大小
 		assemblySize: 'default', //'large' | 'default' | 'small'
+		device: 'mobile', // 'desktop' | 'mobile'
 		themeConfig: {
 			// 布局切换 ==>  纵向：vertical | 横向：horizontal
 			layout: 'vertical',
