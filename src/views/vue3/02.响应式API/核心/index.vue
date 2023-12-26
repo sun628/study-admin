@@ -1,6 +1,6 @@
 <template>
 	<el-row class="flex justify-center">
-		<el-col :span="16">
+		<el-col :span="16" class="h5-w-full">
 			<el-card>
 				<doc title="ref">
 					<div class="tip">
@@ -130,14 +130,12 @@
 			</el-card>
 		</el-col>
 		<!-- 目录 -->
-		<el-col :span="4" class="ml-10">
+		<el-col :span="4" class="ml-10 h5-hidden">
 			<directory :data="directoryData" />
 		</el-col>
 	</el-row>
 </template>
 <script setup lang="ts">
-import MvTable from '@/components/mv-table/index.vue';
-
 import { refCode, reactiveCode, reactiveCode1, reactiveCode2, readonlyCode, computedCode, computedCode1 } from './code';
 import { watchRefCode, watchReactiveCode, watchStopCode, watchEffectCode, watchEffectCode1 } from './code';
 import { refType, reactiveType, computedType, watchEffectType } from './type';

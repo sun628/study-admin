@@ -1,6 +1,6 @@
 <template>
 	<el-row>
-		<el-col :span="16">
+		<el-col :span="16" class="h5-w-full">
 			<doc title="shallowRef">
 				<div class="tip">
 					<p>和ref()不同，浅层 ref 的内部值将会原样存储和暴露，并且不会被深层递归地转为响应式。只有对 .value 的访问是响应式的。</p>

@@ -15,6 +15,10 @@ const pages = [
 			{ name: '02.滚动动画', component: () => import('@/views/example/02.动画/02.滚动动画.vue') },
 		],
 	},
+	{
+		name: '03.Promise实现',
+		component: () => import('@/views/example/03.Promise实现/index.vue'),
+	},
 ];
 
 // exampleRouter

@@ -104,9 +104,13 @@ let lap_flag = true;
 
 // 开始滚动
 const start = () => {
-	const lap = lap_flag ? 10 : 0; // 0:不翻转，10：翻转一圈(0-9)
-	lap_flag = !lap_flag;
-	checkNumChange(lap);
+	if (!props.loop) {
+		checkNumChange();
+	} else {
+		const lap = lap_flag ? 10 : 0; // 0:不翻转，10：翻转一圈(0-9)
+		lap_flag = !lap_flag;
+		checkNumChange(lap);
+	}
 };
 defineExpose({
 	start,

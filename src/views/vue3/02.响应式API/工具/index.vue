@@ -1,6 +1,6 @@
 <template>
 	<el-row>
-		<el-col :span="16">
+		<el-col :span="16" class="h5-w-full">
 			<doc title="isRef">
 				<div class="tip">判断一个值是不是ref响应式对象</div>
 				<Highlight :code="isRefCode" />
@@ -75,11 +75,12 @@
 			</doc>
 		</el-col>
 		<!-- 目录 -->
-		<el-col :span="4" class="ml-10">
+		<el-col :span="4" class="ml-10 h5-hidden">
 			<directory :data="directoryData" />
 		</el-col>
 	</el-row>
 </template>
+
 <script setup lang="ts">
 import { isRefCode, unrefCode, toRefCode, toRefCode1, toRefsCode, toRefsCode1, toValueCode, toValueCode1 } from './code';
 import { toRefImpl, toRefsImpl, toValueImpl } from './Impl';

@@ -1,6 +1,6 @@
 <template>
 	<el-row>
-		<el-col :span="16">
+		<el-col :span="16" class="h5-w-full">
 			<el-card>
 				<doc title="一、泛型是什么？有什么作用？" link="1">
 					<div class="tip">
@@ -22,16 +22,16 @@
 				</doc>
 				<doc title="三、泛型约束" link="3">
 					<h2>案例1</h2>
-					<p class="tip">1.我们期望在一个泛型的变量上面，获取其length参数，但是，有的数据类型是没有length属性的</p>
+					<p class="tip">1.我们期望在一个泛型的变量上面，获取其 length 参数，但是，有的数据类型是没有 length 属性的</p>
 					<Highlight :code="constraintCode" />
-					<p class="tip">所以，我们就得对使用的泛型进行约束，我们约束其为具有length属性的类型，这里我们会用到interface,代码如下</p>
+					<p class="tip">所以，我们就得对使用的泛型进行约束，我们约束其为具有length属性的类型，这里我们会用到 interface,代码如下</p>
 					<Highlight :code="constraintCode1" />
 					<h2>案例2</h2>
 					<Highlight :code="constraintCode2" />
-					<h2>案例3：使用keyof 约束对象</h2>
+					<h2>案例3：使用 keyof 约束对象</h2>
 					<p>
-						首先定义了T类型并使用extends关键字继承object类型的子类型，然后使用keyof操作符获取T类型的所有键，它的返回 类型是联合
-						类型，最后利用extends关键字约束 K类型必须为keyof T联合类型的子类型。
+						首先定义了 T 类型并使用 extends 关键字继承 object 类型的子类型，然后使用 keyof 操作符获取T类型的所有键，它的返回 类型是联合 类型，最后利用
+						extends 关键字约束 K类型必须为 keyof T 联合类型的子类型。
 					</p>
 					<Highlight :code="constraintCode3" />
 					<h2>案例4：泛型类</h2>
@@ -44,7 +44,7 @@
 			</el-card>
 		</el-col>
 
-		<el-col :span="4" class="ml-10">
+		<el-col :span="4" class="ml-10 h5-hidden">
 			<directory :data="directoryData" />
 		</el-col>
 	</el-row>

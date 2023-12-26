@@ -26,6 +26,9 @@ export function useDigitalAnimation() {
 	let stop: (() => void) | null = null;
 
 	function animateProgress({ duration = 600, from = 0, to }: AnimationParams, onProgress?: ProgressType) {
+		if (to === undefined) {
+			throw new Error('The "to" parameter is required');
+		}
 		const startTime = Date.now();
 		let animationId: number | null = null;
 

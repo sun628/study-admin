@@ -1,7 +1,7 @@
 <template>
-	<div class="Layout-vertical">
-		<el-container :class="{ mobile: deviceType === 'mobile' && !isCollapse }">
-			<el-aside width="200px" @click="toggleClick">
+	<div class="Layout-vertical" :class="{ mobile: deviceType === 'mobile' }">
+		<el-container>
+			<el-aside width="200px" :class="{ 'aside-collapse': !isCollapse }" @click="toggleClick">
 				<div class="menu" :style="{ width: menuWidth }">
 					<div class="logo flex-center">
 						<img src="@/assets/vite.svg" alt="logo" />
@@ -31,10 +31,10 @@ import ToolBarRight from '@/layouts/components/Header/ToolBarRight.vue';
 import Main from '@/layouts/components/Main/index.vue';
 import SubMenu from '@/layouts/components/Menu/SubMenu.vue';
 import { useDeviceType } from '@/hooks/useDeviceType';
-import { useResizeObserver } from '@vueuse/core';
 defineOptions({
 	name: 'LayoutVertical',
 });
+
 const route = useRoute();
 const menuStore = MenuStore();
 const activeMenu = computed(() => route.path);

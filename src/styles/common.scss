@@ -102,3 +102,15 @@
 		margin-left: 5px;
 	}
 }
+
+.mobile{
+
+	// 移动端隐藏
+	.h5-hidden{
+		display: none;
+	}
+	.h5-w-full{
+		width: 100%;
+		max-width: 100%;
+	}
+}
