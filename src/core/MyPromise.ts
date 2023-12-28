@@ -1,5 +1,3 @@
-import { set } from 'nprogress';
-
 enum State {
 	PENDING = 'pending',
 	FULFILLED = 'fulfilled',

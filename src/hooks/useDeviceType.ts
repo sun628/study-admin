@@ -1,4 +1,4 @@
-import { ref, onMounted, Ref } from 'vue';
+import { ref, Ref } from 'vue';
 import { useEventListener } from '@/hooks/useEventListener';
 import { DeviceType } from '@/enums';
 

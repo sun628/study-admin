@@ -1,25 +1,30 @@
 <template>
-	<div class="promise">111</div>
+	<el-card header="Promise实现">
+		<div class="promise__code">
+			<Highlight :code="MyPromiseCode" />
+		</div>
+	</el-card>
 </template>
 
 <script setup lang="ts">
-import MyPromise from './MyPromise';
+import MyPromise from '@/core/MyPromise';
+import MyPromiseCode from '@/core/MyPromise?raw';
 defineOptions({
 	name: 'Promise',
 });
 
-// const p = new Promise<number>((resolve, reject) => {
-// 	setTimeout(() => {
-// 		console.log(1);
-// 		resolve(3);
-// 	}, 0);
-// })
-// 	.then((res) => {
-// 		console.log('p--res2', res);
-// 	})
-// 	.catch((error) => {
-// 		console.log('catch--error2', error);
-// 	});
+const p = new MyPromise<number>((resolve, reject) => {
+	setTimeout(() => {
+		console.log(1);
+		resolve(3);
+	}, 0);
+})
+	.then((res) => {
+		console.log('p--res2', res);
+	})
+	.catch((error) => {
+		console.log('catch--error2', error);
+	});
 
 // 假设的异步操作
 function asyncCleanup() {

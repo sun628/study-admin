@@ -16,8 +16,8 @@ const pages = [
 		],
 	},
 	{
-		name: '03.Promise实现',
-		component: () => import('@/views/example/03.Promise实现/index.vue'),
+		name: '03.源码实现',
+		children: [{ name: '01.Promise实现', component: () => import('@/views/example/03.源码实现/01.Promise实现.vue') }],
 	},
 ];
 
