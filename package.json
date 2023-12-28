@@ -3,12 +3,14 @@
 	"private": true,
 	"version": "0.0.0",
 	"description": "暖阳的后台管理",
+	"license": "MIT",
+	"type": "module",
 	"author": "暖阳",
 	"scripts": {
 		"dev": "vite",
 		"dev --host": "vite --host",
 		"build": "vue-tsc && vite build",
-		"report": "vue-tsc && vite build",
+		"build:report": "vue-tsc && vite build",
 		"build:pwa": "vue-tsc && vite build",
 		"preview": "vite preview",
 		"lint": "eslint src --fix --ext .ts,.tsx,.vue,.js,.jsx",
@@ -59,13 +61,13 @@
 		"typescript": "^5.3.3",
 		"unplugin-auto-import": "^0.16.7",
 		"unplugin-vue-components": "^0.25.2",
-		"vite": "^4.5.1",
+		"vite": "^5.0.10",
 		"vite-plugin-eslint": "^1.8.1",
 		"vite-plugin-pwa": "^0.16.7",
 		"vite-plugin-svg-icons": "^2.0.1",
 		"vue-tsc": "^1.8.27"
 	},
 	"engines": {
-		"node": ">=16.0.0"
+		"node": ">=18"
 	}
 }
