@@ -40,6 +40,7 @@ useHighlightKeywords(DocRef, (value: string) => {
 		border-left: 5px solid var(--el-color-primary);
 		margin: 10px 0;
 		font-size: 1rem;
+		width: auto;
 	}
 	:deep(p) {
 		width: fit-content;

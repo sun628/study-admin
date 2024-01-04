@@ -20,19 +20,6 @@
 			<p>左边的值会作为右边值的子类型遵循图中上下的包含关系</p>
 			<Highlight :code="typeCode2"></Highlight>
 		</doc>
-		<doc title="type和interface的区别☆☆☆">
-			<div class="tip">
-				<h2>相同点：</h2>
-				<p>都可以用来定义类型。</p>
-			</div>
-			<div class="tip">
-				<h2>不同点：</h2>
-				<p>1.interface可以继承 type 只能通过 & 交叉类型合并 3.interface 遇到重名的会合并 type 不行</p>
-				<p>2.type 可以定义 联合类型 和 可以使用一些操作符 interface不行（不能直接在接口上定义联合类型，只能通过属性定义联合类型）</p>
-				<p>3.interface 遇到重名的会合并 type 不行</p>
-			</div>
-			<Highlight :code="interfaceCode" :auto="false"></Highlight>
-		</doc>
 	</el-card>
 </template>
 <script setup lang="ts">
@@ -73,16 +60,5 @@ const typeCode2 = `type a = 1 extends number ? 1 : 0 //1
  type a = 1 extends unknow ? 1 : 0 //1
   
  type a = 1 extends never ? 1 : 0 //0`;
-
-const interfaceCode = `// 这是错误的
-interface MyInterface : TypeA | TypeB { } // 不能直接在接口上定义联合类型
-
-// 这是正确的
-interface MyInterface {
-    prop: TypeA | TypeB;// 可以在这些属性中定义联合类型
-}
-
-// 如果你想要创建一个具有多个可能类型的接口，你应该使用类型别名（type）加联合类型：
-type MyType = TypeA | TypeB;`;
 </script>
 <style scoped lang="scss"></style>
