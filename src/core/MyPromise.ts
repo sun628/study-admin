@@ -23,8 +23,8 @@ interface Handler<T, TResult> {
 	reject: Reject;
 }
 
-interface PromiseConstructor {
-	new <T>(executor: (resolve: (value: T | PromiseLike<T>) => void, reject: (reason?: any) => void) => void): Promise<T>; // something
+function isFunction<T extends (...args: any[]) => any>(val: unknown): val is T {
+	return Object.prototype.toString.call(val) === '[object Function]';
 }
 
 export default class MyPromise<T> {
@@ -161,16 +161,64 @@ export default class MyPromise<T> {
 		return this.then(undefined, onrejected);
 	}
 
-	// 无论如何都会执行，不会传值给回调函数
+	/**
+	 * @desc 无论如何都会执行，不会传值给回调函数
+	 * @param {Function | undefined | null} onfinally 回调函数
+	 * @return { Promise<T> }  返回一个新的promise
+	 */
 	public finally(onfinally?: onFinally): MyPromise<T> {
 		return this.then(
-			(value) =>
-				// 如果 onfinally 返回的是一个 Promise 也会等返回的 Promise 状态改变才会进行后续的 Promise
-				MyPromise.resolve(typeof onfinally === 'function' ? onfinally() : onfinally).then(() => value),
+			// 如果 onfinally 返回的是一个 thenable 也会等返回的 thenable 状态改变才会进行后续的 Promise
+			(value) => MyPromise.resolve(isFunction(onfinally) ? onfinally() : onfinally).then(() => value),
 			(reason) =>
 				MyPromise.resolve(typeof onfinally === 'function' ? onfinally() : onfinally).then(() => {
 					throw reason;
 				})
 		);
+	}
+
+	/**
+	 * @desc 1. 接收一个promise数组 返回一个新的promise 当所有promise都成功时才会成功, 只要有一个失败就会失败
+	 * @param {*} values promise数组 里面的值可以是promise也可以是普通值 但是必须是可迭代的
+	 * @return { Promise<T[]> } 返回一个新的promise
+	 */
+	static all<T>(values: readonly (T | PromiseLike<T>)[]): MyPromise<T[]> {
+		return new MyPromise((resolve, reject) => {
+			const result: T[] = [];
+			let count = 0;
+			for (let i = 0; i < values.length; i++) {
+				const current = values[i];
+				MyPromise.resolve(current).then(
+					(data) => {
+						result[i] = data; // 不能用push,因为不确定当前promise的执行顺序,要跟传递的values顺序一致
+						count++;
+						if (count === values.length) {
+							resolve(result);
+						}
+					},
+					(reason) => {
+						reject(reason);
+					}
+				);
+			}
+		});
+	}
+
+	// 添加race方法
+	static race<T>(values: readonly (T | PromiseLike<T>)[]): MyPromise<T> {
+		return new MyPromise((resolve, reject) => {
+			for (let i = 0; i < values.length; i++) {
+				const current = values[i];
+				MyPromise.resolve(current).then(
+					(data) => {
+						// 只要有一个成功就返回
+						resolve(data);
+					},
+					(reason) => {
+						reject(reason);
+					}
+				);
+			}
+		});
 	}
 }
