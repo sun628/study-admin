@@ -9,11 +9,6 @@
 			</el-button>
 			<template #dropdown>
 				<el-dropdown-menu>
-					<el-dropdown-item>Action 1</el-dropdown-item>
-					<el-dropdown-item>Action 2</el-dropdown-item>
-					<el-dropdown-item>Action 3</el-dropdown-item>
-					<el-dropdown-item>Action 4</el-dropdown-item>
-					<el-dropdown-item>Action 5</el-dropdown-item>
 					<el-dropdown-item><span class="username">暖阳</span></el-dropdown-item>
 					<el-dropdown-item><Fullscreen id="fullscreen" /></el-dropdown-item>
 					<el-dropdown-item><Message id="message" /></el-dropdown-item>
