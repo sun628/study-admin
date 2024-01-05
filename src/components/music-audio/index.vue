@@ -1,18 +1,20 @@
 <template>
-	<div v-show="visible" class="lyrics-container">
+	<div class="lyrics-container">
 		<!-- <audio ref="AudioRef" class="hidden" :src="src" controls @timeupdate="handleTimeUpdate"></audio> -->
 		<audio ref="AudioRef" class="hidden" :src="src" v-bind="$attrs" @timeupdate="handleTimeUpdate"></audio>
-		<div ref="lyricDiv" class="lyricDiv">
-			<transition name="slide-fade">
-				<ul v-if="lyrics.length" ref="lyric" class="lyrics">
-					<li v-for="(item, index) in lyrics" :key="item.uid" class="lyric-line">
-						<p :class="{ active: currentIndex === index }" :style="currentIndex === index ? gradBg : ''">
-							{{ item.lyric }}
-						</p>
-					</li>
-				</ul>
-			</transition>
-		</div>
+		<teleport to="body">
+			<div ref="lyricDiv" class="lyricDiv">
+				<transition name="slide-fade">
+					<ul v-if="lyrics.length" ref="lyric" class="lyrics">
+						<li v-for="(item, index) in lyrics" :key="item.uid" class="lyric-line">
+							<p :class="{ active: currentIndex === index }" :style="currentIndex === index ? gradBg : ''">
+								{{ item.lyric }}
+							</p>
+						</li>
+					</ul>
+				</transition>
+			</div>
+		</teleport>
 	</div>
 </template>
 <script setup lang="ts">
@@ -35,18 +37,12 @@ interface IReturnLyric {
 }
 
 const props = defineProps({
-	// 是否显示音乐组件
-	visible: {
-		type: Boolean,
-		default: false,
-		required: true,
-	},
 	// 是否显示动画
 	animation: {
 		type: Boolean,
 		default: true,
 	},
-	id: {
+	musicId: {
 		type: Number,
 		default: 2064033095,
 	},
@@ -86,7 +82,7 @@ const play = async () => {
 	if (!AudioRef.value) return new Error('AudioRef is not defined or has no value.');
 	if (lyrics.value.length === 0) getLyric();
 	try {
-		await AudioRef.value.play();
+		AudioRef.value.play();
 		currentIndex.value = -1;
 		if (props.animation) {
 			requestId = requestAnimationFrame(updateLyrics);
@@ -140,7 +136,7 @@ const scrollToCurrentLine = () => {
 };
 // 获取歌词歌词
 const getLyric = async () => {
-	const res = await getLyricApi({ id: props.id });
+	const res = await getLyricApi({ id: props.musicId });
 	formatMusicLyrics(res.lyric);
 };
 
@@ -207,45 +203,47 @@ defineExpose({
 	justify-content: center;
 	align-items: center;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	position: fixed;
-	z-index: 999;
-	padding: 20px 0px;
 	@include respondTo('pc') {
 		justify-content: flex-end;
 	}
-	.lyricDiv {
-		height: 100%;
-		overflow-y: auto;
-		text-align: center;
-		text-align: center;
-		height: 100%;
-		min-width: 400px;
-		font-size: 16px;
-		overflow-y: auto;
-		&::-webkit-scrollbar-thumb {
-			visibility: hidden;
-		}
-		&:hover::-webkit-scrollbar-thumb {
-			visibility: visible;
-		}
-	}
-	.lyrics {
-		transition: all 0.3s;
-		.lyric-line {
-			animation: scroll 5s linear infinite;
-			color: rgba(255, 255, 255, 0.8);
-		}
-
-		.active {
-			font-weight: bold;
-			font-size: 18px;
-			color: transparent;
-			background-clip: text;
-			-webkit-background-clip: text;
-		}
-	}
 }
 
+.lyricDiv {
+	overflow-y: auto;
+	text-align: center;
+	min-width: 400px;
+	font-size: 16px;
+	overflow-y: auto;
+	position: fixed;
+	z-index: 999;
+	padding: 20px 0px;
+	top: 100px;
+	right: 0px;
+	right: 10px;
+	height: calc(100% - 120px);
+	margin: auto;
+	&::-webkit-scrollbar-thumb {
+		visibility: hidden;
+	}
+	&:hover::-webkit-scrollbar-thumb {
+		visibility: visible;
+	}
+}
+.lyrics {
+	transition: all 0.3s;
+	.lyric-line {
+		animation: scroll 5s linear infinite;
+		color: rgba(255, 255, 255, 0.8);
+	}
+
+	.active {
+		font-weight: bold;
+		font-size: 18px;
+		color: transparent;
+		background-clip: text;
+		-webkit-background-clip: text;
+	}
+}
 .slide-fade-enter-active {
 	transition: all 3s ease-out;
 }

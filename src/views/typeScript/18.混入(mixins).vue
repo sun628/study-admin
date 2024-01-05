@@ -31,6 +31,7 @@ interface Sex {
 	sex: number;
 }
 
+
 let people1: Name = { name: '张三' };
 let people2: Age = { age: 20 };
 let people3: Sex = { sex: 1 };

@@ -1,20 +1,13 @@
 <template>
-	<div>
+	<div class="audio">
 		<SvgIcon name="music" :class="{ 'muisc-rotate': isPlay }" @click="playMusic()"></SvgIcon>
+		<music-audio id="music-audio" ref="MusicAudioRef" :music-id="2064033095" loop />
 	</div>
-	<music-audio :id="2064033095" ref="MusicAudioRef" class="music-aduio" loop :visible="visible" />
 </template>
 <script setup lang="ts">
 import MusicAudio from '@/components/music-audio/index.vue';
-import { HOME_URL } from '@/config';
 
-const route = useRoute();
 const isPlay = ref(false);
-
-// 是否显示音乐组件
-const visible = computed(() => {
-	return route.path === HOME_URL; // 只有在首页才显示音乐组件
-});
 
 type MusicAudioType = InstanceType<typeof MusicAudio> | null;
 
@@ -24,11 +17,11 @@ const MusicAudioRef = ref<MusicAudioType>(null);
 // 播放音乐
 const playMusic = () => {
 	isPlay.value = !isPlay.value;
-	if (isPlay.value) {
-		MusicAudioRef.value?.play();
-	} else {
-		MusicAudioRef.value?.pause();
+	if (MusicAudioRef.value === null) {
+		isPlay.value = false;
+		return;
 	}
+	isPlay.value ? MusicAudioRef.value.play() : MusicAudioRef.value.pause();
 };
 </script>
 
@@ -40,13 +33,6 @@ const playMusic = () => {
 }
 .muisc-rotate {
 	animation: rotation 8s linear infinite;
-}
-.music-aduio {
-	top: 100px;
-	right: 0px;
-	right: 10px;
-	height: calc(100% - 120px);
-	margin: auto;
 }
 
 @keyframes rotation {

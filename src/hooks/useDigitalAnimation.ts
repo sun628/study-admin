@@ -1,10 +1,10 @@
 type ProgressType = (value: number) => void;
 
-interface AnimationParams {
+type AnimationParams = {
 	duration?: number;
 	from?: number;
 	to: number;
-}
+};
 
 /**
  * @description 实现数字动画效果
