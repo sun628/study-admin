@@ -3,23 +3,28 @@
 		<!-- <audio ref="AudioRef" class="hidden" :src="src" controls @timeupdate="handleTimeUpdate"></audio> -->
 		<audio ref="AudioRef" class="hidden" :src="src" v-bind="$attrs" @timeupdate="handleTimeUpdate"></audio>
 		<teleport to="body">
-			<div ref="lyricDiv" class="lyricDiv">
-				<transition name="slide-fade">
-					<ul v-if="lyrics.length" ref="lyric" class="lyrics">
+			<transition name="slide-fade">
+				<div v-if="lyrics.length && visible" ref="lyricDiv" class="lyricDiv">
+					<ul ref="lyric" class="lyrics">
 						<li v-for="(item, index) in lyrics" :key="item.uid" class="lyric-line">
 							<p :class="{ active: currentIndex === index }" :style="currentIndex === index ? gradBg : ''">
 								{{ item.lyric }}
 							</p>
 						</li>
 					</ul>
-				</transition>
-			</div>
+				</div>
+			</transition>
 		</teleport>
 	</div>
 </template>
 <script setup lang="ts">
 import { getLyricApi } from '@/api/music/index';
 import { useGlobalStore } from '@/store/modules/global';
+import { HOME_URL } from '@/config';
+// 获取路由
+import { useRoute } from 'vue-router';
+const route = useRoute();
+const visible = computed(() => route.path === HOME_URL);
 
 defineOptions({
 	name: 'MusicAudio',
@@ -245,11 +250,11 @@ defineExpose({
 	}
 }
 .slide-fade-enter-active {
-	transition: all 3s ease-out;
+	transition: all 1.5s ease-out;
 }
 
 .slide-fade-leave-active {
-	transition: all 3s;
+	transition: all 1.5s;
 }
 
 .slide-fade-enter-from,
