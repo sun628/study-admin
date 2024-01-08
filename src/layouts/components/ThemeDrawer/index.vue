@@ -91,7 +91,7 @@ defineOptions({
 const { changePrimary, changeGreyOrWeak } = useTheme();
 
 // 预定义主题颜色
-const colorList = [DEFAULT_PRIMARY, '#DAA96E', '#409eff', '#409EFF', '#27ae60', '#ff5c93', '#e74c3c', '#fd726d', '#f39c12', '#9b59b6'];
+const colorList = [DEFAULT_PRIMARY, '#6c35de', '#409eff', '#409EFF', '#27ae60', '#ff5c93', '#e74c3c', '#fd726d', '#f39c12', '#9b59b6'];
 
 // 侧边栏折叠
 const menuStore = MenuStore();
