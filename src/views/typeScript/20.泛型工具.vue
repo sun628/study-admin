@@ -9,24 +9,34 @@
 		<doc title="Partial和Required">
 			<p class="tip">Partial 是一个泛型类型，用于将一个类型的所有属性变为可选。与之相反，Required 是一个泛型类型，用于将一个类型的所有属性变为必选</p>
 			<h2>Partial(可选)</h2>
-			<Highlight :code="PartialCode" />
+			<Highlight :code="PartialCode" lang="typeScript" />
 			<h2>Required(必选)</h2>
-			<Highlight :code="RequiredCode" />
+			<Highlight :code="RequiredCode" lang="typeScript" />
 		</doc>
 		<doc title="Pick 和 Exclude">
 			<p class="tip">Pick 和 Exclude 是两个泛型类型，用于从一个类型中提取属性或排除属性。</p>
 			<h2>Pick</h2>
 			<p>从一个类型中提取属性</p>
-			<Highlight :code="PickCode" />
+			<Highlight :code="PickCode" lang="typeScript" />
 			<h2>Exclude</h2>
 			<p>从一个类型中排除属性（第一个参数是联合类型，第二个参数是要排除的类型）</p>
-			<Highlight :code="ExcludeCode" />
+			<Highlight :code="ExcludeCode" lang="typeScript" />
 		</doc>
 		<doc title="Omit">
 			<p class="tip">Omit 是一个泛型类型，用于从一个类型中排除指定的属性。</p>
 			<h2>Omit</h2>
 			<p>从一个类型中排除指定的属性</p>
-			<Highlight :code="ExcludeCode" />
+			<Highlight :code="OmitCode" lang="typeScript" />
+		</doc>
+		<doc title="Record">
+			<p class="tip">Record 接受两个泛型，用于约束对象的Key以及Value</p>
+			<h2>Record</h2>
+			<Highlight :code="RecordCode" lang="typeScript" />
+		</doc>
+		<doc title="ReturnType">
+			<p class="tip">ReturnType 是一个泛型类型，用于获取函数的返回值类型。</p>
+			<h2>ReturnType</h2>
+			<Highlight :code="ReturnTypeCode" lang="typeScript" />
 		</doc>
 	</el-card>
 </template>
@@ -116,7 +126,7 @@ type test2 = 'a' | 'b' | never; // 将只会剩下 'a' | 'b'
 
 type test1 = CustomExclude<keyof User, 'name' | 'age'>;`;
 
-interface User {
+const OmitCode = `interface User {
 	address?: string;
 	name?: string;
 	age?: number;
@@ -131,9 +141,52 @@ type test = Omit<User, 'age'>;
 // };
 
 // 原理
-type coustomOmit<T, K> = Pick<T, Exclude<keyof T, K>>;
+type coustomOmit<T, K> = Pick<T, Exclude<keyof T, K>>; // 先排除，再提取
 
-type test1 = coustomOmit<User, 'age'>;
+type test1 = coustomOmit<User, 'age'>;`;
+
+const RecordCode = `type key = 'c' | 'x' | 'k';
+
+type test = Record<key, '唱' | '跳' | 'rap'>;
+
+//转换完成之后的结果
+// type test = {
+// 	c: '唱' | '跳' | 'rap';
+// 	x: '唱' | '跳' | 'rap';
+// 	k: '唱' | '跳' | 'rap';
+// };
+
+const obj: Record<key, '唱' | '跳' | 'rap'> = {
+	c: '唱',
+	x: '跳',
+	k: '跳',
+};
+
+//原理  key只能是number | string | symbol 三种类型
+// keyof any 等价于 keyof number | string | symbol
+type CustomRecord<K extends keyof any, T> = {
+	[P in K]: T;
+};
+
+type test1 = CustomRecord<key, '唱' | '跳' | 'rap'>;`;
+
+const ReturnTypeCode = `const fn = (name: string, age: number) => {
+	return { name, age };
+};
+
+type test = ReturnType<typeof fn>;
+
+//转换完成之后的结果
+// type test = {
+// 	name: string;
+// 	age: number;
+// };
+
+//原理 infer R 代表推断出来的类型
+type CustomReturnType<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : any;
+
+const fn1 = () => [222, '2233'];
+type test1 = CustomReturnType<typeof fn1>;`;
 </script>
 
 <style scoped lang="scss"></style>
