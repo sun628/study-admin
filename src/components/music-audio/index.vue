@@ -239,8 +239,9 @@ defineExpose({
 	.lyric-line {
 		animation: scroll 5s linear infinite;
 		color: rgba(255, 255, 255, 0.8);
+		height: 28px;
+		line-height: 28px;
 	}
-
 	.active {
 		font-weight: bold;
 		font-size: 18px;

@@ -1,19 +1,24 @@
-import { shallowRef, onMounted, onUnmounted, onDeactivated, toRefs } from 'vue';
+import { shallowRef, onMounted, onUnmounted, onDeactivated, toRef } from 'vue';
 import * as echarts from 'echarts';
 import { useDebounceFn } from '@vueuse/core';
 
 /**
  * @description 使用 Echarts (添加图表响应式)
  * @param {Element} chartRef Echarts实例 (必传)
- * @returns {Object} chartInstance 实例
- * @returns {function} setOption 设置图表配置项
+ * @returns {Object} chartInstance 实例 和 setOption 设置图表配置项
  * @example const {  setOption } = useECharts(myChart);
  * */
-export default function useECharts(chartRef: Ref<HTMLElement>) {
+export default function useECharts(chartRef: Ref<HTMLElement | null>): {
+	chartInstance: Ref<echarts.ECharts | null>;
+	setOption: (options: echarts.EChartsOption) => void;
+} {
 	const chartInstance = shallowRef<echarts.ECharts | null>(null);
 
 	const initChart = () => {
 		try {
+			if (!chartRef.value) {
+				throw new Error('Echarts instance is not defined.');
+			}
 			chartInstance.value = echarts.getInstanceByDom(chartRef.value) || echarts.init(chartRef.value);
 		} catch (error) {
 			console.error('Error initializing chart:', error);
@@ -25,7 +30,9 @@ export default function useECharts(chartRef: Ref<HTMLElement>) {
 	 * @param {Object} 图表配置项参数
 	 */
 	const setOption = (options: echarts.EChartsOption) => {
-		chartInstance.value?.setOption(options, true);
+		onMounted(() => {
+			chartInstance.value?.setOption(options);
+		});
 	};
 
 	const resizeChart = useDebounceFn(() => {
@@ -51,5 +58,5 @@ export default function useECharts(chartRef: Ref<HTMLElement>) {
 	onUnmounted(onDestroy);
 	onDeactivated(onDestroy);
 
-	return { ...toRefs({ chartInstance, setOption }) };
+	return { chartInstance: toRef(chartInstance), setOption };
 }

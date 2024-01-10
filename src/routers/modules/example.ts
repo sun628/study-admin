@@ -1,5 +1,6 @@
 import { Layout, recursionRouter } from '@/routers/constant';
 import { MatchMenu } from '@/routers/configEnum';
+import component from 'virtual:svg-icons-register';
 
 const name = 'example';
 
@@ -18,6 +19,10 @@ const pages = [
 	{
 		name: '03.源码实现',
 		children: [{ name: '01.Promise实现', component: () => import('@/views/example/03.源码实现/01.Promise实现.vue') }],
+	},
+	{
+		name: '04.echarts',
+		component: () => import('@/views/example/04.echarts/index.vue'),
 	},
 ];
 
