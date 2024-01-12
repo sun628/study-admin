@@ -3,7 +3,6 @@ import { defineConfig } from 'vite';
 import { loadEnv } from 'vite';
 import { createVitePlugins } from './src/plugins/index';
 const pathSrc = path.resolve(__dirname, 'src');
-console.log('process.env.NODE_ENV', process.env.NODE_ENV);
 
 export default defineConfig(({ command, mode }) => {
 	const root = process.cwd();

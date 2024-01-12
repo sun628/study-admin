@@ -12,7 +12,7 @@ export const LOGIN_URL = '/login';
 export const ROUTER_WHITE_LIST: string[] = ['/403', '/404', '/500', '/layout', '/login'];
 
 // * 高德地图key
-export const MAP_KEY = 'd64a526f93c64d766b15ffbdd5aeac7d';
+export const MAP_KEY = '916919393f49e9132baa000648891c5f';
 
 export const successCode = [200, 201, 204, 10000];
 

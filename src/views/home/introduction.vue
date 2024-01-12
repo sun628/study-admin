@@ -64,7 +64,6 @@
 </template>
 <script setup lang="ts">
 import mittBus from '@/utils/mitt';
-import { isKeyword } from '@/hooks/useHighlightKeywords';
 import { MoreFilled } from '@element-plus/icons-vue';
 // import type { ElTimelineItem } from 'element-plus';
 
@@ -113,7 +112,7 @@ const tableData = ref([
 	},
 
 	{
-		label: 'node.js：需要v16版本以上',
+		label: 'node.js：需要v18版本以上',
 		link: 'https://nodejs.org/zh-cn/',
 	},
 	{
@@ -184,7 +183,9 @@ const activities = ref<Array<ElTimelineItemProps>>([
 		timestamp: '2018-04-03 20:46',
 	},
 ]);
+const keywords = ['vue', 'vue3', 'TypeScript']; // 关键字列表
 
+const isKeyword = (word: string): boolean => keywords.includes(word); // 是否是关键字
 /**
  * @description 点击技术栈跳转到搜索页面
  * @param {Object} label 技术栈名称

@@ -23,7 +23,6 @@ const GlobalCom: Plugin = {
 		app.component('Tag', Tag);
 		app.component('Highlight', Highlight);
 		app.component('Tip', Tip);
-
 		app.use(hljsVuePlugin, {
 			languages: ['xml', 'typescript'],
 		});

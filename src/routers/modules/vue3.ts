@@ -24,6 +24,10 @@ const pages = [
 		name: '组件v-model',
 		component: () => import('@/views/vue3/04.组件v-model/index.vue'),
 	},
+	{
+		name: '渲染机制',
+		component: () => import('@/views/vue3/05.渲染机制/index.vue'),
+	},
 ];
 
 // vue3模块

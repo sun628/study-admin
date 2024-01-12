@@ -13,6 +13,7 @@ declare module 'vue' {
     DigitalScroll: typeof import('./components/digital-scroll/index.vue')['default']
     Directory: typeof import('./components/directory/index.vue')['default']
     Doc: typeof import('./components/docs/Doc.vue')['default']
+    Font: typeof import('./components/docs/font.vue')['default']
     Highlight: typeof import('./components/docs/Highlight.vue')['default']
     Loading: typeof import('./components/Loading/index.vue')['default']
     MusicAudio: typeof import('./components/music-audio/index.vue')['default']

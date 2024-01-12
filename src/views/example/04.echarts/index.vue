@@ -32,8 +32,15 @@ const option: echarts.EChartsOption = {
 	],
 };
 const { chartInstance, setOption } = useECharts(myChat);
-setOption(option);
-console.log('chartInstance', chartInstance);
+
+// setOption(option);
+
+// setOption(option, true, false); // 使用第一种参数形式
+
+setOption(option, { notMerge: true, replaceMerge: 'dataset', lazyUpdate: false }); // 使用第二种参数形式
+// onMounted(() => {
+// 	console.log('chartInstance', chartInstance.value);
+// });
 </script>
 
 <style scoped lang="scss"></style>

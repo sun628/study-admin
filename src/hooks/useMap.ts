@@ -35,8 +35,6 @@ let borderPolygon: AMap.Polygon | null = null;
 export const loadMapUI = (map: AMap.Map, cityCodes: number | ConcatArray<number>) => {
 	const countryCode = 100000; // 全国
 	const provCodes: string | any[] = [];
-	// const cityCodes = 320700;
-	// cityCodes = ['320700', '320900', '320600'];
 	function getAllRings(feature: any) {
 		const coords = feature.geometry.coordinates;
 		const rings = [];

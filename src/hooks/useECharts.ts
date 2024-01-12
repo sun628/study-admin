@@ -2,6 +2,11 @@ import { shallowRef, onMounted, onUnmounted, onDeactivated, toRef } from 'vue';
 import * as echarts from 'echarts';
 import { useDebounceFn } from '@vueuse/core';
 
+type SetOptionFunction = {
+	(options: echarts.EChartsOption, notMerge?: boolean, lazyUpdate?: boolean): void;
+	(options: echarts.EChartsOption, opts?: echarts.SetOptionOpts): void;
+};
+
 /**
  * @description 使用 Echarts (添加图表响应式)
  * @param {Element} chartRef Echarts实例 (必传)
@@ -10,7 +15,7 @@ import { useDebounceFn } from '@vueuse/core';
  * */
 export default function useECharts(chartRef: Ref<HTMLElement | null>): {
 	chartInstance: Ref<echarts.ECharts | null>;
-	setOption: (options: echarts.EChartsOption) => void;
+	setOption: SetOptionFunction;
 } {
 	const chartInstance = shallowRef<echarts.ECharts | null>(null);
 
@@ -27,11 +32,18 @@ export default function useECharts(chartRef: Ref<HTMLElement | null>): {
 
 	/**
 	 * @description 设置配置项
-	 * @param {Object} 图表配置项参数
+	 * @param {echarts.EChartsOption} options 图表配置项参数
+	 * @param {boolean | echarts.SetOptionOpts} notMergeOrOpts 是否合并配置项 ; 如果为 true，表示所有组件都会被删除，然后根据新 option 创建所有新组件。
+	 * @param {boolean} lazyUpdate 在设置完 option 后是否不立即更新图表，默认为 false，即同步立即更新。如果为 true，则会在下一个 animation frame 中，才更新图表。
+	 * @param {boolean} silent 阻止调用 setOption 时抛出事件，默认为 false，即抛出事件。
 	 */
-	const setOption = (options: echarts.EChartsOption) => {
+	const setOption: SetOptionFunction = (options: echarts.EChartsOption, notMergeOrOpts?: boolean | echarts.SetOptionOpts, lazyUpdate?: boolean) => {
 		onMounted(() => {
-			chartInstance.value?.setOption(options);
+			if (typeof notMergeOrOpts === 'boolean') {
+				chartInstance.value?.setOption(options, notMergeOrOpts, lazyUpdate);
+			} else {
+				chartInstance.value?.setOption(options, notMergeOrOpts || {});
+			}
 		});
 	};
 
