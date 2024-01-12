@@ -42,8 +42,13 @@
 				<tip>
 					<p>(1) 当使用 promise 的.then 链式调用时，中间中断，不再调用后面的回调函数</p>
 					<p>(2) 在回调函数中返回一个 pending 状态的 promise 对象</p>
-					<p>==> 有且只有一种方式: <span class="text-primary">return new Promise(()=>{})</span></p>
-					<p></p>
+					<p>==> 有且只有一种方式: <i class="text-primary">return new Promise(()=>{})</i></p>
+				</tip>
+				<h2 class="text-primary">7.Promise到底解决了什么问题？</h2>
+				<tip>
+					<p>首先，Promise的出现最重要的是为了<i class="text-primary">统一JS中的异步实现方案</i></p>
+					<p>Promise并没有<i class="text-primary">完全的解决回调地狱</i>，它只不过是通过链式调用的方式让回调变得可控</p>
+					<p>异步是JS中的常见场景，统一实现方案,不仅可以有效降低心智负担，更重要的是可以让不同的异步场景相互联动。</p>
 				</tip>
 			</doc>
 		</el-card>
