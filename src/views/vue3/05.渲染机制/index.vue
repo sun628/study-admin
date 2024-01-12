@@ -1,25 +1,5 @@
 <template>
 	<el-row>
-		<doc title="渲染管线">
-			<h4>从高层面的视角看，Vue 组件挂载时会发生如下几件事：</h4>
-			<ul class="tip">
-				<li>
-					<i class="text-primary">编译：</i> Vue 模板被编译为渲染函数：即用来返回虚拟 DOM
-					树的函数。这一步骤可以通过构建步骤提前完成，也可以通过使用运行时编译器即时完成。
-				</li>
-				<li>
-					<i class="text-primary">挂载：</i>
-					运行时渲染器调用渲染函数，遍历返回的虚拟 DOM 树，并基于它创建实际的 DOM 节点。
-					这一步会作为响应式副作用执行，因此它会追踪其中所用到的所有响应式依赖。
-				</li>
-				<li>
-					<i class="text-primary"> 更新：</i>
-					当一个依赖发生变化后，副作用会重新运行，这时候会创建一个更新后的虚拟 DOM 树。
-					运行时渲染器遍历这棵新树，将它与旧树进行比较，然后将必要的更新应用到真实 DOM 上去。
-				</li>
-			</ul>
-			<div><img src="@/assets/images/vue3/render-pipeline.png" alt="" /></div>
-		</doc>
 		<doc title="命令式和声明式">
 			<p class="tip">
 				从范式上来看，视图层框架通常分为命令式和声明式(vue.js)，它们各有 优缺点。 jQuery 就是典型的命令式框架。命令式框架的一大特点就是
@@ -56,6 +36,26 @@
 				就是为了最小化找出差异这一步的性能消耗而出现 的。
 			</div>
 		</doc>
+		<doc title="渲染管线">
+			<h4>从高层面的视角看，Vue 组件挂载时会发生如下几件事：</h4>
+			<ul class="tip">
+				<li>
+					<i class="text-primary">编译：</i> Vue 模板被编译为渲染函数：即用来返回虚拟 DOM
+					树的函数。这一步骤可以通过构建步骤提前完成，也可以通过使用运行时编译器即时完成。
+				</li>
+				<li>
+					<i class="text-primary">挂载：</i>
+					运行时渲染器调用渲染函数，遍历返回的虚拟 DOM 树，并基于它创建实际的 DOM 节点。
+					这一步会作为响应式副作用执行，因此它会追踪其中所用到的所有响应式依赖。
+				</li>
+				<li>
+					<i class="text-primary"> 更新：</i>
+					当一个依赖发生变化后，副作用会重新运行，这时候会创建一个更新后的虚拟 DOM 树。
+					运行时渲染器遍历这棵新树，将它与旧树进行比较，然后将必要的更新应用到真实 DOM 上去。
+				</li>
+			</ul>
+			<div><img src="@/assets/images/vue3/render-pipeline.png" alt="" /></div>
+		</doc>
 		<doc title="什么是虚拟DOM">
 			<h4 class="tip">虚拟DOM本质上是一个JavaScript对象，这个对象是一个轻量级的对真实DOM的描述。</h4>
 			<ul>
@@ -74,6 +74,7 @@
 				</li>
 			</ul>
 		</doc>
+
 		<doc title="虚拟DOM的作用">
 			<div class="tip">
 				<li>
