@@ -1,11 +1,17 @@
 <template>
-	<el-card class="w-full h-full" header="通过第三方vue-chart实现  pnpm i vue-chart">
-		<v-chart class="chart" :option="option" autoresize />
-	</el-card>
+	<div class="echarts-example w-full h-full">
+		<el-card class="w-full h-full" header="通过第三方vue-chart实现  pnpm i vue-chart">
+			<v-chart class="chart" :option="option" autoresize />
+		</el-card>
+		<el-card header="代码">
+			<Highlight :code="VChartCode" />
+		</el-card>
+	</div>
 </template>
 
 <script setup>
 // pnpm i vue-chart
+import VChartCode from './01.vue-chart.vue?raw';
 import { use } from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
 import { PieChart } from 'echarts/charts';

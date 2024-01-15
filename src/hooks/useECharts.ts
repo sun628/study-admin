@@ -3,7 +3,15 @@ import { useDebounceFn } from '@vueuse/core';
 import * as echarts from 'echarts/core';
 import { BarChart, LineChart, PieChart, GaugeChart } from 'echarts/charts';
 import type { XAXisComponentOption, YAXisComponentOption, EChartsOption, SetOptionOpts } from 'echarts'; // 导入 EChartsOption 类型
-import { TitleComponent, LegendComponent, TooltipComponent, GridComponent, DatasetComponent, TransformComponent } from 'echarts/components';
+import {
+	TitleComponent,
+	LegendComponent,
+	TooltipComponent,
+	GridComponent,
+	DatasetComponent,
+	TransformComponent,
+	ToolboxComponent,
+} from 'echarts/components';
 import { LabelLayout, UniversalTransition } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
 
@@ -55,6 +63,7 @@ export default function useECharts(chartRef: Ref<HTMLElement | null>, options?: 
 		LabelLayout,
 		UniversalTransition,
 		CanvasRenderer,
+		ToolboxComponent,
 	]);
 	const chartInstance = shallowRef<echarts.ECharts | null>(null);
 
