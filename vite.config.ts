@@ -63,7 +63,14 @@ export default defineConfig(({ command, mode }) => {
 					assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
 					manualChunks(id) {
 						if (id.includes('node_modules')) {
-							return id.toString().split('node_modules/')[1].split('/')[0].toString(); //静态资源分拆打包
+							const moduleName = id.toString().split('node_modules/')[1].split('/');
+							// return id.toString().split('node_modules/')[1].split('/')[0].toString(); //静态资源分拆打包
+							if (moduleName[1].includes('element-plus')) {
+								return 'element-plus-chunks';
+							} else if (moduleName[1].includes('echarts')) {
+								return 'echarts-chunks';
+							}
+							return 'chunk-vendors';
 						}
 					},
 				},

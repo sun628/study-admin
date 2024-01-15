@@ -1,9 +1,9 @@
 //引入element的css样式文件 按需引入
-// @use 'element-plus/theme-chalk/el-loading.css';
-// @use 'element-plus/theme-chalk/el-message.css';
-// @use 'element-plus/theme-chalk/el-notification.css';
-// @use 'element-plus/theme-chalk/el-message-box.css';
-// @use 'element-plus/theme-chalk/src/dark/css-vars.scss' as *;
+@use 'element-plus/theme-chalk/el-loading.css';
+@use 'element-plus/theme-chalk/el-message.css';
+@use 'element-plus/theme-chalk/el-notification.css';
+@use 'element-plus/theme-chalk/el-message-box.css';
+@use 'element-plus/theme-chalk/src/dark/css-vars.scss' as *;
 
 @use './reset.scss';
 @use './common.scss'; //公共样式

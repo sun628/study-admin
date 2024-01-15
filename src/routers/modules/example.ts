@@ -22,7 +22,10 @@ const pages = [
 	},
 	{
 		name: '04.echarts',
-		component: () => import('@/views/example/04.echarts/index.vue'),
+		children: [
+			{ name: '01.第三方VChart', component: () => import('@/views/example/04.echarts/01.vue-chart.vue') },
+			{ name: '02.useECharts', component: () => import('@/views/example/04.echarts/02.useECharts.vue') },
+		],
 	},
 ];
 
