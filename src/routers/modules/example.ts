@@ -1,6 +1,5 @@
 import { Layout, recursionRouter } from '@/routers/constant';
 import { MatchMenu } from '@/routers/configEnum';
-import component from 'virtual:svg-icons-register';
 
 const name = 'example';
 

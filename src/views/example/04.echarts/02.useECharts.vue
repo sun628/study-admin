@@ -82,11 +82,10 @@ const { chartInstance, setOption } = useECharts(myChat, option);
 
 onMounted(() => {
 	// setOption(option);
-
+	// const { chartInstance, setOption } = useECharts(myChat);
 	// setOption(option, true, false); // 使用第一种参数形式
-
 	// setOption(option, { notMerge: true, replaceMerge: 'dataset', lazyUpdate: false }); // 使用第二种参数形式
-	console.log('chartInstance', chartInstance.value);
+	// console.log('chartInstance', chartInstance.value);
 });
 </script>
 
