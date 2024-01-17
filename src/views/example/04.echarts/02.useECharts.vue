@@ -1,8 +1,10 @@
 <template>
 	<div class="echarts-example w-full h-full">
 		<el-card header="通过hooks实现echarts">
-			<div ref="myChat" style="width: 100%; height: 800px"></div>
+			<div ref="myChat" class="w-full h-80"></div>
+			<div ref="myChat1" class="w-full h-80"></div>
 		</el-card>
+
 		<el-card header="代码">
 			<Highlight :code="useEchartsCode" />
 		</el-card>
@@ -15,6 +17,7 @@ import useEchartsCode from './02.useECharts.vue?raw';
 import { EChartsOption } from 'echarts';
 
 const myChat = ref<HTMLElement | null>(null);
+const myChat1 = ref<HTMLElement | null>(null);
 
 const option: EChartsOption = {
 	title: {
@@ -78,14 +81,15 @@ const option: EChartsOption = {
 		},
 	],
 };
-const { chartInstance, setOption } = useECharts(myChat, option);
+// const { chartInstance, setOption } = useECharts(myChat, option);
+const myChatObj1 = useECharts(myChat, option);
+const myChatObj2 = useECharts(myChat1, option);
 
 onMounted(() => {
+	// 下面这种实现方式也行
 	// setOption(option);
-	// const { chartInstance, setOption } = useECharts(myChat);
 	// setOption(option, true, false); // 使用第一种参数形式
 	// setOption(option, { notMerge: true, replaceMerge: 'dataset', lazyUpdate: false }); // 使用第二种参数形式
-	// console.log('chartInstance', chartInstance.value);
 });
 </script>
 

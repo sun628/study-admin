@@ -1,5 +1,6 @@
-import { shallowRef, onMounted, onUnmounted, onDeactivated, toRef } from 'vue';
-import { useDebounceFn } from '@vueuse/core';
+import { shallowRef, onMounted, onDeactivated, toRef } from 'vue';
+// import { useDebounceFn } from '@vueuse/core';
+import { resizeObserverManager } from '@/utils/ResizeObserverManager';
 import * as echarts from 'echarts/core';
 import { BarChart, LineChart, PieChart, GaugeChart } from 'echarts/charts';
 import type { XAXisComponentOption, YAXisComponentOption, EChartsOption, SetOptionOpts } from 'echarts'; // 导入 EChartsOption 类型
@@ -14,7 +15,6 @@ import {
 } from 'echarts/components';
 import { LabelLayout, UniversalTransition } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
-
 import { ECElementEvent, SelectChangedPayload, HighlightPayload } from 'echarts/types/src/util/types';
 
 import {
@@ -65,24 +65,22 @@ export default function useECharts(chartRef: Ref<HTMLElement | null>, options?: 
 		CanvasRenderer,
 		ToolboxComponent,
 	]);
+	const isInitialResize = ref(true); // 新增标志，判断是否是首次触发ResizeObserver
 	const chartInstance = shallowRef<echarts.ECharts | null>(null);
-
 	const initChart = () => {
-		try {
-			if (!chartRef.value) {
-				throw new Error('Echarts instance is not defined.');
-			}
-			chartInstance.value = echarts.getInstanceByDom(chartRef.value) || echarts.init(chartRef.value);
-			options && chartInstance.value?.setOption(options);
-		} catch (error) {
-			console.error('Error initializing chart:', error);
+		if (!chartRef.value) {
+			console.error('Echarts container element is not defined.');
+			return;
 		}
+		chartInstance.value = echarts.getInstanceByDom(chartRef.value) || echarts.init(chartRef.value);
+		options && chartInstance.value?.setOption(options);
+		resizeObserverManager.observe(chartRef.value, resizeChart);
 	};
 
 	/**
 	 * @description 设置配置项
-	 * @param {EChartsOption} options 图表配置项参数
-	 * @param {boolean |SetOptionOpts} notMergeOrOpts 是否合并配置项 ; 如果为 true，表示所有组件都会被删除，然后根据新 option 创建所有新组件。
+	 * @param {echarts.EChartsOption} options 图表配置项参数
+	 * @param {boolean | echarts.SetOptionOpts} notMergeOrOpts 是否合并配置项 ; 如果为 true，表示所有组件都会被删除，然后根据新 option 创建所有新组件。
 	 * @param {boolean} lazyUpdate 在设置完 option 后是否不立即更新图表，默认为 false，即同步立即更新。如果为 true，则会在下一个 animation frame 中，才更新图表。
 	 * @param {boolean} silent 阻止调用 setOption 时抛出事件，默认为 false，即抛出事件。
 	 */
@@ -97,30 +95,30 @@ export default function useECharts(chartRef: Ref<HTMLElement | null>, options?: 
 		}
 	};
 
-	const resizeChart = useDebounceFn(() => {
-		chartInstance.value?.resize();
-	}, 500);
-
-	const addEventListeners = () => {
-		window.addEventListener('resize', resizeChart);
+	const resizeChart = () => {
+		try {
+			if (isInitialResize.value) {
+				isInitialResize.value = false; // 首次触发后设置为false
+				return; // 忽略首次触发
+			}
+			chartInstance.value?.resize();
+		} catch (error) {
+			console.error('Error resizing chart:', error);
+		}
+	};
+	const cleanup = () => {
+		if (chartRef.value) {
+			resizeObserverManager.unobserve(chartRef.value, resizeChart);
+		}
+		if (chartInstance.value) {
+			chartInstance.value.dispose();
+			chartInstance.value = null;
+		}
 	};
 
-	const removeEventListeners = () => {
-		window.removeEventListener('resize', resizeChart);
-	};
-
-	const onDestroy = () => {
-		removeEventListeners();
-		chartInstance.value?.dispose();
-		chartInstance.value = null;
-	};
-
-	onMounted(() => {
-		initChart();
-		addEventListeners();
-	});
-	onUnmounted(onDestroy);
-	onDeactivated(onDestroy);
+	onMounted(initChart);
+	onBeforeUnmount(cleanup); // 必须在 onBeforeUnmount 钩子中调用 cleanup 函数，否则chartRef会被置为 null
+	onDeactivated(cleanup);
 
 	return { chartInstance: toRef(chartInstance), setOption };
 }
