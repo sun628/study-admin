@@ -119,7 +119,6 @@ export default function useECharts(chartRef: Ref<HTMLElement | null>, options?: 
 	onMounted(initChart);
 	onBeforeUnmount(cleanup); // 必须在 onBeforeUnmount 钩子中调用 cleanup 函数，否则chartRef会被置为 null
 	onDeactivated(cleanup);
-
 	return { chartInstance: toRef(chartInstance), setOption };
 }
 

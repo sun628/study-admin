@@ -1,8 +1,8 @@
 <template>
 	<div class="echarts-example w-full h-full">
 		<el-card header="通过hooks实现echarts">
-			<div ref="myChat" class="w-full h-80"></div>
-			<div ref="myChat1" class="w-full h-80"></div>
+			<div ref="myChat" class="w-full h-96"></div>
+			<div ref="myChat1" class="w-full h-96"></div>
 		</el-card>
 
 		<el-card header="代码">
