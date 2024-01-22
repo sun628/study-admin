@@ -88,6 +88,9 @@ devDependencies:
   autoprefixer:
     specifier: ^10.4.16
     version: 10.4.16(postcss@8.4.32)
+  code-inspector-plugin:
+    specifier: ^0.4.5
+    version: 0.4.5
   eslint:
     specifier: ^8.56.0
     version: 8.56.0
@@ -2542,6 +2545,12 @@ packages:
     resolution: {integrity: sha512-7HhHjtERjqlNbZtqNqy2rckN/SpOOlmDliet+lP7k+eKZEjPk3DgyeU9lIXLdeLz0uBbbVp+9Qdow9wJWgwwfg==}
     dev: false
 
+  /async@2.6.4:
+    resolution: {integrity: sha512-mzo5dfJYwAn29PeiJ0zvwTo04zj8HDJj0Mn8TD7sno7q12prdbnasKJHhkm2c1LgrhlJ0teaea8860oxi51mGA==}
+    dependencies:
+      lodash: 4.17.21
+    dev: true
+
   /async@3.2.5:
     resolution: {integrity: sha512-baNZyqaaLhyLVKm/DlvdW051MSgO6b8eVfIezl9E5PqWxFgzLm/wQntEW4zOytVburDEr0JlALEpdOFwvErLsg==}
     dev: true
@@ -2807,6 +2816,14 @@ packages:
       supports-color: 5.5.0
     dev: true
 
+  /chalk@4.1.1:
+    resolution: {integrity: sha512-diHzdDKxcU+bAsUboHLPEDQiw0qEe0qd7SYUn3HgcFlWgbDcfLGswOHYeGrHKzG9z6UYf01d9VFMfZxPM1xZSg==}
+    engines: {node: '>=10'}
+    dependencies:
+      ansi-styles: 4.3.0
+      supports-color: 7.2.0
+    dev: true
+
   /chalk@4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
@@ -2852,6 +2869,27 @@ packages:
   /clone@2.1.2:
     resolution: {integrity: sha512-3Pe/CF1Nn94hyhIYpjtiLhdCoEoz0DqQ+988E9gmeEdQZlojxnOb74wctFyuwWQHzqyf9X7C7MG8juUpqBJT8w==}
     engines: {node: '>=0.8'}
+    dev: true
+
+  /code-inspector-core@0.4.5:
+    resolution: {integrity: sha512-S9Nu6fb3hrCWzXXzARHTI5cM6yahuzkSV7PxTxe+Aq7l/lyPA5zfjQ+wMkGxXyhLwzzZabNO8xCbsCYphM+E/A==}
+    dependencies:
+      '@vue/compiler-dom': 3.4.3
+      chalk: 4.1.2
+      portfinder: 1.0.32
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /code-inspector-plugin@0.4.5:
+    resolution: {integrity: sha512-adl0PtOjSz5KmvB1sB4IUos6wEdomeac+0L4djN9tsg0dAdpbBWa1lysTCK/P+0iridqBGL0Mb6mhqhoMG3Dog==}
+    dependencies:
+      chalk: 4.1.1
+      code-inspector-core: 0.4.5
+      vite-code-inspector-plugin: 0.4.5
+      webpack-code-inspector-plugin: 0.4.5
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /collection-visit@1.0.0:
@@ -5011,6 +5049,13 @@ packages:
       is-extendable: 1.0.1
     dev: true
 
+  /mkdirp@0.5.6:
+    resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}
+    hasBin: true
+    dependencies:
+      minimist: 1.2.8
+    dev: true
+
   /mlly@1.4.2:
     resolution: {integrity: sha512-i/Ykufi2t1EZ6NaPLdfnZk2AX8cs0d+mTzVKuPfqPKPatxLApaBoxJQ9x1/uckXtrS/U5oisPMDkNs0yQTaBRg==}
     dependencies:
@@ -5352,6 +5397,17 @@ packages:
       jsonc-parser: 3.2.0
       mlly: 1.4.2
       pathe: 1.1.1
+    dev: true
+
+  /portfinder@1.0.32:
+    resolution: {integrity: sha512-on2ZJVVDXRADWE6jnQaX0ioEylzgBpQk8r55NE4wjXW1ZxO+BgDlY6DXwj20i0V8eB4SenDQ00WEaxfiIQPcxg==}
+    engines: {node: '>= 0.12.0'}
+    dependencies:
+      async: 2.6.4
+      debug: 3.2.7
+      mkdirp: 0.5.6
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /posix-character-classes@0.1.1:
@@ -6683,6 +6739,14 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
+  /vite-code-inspector-plugin@0.4.5:
+    resolution: {integrity: sha512-UQka3Pl0g6sDN1AHbSDBMYKyBcct/9zcOOsWdLBtrCVdmgovNMcapd143H5700O7dli7C7ymudh4PJlO7nTbcA==}
+    dependencies:
+      code-inspector-core: 0.4.5
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /vite-plugin-eslint@1.8.1(eslint@8.56.0)(vite@5.0.10):
     resolution: {integrity: sha512-PqdMf3Y2fLO9FsNPmMX+//2BF5SF8nEWspZdgl4kSt7UvHDRHVVfHvxsD7ULYzZrJDGRxR81Nq7TOFgwMnUang==}
     peerDependencies:
@@ -6881,6 +6945,14 @@ packages:
 
   /webidl-conversions@4.0.2:
     resolution: {integrity: sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==}
+    dev: true
+
+  /webpack-code-inspector-plugin@0.4.5:
+    resolution: {integrity: sha512-FG9mn6rkh6uO3Ig3luI0SQuwGt527Zoj7zgbPtCdAo79yx9du7/St5OkQ7uAnEoEFxapo5/Y+u+q4TB4f31/OQ==}
+    dependencies:
+      code-inspector-core: 0.4.5
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /webpack-sources@3.2.3:

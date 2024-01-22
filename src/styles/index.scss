@@ -5,6 +5,5 @@
 @use 'element-plus/theme-chalk/el-message-box.css';
 @use 'element-plus/theme-chalk/src/dark/css-vars.scss' as *;
 
-@use './reset.scss';
 @use './common.scss'; //公共样式
 @use './element/element-dark.scss'; // 暗黑主题

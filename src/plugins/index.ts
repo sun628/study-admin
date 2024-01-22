@@ -6,6 +6,9 @@ import { visualizer } from 'rollup-plugin-visualizer'; //打包分析
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import eslintPlugin from 'vite-plugin-eslint';
 import { VitePWA } from 'vite-plugin-pwa';
+//shift+alt点击页面元素，它能够自动打开你的 IDE 并将光标定位到 DOM 对应的源代码位置。
+//https://github.com/zh-lx/code-inspector/blob/main/docs/README-ZH.md
+import { CodeInspectorPlugin } from 'code-inspector-plugin';
 import path from 'path';
 
 const _visualizer = visualizer({
@@ -55,6 +58,9 @@ export function createVitePlugins() {
 				// 开启 defineModel
 				defineModel: true,
 			},
+		}),
+		CodeInspectorPlugin({
+			bundler: 'vite',
 		}),
 		eslintPlugin({
 			include: ['src/**/*.ts', 'src/**/*.vue', 'src/*.ts', 'src/*.vue'],
