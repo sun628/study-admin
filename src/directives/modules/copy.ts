@@ -38,9 +38,10 @@ const copy: Directive = {
 
 function handleClick(this: ElType) {
 	if (navigator.clipboard) {
-		navigator.clipboard.writeText(this.copyData.toLocaleString()).then(() => {
-			this.innerHTML = '复制成功';
-		});
+		navigator.clipboard.writeText(this.copyData.toLocaleString());
+		// .then(() => {
+		// 	this.innerHTML = '复制成功';
+		// });
 	} else {
 		const input = document.createElement('input');
 		input.value = this.copyData.toLocaleString();
@@ -48,7 +49,7 @@ function handleClick(this: ElType) {
 		input.select();
 		document.execCommand('Copy');
 		document.body.removeChild(input);
-		this.innerHTML = '复制成功';
+		// this.innerHTML = '复制成功';
 	}
 	setTimeout(() => {
 		this.innerHTML = '复制';

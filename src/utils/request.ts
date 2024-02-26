@@ -104,6 +104,9 @@ class RequestHttp {
 	download(url: string, params?: object, _object = {}): Promise<BlobPart> {
 		return this.service.post(url, params, { ..._object, responseType: 'blob' });
 	}
+	request<T>(config: AxiosRequestConfig): Promise<ResultData<T>> {
+		return this.service(config);
+	}
 }
 
 export default new RequestHttp(config);

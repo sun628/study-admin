@@ -1,4 +1,4 @@
-import request from '@/utils/request';
+import http from '@/utils/request';
 
 /**
  * （不建议写成 request.post(xxx)，因为这样 post 时，无法 params 与 data 同时传参）
@@ -7,21 +7,21 @@ import request from '@/utils/request';
  * @method signIn 用户登录
  * @method signOut 用户退出登录
  */
-// export function useLoginApi() {
-// 	return {
-// 		signIn: (data: object) => {
-// 			return request({
-// 				url: '/user/signIn',
-// 				method: 'post',
-// 				data,
-// 			});
-// 		},
-// 		signOut: (data: object) => {
-// 			return request({
-// 				url: '/user/signOut',
-// 				method: 'post',
-// 				data,
-// 			});
-// 		},
-// 	};
-// }
+export function useLoginApi() {
+	return {
+		signIn: (data: object) => {
+			return http.request({
+				url: '/user/signIn',
+				method: 'post',
+				data,
+			});
+		},
+		signOut: (data: object) => {
+			return http.request({
+				url: '/user/signOut',
+				method: 'post',
+				data,
+			});
+		},
+	};
+}

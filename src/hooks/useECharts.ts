@@ -17,15 +17,7 @@ import { LabelLayout, UniversalTransition } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
 import { ECElementEvent, SelectChangedPayload, HighlightPayload } from 'echarts/types/src/util/types';
 
-import {
-	TitleComponentOption,
-	TooltipComponentOption,
-	GridComponentOption,
-	DatasetComponentOption,
-	AriaComponentOption,
-	AxisPointerComponentOption,
-	LegendComponentOption,
-} from 'echarts/components'; // 组件
+import { TitleComponentOption, TooltipComponentOption, GridComponentOption, LegendComponentOption } from 'echarts/components'; // 组件
 import {
 	// 系列类型的定义后缀都为 SeriesOption
 	BarSeriesOption,
