@@ -54,6 +54,10 @@ export const loadMapUI = (map: AMap.Map, cityCodes: number | ConcatArray<number>
 		const districtExplorer = new DistrictExplorer({
 			map: map,
 		});
+		if (typeof cityCodes === 'number') {
+			cityCodes = [cityCodes];
+		}
+		// 全国省市区数据
 		districtExplorer.loadMultiAreaNodes(
 			// 只需加载全国和市，全国的节点包含省级
 			[countryCode].concat(cityCodes),
@@ -98,7 +102,6 @@ export const loadMapUI = (map: AMap.Map, cityCodes: number | ConcatArray<number>
 
 /**
  * @description 添加点标记
- * @class Marker
  * @name Marker
  * @param {MarkerOptions} opts 点标记参数
  * @param {Map} opts.map 要显示该marker的地图对象
@@ -187,11 +190,7 @@ export const addPolyline = (opts: AMap.PolylineOptions) => {
 };
 
 /**
- * 信息窗体，地图仅可同时展示一个信息窗体，推荐为信息窗体通过样式显示设置尺寸。 * // [亲手试一试](https://lbs.amap.com/api/jsapi-v2/example/infowindow/default-style-infowindow)
- *
- * @public
- * @export
- * @class InfoWindow
+ * @description 信息窗体，地图仅可同时展示一个信息窗体，推荐为信息窗体通过样式显示设置尺寸。 * // [亲手试一试](https://lbs.amap.com/api/jsapi-v2/example/infowindow/default-style-infowindow)
  * @name InfoWindow
  * @extends {OverlayDOM}
  * @param {InfoOptions} opts 信息窗体参数
@@ -223,10 +222,8 @@ export const openInfoWindow = (map: AMap.Map, opts: AMap.InfoOptions, position: 
 };
 
 /**
- * 海量点类
- * @public
+ * @description 海量点类
  * @name MassMarks
- * @class MassMarks
  * @extends {AMap.Event}
  * @param {MassData[]} data 海量点数据参数
  * @param {LngLat} data.lnglat 经纬度

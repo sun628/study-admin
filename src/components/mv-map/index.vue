@@ -8,25 +8,16 @@
 import { onMounted, shallowRef, provide } from 'vue';
 import '@amap/amap-jsapi-types'; // 高德地图类型声明
 import { initMap, loadMapUI } from '@/hooks/useMap';
+import { MAP_OPTIONS } from '@/config';
 
 defineOptions({
 	name: 'MvMap',
 });
 const map = shallowRef<AMap.Map | null>(null);
-provide('MAP', map);
+provide('MvMap', map);
 const emit = defineEmits(['map-load']);
-
-const cityCodes = [320903, 320685, 321283, 321281, 321012, 321202, 320902, 321204, 320682]; // 市级行政区划代码
-
-const MapOptions: AMap.MapOptions = {
-	center: [120.075917, 32.61237],
-	animateEnable: true,
-	zoomEnable: true,
-	rotateEnable: true,
-	// mapStyle: 'amap://styles/85131399e7fcecf474bc27c6f056263d',
-	zoom: 10,
-	viewMode: '3D',
-};
+// const cityCodes = [320903, 320685, 321283, 321281, 321012, 321202, 320902, 321204, 320682]; // 市级行政区划代码
+const cityCodes = 320000;
 
 /**
  * @description 获取地图实例
@@ -37,7 +28,7 @@ const getMap = () => {
 };
 
 onMounted(async () => {
-	map.value = await initMap('mv-map', MapOptions);
+	map.value = await initMap('mv-map', MAP_OPTIONS);
 	loadMapUI(map.value, cityCodes);
 	emit('map-load', map.value as AMap.Map);
 });

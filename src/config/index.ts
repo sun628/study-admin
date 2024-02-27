@@ -23,3 +23,13 @@ export const API = import.meta.env.VUE_APP_API;
 
 // music api地址
 export const MUSIC_API = import.meta.env.VUE_APP_MUSIC_API;
+
+// 地图配置项
+export const MAP_OPTIONS: AMap.MapOptions = {
+	center: [119.1521809038, 33.2218222997],
+	animateEnable: true,
+	zoomEnable: true,
+	rotateEnable: true,
+	zoom: 8,
+	viewMode: '3D',
+};
