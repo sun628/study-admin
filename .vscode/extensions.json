@@ -2,8 +2,8 @@
 	"recommendations": [
 		"vue.vscode-typescript-vue-plugin",
 		"esbenp.prettier-vscode",
-		"bradlc.vscode-tailwindcss",
 		"dbaeumer.vscode-eslint",
-		"vue.volar"
+		"vue.volar",
+		"antfu.unocss"
 	]
 }

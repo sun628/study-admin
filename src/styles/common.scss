@@ -31,12 +31,6 @@ h2 {
 }
 
 
-/* flex */
-.flex-center {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
 
 /* 文字单行省略号 */
 .sle {
@@ -116,10 +110,6 @@ h2 {
 	box-shadow:
 		0 0 10px var(--el-color-primary),
 		0 0 5px var(--el-color-primary) !important;
-}
-
-.pointer {
-	cursor: pointer;
 }
 
 /* highlight关键字高亮 */

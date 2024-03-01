@@ -10,40 +10,56 @@
 	使用：在 Dom 上加上 v-draggable 即可
 	<div class="dialog-model" v-draggable></div>
 */
-import type { Directive } from 'vue';
-interface ElType extends HTMLElement {
-	parentNode: any;
+import { Directive } from 'vue';
+
+interface DraggableOptions {
+	restrict?: boolean; // 新增配置项，用于控制是否限制移动区域
 }
+
 const draggable: Directive = {
-	mounted: function (el: ElType) {
+	mounted(el: HTMLElement, binding) {
+		const options: DraggableOptions = binding.value || {};
+		const { restrict = true } = options; // 默认限制移动区域
+		console.log('🚀 ~ mounted ~ restrict:', restrict);
+
 		el.style.cursor = 'move';
-		el.style.position = 'absolute';
+		// el.style.position = 'absolute';
+
 		el.onmousedown = function (e) {
+			const parentNode = el.parentNode as HTMLElement;
+			if (!parentNode) {
+				console.warn("Draggable element's parent node is null.");
+				return; // 提前退出，不执行拖动逻辑
+			}
 			const disX = e.pageX - el.offsetLeft;
 			const disY = e.pageY - el.offsetTop;
+
 			document.onmousemove = function (e) {
 				let x = e.pageX - disX;
 				let y = e.pageY - disY;
-				const maxX = el.parentNode.offsetWidth - el.offsetWidth;
-				const maxY = el.parentNode.offsetHeight - el.offsetHeight;
-				if (x < 0) {
-					x = 0;
-				} else if (x > maxX) {
-					x = maxX;
+
+				if (restrict) {
+					// 仅在限制区域移动时执行
+					const maxX = parentNode.offsetWidth - el.offsetWidth;
+					const maxY = parentNode.offsetHeight - el.offsetHeight;
+
+					x = Math.max(0, Math.min(x, maxX));
+					y = Math.max(0, Math.min(y, maxY));
 				}
 
-				if (y < 0) {
-					y = 0;
-				} else if (y > maxY) {
-					y = maxY;
-				}
-				el.style.left = x + 'px';
-				el.style.top = y + 'px';
+				el.style.left = `${x}px`;
+				el.style.top = `${y}px`;
 			};
+
 			document.onmouseup = function () {
 				document.onmousemove = document.onmouseup = null;
 			};
 		};
 	},
+	unmounted(el) {
+		// 清理操作，移除事件监听
+		el.onmousedown = null;
+	},
 };
+
 export default draggable;

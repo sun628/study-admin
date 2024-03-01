@@ -34,6 +34,7 @@ const pages = [
 		children: [
 			{ name: '01.复制指令', component: () => import('@/views/example/05.自定义指令/01.复制指令.vue') },
 			{ name: '02.水印指令', component: () => import('@/views/example/05.自定义指令/02.水印指令.vue') },
+			{ name: '03.拖拽指令', component: () => import('@/views/example/05.自定义指令/03.拖拽指令.vue') },
 		],
 	},
 ];
