@@ -10,23 +10,22 @@
 	使用：在 Dom 上加上 v-draggable 即可
 	<div class="dialog-model" v-draggable></div>
 */
-import { Directive } from 'vue';
+import { Directive, DirectiveBinding } from 'vue';
 
 interface DraggableOptions {
 	restrict?: boolean; // 新增配置项，用于控制是否限制移动区域
 }
 
 const draggable: Directive = {
-	mounted(el: HTMLElement, binding) {
+	mounted(el: HTMLElement, binding: DirectiveBinding<DraggableOptions>) {
 		const options: DraggableOptions = binding.value || {};
 		const { restrict = true } = options; // 默认限制移动区域
-		console.log('🚀 ~ mounted ~ restrict:', restrict);
-
 		el.style.cursor = 'move';
 		// el.style.position = 'absolute';
 
 		el.onmousedown = function (e) {
 			const parentNode = el.parentNode as HTMLElement;
+			console.log('🚀 ~ mounted ~ parentNode:', parentNode);
 			if (!parentNode) {
 				console.warn("Draggable element's parent node is null.");
 				return; // 提前退出，不执行拖动逻辑

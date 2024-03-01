@@ -10,7 +10,7 @@
 */
 
 import type { Directive, DirectiveBinding } from 'vue';
-const addWaterMarker: Directive = (str: string, parentNode: any, font: any, textColor: string) => {
+const addWaterMarker = (str: string, parentNode: any, font: any, textColor: string) => {
 	// 水印文字，父元素，字体，文字颜色
 	const can: HTMLCanvasElement = document.createElement('canvas');
 	parentNode.appendChild(can);
@@ -28,7 +28,7 @@ const addWaterMarker: Directive = (str: string, parentNode: any, font: any, text
 	parentNode.style.backgroundImage = 'url(' + can.toDataURL('image/png') + ')';
 };
 
-const waterMarker = {
+const waterMarker: Directive = {
 	mounted(el: DirectiveBinding, binding: DirectiveBinding) {
 		addWaterMarker(binding.value.text, el, binding.value.font, binding.value.textColor);
 	},
