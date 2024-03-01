@@ -95,8 +95,8 @@ const tableData = ref([
 		link: 'https://element-plus.gitee.io/#/zh-CN/component/installation',
 	},
 	{
-		label: 'tailwindcss',
-		link: 'https://www.tailwindcss.cn/',
+		label: 'unocss',
+		link: 'https://unocss.nodejs.cn/',
 	},
 	{
 		label: 'vueuse',

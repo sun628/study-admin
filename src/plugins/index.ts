@@ -6,9 +6,9 @@ import { visualizer } from 'rollup-plugin-visualizer'; //打包分析
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import eslintPlugin from 'vite-plugin-eslint';
 import { VitePWA } from 'vite-plugin-pwa';
-//shift+alt点击页面元素，它能够自动打开你的 IDE 并将光标定位到 DOM 对应的源代码位置。
-//https://github.com/zh-lx/code-inspector/blob/main/docs/README-ZH.md
-import { CodeInspectorPlugin } from 'code-inspector-plugin';
+import unocss from 'unocss/vite';
+import { CodeInspectorPlugin } from 'code-inspector-plugin'; // shift+alt 点击页面元素，它能够自动打开你的 IDE 并将光标定位到 DOM 对应的源代码位置。
+import { presetAttributify, presetUno } from 'unocss';
 import path from 'path';
 
 const _visualizer = visualizer({
@@ -18,6 +18,7 @@ const _visualizer = visualizer({
 	gzipSize: false, //从源代码中收集 gzip 大小并将其显示在图表中
 	brotliSize: true, //从源代码中收集 brotli 大小并将其显示在图表中
 });
+
 const _PWA = VitePWA({
 	registerType: 'autoUpdate',
 	manifest: {
@@ -53,6 +54,20 @@ const lifecycle = process.env.npm_lifecycle_event; //获取当前运行的命令
 export function createVitePlugins() {
 	const root = process.cwd();
 	return [
+		unocss({
+			rules: [
+				// ...custom rules
+				['pink', { color: 'pink' }],
+			],
+			presets: [
+				presetAttributify({
+					/* preset options */
+				}),
+				presetUno(),
+				// ...custom presets
+			],
+		}),
+
 		vue({
 			script: {
 				// 开启 defineModel

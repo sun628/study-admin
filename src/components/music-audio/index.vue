@@ -56,7 +56,7 @@ const props = defineProps({
 const globalStore = useGlobalStore();
 const themeConfig = computed(() => globalStore.themeConfig);
 const AudioRef = ref<HTMLAudioElement | null>(null);
-const src = 'https://music.163.com/song/media/outer/url?id=2064033095.mp3';
+const src = `https://music.163.com/song/media/outer/url?id=${props.musicId}.mp3`;
 const gradBg = ref('');
 
 const lyric = ref<HTMLDivElement | null>(null); // dom -  包含歌词标签的ul，高度很高，主要用于控制transform
