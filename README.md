@@ -45,7 +45,7 @@ git commit -m 'style: 调整格式，优化阅读体验'
 
 - `refactor`：重构代码。这意味着既没有新增功能，也没有修复bug的代码重构。
 ```
-commit -m 'refactor: 代码结构调整'
+git commit -m 'refactor: 代码结构调整'
 ```
 
 - `docs`：文档更新。用于描述对文档的添加或修改。
