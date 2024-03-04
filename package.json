@@ -15,7 +15,10 @@
 		"preview": "vite preview",
 		"lint": "eslint src --fix --ext .ts,.tsx,.vue,.js,.jsx",
 		"format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,vue}\"",
-		"prepare": "husky && husky install"
+		"prepare": "husky",
+		"lint:eslint": "eslint --fix --ext .js,.ts,.vue ./src",
+		"lint:prettier": "prettier --write --loglevel warn \"src/**/*.{js,ts,json,tsx,css,less,scss,vue,html,md}\"",
+		"lint:lint-staged": "lint-staged"
 	},
 	"dependencies": {
 		"@amap/amap-jsapi-loader": "^1.0.1",
