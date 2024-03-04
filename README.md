@@ -15,9 +15,24 @@ pnpm install
 pnpm dev
 
 
+- **Lint：**
 
+```text
+# eslint 检测代码
+npm run lint:eslint
 
-# 代码提交类型指南
+# prettier 格式化代码
+npm run lint:prettier
+
+# stylelint 格式化样式
+lint:stylelint
+```
+
+- **commit：**
+```text
+# 提交代码（提交前会自动执行 lint:lint-staged 命令）
+npm run commit
+```
 
 - **提交格式：**
 git commit -m <type>[optional scope]: <description> //注意冒号后面有空格
@@ -61,13 +76,4 @@ git commit -m 'test: 添加新的单元测试'
 - `chore`：构建过程或辅助工具的变动。这通常指的是对构建流程或辅助工具做出的改变。
 ```
 git commit -m 'chore: 更新构建脚本'
-```
-
-请按照以上指南进行代码提交，以确保我们的项目管理更加规范和高效。
-
-
-- **commit：**
-```text
-# 提交代码（提交前会自动执行 lint:lint-staged 命令）
-npm run commit
 ```
