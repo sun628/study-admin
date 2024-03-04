@@ -37,6 +37,10 @@ pnpm dev
 示例：git commit -m 'refactor: 代码结构调整'
 
 - `docs`：文档更新。用于描述对文档的添加或修改。
+示例：git commit -m 'docs: 更新README文档'
+
+- `test`：增加测试。当我们为代码添加新的测试或修改现有测试时使用。
+
 示例：git commit -m 'test: 添加新的单元测试'
 
 - `chore`：构建过程或辅助工具的变动。这通常指的是对构建流程或辅助工具做出的改变。
