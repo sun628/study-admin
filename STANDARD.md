@@ -18,8 +18,6 @@ npm install prettier
 
 ### 2、安装 Vscode 插件（Prettier）：
 
-![Prettier](https://iamge-1259297738.cos.ap-chengdu.myqcloud.com/md/Prettier.png)
-
 ### 3、配置 Prettier：
 
 ```javascript
@@ -85,7 +83,6 @@ npm install eslint eslint-config-prettier eslint-plugin-prettier eslint-plugin-v
 
 - **ESLint：**
 
-![ESLint](https://iamge-1259297738.cos.ap-chengdu.myqcloud.com/md/ESLint.png)
 
 ### 3、配置 ESLint：
 
@@ -181,7 +178,6 @@ npm i stylelint stylelint-config-html stylelint-config-recommended-scss stylelin
 
 ### 2、安装 Vscode 插件（Stylelint）：
 
-![Stylelint](https://iamge-1259297738.cos.ap-chengdu.myqcloud.com/md/Stylelint.png)
 
 ### 3、在目录的 .vscode 文件中新建 settings.json：
 
@@ -257,7 +253,6 @@ module.exports = {
 
 ### 2、安装 VsCode 插件（EditorConfig ）：
 
-![editorConfig](https://iamge-1259297738.cos.ap-chengdu.myqcloud.com/img/20220510142005.png)
 
 ### 3、配置 EditorConfig：
 
@@ -294,16 +289,15 @@ trim_trailing_whitespace = false # 关闭末尾空格修剪
 > **安装：**
 
 ```text
-npm install husky -D
+# https://typicode.github.io/husky/get-started.html
+pnpm i husky -D
+
 ```
 
 > **使用（为了添加.husky 文件夹）：**
 
 ```text
-# 编辑 package.json > prepare 脚本并运行一次
-
-npm set-script prepare "husky install"
-npm run prepare
+pnpm exec husky init
 ```
 
 ### 2、 lint-staged（本地暂存代码检查工具）
@@ -319,7 +313,11 @@ npm install lint-staged --D
 > **作用：通过钩子函数，判断提交的代码是否符合规范，并使用 prettier 格式化代码**
 
 ```text
-npx husky add .husky/pre-commit "npm run lint:lint-staged"
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+pnpm lint:lint-staged
+
 ```
 
 > 新增 **lint-staged.config.js** 文件：
@@ -346,7 +344,10 @@ npm i @commitlint/cli @commitlint/config-conventional -D
 > **配置命令（在.husky 文件夹下添加 commit-msg 文件）：**
 
 ```text
-npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npx commitlint --edit "$1"
 ```
 
 ### 4、commitizen（基于 Node.js 的 git commit 命令行工具，生成标准化的 message）
