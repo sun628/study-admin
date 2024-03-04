@@ -15,8 +15,37 @@ pnpm install
 pnpm dev
 
 
-- **commit：**
 
+
+# 代码提交类型指南
+
+在我们的项目中，为了保持提交历史的清晰和易于理解，我们采用了一系列特定的提交类型。以下是我们约定的提交类型及其说明：
+
+## 类型
+
+- `feat`：新增功能。当我们引入新的功能时使用此类型。
+示例：git commit -m 'feat: 增加xxx功能'
+
+- `fix`：修复bug。用于修正项目中的bug。
+示例：git commit -m 'fix: 修复xxx功能'
+
+
+- `style`：不影响程序逻辑的代码修改。这包括修改空白字符、补全缺失的分号等。
+示例：git commit -m 'style: 调整格式，优化阅读体验'
+
+- `refactor`：重构代码。这意味着既没有新增功能，也没有修复bug的代码重构。
+示例：git commit -m 'refactor: 代码结构调整'
+
+- `docs`：文档更新。用于描述对文档的添加或修改。
+示例：git commit -m 'test: 添加新的单元测试'
+
+- `chore`：构建过程或辅助工具的变动。这通常指的是对构建流程或辅助工具做出的改变。
+示例：git commit -m 'chore: 更新构建脚本'
+
+请按照以上指南进行代码提交，以确保我们的项目管理更加规范和高效。
+
+
+- **commit：**
 ```text
 # 提交代码（提交前会自动执行 lint:lint-staged 命令）
 npm run commit
@@ -26,4 +55,3 @@ git commit -m <type>[optional scope]: <description> //注意冒号后面有空�
 - type：提交的改动类型（如新增、修改、更新等）
 - optional scope：标识此次提交主要涉及到代码中哪个模块
 - description：一句话描述此次提交的主要内容
-
