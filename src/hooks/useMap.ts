@@ -26,6 +26,7 @@ export const initMap = (id: string | HTMLDivElement, mapOptions: Partial<AMap.Ma
 			});
 	});
 };
+
 let borderPolygon: AMap.Polygon | null = null;
 /**
  * @description 加载地图UI组件
