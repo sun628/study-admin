@@ -13,3 +13,17 @@ npm install pnpm -g
 pnpm install
 
 pnpm dev
+
+
+- **commit：**
+
+```text
+# 提交代码（提交前会自动执行 lint:lint-staged 命令）
+npm run commit
+```
+- **提交格式：**
+git commit -m <type>[optional scope]: <description> //注意冒号后面有空格
+- type：提交的改动类型（如新增、修改、更新等）
+- optional scope：标识此次提交主要涉及到代码中哪个模块
+- description：一句话描述此次提交的主要内容
+
