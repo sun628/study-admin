@@ -55,6 +55,7 @@ const exampleRouter = [
 			title: '功能',
 			key: 'example',
 			localSvgIcon: 'example',
+			transitionName: 'fade-transform',
 		},
 	},
 ];

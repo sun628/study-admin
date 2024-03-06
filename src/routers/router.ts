@@ -67,6 +67,7 @@ export const routes: RouteRecordRaw[] = [
 			title: 'hooks',
 			key: 'hooks',
 			localSvgIcon: 'hooks',
+			transitionName: 'fade-transform',
 		},
 	},
 	{

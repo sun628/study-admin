@@ -7,7 +7,7 @@ import { customRef } from 'vue';
  * @returns value
  */
 export const useDebouncedRef = (value: number | string, delay: number = 300) => {
-	let timer: any;
+	let timer: NodeJS.Timeout | null = null;
 	return customRef((track, trigger) => {
 		return {
 			get: () => {
@@ -25,7 +25,7 @@ export const useDebouncedRef = (value: number | string, delay: number = 300) => 
 	});
 };
 
-// 自定义节流   Ref
+// 自定义节流 Ref
 export const useThrottledRef = (value: number | string, delay: number = 300) => {
 	let timer: NodeJS.Timeout | null = null;
 	return customRef((track, trigger) => {

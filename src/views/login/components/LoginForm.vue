@@ -79,6 +79,7 @@ onKeyStroke('Enter', (e) => {
 	e.preventDefault();
 	login(loginFormRef.value);
 });
+
 // resetForm
 const resetForm = (formEl: FormInstance | undefined) => {
 	if (!formEl) return;
