@@ -1,22 +1,29 @@
 <template>
-	<el-table ref="ElTabeRef" :data="data" style="width: 100%" v-bind="$attrs">
-		<template v-for="(value, name) in $slots" :key="name" #[name]="slotData">
-			<slot :name="name" v-bind="slotData || {}"></slot>
-		</template>
+	<el-table :data="data" v-bind="$attrs">
+		<el-table-column v-for="column in columns" :key="column.prop" v-bind="column">
+			<template v-if="$slots[column.prop]" #default="scope">
+				<slot :name="column.prop" v-bind="scope"></slot>
+			</template>
+		</el-table-column>
 	</el-table>
 </template>
 <script setup lang="ts">
 import { ElTable } from 'element-plus';
-
-export interface TableProps {
-	data: Array<object>; // table的数据
+interface TableData {
+	[propName: string]: any;
 }
-const props = withDefaults(defineProps<TableProps>(), {
-	data: (): Array<object> => [],
-});
-const { data } = toRefs(props);
+interface Column {
+	prop: string;
+	label: string;
+	[propName: string]: any;
+}
 
-const ElTabeRef = ref<InstanceType<typeof ElTable>>();
+defineProps<{
+	data: TableData[];
+	columns: Column[];
+}>();
+
+//获取用户信息
 </script>
 
 <style scoped lang="scss"></style>

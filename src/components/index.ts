@@ -1,5 +1,4 @@
-import type { App, AsyncComponentLoader, Plugin, DefineComponent } from 'vue';
-import { defineAsyncComponent } from 'vue';
+import type { App, Plugin } from 'vue';
 import SvgIcon from '@/components/svg-icon/SvgIcon.vue';
 import * as ElementPlusIcons from '@element-plus/icons-vue';
 import Doc from '@/components/docs/Doc.vue';
