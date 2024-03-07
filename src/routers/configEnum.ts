@@ -11,4 +11,5 @@ export enum MatchMenu {
 	map,
 	electron,
 	nodejs,
+	assembly,
 }

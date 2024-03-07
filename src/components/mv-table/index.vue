@@ -1,5 +1,5 @@
 <template>
-	<el-table :data="data" v-bind="$attrs">
+	<el-table :data="tableData" v-bind="$attrs">
 		<el-table-column v-for="column in columns" :key="column.prop" v-bind="column">
 			<template v-if="$slots[column.prop]" #default="scope">
 				<slot :name="column.prop" v-bind="scope"></slot>
@@ -8,22 +8,31 @@
 	</el-table>
 </template>
 <script setup lang="ts">
-import { ElTable } from 'element-plus';
+defineOptions({
+	name: 'MvTable',
+});
+
 interface TableData {
 	[propName: string]: any;
 }
+
 interface Column {
 	prop: string;
 	label: string;
 	[propName: string]: any;
 }
 
-defineProps<{
-	data: TableData[];
+export interface Props {
+	tableData: TableData[];
 	columns: Column[];
-}>();
+}
 
-//获取用户信息
+const props = withDefaults(defineProps<Props>(), {
+	tableData: () => [],
+	columns: () => [],
+});
+
+const { tableData, columns } = toRefs(props);
 </script>
 
 <style scoped lang="scss"></style>
