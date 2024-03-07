@@ -36,8 +36,6 @@ class RequestHttp {
 			(config: CustomAxiosRequestConfig) => {
 				const userStore = useUserStore();
 				// 当前请求不需要显示 loading，在 api 服务中通过指定的第三个参数: { Loading: true } 来控制
-				console.log('🚀 ~ RequestHttp ~ constructor ~ config:', config);
-
 				config.Loading && showFullScreenLoading();
 				if (config.headers && typeof config.headers.set === 'function') {
 					config.headers.set('x-access-token', userStore.token);

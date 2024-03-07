@@ -124,8 +124,9 @@ const lyrics = ref<Array<ILyric>>([]);
 const handleTimeUpdate = (e: Event) => {
 	// const currentTime = (e.target as HTMLAudioElement).currentTime; //当前播放器时间
 	scrollToCurrentLine();
+
 	// for (let i = 0; i < lyrics.value.length; i++) {
-	// 	if (currentTime >= lyrics.value[i].time && (!lyrics.value[i + 1] || currentTime < lyrics.value[i + 1].time)) {
+	// 	if (currentTime >= lyrics.value[i].time && (!lyrics.value[i + 1] || currentTime  < lyrics.value[i + 1].time)) {
 	// 		currentIndex.value = i; // 更新当前播放歌词行的索引
 	// 		break;
 	// 	}
