@@ -1,7 +1,7 @@
 <template>
 	<div class="audio">
 		<SvgIcon name="music" :class="{ 'muisc-rotate': isPlay }" @click="playMusic()"></SvgIcon>
-		<music-audio id="music-audio" ref="MusicAudioRef" :music-id="2127872173" loop />
+		<music-audio id="music-audio" ref="MusicAudioRef" loop />
 	</div>
 </template>
 <script setup lang="ts">

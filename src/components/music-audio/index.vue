@@ -18,7 +18,7 @@
 	</div>
 </template>
 <script setup lang="ts">
-import { getLyricApi } from '@/api/music/index';
+import { getLyricApi, getSongUrlApi } from '@/api/music/index';
 import { useGlobalStore } from '@/store/modules/global';
 import { HOME_URL } from '@/config';
 // 获取路由
@@ -49,14 +49,19 @@ const props = defineProps({
 	},
 	musicId: {
 		type: Number,
-		default: 2064033095,
+		default: 2127872173,
 	},
 });
+
+// const src =
+// 	'http://m701.music.126.net/20240307144421/338d180c359993c64518c9de1177d1bf/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/33989069495/3598/e242/e724/ac37f08b16a4fbf60623649427680fb6.mp3';
+let src = ref('');
 
 const globalStore = useGlobalStore();
 const themeConfig = computed(() => globalStore.themeConfig);
 const AudioRef = ref<HTMLAudioElement | null>(null);
-const src = `https://music.163.com/song/media/outer/url?id=${props.musicId}.mp3`;
+// const src = `https://music.163.com/song/media/outer/url?id=${props.musicId}.mp3`;
+
 const gradBg = ref('');
 
 const lyric = ref<HTMLDivElement | null>(null); // dom -  包含歌词标签的ul，高度很高，主要用于控制transform
@@ -87,6 +92,9 @@ const play = async () => {
 	if (!AudioRef.value) return new Error('AudioRef is not defined or has no value.');
 	if (lyrics.value.length === 0) getLyric();
 	try {
+		const res = await getSongUrlApi({ id: props.musicId, type: 'songid' });
+		src.value = res.song_url;
+		await nextTick();
 		AudioRef.value.play();
 		currentIndex.value = -1;
 		if (props.animation) {
