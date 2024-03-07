@@ -6,7 +6,7 @@ const name = 'assembly';
 const pages = [
 	{
 		name: '01.表格',
-		component: () => import('@/views/assembly/mv-table/index.vue'),
+		component: () => import('@/views/assembly/01.table/index.vue'),
 	},
 ];
 // vue3模块
