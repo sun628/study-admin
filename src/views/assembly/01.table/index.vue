@@ -1,7 +1,7 @@
 <template>
 	<mv-table :table-data="tableData" :columns="columns">
 		<template #operation="{ row, $index }">
-			<el-button size="small" type="primary" @click="handleEdit($index, row)"></el-button>
+			<el-button size="small" type="primary" @click="handleEdit($index, row)">编辑</el-button>
 		</template>
 
 		<template #date="{ row }">
