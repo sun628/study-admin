@@ -1,38 +1,41 @@
 <template>
 	<el-table :data="tableData" v-bind="$attrs">
-		<el-table-column v-for="column in columns" :key="column.prop" v-bind="column">
+		<el-table-column v-for="column in tableColumns" :key="column.prop" v-bind="column">
 			<template v-if="$slots[column.prop]" #default="scope">
 				<slot :name="column.prop" v-bind="scope"></slot>
 			</template>
 		</el-table-column>
 	</el-table>
 </template>
-<script setup lang="ts">
+<script setup lang="ts" generic="T, U extends TableColumn">
+import type { TableProps, TableColumn } from './type';
 defineOptions({
 	name: 'MvTable',
 });
-
-interface TableData {
-	[propName: string]: any;
-}
-
-interface Column {
-	prop: string;
-	label: string;
-	[propName: string]: any;
-}
-
-export interface Props {
-	tableData: TableData[];
-	columns: Column[];
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<TableProps<T, U>>(), {
 	tableData: () => [],
 	columns: () => [],
 });
-
 const { tableData, columns } = toRefs(props);
+
+// 计算属性，确保columns里的每个prop都是Slots<PropUnion>的键
+const tableColumns = computed(() => {
+	return columns.value.map((column) => {
+		return {
+			...column,
+			prop: column.prop as PropUnion,
+		};
+	});
+});
+
+// 使用映射类型从数组中提取 prop 值的联合类型
+type PropUnion = (typeof columns.value)[number]['prop'];
+
+// 动态生成的 Slots 类型
+type Slots<PropUnion extends string> = {
+	[K in PropUnion]: (props: { row: T; $index: number }) => any;
+};
+defineSlots<Slots<PropUnion>>();
 </script>
 
 <style scoped lang="scss"></style>

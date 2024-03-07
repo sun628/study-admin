@@ -1,8 +1,16 @@
 <template>
 	<mv-table :table-data="tableData" :columns="columns">
-		<template #operation="scope">
-			<el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+		<template #operation="{ row, $index }">
+			<el-button size="small" type="primary" @click="handleEdit($index, row)"></el-button>
 		</template>
+
+		<template #date="{ row }">
+			<span>{{ row.date }}</span>
+		</template>
+
+		<!-- <template #bodyCell="{ row }">
+			<div style="color: red; font-size: 25px">{{ row.name }}</div>
+		</template> -->
 	</mv-table>
 </template>
 
@@ -13,7 +21,8 @@ interface User {
 	name: string;
 	address: string;
 }
-const tableData: User[] = [
+
+const tableData = [
 	{
 		date: '2016-05-03',
 		name: 'Tom',
@@ -58,6 +67,38 @@ const columns = [
 ];
 const handleEdit = (index: number, row: User) => {
 	console.log(index, row);
+};
+
+// 假设这是您的初始数组，您希望从中推导 prop 类型
+const initialColumns = [
+	{ prop: 'date', label: '日期' },
+	{ prop: 'name', label: '姓名' },
+	{ prop: 'address', label: '地址' },
+];
+
+// 定义一个辅助类型，用于从数组中提取 prop 的类型
+type ExtractPropType<T extends { prop: any }> = T['prop'];
+
+// 定义一个泛型函数，它接受您的数组并仅用于推导类型
+// 这个函数实际上并不需要执行任何操作
+function createColumns<T extends { prop: any }>(columns: T[]): T[] {
+	return columns;
+}
+
+// 使用您的初始数组调用这个函数，TS 将推导出 prop 的类型
+const columns1 = createColumns(initialColumns);
+
+// 现在，您可以定义一个新的类型，该类型的 prop 属性被约束为 initialColumns 中所有 prop 值的类型
+type Column = {
+	prop: ExtractPropType<(typeof columns1)[number]>;
+	label: string;
+	width?: string;
+};
+
+// 示例：这个对象符合 Column 类型
+const newColumn: Column = {
+	prop: 'date22', // 正确，'date' 是 initialColumns 中一个 prop 的值
+	label: '新日期',
 };
 </script>
 
