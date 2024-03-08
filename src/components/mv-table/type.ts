@@ -5,9 +5,9 @@ export type TableColumn = {
 	[propName: string]: any;
 };
 
-export type TableProps<T, U extends TableColumn> = {
+export type TableProps<T, U> = {
 	// 数据源
 	tableData: T[];
 	// 渲染列配置项
-	columns: U[];
+	columns: U[] extends TableColumn[] ? U[] : TableColumn[];
 };

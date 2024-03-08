@@ -7,10 +7,6 @@
 		<template #date="{ row }">
 			<span>{{ row.date }}</span>
 		</template>
-
-		<!-- <template #bodyCell="{ row }">
-			<div style="color: red; font-size: 25px">{{ row.name }}</div>
-		</template> -->
 	</mv-table>
 </template>
 
@@ -22,7 +18,7 @@ interface User {
 	address: string;
 }
 
-const tableData = [
+const tableData: User[] = [
 	{
 		date: '2016-05-03',
 		name: 'Tom',
