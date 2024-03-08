@@ -7,7 +7,6 @@ const pathSrc = path.resolve(__dirname, 'src');
 export default defineConfig(({ command, mode }) => {
 	const root = process.cwd();
 	const env = loadEnv(mode, root);
-	console.log('🚀 ~ defineConfig ~ env:', env);
 
 	return {
 		plugins: createVitePlugins(),
