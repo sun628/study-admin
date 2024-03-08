@@ -21,7 +21,7 @@ const assemblyRouter = [
 			menuIndex: MatchMenu[name],
 			keepAlive: true,
 			requiresAuth: false,
-			title: '常用组件',
+			title: '公共组件',
 			key: name,
 			localSvgIcon: 'vuejs',
 			transitionName: 'fade-transform',
