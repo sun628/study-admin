@@ -12,9 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import useECharts from '@/hooks/useECharts';
+import useECharts, { EChartsOption } from '@/hooks/useECharts';
 import useEchartsCode from './02.useECharts.vue?raw';
-import { EChartsOption } from 'echarts';
 
 const myChat = ref<HTMLElement | null>(null);
 const myChat1 = ref<HTMLElement | null>(null);
