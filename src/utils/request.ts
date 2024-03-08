@@ -11,6 +11,9 @@ import router from '@/routers';
 export interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
 	Loading?: boolean;
 }
+export interface CustomRequestConfig extends AxiosRequestConfig {
+	Loading?: boolean;
+}
 
 const config = {
 	// 默认地址请求地址，可在 .env.** 文件中修改
@@ -104,7 +107,7 @@ class RequestHttp {
 	download(url: string, params?: object, _object = {}): Promise<BlobPart> {
 		return this.service.post(url, params, { ..._object, responseType: 'blob' });
 	}
-	request<T>(config: AxiosRequestConfig & { Loading: true }): Promise<T> {
+	request<T>(config: CustomRequestConfig): Promise<T> {
 		return this.service(config);
 	}
 }
