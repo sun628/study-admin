@@ -16,14 +16,6 @@ export const MAP_KEY = '916919393f49e9132baa000648891c5f';
 
 export const successCode = [200, 201, 204, 10000];
 
-// * 项目配置项
-
-// api地址
-export const API = import.meta.env.VUE_APP_API;
-
-// music api地址
-export const MUSIC_API = import.meta.env.VUE_APP_MUSIC_API;
-
 // 地图配置项
 export const MAP_OPTIONS: AMap.MapOptions = {
 	center: [119.1521809038, 33.2218222997],

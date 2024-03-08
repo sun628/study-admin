@@ -30,8 +30,6 @@ h2 {
 	font-size: 20px;
 }
 
-
-
 /* 文字单行省略号 */
 .sle {
 	overflow: hidden;
@@ -126,13 +124,12 @@ h2 {
 	}
 }
 
-.mobile{
-
+.mobile {
 	// 移动端隐藏
-	.h5-hidden{
+	.h5-hidden {
 		display: none;
 	}
-	.h5-w-full{
+	.h5-w-full {
 		width: 100%;
 		max-width: 100%;
 	}
