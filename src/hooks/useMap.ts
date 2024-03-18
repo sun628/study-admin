@@ -103,38 +103,11 @@ export const loadMapUI = (map: AMap.Map, cityCodes: number | ConcatArray<number>
 
 /**
  * @description 添加点标记
- * @name Marker
- * @param {MarkerOptions} opts 点标记参数
- * @param {Map} opts.map 要显示该marker的地图对象
- * @param {Vector2|LngLat} opts.position 点标记在地图上显示的位置
- * @param {Icon | string} opts.icon 在点标记中显示的图标。可以传一个图标地址，也可以传Icon对象。有合法的content内容设置时，此属性无效。
- * @param {string | HTMLElement} opts.content 点标记显示内容。可以是HTML要素字符串或者HTML DOM对象。content有效时，icon属性将被覆盖。
- * @param {string} opts.title 鼠标滑过点标记时的文字提示。不设置则鼠标滑过点标无文字提示。
- * @param {boolean} opts.visible 点标记是否可见，默认值：true
- * @param {number} opts.zIndex 点标记的叠加顺序。地图上存在多个点标记叠加时，通过该属性使级别较高的点标记在上层显示，默认zIndex：12
- * @param {Vector2 | Pixel} opts.offset 点标记显示位置偏移量，默认值为[0,0]。Marker指定position后，默认以marker左上角位置为基准点（若设置了anchor，则以anchor设置位置为基准点），对准所给定的position位置，若需使marker指定位置对准在position处，需根据marker的尺寸设置一定的偏移量。
- * @param {string | Vector2} opts.anchor 设置点标记锚点，可选值：'top-left','top-center','top-right', 'middle-left', 'center', 'middle-right', 'bottom-left', 'bottom-center', 'bottom-right' [相关示例](https://lbs.amap.com/api/jsapi-v2/example/marker/marker-anchor)
- * @param {number} opts.angle 点标记的旋转角度，，广泛用于改变车辆行驶方向。默认值：0
- * @param {boolean} opts.clickable 点标记是否可点击，默认值: true
- * @param {boolean} opts.draggable 设置点标记是否可拖拽移动，默认值：false
- * @param {boolean} opts.bubble 事件是否冒泡，默认为 false
- * @param {Vector2} opts.zooms 点标记显示的层级范围，超过范围不显示。默认值：zooms: [2, 20]
- * @param {string} opts.cursor 指定鼠标悬停时的鼠，默认值：'pointer'
- * @param {boolean} opts.topWhenClick 鼠标点击时marker是否置顶，默认false ，不置顶
- * @param {object} opts.label 添加文本标注
- * @param {string} opts.label.content 文本标注的内容
- * @param {Pixel | Vector2 | number[]} opts.label.offset 为偏移量。如设置了 direction，以 direction 方位为基准点进行偏移。
- * @param {string} opts.label.direction 文本标注方位 可选值：'top'|'right'|'bottom'|'left'|'center'，默认值: 'right'。
- * @param {any} opts.extData 用户自定义属 ，支持JavaScript API任意数据类型，如 Marker的id等。可将自定义数据保存在该属性上，方便后续操作使用。
- * @example
- * var marker = new AMap.Marker({
- *     position: new AMap.LngLat(116.397428, 39.90923),
- *     icon: 'https://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png',
- *     anchor: 'bottom-center',
- * });
- * map.add(marker);
+ * @param {AMap.MarkerOptions} opts 点标记参数
+ * @param {Function} callback 点标记点击事件
+ * @returns {AMap.Marker} 点标记对象
  */
-export const addMarker = (opts: AMap.MarkerOptions, callback?: (e: Event) => void) => {
+export const addMarker = (opts: AMap.MarkerOptions, callback: (event: { target: AMap.Marker }) => void) => {
 	const marker = new AMap.Marker({
 		position: opts.position,
 		icon: opts.icon, // 添加 Icon 实例
@@ -147,47 +120,15 @@ export const addMarker = (opts: AMap.MarkerOptions, callback?: (e: Event) => voi
 
 /**
  * 构造折线对象，支持 lineString 和 MultiLineString
- * @implements {Event}
- * @public
- * @param opts  {PolylineOptions}
- * @param {Array<LngLat>|Array<Array<LngLat>>} opts.path  polyline 路径，支持 lineString 和 MultiLineString
- * @param {number} [opts.zIndex=10]  多边形覆盖物的叠加顺序。地图上存在多个多边形覆盖物叠加时，通过该属性使级别较高的多边形覆盖物在上层显示
- * @param {boolean}  [opts.bubble = false] 是否将覆盖物的鼠标或touch等事件冒泡到地图上（自v1.3 新增）
- * @param {string} [opts.cursor] 指定鼠标悬停时的鼠标样式，自定义cursor，IE仅支持cur/ani/ico格式，Opera不支持自定义cursor
- * @param {string } [opts.strokeColor = #00D3FC] 线条颜色，使用16进制颜色代码赋值。默认值为#00D3FC
- * @param {number} [opts.strokeOpacity = 0.5]  轮廓线透明度，取值范围[0,1]，0表示完全透明，1表示不透明。默认为0.5
- * @param {number} [opts.strokeWeight = 2]  轮廓线宽度
- * @param {number} [opts.borderWeight = 2]	描边线宽度
- * @param {boolean} [opts.isOutline=false]  是否显示描边,默认false
- * @param {number} [opts.borderWeight = 1]	描边的宽度，默认为1
- * @param {string} [opts.outlineColor=#00B2D5] 线条描边颜色，此项仅在isOutline为true时有效，默认：#00B2D5
- * @param {boolean} [opts.draggable=false] 设置多边形是否可拖拽移动，默认为false
- * @param {object} [opts.extData]  用户自定义属性，支持JavaScript API任意数据类型，如Polygon的id等
- * @param {'solid'|'dashed'} [opts.strokeStyle = solid]  轮廓线样式，实线:solid，虚线:dashed
- * @param {number[]}  [opts.strokeDasharray] 勾勒形状轮廓的虚线和间隙的样式，此属性在strokeStyle 为dashed 时有效， 此属性在ie9+浏览器有效 取值：
- * 实线：[0,0,0]
- * 虚线：[10,10] ，[10,10] 表示10个像素的实线和10个像素的空白（如此反复）组成的虚线
- * 点画线：[10,2,10]， [10,2,10] 表示10个像素的实线和2个像素的空白 + 10个像素的实线和10个像素的空白 （如此反复）组成的虚线
- * @param {'miter'|'round'|'bevel'} [opts.lineJoin = miter] 折线拐点的绘制样式，默认值为'miter'尖角，其他可选值：'round'圆角、'bevel'斜角
- * @param {'butt'|'round'|'square'} [opts.lineCap = butt] 折线两端线帽的绘制样式，默认值为'butt'无头，其他可选值：'round'圆头、'square'方头
- * @param {boolean} [opts.geodesic=false] 是否绘制成大地线，默认false
- * @param {boolean} [opts.showDir=false] 是否延路径显示白色方向箭头,默认false。建议折线宽度大于6时使用
- * @export
- * @class Polyline
- * @classdesc 折线，支持单条和多条折线
+ * @param {AMap.PolylineOptions} opts 折线参数
+ * @returns {AMap.Polyline} 折线对象
  */
 export const addPolyline = (opts: AMap.PolylineOptions) => {
-	const polyline = new AMap.Polyline({
+	return new AMap.Polyline({
 		path: opts.path,
 		cursor: 'pointer', // 指定鼠标悬停时的鼠标样式，自定义cursor
-		borderWeight: 3, // 描边的宽度，默认为1
-		strokeWeight: 5, // 线条宽度，单位：像素
-		strokeOpacity: 1, // 轮廓线透明度，取值范围[0,1]，0 表示完全透明，1表示不透明
-		lineJoin: 'round', // 折线拐点的绘制样式，默认值为'miter'尖角，其他可选值：'round'圆角、'bevel'斜角
-		lineCap: 'round', // 折线两端线帽的绘制样式，默认值为'butt'无头，其他可选值：'round'圆头、'square'方头
 		...opts,
 	});
-	return polyline;
 };
 
 /**
@@ -205,21 +146,19 @@ export const addPolyline = (opts: AMap.PolylineOptions) => {
  * @param {Vector|Pixel} opts.offset 信息窗体显示位置偏移量。默认基准点为信息窗体的底部中心。默认值: [0, 0]
  * @param {Vector|LngLat} opts.position 信息窗体显示基点位置
  * @example
- * var infoWindow = new AMap.InfoWindow({
- *    content: '信息窗体',
- *    anchor: 'bottom-center',
- * });
- * // 在地图上打开信息窗体
- * infoWindow.open(map, [116.397389,39.909466]);
+ * const infoWindow = createInfoWindow('这是一个自定义的信息窗体');
+ * infoWindow.open(map, map.getCenter());
  */
-export const openInfoWindow = (map: AMap.Map, opts: AMap.InfoOptions, position: AMap.Vector2) => {
-	const infoWindow = new AMap.InfoWindow({
-		content: '信息窗体内容',
-		offset: new AMap.Pixel(0, -30),
-		...opts,
-	});
-	infoWindow.open(map, position);
-	return infoWindow;
+export const createInfoWindow = (options: string | AMap.InfoOptions): AMap.InfoWindow => {
+	if (typeof options === 'string') {
+		return new AMap.InfoWindow({
+			isCustom: true, // 使用自定义窗体
+			content: options, // 信息窗体的内容可以是任意 html 片段
+			offset: new AMap.Pixel(16, -45),
+		});
+	} else {
+		return new AMap.InfoWindow(options);
+	}
 };
 
 /**

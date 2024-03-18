@@ -14,8 +14,8 @@ import { addMarker } from '@/hooks/useMap';
 
 const map = shallowRef<AMap.Map>();
 let marker: AMap.Marker | null = null;
-const markerClick = (e: Event) => {
-	console.log('markerClick', e);
+const markerClick = (e: { target: AMap.Marker }) => {
+	console.log('markerClick', e.target.getExtData());
 };
 
 // 添加marker
@@ -26,6 +26,7 @@ const addMarkerHandle = () => {
 		position: [116.406315, 39.908775],
 		offset: new AMap.Pixel(-13, -30),
 		map: map.value,
+		extData: { id: 1, name: 'marker1' },
 	};
 	marker = addMarker(markerOption, markerClick);
 	map.value?.setFitView([marker]);
