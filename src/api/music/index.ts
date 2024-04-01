@@ -19,15 +19,16 @@ export namespace MusicApi {
  * @method getTestMenu 获取后端动态路由菜单(test)
  */
 export const getLyricApi = (params: MusicApi.ReqLyric) => {
-	return http.get<MusicApi.ResLyric>(`/music_api/song/media`, params, { Loading: true });
+	return http.get<MusicApi.ResLyric>(`/song/media`, params, { server_name: 'music_server', loading: true });
 };
 
 // 获取歌曲url
 export const getSongUrlApi = (params: MusicApi.ReqSongUrl) => {
 	return http.request<{ song_url: string }>({
-		url: '/song_api/netease/music/',
+		url: '/api/netease/music/',
 		method: 'get',
 		params,
-		Loading: true,
+		loading: true,
+		server_name: 'music_server',
 	});
 };

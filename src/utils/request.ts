@@ -8,16 +8,39 @@ import { checkStatus } from '@/api/helper/checkStatus';
 import { useUserStore } from '@/store/modules/user';
 import router from '@/routers';
 
+/**
+ * @description 请求服务名称
+ **/
+export enum ServerEnum {
+	BASE_SERVER = 'base_server',
+	MUSIC_SERVER = 'music_server',
+}
+
+type ServerType = ServerEnum[keyof ServerEnum];
+
 export interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
-	Loading?: boolean;
+	loading?: boolean;
+	server_name?: ServerType;
 }
 export interface CustomRequestConfig extends AxiosRequestConfig {
-	Loading?: boolean;
+	loading?: boolean;
+	server_name?: ServerType;
 }
+
+const servers = [
+	{
+		name: ServerEnum.BASE_SERVER,
+		url: import.meta.env.VITE_BASE_API as string,
+	},
+	{
+		name: ServerEnum.MUSIC_SERVER,
+		url: import.meta.env.VITE_MUSIC_API as string,
+	},
+];
 
 const config = {
 	// 默认地址请求地址，可在 .env.** 文件中修改
-	baseURL: import.meta.env.VITE_API_URL as string,
+	// baseURL: import.meta.env.VITE_MUSIC_API as string,
 	// 设置超时时间
 	timeout: ResultEnum.TIMEOUT as number,
 	// 跨域时候允许携带凭证
@@ -27,9 +50,7 @@ const config = {
 class RequestHttp {
 	service: AxiosInstance;
 	public constructor(config: AxiosRequestConfig) {
-		// instantiation
-		this.service = axios.create(config);
-
+		this.service = axios.create(config); // instantiation
 		/**
 		 * @description 请求拦截器
 		 * 客户端发送请求 -> [请求拦截器] -> 服务器
@@ -37,12 +58,22 @@ class RequestHttp {
 		 */
 		this.service.interceptors.request.use(
 			(config: CustomAxiosRequestConfig) => {
+				const { loading, server_name } = config;
+				console.log('🚀 ~ RequestHttp ~ constructor ~ server_name:', server_name);
+				if (server_name) {
+					const server = servers.find((item) => item.name === config.server_name);
+					config.baseURL = server ? server.url : servers[0].url;
+				} else {
+					config.baseURL = servers[0].url;
+				}
 				const userStore = useUserStore();
 				// 当前请求不需要显示 loading，在 api 服务中通过指定的第三个参数: { Loading: true } 来控制
-				config.Loading && showFullScreenLoading();
+				loading && showFullScreenLoading();
 				if (config.headers && typeof config.headers.set === 'function') {
 					config.headers.set('x-access-token', userStore.token);
 				}
+				console.log('config', config);
+
 				return config;
 			},
 			(error: AxiosError) => {
@@ -92,19 +123,19 @@ class RequestHttp {
 	/**
 	 * @description 常用请求方法封装
 	 */
-	get<T>(url: string, params?: object, _object = {}): Promise<ResultData<T>> {
+	get<T>(url: string, params?: object, _object: CustomRequestConfig = {}): Promise<ResultData<T>> {
 		return this.service.get(url, { params, ..._object });
 	}
-	post<T>(url: string, params?: object | string, _object = {}): Promise<ResultData<T>> {
+	post<T>(url: string, params?: object | string, _object: CustomRequestConfig = {}): Promise<ResultData<T>> {
 		return this.service.post(url, params, _object);
 	}
-	put<T>(url: string, params?: object, _object = {}): Promise<ResultData<T>> {
+	put<T>(url: string, params?: object, _object: CustomRequestConfig = {}): Promise<ResultData<T>> {
 		return this.service.put(url, params, _object);
 	}
-	delete<T>(url: string, params?: any, _object = {}): Promise<ResultData<T>> {
+	delete<T>(url: string, params?: any, _object: CustomRequestConfig = {}): Promise<ResultData<T>> {
 		return this.service.delete(url, { params, ..._object });
 	}
-	download(url: string, params?: object, _object = {}): Promise<BlobPart> {
+	download(url: string, params?: object, _object: CustomRequestConfig = {}): Promise<BlobPart> {
 		return this.service.post(url, params, { ..._object, responseType: 'blob' });
 	}
 	request<T>(config: CustomRequestConfig): Promise<T> {

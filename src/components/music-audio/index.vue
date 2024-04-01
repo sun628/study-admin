@@ -53,14 +53,14 @@ const props = defineProps({
 	},
 });
 
-// const src =
-// 	'http://m701.music.126.net/20240307144421/338d180c359993c64518c9de1177d1bf/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/33989069495/3598/e242/e724/ac37f08b16a4fbf60623649427680fb6.mp3';
 let src = ref('');
+
+const orginLyric =
+	'[00:03.72]作词：徐佳莹\n[00:04.05]作曲：徐佳莹、苏通达\n[00:04.56]原唱：徐佳莹\n[00:04.98]我爱谁跨不过从来也不觉得错\n[00:10.59]自以为抓着痛就能往回忆里躲\n[00:17.31]偏执相信着受诅咒的水晶球\n[00:24.84]阻挡可能心动的理由\n[00:32.82]而你却靠近了逼我们视线交错\n[00:39.69]原地不动或向前走突然在意这分钟\n[00:47.01]眼前荒沙弥漫了等候耳边传来孱弱的呼救\n[00:54.42]追赶要我爱的不保留\n[01:03.96]我身骑白马走三关\n[01:11.28]我改换素衣回中原\n[01:18.96]放下西凉没人管\n[01:26.04]我一心只想王宝钏\n[01:48.84]而你却靠近了逼我们视线交错\n[01:55.35]原地不动或向前走突然在意这分钟\n[02:02.73]眼前荒沙弥漫了等候耳边传来孱弱的呼救\n[02:10.11]追赶要我爱的不保留\n[02:17.82]我身骑白马走三关\n[02:25.14]我改换素衣回中原\n[02:33.96]放下西凉没人管\n[02:39.90]我一心只想王宝钏\n[02:48.84]满身伤痕累累也来不及痛\n[02:54.42]那是指引我走向你的清楚感受\n[03:03.45]不管危不危险都要放下一切跟你走\n[03:09.45]只要一起承担只要你不放手\n[03:19.74]我身骑白马走三关\n[03:26.07]我改换素衣回中原\n[03:34.56]放下西凉没人管\n[03:40.80]我一心只想王宝钏\n[03:48.36]我一心只想王宝钏\n';
 
 const globalStore = useGlobalStore();
 const themeConfig = computed(() => globalStore.themeConfig);
 const AudioRef = ref<HTMLAudioElement | null>(null);
-// const src = `https://music.163.com/song/media/outer/url?id=${props.musicId}.mp3`;
 
 const gradBg = ref('');
 
@@ -108,7 +108,7 @@ const play = async () => {
 			};
 			document.addEventListener('click', autoPlayAfterClick);
 		}
-		console.log(error);
+		console.error(error);
 	}
 };
 
@@ -148,10 +148,11 @@ const scrollToCurrentLine = () => {
 		}
 	}
 };
+
 // 获取歌词歌词
 const getLyric = async () => {
-	const res = await getLyricApi({ id: props.musicId });
-	formatMusicLyrics(res.lyric);
+	// const res = await getLyricApi({ id: props.musicId });
+	formatMusicLyrics(orginLyric);
 };
 
 /**
