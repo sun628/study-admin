@@ -7,8 +7,6 @@ const pathSrc = path.resolve(__dirname, 'src');
 export default defineConfig(({ command, mode }) => {
 	const root = process.cwd();
 	const env = loadEnv(mode, root);
-	console.log('env.VITE_MUSIC_API', env.VITE_MUSIC_API);
-	console.log('env.VITE_MUSIC_API_URL', env.VITE_MUSIC_API_URL);
 
 	return {
 		plugins: createVitePlugins(),
