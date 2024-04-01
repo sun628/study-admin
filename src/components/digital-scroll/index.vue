@@ -8,18 +8,15 @@
 		</div>
 	</div>
 </template>
-<script lang="ts">
+<script setup lang="ts">
 /**
  * @description 通过传入一个数字，实现返回一个从0到length-1的数组
  * @param {number} length  数组长度
  * @returns {Array<number>} 返回一个从0到length-1的数组
  **/
-export var getDigitals = (length: number = 10) => {
+const getDigitals = (length: number = 10) => {
 	return Array.from({ length }).map((_, index) => index);
 };
-</script>
-
-<script setup lang="ts">
 defineOptions({
 	name: 'DigitalScroll',
 });
