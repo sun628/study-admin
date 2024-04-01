@@ -19,6 +19,8 @@ const _visualizer = visualizer({
 
 const lifecycle = process.env.npm_lifecycle_event; //获取当前运行的命令
 
+const VITE_INSPECT = lifecycle === 'dev:inspect'; //是否开启元素定位源代码位置
+
 export function createVitePlugins() {
 	const root = process.cwd();
 	return [
@@ -47,7 +49,7 @@ export function createVitePlugins() {
 			iconDirs: [path.resolve(root, 'src/assets/svgIcons')], //指定symbolId格式
 			symbolId: 'icon-[dir]-[name]', //指定需要缓存的图标文件夹
 		}),
-		// 打包分析
-		lifecycle === 'build:report' ? _visualizer : null,
+		VITE_INSPECT && CodeInspectorPlugin({ bundler: 'vite' }), // 元素定位源代码位置
+		lifecycle === 'build:report' ? _visualizer : null, // 打包分析
 	];
 }
