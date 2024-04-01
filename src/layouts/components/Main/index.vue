@@ -2,8 +2,8 @@
 	<Tabs v-if="themeConfig.tabs" />
 	<el-main class="layout-main">
 		<router-view v-slot="{ Component, route }">
-			<transition appear :name="route.meta.transitionName as string" mode="out-in">
-				<keep-alive v-if="isRouterRefresh" :include="cacheRouter" :max="10">
+			<transition appear :name="route.meta.transitionName" mode="out-in">
+				<keep-alive v-if="isRouterRefresh" :include="cacheRouter">
 					<component :is="Component" :key="route.path" />
 				</keep-alive>
 			</transition>

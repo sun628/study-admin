@@ -1,8 +1,16 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import { Layout, filterModuleRoutes } from '@/routers/constant';
 import { MatchMenu } from '@/routers/configEnum';
-// * 导入所有router
+import 'vue-router';
 
+declare module 'vue-router' {
+	interface RouteMeta {
+		requiresAuth?: boolean;
+		transitionName?: string;
+	}
+}
+
+// * 导入所有router
 const metaRouters = import.meta.glob('./modules/*.ts', { eager: true });
 // * 处理路由表
 export const routerArray: RouteRecordRaw[] = [];
