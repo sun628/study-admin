@@ -163,7 +163,6 @@ namespace ChartsEvents {
 		};
 		// ... 其他类型的事件在这里定义
 	}
-
 	// echarts所有的事件类型
 	type EventType = keyof Events;
 }

@@ -144,9 +144,9 @@ const constraintCode5 = `let arr: Array<number> = [1, 2, 3]; // interface Array<
 let arr1: number[] = [1, 2, 3]; // arr === arr1`;
 
 // 注意，这里写法是定义的方法，不是实现的方法
-interface Search {
-	<T, Y>(name: T, age: Y): T;
-}
+// interface Search {
+// 	<T, Y>(name: T, age: Y): T;
+// }
 </script>
 <style scoped lang="scss">
 ul {

@@ -35,24 +35,6 @@ const jqueryCode = `// src/jQuery.d.ts
  复制代码`;
 const jqueryCode1 = `// src/index.ts
 jQuery('#foo'); // Okay!`;
-let target = { a: 1, b: 1 };
-let source1 = { a: 2, c: 3 };
-let source2 = { b: 2, d: 4 };
-
-const obj = Object.assign(target, source1, source2);
-
-/**
- * const obj: {
-	a: number;
-	b: number;
-} & {
-	a: number;
-	c: number;
-} & {
-	b: number;
-	d: number;
-};
- */
 </script>
 
 <style scoped lang="scss"></style>

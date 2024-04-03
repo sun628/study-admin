@@ -1,4 +1,3 @@
-import { toRefsCode1 } from './code';
 export const toRefImpl = `export function toRef<T extends object, K extends keyof T>(
   object: T,
   key: K,

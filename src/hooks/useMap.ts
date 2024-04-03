@@ -38,7 +38,7 @@ export const loadMapUI = (map: AMap.Map, cityCodes: number | ConcatArray<number>
 	const provCodes: string | any[] = [];
 	function getAllRings(feature: any) {
 		const coords = feature.geometry.coordinates;
-		const rings = [];
+		const rings: any[] = [];
 		for (let i = 0, len = coords.length; i < len; i++) {
 			rings.push(coords[i][0]);
 		}
@@ -46,7 +46,7 @@ export const loadMapUI = (map: AMap.Map, cityCodes: number | ConcatArray<number>
 	}
 	function getLongestRing(feature: any) {
 		const rings = getAllRings(feature);
-		rings.sort(function (a, b) {
+		rings.sort((a, b) => {
 			return b.length - a.length;
 		});
 		return rings[0];
@@ -66,7 +66,7 @@ export const loadMapUI = (map: AMap.Map, cityCodes: number | ConcatArray<number>
 				if (!areaNodes) return;
 				const countryNode = areaNodes[0];
 				const cityNodes = areaNodes.slice(1);
-				const path = [];
+				const path: number[] = [];
 				// 首先放置背景区域，这里是大陆的边界
 				path.push(getLongestRing(countryNode.getParentFeature()));
 				for (let i = 0, len = provCodes.length; i < len; i++) {
