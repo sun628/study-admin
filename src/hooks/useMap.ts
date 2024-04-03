@@ -1,4 +1,3 @@
-import '@amap/amap-jsapi-types';
 import AMapLoader from '@amap/amap-jsapi-loader';
 import { MAP_KEY } from '@/config';
 /**
@@ -35,16 +34,16 @@ let borderPolygon: AMap.Polygon | null = null;
  **/
 export const loadMapUI = (map: AMap.Map, cityCodes: number | ConcatArray<number>) => {
 	const countryCode = 100000; // 全国
-	const provCodes: string | any[] = [];
+	const provCodes: string[] = [];
 	function getAllRings(feature: any) {
 		const coords = feature.geometry.coordinates;
-		const rings: any[] = [];
+		const rings: Array<[number, number]>[] = [];
 		for (let i = 0, len = coords.length; i < len; i++) {
 			rings.push(coords[i][0]);
 		}
 		return rings;
 	}
-	function getLongestRing(feature: any) {
+	function getLongestRing(feature: any): Array<[number, number]> {
 		const rings = getAllRings(feature);
 		rings.sort((a, b) => {
 			return b.length - a.length;
@@ -66,7 +65,7 @@ export const loadMapUI = (map: AMap.Map, cityCodes: number | ConcatArray<number>
 				if (!areaNodes) return;
 				const countryNode = areaNodes[0];
 				const cityNodes = areaNodes.slice(1);
-				const path: number[] = [];
+				const path: Array<[number, number]>[] = [];
 				// 首先放置背景区域，这里是大陆的边界
 				path.push(getLongestRing(countryNode.getParentFeature()));
 				for (let i = 0, len = provCodes.length; i < len; i++) {
@@ -85,9 +84,8 @@ export const loadMapUI = (map: AMap.Map, cityCodes: number | ConcatArray<number>
 					borderPolygon = null;
 				}
 				// https://lbs.amap.com/api/javascript-api/reference/overlay#Polygon
-				borderPolygon = new (AMap.Polygon as any)({
+				borderPolygon = new AMap.Polygon({
 					bubble: true,
-					lineJoin: 'round',
 					strokeColor: '#59A1BC', // 线颜色
 					strokeOpacity: 0.8, // 线透明度
 					strokeWeight: 2, // 线宽
@@ -132,15 +130,15 @@ export const addPolyline = (opts: AMap.PolylineOptions) => {
 };
 
 /**
- * @description 信息窗体，地图仅可同时展示一个信息窗体，推荐为信息窗体通过样式显示设置尺寸。 * // [亲手试一试](https://lbs.amap.com/api/jsapi-v2/example/infowindow/default-style-infowindow)
+ * @description 信息窗体，地图仅可同时展示一个信息窗体，推荐为信息窗体通过样式显示设置尺寸。[自定义窗体示例](https://lbs.amap.com/api/jsapi-v2/example/infowindow/default-style-infowindow)
  * @name InfoWindow
  * @extends {OverlayDOM}
- * @param {InfoOptions} opts 信息窗体参数
+ * @param {string |  AMap.InfoWindowOptions} opts 信息窗体参数
  * @param {boolean} opts.isCustom 是否自定义窗体。设为true时，信息窗体外框及内容完全按照content所设的值添加（默认为false，即在系统默认的信息窗体外框中显示content内容）
  * @param {boolean} opts.autoMove 是否自动调整窗体到视野内（当信息窗体超出视野范围时，通过该属性设置是否自动平移地图，使信息窗体完全显示）
  * @param {number[]} opts.avoid autoMove 为 true 时，自动平移到视野内后的上右下左的避让宽度。默认值：[20, 20, 20, 20]
  * @param {boolean} opts.closeWhenClickMap 控制是否在鼠标点击地图后关闭信息窗体，默认false，鼠标点击地图后不关闭信息窗体
- * @param {String|HTMLElement} opts.content 显示内容，可以是HTML要素字符串或者HTMLElement对象, [自定义窗体示例](https://lbs.amap.com/api/jsapi-v2/example/infowindow/custom-style-infowindow)
+ * @param {String|HTMLElement} opts.content 显示内容，可以是HTML要素字符串或者HTMLElement对象
  * @param {Size} opts.size 信息窗体尺寸（isCustom为true时，该属性无效）
  * @param {string} opts.anchor 信息窗体锚点。默认值：'bottom-center'。可选值：'top-left'|'top-center'|'top-right'|'middle-left'|'center'|'middle-right'|'bottom-left'|'bottom-center'|'bottom-right'
  * @param {Vector|Pixel} opts.offset 信息窗体显示位置偏移量。默认基准点为信息窗体的底部中心。默认值: [0, 0]
@@ -149,20 +147,20 @@ export const addPolyline = (opts: AMap.PolylineOptions) => {
  * const infoWindow = createInfoWindow('这是一个自定义的信息窗体');
  * infoWindow.open(map, map.getCenter());
  */
-export const createInfoWindow = (options: string | AMap.InfoOptions): AMap.InfoWindow => {
-	if (typeof options === 'string') {
+export const createInfoWindow = (opts: string | AMap.InfoWindowOptions): AMap.InfoWindow => {
+	if (typeof opts === 'string') {
 		return new AMap.InfoWindow({
 			isCustom: true, // 使用自定义窗体
-			content: options, // 信息窗体的内容可以是任意 html 片段
+			content: opts, // 信息窗体的内容可以是任意 html 片段
 			offset: new AMap.Pixel(16, -45),
 		});
 	} else {
-		return new AMap.InfoWindow(options);
+		return new AMap.InfoWindow(opts);
 	}
 };
 
 /**
- * @description 海量点类
+ * @description 海量点类, [亲手试一试](https://lbs.amap.com/api/jsapi-v2/example/marker/massmarks)
  * @name MassMarks
  * @extends {AMap.Event}
  * @param {MassData[]} data 海量点数据参数
@@ -180,7 +178,6 @@ export const createInfoWindow = (options: string | AMap.InfoOptions): AMap.InfoW
  * @param {pixel} opts.style.anchor 锚点位置
  * @param {number} opts.style.zIndex 点展示优先级，默认为使用样式的索引值。
  * @example
- * // 创建 MassMarks 实例，[亲手试一试](https://lbs.amap.com/api/jsapi-v2/example/marker/massmarks)
  * var massMarks = new AMap.MassMarks(data, {
  *     opacity: 0.8,
  *     zIndex: 111,
@@ -190,7 +187,7 @@ export const createInfoWindow = (options: string | AMap.InfoOptions): AMap.InfoW
  * // 将海量点实例添加到地图上
  * map.add(massMarks);
  */
-export const addMassMarkers = (data: AMap.MassData[], opts: AMap.MassMarkersOptions, callback: (e: Event) => void) => {
+export const addMassMarkers = (data: AMap.MassMarkersDataOption[], opts: AMap.MassMarkersOptions, callback: (e: Event) => void) => {
 	const massMarks = new AMap.MassMarks(data, opts);
 	if (callback) massMarks.on('click', callback);
 	return massMarks;
