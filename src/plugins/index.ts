@@ -28,9 +28,6 @@ export function createVitePlugins() {
 			configFile: 'uno.config.ts',
 		}),
 		vue(),
-		CodeInspectorPlugin({
-			bundler: 'vite',
-		}),
 		eslintPlugin({
 			include: ['src/**/*.ts', 'src/**/*.vue', 'src/*.ts', 'src/*.vue'],
 		}),
