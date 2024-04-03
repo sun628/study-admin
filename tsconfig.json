@@ -3,23 +3,41 @@
 		"target": "ESNext",
 		"useDefineForClassFields": true,
 		"module": "ESNext",
-		"moduleResolution": "Node",
-		"strict": true,
-		"jsx": "preserve",
-		"resolveJsonModule": true,
-		"isolatedModules": true,
-		"esModuleInterop": true,
-		"experimentalDecorators": true, // 启用实验性的ES装饰器
-		"emitDecoratorMetadata": true, // 为装饰器声明生成元数据
-		"lib": ["ESNext", "DOM"],
-		"skipLibCheck": true,
+		"lib": ["ESNext", "DOM", "DOM.Iterable"], // 编译过程中需要引入的库文件的列表
+		"skipLibCheck": true, // 跳过所有的声明文件（*.d.ts）的类型检查
+
+		/* Bundler mode */
+		"moduleResolution": "Node", // 指定模块解析策略
+		"allowImportingTsExtensions": true, // 允许从 .ts 文件导入 .ts 文件
+		"resolveJsonModule": true, // 允许导入 JSON 模块
+		"isolatedModules": true, // 将每个文件作为单独的模块
 		"noEmit": true, //将 TypeScript 编译器设置为仅执行类型检查，而不生成编译输出文件
-		"allowJs": true,
-		"baseUrl": ".",
+		"jsx": "preserve", // 保留 JSX 以供后续转换
+
+		/* Linting */
+		"strict": true, // 启用所有严格类型检查选项
+		"noFallthroughCasesInSwitch": true, // 防止 switch 语句中的 case 语句落空
+		"esModuleInterop": true, // 生成的模块使用 esModuleInterop
+		"allowJs": true, // 允许编译 JavaScript 文件
+		"baseUrl": ".", // 用于解析非相对模块名称的基目录
 		"paths": {
 			"@/*": ["src/*"]
 		},
-		"types": ["element-plus/global", "vite-plugin-svg-icons/client"]
+		"noImplicitOverride": true, // 不允许隐式重写
+		"useUnknownInCatchVariables": false, // 不允许未知类型
+		"composite": false, // 启用项目编译
+		"declarationMap": false, // 生成声明映射
+		"forceConsistentCasingInFileNames": true, // 强制一致的文件名大小写
+		"inlineSources": false, // 内联源
+		"noUnusedParameters": false, // 不允许未使用的参数
+		"removeComments": true, // 移除注释
+		"noLib": false, // 不包含默认库
+		"allowSyntheticDefaultImports": true, // 允许合成默认导入
+		"strictFunctionTypes": false, // 严格函数类型
+		"jsxImportSource": "vue", // JSX 导入源
+
+		"noImplicitAny": false, // 不允许隐式 any
+		"types": ["node", "vite/client"] // 包含类型
 	},
 	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts"],
 	"exclude": ["node_modules", "dist", "**/*.js"],
