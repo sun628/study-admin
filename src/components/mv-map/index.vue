@@ -6,7 +6,6 @@
 <script setup lang="ts">
 // import AMapLoader from '@amap/amap-jsapi-loader';
 import { onMounted, shallowRef, provide } from 'vue';
-import '@amap/amap-jsapi-types'; // 高德地图类型声明
 import { initMap, loadMapUI } from '@/hooks/useMap';
 import { MAP_OPTIONS } from '@/config';
 
