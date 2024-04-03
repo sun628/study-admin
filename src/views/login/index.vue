@@ -10,7 +10,7 @@
 				<div class="login-warp-two"></div>
 				<div class="login-warp">
 					<div class="login-logo">
-						<img class="login-icon" src="@/assets/images/logo.jpg" alt="" />
+						<img class="login-icon" src="@/assets/images/logo.webp" alt="" />
 						<h2 class="logo-text">暖阳</h2>
 					</div>
 					<LoginForm />
