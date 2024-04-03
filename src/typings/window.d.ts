@@ -1,4 +1,3 @@
-// * global
 declare global {
 	interface Navigator {
 		msSaveOrOpenBlob: (blob: Blob, fileName: string) => void;
@@ -8,4 +7,5 @@ declare global {
 		_AMapSecurityConfig: any;
 	}
 }
+
 export {};

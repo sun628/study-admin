@@ -29,13 +29,3 @@ declare interface ViteEnv {
 }
 
 declare var AMapUI: any;
-
-declare global {
-	interface Navigator {
-		msSaveOrOpenBlob: (blob: Blob, fileName: string) => void;
-		browserLanguage: string;
-	}
-	interface Window {
-		_AMapSecurityConfig: any;
-	}
-}
