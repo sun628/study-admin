@@ -16,6 +16,7 @@
 			</template>
 		</mv-table>
 
+		<!-- 插槽 -->
 		<mv-table v-model:pagination="pagination" :data="slotsData">
 			<el-table-column prop="name" label="插槽名" />
 			<el-table-column prop="description" label="说明" />
