@@ -22,7 +22,7 @@
 			:total="pagination.total"
 			class="pagination"
 		>
-			<span>2222</span>
+			<slot name="pagination"></slot>
 		</el-pagination>
 	</div>
 </template>
@@ -49,6 +49,8 @@ type PropUnion = (typeof columns.value)[number]['prop'];
 // 动态生成的 Slots 类型
 type Slots<PropUnion extends string> = {
 	[K in PropUnion]: (props: { row: T; $index: number }) => any;
+} & {
+	pagination?: (props: object) => any;
 };
 defineSlots<Slots<PropUnion>>();
 </script>
