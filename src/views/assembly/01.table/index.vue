@@ -1,22 +1,28 @@
 <template>
 	<div class="assembly-table">
-		<doc title="属性">
-			<mv-table v-model:pagination="pagination" :data="tableData" :columns="columns" :row-class-name="tableRowClassName">
-				<template #type="{ row }">
-					<el-tag>{{ row.type }}</el-tag>
-				</template>
-				<template #default="{ row }">
-					<span>{{ row.default || '—' }}</span>
-				</template>
-				<template #operation="{ row, $index }">
-					<el-button size="small" type="primary" @click="handleEdit($index, row)">编辑</el-button>
-				</template>
+		<Tip>基于el-table 和 el-pagination 二次封装, 支持原有组件的属性 ，事件 ，方法，拓展了<tag>columns</tag>配置项, <tag>pagination</tag>配置项</Tip>
+		<mv-table :data="tableData" :columns="columns" :row-class-name="tableRowClassName">
+			<template #type="{ row }">
+				<el-tag>{{ row.type }}</el-tag>
+			</template>
+			<template #default="{ row }">
+				<span>{{ row.default || '—' }}</span>
+			</template>
+			<template #operation="{ row, $index }">
+				<el-button size="small" type="primary" @click="handleEdit($index, row)">编辑</el-button>
+			</template>
+			<template #date="{ row }">
+				<span>{{ row.property }}</span>
+			</template>
+		</mv-table>
 
-				<template #date="{ row }">
-					<span>{{ row.property }}</span>
-				</template>
-			</mv-table>
-		</doc>
+		<mv-table v-model:pagination="pagination" :data="slotsData">
+			<el-table-column prop="name" label="插槽名" />
+			<el-table-column prop="description" label="说明" />
+			<template #pagination>
+				<span class="font-bold">自定义分页内容：</span>
+			</template>
+		</mv-table>
 	</div>
 </template>
 
@@ -32,6 +38,7 @@ interface User {
 	type: string;
 	default?: string;
 }
+
 const tableRowClassName = ({ row, rowIndex }: { row: User; rowIndex: number }) => {
 	if (rowIndex % 2 === 0) {
 		return 'warning-row';
@@ -62,6 +69,7 @@ const columns = [
 		label: '操作',
 	},
 ];
+
 const tableData = ref<User[]>([
 	{
 		property: '表格props透传',
@@ -75,32 +83,25 @@ const tableData = ref<User[]>([
 	},
 ]);
 
+const slotsData = ref([
+	{
+		name: 'pagination',
+		description: '自定义分页内容 设置文案，需要在 layout 中列出 slot',
+	},
+]);
+
 const pagination = reactive<PaginationProps>({
 	currentPage: 1,
 	pageSize: 10,
 	total: 999,
-	layout: 'total, prev, pager, next, sizes, jumper',
+	layout: 'slot,total, prev, pager, next, sizes, jumper',
+	nextText: '下一页',
+	popperClass: 'popper-class',
 	background: true, // 是否显示背景色
-	onSizeChange: (val: number) => onSizeChange(val), // 改变每页数量时更新显示
-	onCurrentChange: (val: number) => onCurrentChange(val), // 改变页码时更新显示
+	onSizeChange: (val: number) => console.log('onSizeChange ~ pageSize', val), // 改变每页数量时更新显示
+	onCurrentChange: (val: number) => console.log('onCurrentChange ~ currentPage', val), // 改变页码时更新显示
 	onChange: (current: number, pageSize: number) => onPageChange(current, pageSize), // current-page 或 page-size 更改时触发
 });
-
-/**
- * @description 改变每页数量时更新显示
- * @param {numebr} pageSize - 每页数量
- **/
-const onSizeChange = (pageSize: number) => {
-	console.log('🚀 ~ onSizeChange ~ pageSize', pageSize);
-};
-
-/**
- * @description 改变页码时更新显示
- * @param {number} current - 当前页码
- **/
-const onCurrentChange = (current: number) => {
-	console.log('🚀 ~ onCurrentChange ~ current', current);
-};
 
 /**
  * @description current-page 或 page-size 更改时触发
