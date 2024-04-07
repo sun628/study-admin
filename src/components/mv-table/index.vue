@@ -1,83 +1,64 @@
 <template>
 	<div class="mv-table">
-		<el-table :data="tableData" v-bind="$attrs">
-			<el-table-column v-for="column in columns" :key="column.prop" v-bind="column">
-				<template v-if="$slots[column.prop]" #default="scope">
-					<slot :name="column.prop" v-bind="scope"></slot>
-				</template>
-			</el-table-column>
+		<el-table :data="data" v-bind="$attrs">
+			<template v-if="columns">
+				<el-table-column v-for="column in columns" :key="column.prop" v-bind="column">
+					<template v-if="$slots[column.prop]" #default="scope">
+						<slot :name="column.prop" v-bind="scope"></slot>
+					</template>
+				</el-table-column>
+			</template>
+			<template v-if="isEmpty(columns)" #default="scope">
+				<slot v-bind="scope"></slot>
+			</template>
 		</el-table>
+
 		<el-pagination
 			v-if="pagination"
-			class="pagination"
-			:layout="layout"
-			:page-sizes="pagination.pageSizeOptions"
-			:current-page="pagination.currentPage"
-			:page-size="pagination.pageSize"
+			v-bind="pagination"
+			v-model:current-page="pagination.currentPage"
+			v-model:page-size="pagination.pageSize"
+			:layout="pageLayout"
 			:total="pagination.total"
-			:disabled="pagination.disabled"
-			@size-change="handleSizeChange"
-			@current-change="handleCurrentChange"
+			class="pagination"
 		>
 		</el-pagination>
 	</div>
 </template>
 <script setup lang="ts" generic="T, U extends TableColumn">
+import { isEmpty } from '@/utils/is';
 import { TableColumn, TableProps } from './type';
+import { PaginationProps } from 'element-plus';
 defineOptions({
 	name: 'MvTable',
 });
 
-// const emit = defineEmits<{
-// 	onPageChange: [current: number, pageSize: number];
-// }>();
-
 const props = withDefaults(defineProps<TableProps<T, U>>(), {
-	tableData: () => [],
+	data: () => [],
 	columns: () => [],
-	pagination: () => {
-		return {
-			currentPage: 1,
-			pageSize: 10,
-			total: 0,
-			disabled: false,
-			hideOnSinglePage: false,
-			layout: 'total, prev, pager, next, sizes, jumper',
-			pageSizeOptions: [10, 20, 50, 100],
-			onChange: () => {},
-			onSizeChange: () => {},
-			onCurrentChange: () => {},
-		};
-	},
 });
-const { tableData, columns, pagination } = toRefs(props);
 
-const layout = computed(() => pagination.value.layout || 'total, prev, pager, next, sizes, jumper');
+const { data, columns } = toRefs(props);
 
-const handleSizeChange = (pageSize: number) => {
-	const { currentPage, onSizeChange, onChange } = pagination.value;
-	onSizeChange && onSizeChange(pageSize);
-	onChange && onChange(currentPage, pageSize);
-};
+const pagination = defineModel<Partial<PaginationProps> | undefined>('pagination', {
+	default: () => undefined,
+});
 
-const handleCurrentChange = (current: number) => {
-	const { pageSize, onCurrentChange, onChange } = pagination.value;
-	onCurrentChange && onCurrentChange(current);
-	onChange && onChange(current, pageSize);
-};
+const pageLayout = computed(() => pagination.value?.layout || 'total, prev, pager, next, sizes, jumper');
 
 // 使用映射类型从数组中提取 prop 值的联合类型
-type PropUnion = (typeof columns.value)[number]['prop'];
+type Props = (typeof columns.value)[number]['prop'];
 
 // 动态生成的 Slots 类型
-type Slots<PropUnion extends string> = {
-	[K in PropUnion]: (props: { row: T; $index: number }) => any;
+type Slots<T extends string> = {
+	[K in T]: (props: { row: T; $index: number }) => any;
 };
 
-defineSlots<Slots<PropUnion>>();
+defineSlots<Slots<Props>>();
 </script>
 <style scoped lang="scss">
 .pagination {
-	margin-top: 20px;
+	margin-top: 10px;
+	padding-left: 10px;
 }
 </style>
