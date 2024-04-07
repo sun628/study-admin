@@ -1,5 +1,3 @@
-import exp from 'constants';
-
 // 列配置项
 export type TableColumn = {
 	prop: string;
@@ -16,7 +14,15 @@ export type PaginationProps = {
 	pageCount?: number;
 	pagerCount?: 5 | 7 | 9 | 11 | 13 | 15 | 17 | 19 | 21;
 	defaultCurrentPage?: number;
-	layout?: string;
+	layout?: string; // string (consists of sizes, prev, pager, next, jumper, ->, total, slot)
+	popperClass?: string;
+	prevText?: string;
+	prevIcon?: string | Component;
+	nextText?: string;
+	nextIcon?: string | Component;
+	disabled?: boolean;
+	teleported?: boolean;
+	hideOnSinglePage?: boolean;
 	onSizeChange?: (pageSize: number) => void;
 	onCurrentChange?: (currentPage: number) => void;
 	onChange?: (currentPage: number, pageSize: number) => void;
