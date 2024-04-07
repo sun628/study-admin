@@ -1,13 +1,23 @@
 <template>
-	<mv-table :table-data="tableData" :columns="columns" :pagination="pagination">
-		<template #operation="{ row, $index }">
-			<el-button size="small" type="primary" @click="handleEdit($index, row)">编辑</el-button>
-		</template>
+	<div class="assembly-table">
+		<doc title="属性">
+			<mv-table v-model:pagination="pagination" :data="tableData" :columns="columns" :row-class-name="tableRowClassName">
+				<template #type="{ row }">
+					<el-tag>{{ row.type }}</el-tag>
+				</template>
+				<template #default="{ row }">
+					<span>{{ row.default || '—' }}</span>
+				</template>
+				<template #operation="{ row, $index }">
+					<el-button size="small" type="primary" @click="handleEdit($index, row)">编辑</el-button>
+				</template>
 
-		<template #date="{ row }">
-			<span>{{ row.date }}</span>
-		</template>
-	</mv-table>
+				<template #date="{ row }">
+					<span>{{ row.property }}</span>
+				</template>
+			</mv-table>
+		</doc>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -17,41 +27,60 @@ defineOptions({
 });
 
 interface User {
-	date: string;
-	name: string;
-	address: string;
+	property: string;
+	description: string;
+	type: string;
+	default?: string;
 }
+const tableRowClassName = ({ row, rowIndex }: { row: User; rowIndex: number }) => {
+	if (rowIndex % 2 === 0) {
+		return 'warning-row';
+	} else return 'success-row';
+};
 
+const columns = [
+	{
+		prop: 'property',
+		label: '属性名',
+		'min-width': 200,
+	},
+	{
+		prop: 'description',
+		label: '说明',
+		'min-width': 400,
+	},
+	{
+		prop: 'type',
+		label: '类型',
+	},
+	{
+		prop: 'default',
+		label: '默认值',
+	},
+	{
+		prop: 'operation',
+		label: '操作',
+	},
+];
 const tableData = ref<User[]>([
 	{
-		date: '2016-05-03',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
+		property: '表格props透传',
+		description: '使用方式与 el-table 保持一致,支持插槽和columns配置的方式',
+		type: '——',
 	},
 	{
-		date: '2016-05-02',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		date: '2016-05-04',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
-	},
-	{
-		date: '2016-05-01',
-		name: 'Tom',
-		address: 'No. 189, Grove St, Los Angeles',
+		property: 'v-model:pagination',
+		description: '使用方式与 el-pagination 保持一致',
+		type: 'PaginationProps',
 	},
 ]);
 
 const pagination = reactive({
 	currentPage: 1,
 	pageSize: 10,
-	total: 1000,
-	layout: 'total, prev, pager, next, sizes, jumper', // 组件布局，子组件名用逗号分隔
-	pageSizeOptions: [10, 20, 50, 100], // 每页数量选项
-	onSizeChange: (val) => onSizeChange(val), // 改变每页数量时更新显示
+	total: 999,
+	background: true, // 是否显示背景色
+	onSizeChange: (val: number) => onSizeChange(val), // 改变每页数量时更新显示
 	onCurrentChange: (val) => onCurrentChange(val), // 改变页码时更新显示
 	onChange: (current, pageSize) => onPageChange(current, pageSize), // current-page 或 page-size 更改时触发
 });
@@ -62,7 +91,6 @@ const pagination = reactive({
  **/
 const onSizeChange = (pageSize: number) => {
 	console.log('🚀 ~ onSizeChange ~ pageSize', pageSize);
-	pagination.pageSize = pageSize;
 };
 
 /**
@@ -71,7 +99,6 @@ const onSizeChange = (pageSize: number) => {
  **/
 const onCurrentChange = (current: number) => {
 	console.log('🚀 ~ onCurrentChange ~ current', current);
-	pagination.currentPage = current;
 };
 
 /**
@@ -81,34 +108,26 @@ const onCurrentChange = (current: number) => {
  **/
 const onPageChange = (page: number, pageSize: number) => {
 	console.log('🚀 ~ onPageChange ~ page, pageSize', page, pageSize);
-	pagination.currentPage = page;
-	pagination.pageSize = pageSize;
 };
-
-const columns = [
-	{
-		prop: 'date',
-		label: '日期',
-		width: '180',
-	},
-	{
-		prop: 'name',
-		label: '姓名',
-		width: '180',
-	},
-	{
-		prop: 'address',
-		label: '地址',
-	},
-	{
-		prop: 'operation',
-		label: '操作',
-	},
-];
 
 const handleEdit = (index: number, row: User) => {
 	console.log(index, row);
+	console.log('pagination', pagination);
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.assembly-table {
+	width: 100%;
+	height: 100%;
+	background-color: var(--el-bg-color);
+}
+:deep(.el-table) {
+	.warning-row {
+		--el-table-tr-bg-color: var(--el-color-warning-light-9);
+	}
+	.success-row {
+		--el-table-tr-bg-color: var(--el-color-success-light-9);
+	}
+}
+</style>
