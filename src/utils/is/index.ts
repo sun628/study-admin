@@ -104,14 +104,44 @@ export function isImageDom(o: Element) {
 	return o && ['IMAGE', 'IMG'].includes(o.tagName);
 }
 
+/**
+ * @description 判断是否为null
+ * @param {any} val
+ * @returns {boolean}
+ **/
 export function isNull(val: unknown): val is null {
 	return val === null;
 }
 
+/**
+ * @description 判断是否为null或undefined
+ * @param {any} val
+ * @returns {boolean}
+ **/
 export function isNullAndUnDef(val: unknown): val is null | undefined {
 	return isUnDef(val) && isNull(val);
 }
 
+/**
+ * @description 判断是否为null或undefined
+ * @param {any} val
+ * @returns {boolean}
+ **/
 export function isNullOrUnDef(val: unknown): val is null | undefined {
 	return isUnDef(val) || isNull(val);
+}
+
+/**
+ * @description 判断是否为空
+ * @param {any} val
+ * @returns {boolean}
+ **/
+export function isEmpty(val: unknown): boolean {
+	if (isArray(val)) {
+		return val.length === 0;
+	}
+	if (isObject(val)) {
+		return Object.keys(val).length === 0;
+	}
+	return isUnDef(val) || val === '' || val !== val;
 }
