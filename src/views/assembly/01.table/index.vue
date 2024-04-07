@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import MvTable from '@/components/mv-table/index.vue';
+import MvTable, { PaginationProps } from '@/components/mv-table';
 defineOptions({
 	name: 'AssemblyTable',
 });
@@ -75,14 +75,15 @@ const tableData = ref<User[]>([
 	},
 ]);
 
-const pagination = reactive({
+const pagination = reactive<PaginationProps>({
 	currentPage: 1,
 	pageSize: 10,
 	total: 999,
+	layout: 'total, prev, pager, next, sizes, jumper',
 	background: true, // 是否显示背景色
 	onSizeChange: (val: number) => onSizeChange(val), // 改变每页数量时更新显示
-	onCurrentChange: (val) => onCurrentChange(val), // 改变页码时更新显示
-	onChange: (current, pageSize) => onPageChange(current, pageSize), // current-page 或 page-size 更改时触发
+	onCurrentChange: (val: number) => onCurrentChange(val), // 改变页码时更新显示
+	onChange: (current: number, pageSize: number) => onPageChange(current, pageSize), // current-page 或 page-size 更改时触发
 });
 
 /**

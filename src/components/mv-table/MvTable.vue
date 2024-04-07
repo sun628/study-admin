@@ -22,16 +22,13 @@
 			:total="pagination.total"
 			class="pagination"
 		>
+			<span>2222</span>
 		</el-pagination>
 	</div>
 </template>
 <script setup lang="ts" generic="T, U extends TableColumn">
 import { isEmpty } from '@/utils/is';
-import { TableColumn, TableProps } from './type';
-import { PaginationProps } from 'element-plus';
-defineOptions({
-	name: 'MvTable',
-});
+import { TableColumn, TableProps, PaginationProps } from './type';
 
 const props = withDefaults(defineProps<TableProps<T, U>>(), {
 	data: () => [],
@@ -40,21 +37,20 @@ const props = withDefaults(defineProps<TableProps<T, U>>(), {
 
 const { data, columns } = toRefs(props);
 
-const pagination = defineModel<Partial<PaginationProps> | undefined>('pagination', {
+const pagination = defineModel<PaginationProps>('pagination', {
 	default: () => undefined,
 });
 
 const pageLayout = computed(() => pagination.value?.layout || 'total, prev, pager, next, sizes, jumper');
 
 // 使用映射类型从数组中提取 prop 值的联合类型
-type Props = (typeof columns.value)[number]['prop'];
+type PropUnion = (typeof columns.value)[number]['prop'];
 
 // 动态生成的 Slots 类型
-type Slots<T extends string> = {
-	[K in T]: (props: { row: T; $index: number }) => any;
+type Slots<PropUnion extends string> = {
+	[K in PropUnion]: (props: { row: T; $index: number }) => any;
 };
-
-defineSlots<Slots<Props>>();
+defineSlots<Slots<PropUnion>>();
 </script>
 <style scoped lang="scss">
 .pagination {
