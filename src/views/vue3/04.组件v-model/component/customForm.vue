@@ -7,9 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import { useVModel } from '@/hooks/useVModel';
-// import { useVModel } from '@vueuse/core';
-
 export type FormProps = {
 	name: string;
 	age: number;
