@@ -1,7 +1,7 @@
 <template>
 	<div class="assembly-table">
 		<Tip>基于el-table 和 el-pagination 二次封装, 支持原有组件的属性 ，事件 ，方法，拓展了<tag>columns</tag>配置项, <tag>pagination</tag>配置项</Tip>
-		<mv-table :data="tableData" :columns="columns" :row-class-name="tableRowClassName">
+		<mv-table ref="MvTableRef" :data="tableData" :columns="columns" :row-class-name="tableRowClassName">
 			<template #type="{ row }">
 				<el-tag>{{ row.type }}</el-tag>
 			</template>

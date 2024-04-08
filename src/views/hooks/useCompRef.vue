@@ -5,18 +5,18 @@
 			<h2>例</h2>
 			<Highlight :code="code" lang="xml" />
 			<h2>源代码</h2>
-			<Highlight :code="useCompRefCode" :auto="false" />
+			<Highlight :code="CompRefCode" :auto="false" />
 			<ElForm ref="ElFormRef" />
 		</doc>
 	</el-card>
 </template>
 <script setup lang="ts">
-import useCompRefCode from '@/hooks/useCompRef?raw';
-import { useCompRef } from '@/hooks/useCompRef';
+import CompRefCode from '@/hooks/useCompRef?raw';
+import { CompRef } from '@/hooks/useCompRef';
 import { ElForm } from 'element-plus';
 
 // const ElFormRef = ref<InstanceType<typeof ElForm>>();
-const ElFormRef = useCompRef(ElForm);
+const ElFormRef = CompRef(ElForm);
 
 const code =
 	`<template>
@@ -24,11 +24,11 @@ const code =
 </template>
 
 <script setup lang="ts">
-  import { useCompRef } from '@/hooks/useCompRef';
+  import { CompRef } from '@/hooks/useCompRef';
   import { ElForm } from 'element-plus';
 
   // const ElFormRef = ref<InstanceType<typeof ElForm>>();
-  const ElFormRef = useCompRef(ElForm);
+  const ElFormRef = CompRef(ElForm);
 </` + `script>`;
 </script>
 

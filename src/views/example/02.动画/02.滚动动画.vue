@@ -32,7 +32,7 @@
 <script setup lang="ts">
 import DigitalScroll from '@/components/digital-scroll/index.vue';
 import code from '@/components/digital-scroll/index.vue?raw';
-import { useCompRef } from '@/hooks/useCompRef';
+import { CompRef } from '@/hooks/useCompRef';
 
 const tableData = ref([
 	{
@@ -70,7 +70,7 @@ const numberVal = ref(0);
 
 // type DigitalScrollType = InstanceType<typeof DigitalScroll>;
 
-const DigitalScrollRef = useCompRef(DigitalScroll);
+const DigitalScrollRef = CompRef(DigitalScroll);
 
 const start = () => {
 	DigitalScrollRef.value?.start();
