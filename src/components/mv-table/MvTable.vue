@@ -1,6 +1,6 @@
 <template>
 	<div class="mv-table">
-		<el-table :data="data" v-bind="$attrs">
+		<el-table v-bind="$attrs" ref="ElTableRef" :data="data">
 			<template v-if="columns">
 				<el-table-column v-for="column in columns" :key="column.prop" v-bind="column">
 					<template v-if="$slots[column.prop]" #default="scope">
@@ -29,6 +29,7 @@
 <script setup lang="ts" generic="T, U extends TableColumn">
 import { isEmpty } from '@/utils/is';
 import { TableColumn, TableProps, PaginationProps } from './type';
+import { TableInstance } from 'element-plus';
 
 const props = withDefaults(defineProps<TableProps<T, U>>(), {
 	data: () => [],
@@ -37,10 +38,20 @@ const props = withDefaults(defineProps<TableProps<T, U>>(), {
 
 const { data, columns } = toRefs(props);
 
+const ElTableRef = ref<TableInstance>(); // 表格实例
+
+/**
+ * @description 获取表格实例
+ * @return {TableInstance} 表格实例
+ **/
+const getInstance = () => ElTableRef.value;
+
+// 分页
 const pagination = defineModel<PaginationProps>('pagination', {
 	default: () => undefined,
 });
 
+// 分页布局
 const pageLayout = computed(() => pagination.value?.layout || 'total, prev, pager, next, sizes, jumper');
 
 // 使用映射类型从数组中提取 prop 值的联合类型
@@ -53,6 +64,8 @@ type Slots<PropUnion extends string> = {
 	pagination?: (props: object) => any;
 };
 defineSlots<Slots<PropUnion>>();
+
+defineExpose({ getInstance });
 </script>
 <style scoped lang="scss">
 .pagination {
