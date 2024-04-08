@@ -104,7 +104,7 @@
 						1.等价于 vueuse 中工具函数<Tag data="useVModel" />，使用方式一样
 						<el-link type="primary" href="https://vueuse.org/core/useVModel/" target="_blank">链接地址</el-link>
 					</p>
-					<p>2.Vue 3.3 新特性 <Tag data="defineModel" />,但是目前是试验性的，需要 config 中配置一下（vue3.4版本已更新，可以直接用）</p>
+					<p>2.Vue 3.3 新特性 <Tag data="defineModel" />,但是目前是试验性的，需要 config 中配置一下<tag>（vue3.4版本已更新，可以直接用）</tag></p>
 				</Tip>
 			</doc>
 			<Highlight :code="defineModelCode" />
