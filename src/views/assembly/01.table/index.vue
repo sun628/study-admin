@@ -24,11 +24,14 @@
 				<span class="font-bold">自定义分页内容：</span>
 			</template>
 		</mv-table>
+
+		<el-button type="primary" @click="getInstance">获取表格实例</el-button>
 	</div>
 </template>
 
 <script setup lang="ts">
-import MvTable, { PaginationProps } from '@/components/mv-table';
+import MvTable, { PaginationProps, MvTableInstance } from '@/components/mv-table';
+
 defineOptions({
 	name: 'AssemblyTable',
 });
@@ -44,6 +47,15 @@ const tableRowClassName = ({ row, rowIndex }: { row: User; rowIndex: number }) =
 	if (rowIndex % 2 === 0) {
 		return 'warning-row';
 	} else return 'success-row';
+};
+const MvTableRef = ref<MvTableInstance>();
+
+/**
+ * @description 获取表格实例
+ **/
+const getInstance = () => {
+	console.log('getInstance----', MvTableRef.value?.getInstance());
+	return MvTableRef.value?.getInstance();
 };
 
 const columns = [
