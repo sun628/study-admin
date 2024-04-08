@@ -13,7 +13,7 @@
 		"isolatedModules": true, // 将每个文件作为单独的模块
 		"noEmit": true, //将 TypeScript 编译器设置为仅执行类型检查，而不生成编译输出文件
 		"jsx": "preserve", // 保留 JSX 以供后续转换
-
+		"jsxImportSource": "vue", // JSX 导入源
 		/* Linting */
 		"strict": true, // 启用所有严格类型检查选项
 		"noFallthroughCasesInSwitch": true, // 防止 switch 语句中的 case 语句落空
@@ -34,7 +34,6 @@
 		"noLib": false, // 不包含默认库
 		"allowSyntheticDefaultImports": true, // 允许合成默认导入
 		"strictFunctionTypes": false, // 严格函数类型
-		"jsxImportSource": "vue", // JSX 导入源
 
 		"noImplicitAny": false, // 不允许隐式 any
 		"types": ["node", "vite/client"] // 包含类型
