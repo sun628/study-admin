@@ -17,7 +17,7 @@ const copy: Directive = {
 		const hljs = el.querySelector('code.hljs');
 		//给highlight添加复制按钮
 		if (hljs) {
-			hljs.innerHTML = `<button title="Copy Code" class="copy">复制</button><span class="code">${hljs.innerHTML}</span>`;
+			hljs.innerHTML = `<span title="Copy Code" class="copy">复制</span><span class="code">${hljs.innerHTML}</span>`;
 			//获取复制按钮
 			const copyBtn = el.querySelector('.copy') as ElType;
 			copyBtn.copyData = binding.value;
