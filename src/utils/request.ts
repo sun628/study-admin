@@ -59,7 +59,6 @@ class RequestHttp {
 		this.service.interceptors.request.use(
 			(config: CustomAxiosRequestConfig) => {
 				const { loading, server_name } = config;
-				console.log('🚀 ~ RequestHttp ~ constructor ~ server_name:', server_name);
 				if (server_name) {
 					const server = servers.find((item) => item.name === config.server_name);
 					config.baseURL = server ? server.url : servers[0].url;
