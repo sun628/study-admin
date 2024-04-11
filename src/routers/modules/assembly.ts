@@ -8,6 +8,10 @@ const pages = [
 		name: '01.表格',
 		component: () => import('@/views/assembly/01.table/index.vue'),
 	},
+	{
+		name: '02.弹窗',
+		component: () => import('@/views/assembly/02.dialog/index.vue'),
+	},
 ];
 // vue3模块
 const assemblyRouter = [
