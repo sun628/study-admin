@@ -1,3 +1,4 @@
+import path from 'path';
 import vue from '@vitejs/plugin-vue';
 import AutoImport from 'unplugin-auto-import/vite'; //自动导入vue和vue-router相关函数
 import Components from 'unplugin-vue-components/vite';
@@ -7,7 +8,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import eslintPlugin from 'vite-plugin-eslint';
 import UnoCSS from 'unocss/vite';
 import { CodeInspectorPlugin } from 'code-inspector-plugin'; // shift+alt 点击页面元素，它能够自动打开你的 IDE 并将光标定位到 DOM 对应的源代码位置。
-import path from 'path';
+import vueJsx from '@vitejs/plugin-vue-jsx'; //支持jsx
 
 const _visualizer = visualizer({
 	emitFile: true, //是否被触摸
@@ -28,6 +29,7 @@ export function createVitePlugins() {
 			configFile: 'uno.config.ts',
 		}),
 		vue(),
+		vueJsx(),
 		eslintPlugin({
 			include: ['src/**/*.ts', 'src/**/*.vue', 'src/*.ts', 'src/*.vue'],
 		}),
