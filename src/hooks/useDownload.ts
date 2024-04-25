@@ -9,13 +9,16 @@ import { ElNotification } from 'element-plus';
  * @param {String} fileType 导出的文件格式 (默认为.xlsx)
  * */
 export const useDownload = async (api: (param: any) => Promise<any>, tempName: string, params: any = {}, isNotify = true, fileType = '.xlsx') => {
+	let notifyTimeoutId: NodeJS.Timeout | null = null;
 	if (isNotify) {
-		ElNotification({
-			title: '温馨提示',
-			message: '如果数据庞大会导致下载缓慢哦，请您耐心等待！',
-			type: 'info',
-			duration: 3000,
-		});
+		notifyTimeoutId = setTimeout(() => {
+			ElNotification({
+				title: '温馨提示',
+				message: '如果数据庞大会导致下载缓慢哦，请您耐心等待！',
+				type: 'info',
+				duration: 3000,
+			});
+		}, 3000);
 	}
 	try {
 		const res = await api(params);
@@ -33,6 +36,15 @@ export const useDownload = async (api: (param: any) => Promise<any>, tempName: s
 		document.body.removeChild(exportFile);
 		window.URL.revokeObjectURL(blobUrl);
 	} catch (error) {
-		console.log(error);
+		console.error(error);
+	} finally {
+		clearTimer(notifyTimeoutId);
+	}
+};
+
+const clearTimer = (timer) => {
+	if (timer) {
+		clearTimeout(timer);
+		timer = null;
 	}
 };
