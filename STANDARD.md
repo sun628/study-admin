@@ -94,158 +94,77 @@ module.exports = {
 	env: {
 		browser: true,
 		node: true,
-		es6: true
 	},
-	/* 指定如何解析语法 */
-	parser: "vue-eslint-parser",
-	/* 优先级低于 parse 的语法解析配置 */
-	parserOptions: {
-		parser: "@typescript-eslint/parser",
-		ecmaVersion: 2020,
-		sourceType: "module",
-		jsxPragma: "React",
-		ecmaFeatures: {
-			jsx: true
-		}
-	},
-	/* 继承某些已有的规则 */
-	extends: ["plugin:vue/vue3-recommended", "plugin:@typescript-eslint/recommended", "prettier", "plugin:prettier/recommended"],
-	/*
-	 * "off" 或 0    ==>  关闭规则
-	 * "warn" 或 1   ==>  打开的规则作为警告（不影响代码执行）
-	 * "error" 或 2  ==>  规则作为一个错误（代码不能执行，界面报错）
-	 */
-	rules: {
-		// eslint (http://eslint.cn/docs/rules)
-		"no-var": "error", // 要求使用 let 或 const 而不是 var
-		"no-multiple-empty-lines": ["error", { max: 1 }], // 不允许多个空行
-		"no-use-before-define": "off", // 禁止在 函数/类/变量 定义之前使用它们
-		"prefer-const": "off", // 此规则旨在标记使用 let 关键字声明但在初始分配后从未重新分配的变量，要求使用 const
-		"no-irregular-whitespace": "off", // 禁止不规则的空白
-
-		// typeScript (https://typescript-eslint.io/rules)
-		"@typescript-eslint/no-unused-vars": "error", // 禁止定义未使用的变量
-		"@typescript-eslint/no-inferrable-types": "off", // 可以轻松推断的显式类型可能会增加不必要的冗长
-		"@typescript-eslint/no-namespace": "off", // 禁止使用自定义 TypeScript 模块和命名空间。
-		"@typescript-eslint/no-explicit-any": "off", // 禁止使用 any 类型
-		"@typescript-eslint/ban-ts-ignore": "off", // 禁止使用 @ts-ignore
-		"@typescript-eslint/ban-types": "off", // 禁止使用特定类型
-		"@typescript-eslint/explicit-function-return-type": "off", // 不允许对初始化为数字、字符串或布尔值的变量或参数进行显式类型声明
-		"@typescript-eslint/no-var-requires": "off", // 不允许在 import 语句中使用 require 语句
-		"@typescript-eslint/no-empty-function": "off", // 禁止空函数
-		"@typescript-eslint/no-use-before-define": "off", // 禁止在变量定义之前使用它们
-		"@typescript-eslint/ban-ts-comment": "off", // 禁止 @ts-<directive> 使用注释或要求在指令后进行描述
-		"@typescript-eslint/no-non-null-assertion": "off", // 不允许使用后缀运算符的非空断言(!)
-		"@typescript-eslint/explicit-module-boundary-types": "off", // 要求导出函数和类的公共类方法的显式返回和参数类型
-
-		// vue (https://eslint.vuejs.org/rules)
-		"vue/script-setup-uses-vars": "error", // 防止<script setup>使用的变量<template>被标记为未使用，此规则仅在启用该no-unused-vars规则时有效。
-		"vue/v-slot-style": "error", // 强制执行 v-slot 指令样式
-		"vue/no-mutating-props": "off", // 不允许组件 prop的改变（明天找原因）
-		"vue/custom-event-name-casing": "off", // 为自定义事件名称强制使用特定大小写
-		"vue/attributes-order": "off", // vue api使用顺序，强制执行属性顺序
-		"vue/one-component-per-file": "off", // 强制每个组件都应该在自己的文件中
-		"vue/html-closing-bracket-newline": "off", // 在标签的右括号之前要求或禁止换行
-		"vue/max-attributes-per-line": "off", // 强制每行的最大属性数
-		"vue/multiline-html-element-content-newline": "off", // 在多行元素的内容之前和之后需要换行符
-		"vue/singleline-html-element-content-newline": "off", // 在单行元素的内容之前和之后需要换行符
-		"vue/attribute-hyphenation": "off", // 对模板中的自定义组件强制执行属性命名样式
-		"vue/require-default-prop": "off", // 此规则要求为每个 prop 为必填时，必须提供默认值
-		"vue/multi-word-component-names": "off" // 要求组件名称始终为 “-” 链接的单词
-	}
-};
-```
-
-## 四、样式规范工具（StyleLint）
-
-### 1、安装 StyleLint 相关插件：
-
-```text
-npm i stylelint stylelint-config-html stylelint-config-recommended-scss stylelint-config-recommended-vue stylelint-config-standard stylelint-config-standard-scss stylelint-config-recess-order postcss postcss-html -D
-```
-
-|               依赖                |                                                                     作用描述                                                                     |
-| :-------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------: |
-|             stylelint             |                                                                 stylelint 核心库                                                                 |
-|       stylelint-config-html       |                                  Stylelint 的可共享 HTML（和类似 HTML）配置，捆绑 postcss-html 并对其进行配置。                                  |
-| stylelint-config-recommended-scss |                                         扩展 stylelint-config-recommended 共享配置，并为 SCSS 配置其规则                                         |
-| stylelint-config-recommended-vue  |                                         扩展 stylelint-config-recommended 共享配置，并为 Vue 配置其规则                                          |
-|     stylelint-config-standard     | 打开额外的规则来执行在规范和一些 CSS 样式指南中发现的通用约定，包括：惯用 CSS 原则，谷歌的 CSS 样式指南，Airbnb 的样式指南，和 @mdo 的代码指南。 |
-|  stylelint-config-standard-scss   |                                          扩展 stylelint-config-standard 共享配置，并为 SCSS 配置其规则                                           |
-|              postcss              |                                                              postcss-html 的依赖包                                                               |
-|           postcss-html            |                                                   用于解析 HTML（和类似 HTML）的 PostCSS 语法                                                    |
-|   stylelint-config-recess-order   |                                                               属性的排序（插件包）                                                               |
-
-### 2、安装 Vscode 插件（Stylelint）：
-
-
-### 3、在目录的 .vscode 文件中新建 settings.json：
-
-```json
-{
-	"editor.formatOnSave": true,
-	"stylelint.enable": true,
-	"editor.codeActionsOnSave": {
-		"source.fixAll.stylelint": true
-	},
-	"stylelint.validate": ["css", "less", "postcss", "scss", "vue", "sass", "html"],
-	"files.eol": "\n"
-}
-```
-
-> 😎 也可以在 vscode 中全局配置上述 json 代码 😎
-
-### 4、配置 stylelint.config.js
-
-```javascript
-// @see: https://stylelint.io
-
-module.exports = {
-	/* 继承某些已有的规则 */
 	extends: [
-		"stylelint-config-standard", // 配置stylelint拓展插件
-		"stylelint-config-html/vue", // 配置 vue 中 template 样式格式化
-		"stylelint-config-standard-scss", // 配置stylelint scss插件
-		"stylelint-config-recommended-vue/scss", // 配置 vue 中 scss 样式格式化
-		"stylelint-config-recess-order", // 配置stylelint css属性书写顺序插件,
+		'eslint:recommended', // 使用推荐的eslint
+		'plugin:@typescript-eslint/recommended',
+		'plugin:vue/vue3-recommended', // 使用插件支持vue3
+		'plugin:vue/vue3-essential',
+		//1.继承.prettierrc.js文件规则2.开启rules的 "prettier/prettier": "error"3.eslint fix的同时执行prettier格式化
+		'plugin:prettier/recommended',
 	],
+	parser: 'vue-eslint-parser',
+	parserOptions: {
+		ecmaVersion: 'latest',
+		sourceType: 'moudule',
+		parser: '@typescript-eslint/parser',
+	},
+	plugins: ['vue'],
+	globals: {
+		defineProps: 'readonly',
+		defineEmits: 'readonly',
+		defineExpose: 'readonly',
+		withDefaults: 'readonly',
+		defineOptions: 'readonly',
+	},
+
 	overrides: [
-		// 扫描 .vue/html 文件中的<style>标签内的样式
 		{
-			files: ["**/*.{vue,html}"],
-			customSyntax: "postcss-html"
-		}
+			files: ['*.vue'],
+			parserOptions: {
+				parser: '@typescript-eslint/parser',
+				ecmaVersion: 2021,
+			},
+			extends: ['plugin:vue/vue3-recommended', 'plugin:vue/vue3-essential'],
+			rules: {
+				// vue (https://eslint.vuejs.org/rules)
+				'vue/html-indent': ['error', 'tab'], // enforce tabs in template
+				indent: ['error', 'tab'], // enforce tabs in script and js files
+				'vue/component-definition-name-casing': ['error', 'PascalCase'], // enforce component definition name casing in template
+				'vue/html-self-closing': 'off', // 添加组件命名忽略规则 vue官方默认规则是多单词驼峰来进行组件命名
+				'vue/script-setup-uses-vars': 'warn', // 防止<script setup>使用的变量<template>被标记为未使用，此规则仅在启用该no-unused-vars规则时有效。
+				'vue/v-slot-style': 'error', // 强制执行 v-slot 指令样式
+				'vue/one-component-per-file': 'off', // 强制每个组件都应该在自己的文件中
+				'vue/html-closing-bracket-newline': 'off', // 在标签的右括号之前要求或禁止换行
+				'vue/max-attributes-per-line': 'off', // 强制每行的最大属性数
+				'vue/multiline-html-element-content-newline': 'off', // 在多行元素的内容之前和之后需要换行符
+				'vue/singleline-html-element-content-newline': 'off', // 在单行元素的内容之前和之后需要换行符
+				'vue/attribute-hyphenation': 'off', // 对模板中的自定义组件强制执行属性命名样式
+				'vue/multi-word-component-names': 'off', // 要求组件名称始终为 “-” 链接的单词
+			},
+		},
 	],
-	/**
-	 * null  => 关闭该规则
-	 */
 	rules: {
-		"no-descending-specificity": null, // 禁止在具有较高优先级的选择器后出现被其覆盖的较低优先级的选择器
-		"function-url-quotes": "always", // 要求或禁止 URL 的引号 "always(必须加上引号)"|"never(没有引号)"
-		"string-quotes": "double", // 指定字符串使用单引号或双引号
-		"unit-case": null, // 指定单位的大小写 "lower(全小写)"|"upper(全大写)"
-		"color-hex-case": "lower", // 指定 16 进制颜色的大小写 "lower(全小写)"|"upper(全大写)"
-		"color-hex-length": "long", // 指定 16 进制颜色的简写或扩写 "short(16进制简写)"|"long(16进制扩写)"
-		"rule-empty-line-before": "never", // 要求或禁止在规则之前的空行 "always(规则之前必须始终有一个空行)"|"never(规则前绝不能有空行)"|"always-multi-line(多行规则之前必须始终有一个空行)"|"never-multi-line(多行规则之前绝不能有空行。)"
-		"font-family-no-missing-generic-family-keyword": null, // 禁止在字体族名称列表中缺少通用字体族关键字
-		"block-opening-brace-space-before": "always", // 要求在块的开大括号之前必须有一个空格或不能有空白符 "always(大括号前必须始终有一个空格)"|"never(左大括号之前绝不能有空格)"|"always-single-line(在单行块中的左大括号之前必须始终有一个空格)"|"never-single-line(在单行块中的左大括号之前绝不能有空格)"|"always-multi-line(在多行块中，左大括号之前必须始终有一个空格)"|"never-multi-line(多行块中的左大括号之前绝不能有空格)"
-		"property-no-unknown": null, // 禁止未知的属性(true 为不允许)
-		"no-empty-source": null, // 禁止空源码
-		"declaration-block-trailing-semicolon": null, // 要求或不允许在声明块中使用尾随分号 string："always(必须始终有一个尾随分号)"|"never(不得有尾随分号)"
-		"selector-class-pattern": null, // 强制选择器类名的格式
-		"scss/at-import-partial-extension": null, // 解决不能引入scss文件
-		"value-no-vendor-prefix": null, // 关闭 vendor-prefix(为了解决多行省略 -webkit-box)
-		"selector-pseudo-class-no-unknown": [
-			true,
-			{
-				ignorePseudoClasses: ["global", "v-deep", "deep"]
-			}
-		]
-	}
+		'no-console': 'off', //生产模式不允许使用log
+		'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off', //生产默认不允许使用debugger
+		'no-undef': 'off', // 禁止使用未声明的变量
+		'no-var': 'warn', // 要求使用 let 或 const 而不是 var
+		'no-multiple-empty-lines': ['error', { max: 1 }], // 不允许多个空行
+		'no-use-before-define': 'off', // 禁止在 函数/类/变量 定义之前使用它们
+		'prefer-const': 'off', // 此规则旨在标记使用 let 关键字声明但在初始分配后从未重新分配的变量，要求使用 const
+		'no-irregular-whitespace': 'off', // 禁止不规则的空白
+		'@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }], // 禁止定义未使用的变量,忽略下划线开头的变量
+		'@typescript-eslint/explicit-module-boundary-types': 'off', // 要求导出函数和类的公共类方法的显式返回和参数类型
+		'@typescript-eslint/no-explicit-any': 'off', // 禁止使用 any 类型
+		'@typescript-eslint/no-non-null-assertion': 'off', // 不允许使用后缀运算符的非空断言(!)
+		'@typescript-eslint/no-non-null-asserted-optional-chain': 'off', // 禁止在可选链表达式上使用非空断言
+		'@typescript-eslint/ban-ts-comment': ['off', { 'ts-ignore': false }], // 禁止 @ts-<directive> 使用注释或要求在指令后进行描述
+		'@typescript-eslint/no-namespace': 'off', // 禁止使用命名空间
+	},
 };
 ```
 
-## 五、EditorConfig 配置
+## 四、EditorConfig 配置
 
 ### 1、简介
 
@@ -273,7 +192,7 @@ max_line_length = off # 关闭最大行长度限制
 trim_trailing_whitespace = false # 关闭末尾空格修剪
 ```
 
-## 六、Git 流程规范配置
+## 五、Git 流程规范配置
 
 |              依赖               |                                    作用描述                                    |
 | :-----------------------------: | :----------------------------------------------------------------------------: |
