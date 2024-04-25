@@ -71,8 +71,6 @@ class RequestHttp {
 				if (config.headers && typeof config.headers.set === 'function') {
 					config.headers.set('x-access-token', userStore.token);
 				}
-				console.log('config', config);
-
 				return config;
 			},
 			(error: AxiosError) => {
