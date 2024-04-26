@@ -1,5 +1,9 @@
 import AMapLoader from '@amap/amap-jsapi-loader';
-import { MAP_KEY } from '@/config';
+import { MAP_KEY, SECURITY_JS_CODE } from '@/config';
+
+window._AMapSecurityConfig = {
+	securityJsCode: SECURITY_JS_CODE,
+};
 /**
  * @description 初始化地图
  * @param {string} id 地图容器id

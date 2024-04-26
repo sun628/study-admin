@@ -14,6 +14,9 @@ export const ROUTER_WHITE_LIST: string[] = ['/403', '/404', '/500', '/layout', '
 // * 高德地图key
 export const MAP_KEY = '916919393f49e9132baa000648891c5f';
 
+// 安全密钥
+export const SECURITY_JS_CODE = '';
+
 export const successCode = [200, 201, 204, 10000];
 
 // 地图配置项
