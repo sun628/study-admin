@@ -9,6 +9,7 @@ import eslintPlugin from 'vite-plugin-eslint';
 import UnoCSS from 'unocss/vite';
 import { CodeInspectorPlugin } from 'code-inspector-plugin'; // shift+alt 点击页面元素，它能够自动打开你的 IDE 并将光标定位到 DOM 对应的源代码位置。
 import vueJsx from '@vitejs/plugin-vue-jsx'; //支持jsx
+import { PluginOption } from 'vite';
 
 const _visualizer = visualizer({
 	emitFile: true, //是否被触摸
@@ -22,7 +23,7 @@ const lifecycle = process.env.npm_lifecycle_event; //获取当前运行的命令
 
 const VITE_INSPECT = lifecycle === 'dev:inspect'; //是否开启元素定位源代码位置
 
-export function createVitePlugins() {
+export function createVitePlugins(): PluginOption[] {
 	const root = process.cwd();
 	return [
 		UnoCSS({
